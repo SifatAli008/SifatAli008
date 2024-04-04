@@ -4,9 +4,8 @@
 
 Passionate Self-Taught Programmer🚀💻
 
-Skills: Python/Java/C++/ REACT /Wordpress/HTML / CSS
+Skills: Python/Java/C++/ REACT /WordPress/HTML / CSS
 
-- 🔭 I’m currently working on this page. 
 - 🌱 I’m currently learning Data Structures and Algorithm  
 - 🤔 I’m looking for help with AI 
 
