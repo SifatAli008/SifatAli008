@@ -10,7 +10,7 @@ Skills: Python/Java/C++/ REACT /WordPress/HTML / CSS
 - 🤔 I’m looking for help with AI 
 
 
-[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/SifatAli008)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/https://www.linkedin.com/in/sifat-ali//)  
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/sifat-ali//)  
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=SifatAli008)](https://github.com/anuraghazra/github-readme-stats)
 
