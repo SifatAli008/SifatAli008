@@ -1,5 +1,14 @@
-# 💫 About Me:
-🔭 Currently working on Software and Web App Development.<br>🧑‍🤝‍🧑 Looking to collaborate on an AI-based EdTech project.<br>🫱🏼‍🫲🏼 Seeking help with Large Language Models (LLM).<br>💭 Open to discussions on Python and React.js.<br>⚡ Fun fact: I may not be a math genius, but I still manage to develop AI-powered solutions – proof that coding is more about logic than equations!
+<div>
+  <h2>💫 About Me:</h2>
+  <ul>
+    <li>🔭 Passionate about Software and Web App Development.</li>
+    <li>🧑‍🤝‍🧑 Actively seeking collaboration on cutting-edge AI-based EdTech projects.</li>
+    <li>🫱🏼‍🫲🏼 Eager to deepen my knowledge of Large Language Models (LLM) – looking for insights and guidance.</li>
+    <li>💭 Always open to discussions about Python and React.js.</li>
+    <li>⚡ Fun fact: Not a math genius, but I can still build AI-powered solutions – because coding is about logic, not equations!</li>
+  </ul>
+</div>
+
 
 
 ## 🌐 Socials:
