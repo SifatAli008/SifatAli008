@@ -1,7 +1,7 @@
 <div>
   <h2>💫 About Me:</h2>
   <ul>
-    <li>🔭 Passionate about Software and Web App Development.</li>
+    <li>🔭 Passionate about Data Science and AI.</li>
     <li>🧑‍🤝‍🧑 Actively seeking collaboration on cutting-edge AI-based EdTech projects.</li>
     <li>🫱🏼‍🫲🏼 Eager to deepen my knowledge of Large Language Models (LLM) – looking for insights and guidance.</li>
     <li>💭 Always open to discussions about Python and React.js.</li>
