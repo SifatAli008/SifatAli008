@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    match /profile/{docId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /blog_posts/{postId} {
+      allow read: if resource.data.status == 'published' || isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+
+    match /skills/{skillId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /experiences/{expId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /achievements/{achievementId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    match /contacts/{contactId} {
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'subject', 'message'])
+        && request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.message.size() >= 10;
+      allow read, update: if isAuthenticated();
+      allow delete: if isAuthenticated();
+    }
+  }
+}

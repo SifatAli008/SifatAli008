@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-radius: 0 !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  ::selection {
+    background: #ff3b00;
+    color: #f5f0e8;
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-site px-6 md:px-12 lg:px-20;
+  }
+
+  .section-pad {
+    @apply py-16 md:py-24 lg:py-[120px];
+  }
+
+  .label-mono {
+    @apply font-mono text-[11px] uppercase tracking-[0.15em];
+  }
+
+  /* Neo-brutalist 3D buttons — hard shadow, press depth */
+  .btn-3d {
+    @apply relative px-8 py-3.5;
+    box-shadow: 5px 5px 0 0 #0a0a0a;
+    transition: box-shadow 0.08s ease-out, transform 0.08s ease-out;
+  }
+
+  .btn-3d:hover {
+    box-shadow: 8px 8px 0 0 #0a0a0a;
+  }
+
+  .btn-3d:active {
+    box-shadow: 0 0 0 0 #0a0a0a;
+    transform: translate(5px, 5px);
+  }
+
+  .btn-3d-accent {
+    box-shadow: 5px 5px 0 0 #0a0a0a;
+  }
+
+  .btn-3d-accent:hover {
+    box-shadow: 8px 8px 0 0 #0a0a0a;
+  }
+
+  .btn-3d-on-dark {
+    box-shadow: 5px 5px 0 0 #f5f0e8;
+  }
+
+  .btn-3d-on-dark:hover {
+    box-shadow: 8px 8px 0 0 #f5f0e8;
+  }
+
+  .btn-3d-on-dark:active {
+    box-shadow: 0 0 0 0 #f5f0e8;
+  }
+
+  .icon-3d-box {
+    box-shadow: 4px 4px 0 0 #0a0a0a;
+    transition: box-shadow 0.08s ease-out;
+  }
+
+  .icon-3d-box:hover {
+    box-shadow: 6px 6px 0 0 #0a0a0a;
+  }
+
+  .stat-3d {
+    @apply transition-transform duration-150;
+  }
+
+  .stat-3d:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 #0a0a0a;
+  }
+
+  @keyframes icon-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  .icon-animate {
+    animation: icon-bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .pulse-dot {
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  .tag-brutal {
+    @apply inline-block border border-ink px-2.5 py-0.5 font-mono text-[11px] transition-[background,color,border-color] duration-75 hover:border-accent hover:bg-accent hover:text-cream;
+  }
+
+  .tag-brutal-light {
+    @apply inline-block border border-cream px-2.5 py-0.5 font-mono text-[11px] text-cream transition-[background,color,border-color] duration-75 hover:border-accent hover:bg-accent;
+  }
+
+  .nav-link-underline {
+    @apply relative inline-block;
+  }
+
+  .nav-link-underline::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-cream transition-transform duration-150;
+  }
+
+  .nav-link-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  .field-brutal {
+    @apply w-full border-0 border-b-2 border-ink bg-transparent py-3 font-mono text-sm text-ink placeholder:text-ink/50 focus:outline-none focus:ring-0;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+}
+
+.hljs {
+  @apply border-2 border-ink bg-cream p-4 font-mono text-sm;
+}
