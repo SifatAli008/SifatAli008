@@ -165,6 +165,17 @@
     filter: grayscale(0) brightness(0.2);
   }
 
+  .experience-logo-img {
+    background: transparent !important;
+    opacity: 0.65;
+    mix-blend-mode: multiply;
+    transition: opacity 0.15s ease;
+  }
+
+  .group:hover .experience-logo-img {
+    opacity: 1;
+  }
+
   @keyframes marquee-scroll {
     0% {
       transform: translateX(0);

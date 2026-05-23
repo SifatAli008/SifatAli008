@@ -47,7 +47,7 @@ export function ProjectsRows({ projects, showHeader = true }: ProjectsRowsProps)
         </div>
       )}
 
-      <div className="site-container flex flex-wrap items-center border-b border-ink">
+      <div className="site-container flex flex-wrap items-center justify-center border-b border-ink">
         <Filter className="mx-4 hidden h-4 w-4 text-ink sm:block" strokeWidth={2.5} />
         {filters.map((f) => (
           <motion.button
@@ -73,12 +73,12 @@ export function ProjectsRows({ projects, showHeader = true }: ProjectsRowsProps)
             href={`/projects/${project.slug}`}
             className="group grid grid-cols-1 border-t-2 border-ink transition-colors duration-75 hover:bg-accent hover:text-cream md:grid-cols-[80px_1fr_240px_60px]"
           >
-            <div className="flex items-center border-b border-ink px-4 py-6 md:border-b-0 md:border-r md:py-8">
+            <div className="flex items-center justify-center border-b border-ink px-4 py-6 md:border-b-0 md:border-r md:py-8">
               <span className="font-display text-[64px] leading-none text-ink/[0.08] group-hover:text-cream/20">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </div>
-            <div className="border-b border-ink px-6 py-6 md:border-b-0 md:border-r md:py-8">
+            <div className="border-b border-ink px-6 py-6 text-center md:border-b-0 md:border-r md:py-8">
               <h3 className="font-sans text-xl font-bold group-hover:text-cream">
                 {project.title}
               </h3>
@@ -113,7 +113,7 @@ export function ProjectsRows({ projects, showHeader = true }: ProjectsRowsProps)
       </div>
 
       {showHeader && (
-        <div className="site-container border-t-2 border-ink py-8 text-right">
+        <div className="site-container flex justify-center border-t-2 border-ink py-8">
           <BrutalButton
             href="/projects"
             variant="accent"

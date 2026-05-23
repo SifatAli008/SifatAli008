@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionReveal } from "@/components/motion/section-reveal";
+import { ExperienceLogosStrip } from "@/components/site/experience-logos-strip";
 import type { Experience } from "@/types";
 
 const typeMap: Record<string, string> = {
@@ -133,6 +134,8 @@ export function ExperienceTable({ experiences }: ExperienceTableProps) {
           </table>
         </div>
       </div>
+
+      <ExperienceLogosStrip />
     </SectionReveal>
   );
 }
