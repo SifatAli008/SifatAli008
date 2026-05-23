@@ -8,13 +8,14 @@ import { SectionReveal } from "@/components/motion/section-reveal";
 import { BrutalButton } from "@/components/ui/brutal-button";
 import type { Project, ProjectCategory } from "@/types";
 
-const filters = ["ALL", "AI/ML", "WEB", "DESKTOP"] as const;
+const filters = ["ALL", "AI/ML", "WEB", "DESKTOP", "GAMES"] as const;
 
 function matchesFilter(project: Project, filter: string): boolean {
   if (filter === "ALL") return true;
   if (filter === "AI/ML") return project.category === "AI";
   if (filter === "WEB") return project.category === "Web" || project.category === "Mobile";
   if (filter === "DESKTOP") return project.category === "Desktop" || project.category === "Tool";
+  if (filter === "GAMES") return project.category === "Game";
   return true;
 }
 

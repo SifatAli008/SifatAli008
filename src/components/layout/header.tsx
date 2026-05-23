@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   BarChart3,
+  FlaskConical,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BrutalButton } from "@/components/ui/brutal-button";
@@ -19,6 +20,7 @@ import { BrutalButton } from "@/components/ui/brutal-button";
 const links = [
   { href: "/#about", label: "ABOUT", icon: User },
   { href: "/#featured", label: "FEATURED", icon: BarChart3 },
+  { href: "/#research", label: "RESEARCH", icon: FlaskConical },
   { href: "/#work", label: "WORK", icon: FolderKanban },
   { href: "/blog", label: "WRITING", icon: PenLine },
   { href: "/contact", label: "CONTACT", icon: Mail },

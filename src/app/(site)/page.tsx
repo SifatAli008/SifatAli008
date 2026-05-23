@@ -11,6 +11,7 @@ import { About } from "@/components/site/about";
 import { FeaturedSection } from "@/components/site/featured-section";
 import { ExperienceTable } from "@/components/site/experience-table";
 import { SkillsBands } from "@/components/site/skills-bands";
+import { AcademicResearchSection } from "@/components/site/academic-research-section";
 import { ProjectsRows } from "@/components/site/projects-rows";
 import { MarqueeStrip } from "@/components/site/marquee-strip";
 import { WritingSection } from "@/components/site/writing-section";
@@ -41,6 +42,7 @@ export default async function HomePage() {
       <FeaturedSection profile={profile} />
       <ExperienceTable experiences={experiences} />
       <SkillsBands />
+      <AcademicResearchSection />
       <ProjectsRows projects={projects} />
       <MarqueeStrip />
       <WritingSection posts={posts} />

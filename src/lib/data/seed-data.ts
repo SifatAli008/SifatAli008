@@ -85,6 +85,7 @@ I hold a B.Sc. in Computer Science from United International University and care
     "Community Coordinator",
     "2× Hackathon Winner",
   ],
+  domains: ["EdTech", "MedTech", "SaaS", "AI"],
 };
 
 export const seedProjects: Omit<Project, "id">[] = [
@@ -198,9 +199,9 @@ export const seedProjects: Omit<Project, "id">[] = [
     title: "Sir Kothay",
     tagline: "Location-intelligent service discovery for campus",
     description:
-      "Django web platform for service discovery with PostgreSQL-backed search and location intelligence — a UIU Developers Hub community tool.",
+      "Node.js web platform for service discovery with PostgreSQL-backed search and location intelligence — a UIU Developers Hub community tool.",
     category: "Web",
-    techStack: ["Django", "PostgreSQL", "Leaflet", "Redis"],
+    techStack: ["Node.js", "PostgreSQL", "Leaflet", "Redis"],
     status: "completed",
     featured: false,
     order: 5,
@@ -247,6 +248,24 @@ export const seedProjects: Omit<Project, "id">[] = [
     createdAt: now,
     updatedAt: now,
   },
+  {
+    slug: "pixel-office-unity",
+    title: "Pixel Office",
+    tagline: "2D Unity prototype · campus workplace sim",
+    description:
+      "Unity 2D project with tilemaps, character controller, and interactable office scenes — built as a UIU Developers Hub experiment.",
+    category: "Game",
+    techStack: ["Unity", "C#", "2D Tilemaps", "Animator"],
+    status: "in-progress",
+    featured: true,
+    order: 8,
+    coverImage: "/assets/pixel art/office.gif",
+    challenge: "Ship a charming playable space without a full art pipeline.",
+    process: "Pixel art assets, scene blocking, and input-driven interaction loops in Unity.",
+    features: ["Top-down movement", "Interactables", "Scene transitions", "Event-ready build"],
+    createdAt: now,
+    updatedAt: now,
+  },
 ];
 
 export const seedSkills: Omit<Skill, "id">[] = [
@@ -256,14 +275,20 @@ export const seedSkills: Omit<Skill, "id">[] = [
   { name: "React.js", category: "Frontend", icon: "react", proficiency: 92, order: 4 },
   { name: "Framer Motion", category: "Frontend", icon: "motion", proficiency: 85, order: 5 },
   { name: "Node.js", category: "Backend", icon: "node", proficiency: 88, order: 6 },
-  { name: "Django", category: "Backend", icon: "django", proficiency: 82, order: 7 },
-  { name: "Firebase", category: "Backend", icon: "firebase", proficiency: 90, order: 8 },
-  { name: "Python", category: "AI & Data", icon: "python", proficiency: 94, order: 9 },
-  { name: "AI / RAG Systems", category: "AI & Data", icon: "brain", proficiency: 88, order: 10 },
-  { name: "ClinicalBERT / NLP", category: "AI & Data", icon: "brain", proficiency: 86, order: 11 },
-  { name: "Pandas / NumPy", category: "AI & Data", icon: "chart", proficiency: 88, order: 12 },
-  { name: "PyQt5", category: "Tools", icon: "desktop", proficiency: 85, order: 13 },
-  { name: "Git / CI", category: "Tools", icon: "git", proficiency: 90, order: 14 },
+  { name: "Firebase", category: "Backend", icon: "firebase", proficiency: 90, order: 7 },
+  { name: "Python", category: "AI & Data", icon: "python", proficiency: 94, order: 8 },
+  { name: "TensorFlow", category: "AI & Data", icon: "brain", proficiency: 84, order: 9 },
+  { name: "RAG", category: "AI & Data", icon: "brain", proficiency: 90, order: 10 },
+  { name: "AI / RAG Systems", category: "AI & Data", icon: "brain", proficiency: 88, order: 11 },
+  { name: "ClinicalBERT / NLP", category: "AI & Data", icon: "brain", proficiency: 86, order: 12 },
+  { name: "Pandas / NumPy", category: "AI & Data", icon: "chart", proficiency: 88, order: 13 },
+  { name: "WordPress", category: "CMS", icon: "wordpress", proficiency: 88, order: 14 },
+  { name: "Elementor", category: "CMS", icon: "elementor", proficiency: 86, order: 15 },
+  { name: "PyQt5", category: "Tools", icon: "desktop", proficiency: 85, order: 16 },
+  { name: "Git / CI", category: "Tools", icon: "git", proficiency: 90, order: 17 },
+  { name: "Docker", category: "Tools", icon: "docker", proficiency: 86, order: 18 },
+  { name: "Unity", category: "Games", icon: "unity", proficiency: 80, order: 19 },
+  { name: "C#", category: "Games", icon: "csharp", proficiency: 78, order: 20 },
 ];
 
 export const seedExperience: Omit<Experience, "id">[] = [
@@ -294,7 +319,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
       "Mentor students on React.js, Python, and AI",
       "Grow the community through events and shared resources",
     ],
-    stack: ["React.js", "Python", "PyQt5", "Django", "Community Ops"],
+    stack: ["React.js", "Python", "PyQt5", "Node.js", "Community Ops"],
     order: 2,
   },
   {
