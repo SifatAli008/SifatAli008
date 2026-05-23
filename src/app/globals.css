@@ -150,7 +150,34 @@
   .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee 30s linear infinite;
+    animation: marquee-scroll 50s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-tech-icon {
+    opacity: 0.42;
+    filter: grayscale(1) brightness(0.35);
+    transition: opacity 0.15s ease, filter 0.15s ease;
+  }
+
+  .group:hover .marquee-tech-icon {
+    opacity: 0.85;
+    filter: grayscale(0) brightness(0.2);
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
   }
 }
 
