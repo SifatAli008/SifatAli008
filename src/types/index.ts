@@ -1,5 +1,5 @@
 export type ProjectStatus = "completed" | "in-progress" | "archived";
-export type ProjectCategory = "Desktop" | "AI" | "Web" | "Mobile" | "Tool";
+export type ProjectCategory = "Desktop" | "AI" | "Web" | "Mobile" | "Tool" | "Game";
 
 export interface Project {
   id: string;
@@ -26,7 +26,7 @@ export interface Project {
   updatedAt: string;
 }
 
-export type SkillCategory = "Frontend" | "Backend" | "AI & Data" | "Tools";
+export type SkillCategory = "Frontend" | "Backend" | "AI & Data" | "Tools" | "Games" | "CMS";
 
 export interface Skill {
   id: string;
@@ -143,4 +143,6 @@ export interface Profile {
     activityMix: { label: string; value: number }[];
   };
   typewriterRoles: string[];
+  /** Focus industries shown in hero */
+  domains?: string[];
 }

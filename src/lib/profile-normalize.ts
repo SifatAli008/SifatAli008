@@ -7,6 +7,7 @@ export function normalizeProfile(profile: Profile): Profile {
     return {
       ...profile,
       metrics: profile.metrics ?? seedProfile.metrics,
+      domains: profile.domains?.length ? profile.domains : seedProfile.domains,
     };
   }
 
@@ -14,5 +15,6 @@ export function normalizeProfile(profile: Profile): Profile {
     ...profile,
     stats: seedProfile.stats,
     metrics: profile.metrics ?? seedProfile.metrics,
+    domains: profile.domains?.length ? profile.domains : seedProfile.domains,
   };
 }

@@ -1,6 +1,6 @@
 export function MarqueeStrip() {
   const text =
-    "REACT — NEXT.JS — DJANGO — FIREBASE — CLINICALBERT — PYQT5 — NLP — TYPESCRIPT — TAILWIND — ";
+    "REACT — NEXT.JS — NODE — RAG — WORDPRESS — ELEMENTOR — UNITY — FIREBASE — TENSORFLOW — DOCKER — C# — TYPESCRIPT — TAILWIND — ";
 
   return (
     <div className="overflow-hidden border-y-2 border-ink bg-cream py-4">

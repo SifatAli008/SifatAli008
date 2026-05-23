@@ -11,12 +11,17 @@ const bands = [
   {
     label: "BACKEND & AI",
     dark: false,
-    skills: "DJANGO · FIREBASE · CLINICALBERT · NLP · MACHINE LEARNING · PYTHON",
+    skills: "NODE · FIREBASE · RAG · TENSORFLOW · CLINICALBERT · NLP · MACHINE LEARNING · PYTHON",
+  },
+  {
+    label: "CMS",
+    dark: true,
+    skills: "WORDPRESS · ELEMENTOR · PAGE BUILDERS · CUSTOM THEMES · PLUGINS · WOOCOMMERCE",
   },
   {
     label: "TOOLS",
-    dark: true,
-    skills: "PYQT5 · GIT · LINUX · FIREBASE · REST APIS",
+    dark: false,
+    skills: "PYQT5 · GIT · DOCKER · LINUX · FIREBASE · REST APIS",
   },
 ];
 

@@ -14,6 +14,9 @@ const typeMap: Record<string, string> = {
 };
 
 function getType(company: string, role: string): string {
+  if (company === "Shohoz Skill" && role.includes("Assistant Managing Director")) {
+    return "CONTRACTUAL";
+  }
   if (company === "Shohoz Skill" && role.includes("Instructor")) {
     return "PART-TIME";
   }

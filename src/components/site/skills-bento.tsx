@@ -16,7 +16,9 @@ const categories: SkillCategory[] = [
   "Frontend",
   "Backend",
   "AI & Data",
+  "CMS",
   "Tools",
+  "Games",
 ];
 
 function SkillBar({ skill }: { skill: Skill }) {
