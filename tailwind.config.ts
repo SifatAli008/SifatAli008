@@ -45,8 +45,8 @@ const config: Config = {
       },
       keyframes: {
         marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+          "0%": { transform: "translateX(-33.333%)" },
+          "100%": { transform: "translateX(0)" },
         },
         slideUp: {
           "0%": { opacity: "0", transform: "translateY(32px)" },
