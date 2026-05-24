@@ -23,7 +23,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "4TH PLACE",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7404026694963007488/",
-    image: "/assets/linkedin/nextzen-iiuc.jpg",
+    image: "/assets/linkedin/NextZen IIUC Tech Fest 2025.jpg",
     accent: true,
     order: 1,
   },
@@ -36,6 +36,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "1ST RUNNER-UP",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7404033807449792512/",
+    image: "/assets/linkedin/InnovateX Hackathon 2025 BUBT.jpg",
     accent: true,
     order: 2,
   },
@@ -48,6 +49,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "ORGANIZER",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7404037671599235072/",
+    image: "/assets/linkedin/UIU HackDay 2026 Announced.jpg",
     order: 3,
   },
   {
@@ -58,6 +60,7 @@ export const featuredItems: FeaturedItem[] = [
       "Alhamdulillah — collective effort from organizers, mentors, and participants. Proud to contribute and see UIU Developers Hub grow.",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7417412024864821248/",
+    image: "/assets/linkedin/UIU HackDay 2026 Milestone.jpg",
     order: 4,
   },
   {
@@ -69,6 +72,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "WORKSHOP",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7415750283919568897/",
+    image: "/assets/linkedin/UIU HackDay 2026 Category 3 Workshop.jpg",
     order: 5,
   },
   {
@@ -80,11 +84,8 @@ export const featuredItems: FeaturedItem[] = [
     badge: "RECRUITMENT",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7416498694381801472/",
+    image: "/assets/linkedin/UIU Developers Hub Recruitment.jpg",
     order: 6,
   },
 ];
 
-/**
- * Add post screenshots to public/assets/linkedin/ then set image paths, e.g.:
- * image: "/assets/linkedin/nextzen-iiuc.jpg"
- */

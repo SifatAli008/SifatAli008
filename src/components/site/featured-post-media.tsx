@@ -18,7 +18,7 @@ export function FeaturedPostMedia({
     return (
       <div className="relative aspect-[4/3] w-full bg-ink">
         <Image
-          src={item.image}
+          src={encodeURI(item.image)}
           alt={item.title}
           fill
           className="object-cover"
