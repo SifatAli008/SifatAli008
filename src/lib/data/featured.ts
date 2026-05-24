@@ -23,6 +23,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "4TH PLACE",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7404026694963007488/",
+    image: "/assets/linkedin/nextzen-iiuc.jpg",
     accent: true,
     order: 1,
   },

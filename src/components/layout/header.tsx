@@ -44,7 +44,7 @@ export function Header() {
             SIFAT ALI
           </Link>
 
-          <nav className="hidden items-center md:flex">
+          <nav className="hidden items-center md:flex" aria-label="Primary">
             {links.map((link, i) => {
               const Icon = link.icon;
               return (
@@ -104,7 +104,7 @@ export function Header() {
               <X className="h-5 w-5 text-cream" strokeWidth={2.5} />
             </button>
           </div>
-          <nav className="flex flex-1 flex-col justify-center gap-6 px-6">
+          <nav className="flex flex-1 flex-col justify-center gap-6 px-6" aria-label="Mobile">
             {links.map((link) => {
               const Icon = link.icon;
               return (

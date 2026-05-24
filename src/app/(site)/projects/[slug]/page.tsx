@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjects } from "@/lib/firebase/queries";
-import { softwareAppJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, buildPageMetadata, softwareAppJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 
 export const revalidate = 3600;
@@ -19,10 +20,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const project = await getProjectBySlug(params.slug);
   if (!project) return { title: "Project Not Found" };
-  return {
+  return buildPageMetadata({
     title: project.title,
-    description: project.tagline,
-  };
+    description: project.tagline || project.description,
+    path: `/projects/${project.slug}`,
+    tags: project.techStack,
+  });
 }
 
 const sections = [
@@ -42,14 +45,18 @@ export default async function ProjectCaseStudyPage({
   const project = await getProjectBySlug(params.slug);
   if (!project) notFound();
 
-  const jsonLd = softwareAppJsonLd(project);
+  const jsonLd = [
+    softwareAppJsonLd(project),
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Work", path: "/projects" },
+      { name: project.title, path: `/projects/${project.slug}` },
+    ]),
+  ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <article className="bg-cream">
         <div className="border-b-[3px] border-ink bg-ink">
           <div className="site-container py-8 md:py-12">

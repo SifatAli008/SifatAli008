@@ -2,16 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  Linkedin,
-  ExternalLink,
-  ImageIcon,
-} from "lucide-react";
-import {
-  getLinkedInEmbedUrl,
-  isLinkedInImagesGallery,
-} from "@/lib/linkedin-embed";
+import { ArrowUpRight, Linkedin, ExternalLink } from "lucide-react";
+import { FeaturedPostMedia } from "@/components/site/featured-post-media";
 import type { FeaturedItem } from "@/lib/data/featured";
 
 interface LinkedInPostCardProps {
@@ -30,9 +22,6 @@ export function LinkedInPostCard({
   index,
   compact = false,
 }: LinkedInPostCardProps) {
-  const embedUrl = getLinkedInEmbedUrl(item.href);
-  const isGallery = isLinkedInImagesGallery(item.href);
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -42,7 +31,6 @@ export function LinkedInPostCard({
       className="flex h-full flex-col overflow-hidden border-[3px] border-ink bg-cream"
       style={{ boxShadow: compact ? "6px 6px 0 0 #0a0a0a" : "8px 8px 0 0 #0a0a0a" }}
     >
-      {/* Header */}
       <div
         className={`flex items-center gap-2 border-b-[3px] border-ink bg-cream ${
           compact ? "px-3 py-2" : "gap-3 px-4 py-3"
@@ -74,71 +62,20 @@ export function LinkedInPostCard({
         <Linkedin className="h-4 w-4 shrink-0 text-[#0A66C2]" aria-hidden />
       </div>
 
-      {/* Media */}
       <div className="border-b-[3px] border-ink bg-[#f3f2ef]">
-        {item.image ? (
-          <div className="relative aspect-[4/3] w-full bg-ink">
-            <Image
-              src={item.image}
-              alt={item.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 33vw, 400px"
-            />
-          </div>
-        ) : isGallery ? (
-          <div className="grid grid-cols-2 gap-0">
-            {[
-              profileAvatar,
-              "/assets/images/face.jpeg",
-              "/assets/pixel art/office.gif",
-              profileAvatar,
-            ].map((src, i) => (
-              <div key={i} className="relative aspect-square border border-ink/10">
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="150px"
-                  unoptimized={src.endsWith(".gif")}
-                />
-              </div>
-            ))}
-          </div>
-        ) : embedUrl ? (
-          <div className="relative w-full overflow-hidden bg-white">
-            <iframe
-              src={embedUrl}
-              title={item.title}
-              className={`w-full border-0 ${
-                compact ? "h-[260px] min-h-[220px]" : "h-[min(520px,75vh)] min-h-[400px]"
-              }`}
-              loading="lazy"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-            />
-          </div>
-        ) : (
-          <div className="flex aspect-[4/3] flex-col items-center justify-center gap-2 bg-ink/5 p-4">
-            <ImageIcon className="h-8 w-8 text-muted" />
-            <p className="label-mono text-center text-[9px] text-muted">
-              ADD /assets/linkedin/ IMAGE
-            </p>
-          </div>
-        )}
+        <FeaturedPostMedia item={item} index={index} compact={compact} />
       </div>
 
-      {/* Body — grows so cards align in a row */}
       <div className="flex flex-1 flex-col p-4">
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="label-mono border border-ink px-1.5 py-0.5 text-[9px] text-ink">
             {item.type}
           </span>
-          {item.badge && (
+          {item.badge ? (
             <span className="label-mono bg-ink px-1.5 py-0.5 text-[9px] font-bold text-accent">
               {item.badge}
             </span>
-          )}
+          ) : null}
         </div>
         <h3
           className={`mt-2 font-sans font-bold leading-snug text-ink ${

@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getBlogPosts } from "@/lib/firebase/queries";
 import { fallbackBlogPosts } from "@/lib/data/fallback";
+import { buildPageMetadata, itemListJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 import { formatDate } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Writing",
-  description: "Engineering essays on AI, Firebase, PyQt5, and full-stack development.",
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "Writing — Engineering Essays",
+  description:
+    "Engineering essays on AI, RAG, Firebase, PyQt5, and full-stack development by Sifat Ali.",
+  path: "/blog",
+});
 
 export const revalidate = 3600;
 
@@ -15,8 +19,15 @@ export default async function BlogPage() {
   let posts = await getBlogPosts(false);
   if (posts.length === 0) posts = fallbackBlogPosts;
 
+  const jsonLd = itemListJsonLd(
+    "Sifat Ali — Writing",
+    posts.map((p) => ({ name: p.title, url: `/blog/${p.slug}` }))
+  );
+
   return (
-    <div className="bg-ink text-cream">
+    <>
+      <JsonLd data={jsonLd} />
+      <div className="bg-ink text-cream">
       <div className="border-b-[3px] border-cream/20">
         <div className="site-container py-4">
           <p className="label-mono text-accent">WRITING</p>
@@ -44,5 +55,6 @@ export default async function BlogPage() {
         ))}
       </div>
     </div>
+    </>
   );
 }
