@@ -1,33 +1,33 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts, getProjects } from "@/lib/firebase/queries";
 import { fallbackBlogPosts } from "@/lib/data/fallback";
+import { getSiteUrl } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sifatali.dev";
-  const staticRoutes = ["", "/projects", "/blog", "/archive", "/contact"].map(
-    (path) => ({
-      url: `${base}${path}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: path === "" ? 1 : 0.8,
-    })
-  );
+  const base = getSiteUrl();
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
+    { url: `${base}/projects`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${base}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },
+    { url: `${base}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/archive`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+  ];
 
   const projects = await getProjects();
-  const projectRoutes = projects.map((p) => ({
+  const projectRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
     url: `${base}/projects/${p.slug}`,
     lastModified: new Date(p.updatedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    changeFrequency: "monthly",
+    priority: 0.75,
   }));
 
   let posts = await getBlogPosts(false);
   if (posts.length === 0) posts = fallbackBlogPosts;
-  const blogRoutes = posts.map((p) => ({
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${base}/blog/${p.slug}`,
     lastModified: new Date(p.updatedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
+    changeFrequency: "monthly",
+    priority: 0.65,
   }));
 
   return [...staticRoutes, ...projectRoutes, ...blogRoutes];

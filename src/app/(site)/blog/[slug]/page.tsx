@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getBlogPostBySlug } from "@/lib/firebase/queries";
-import { blogPostingJsonLd } from "@/lib/seo";
+import { getBlogPostBySlug, getBlogPosts } from "@/lib/firebase/queries";
+import { blogPostingJsonLd, breadcrumbJsonLd, buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { ReadingProgress } from "@/components/blog/reading-progress";
 import { formatDate } from "@/lib/utils";
@@ -11,7 +12,9 @@ import { fallbackBlogPosts } from "@/lib/data/fallback";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  return fallbackBlogPosts.map((p) => ({ slug: p.slug }));
+  let posts = await getBlogPosts(false);
+  if (posts.length === 0) posts = fallbackBlogPosts;
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -21,10 +24,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await getBlogPostBySlug(params.slug);
   if (!post) return { title: "Post Not Found" };
-  return {
+  return buildPageMetadata({
     title: post.seoTitle ?? post.title,
     description: post.seoDescription ?? post.excerpt,
-  };
+    path: `/blog/${post.slug}`,
+    ogType: "article",
+    publishedTime: post.publishedAt ?? post.createdAt,
+    modifiedTime: post.updatedAt,
+    tags: post.tags,
+  });
 }
 
 export default async function BlogPostPage({
@@ -35,18 +43,22 @@ export default async function BlogPostPage({
   const post = await getBlogPostBySlug(params.slug);
   if (!post) notFound();
 
-  const related = fallbackBlogPosts
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3);
-  const jsonLd = blogPostingJsonLd(post);
+  let posts = await getBlogPosts(false);
+  if (posts.length === 0) posts = fallbackBlogPosts;
+  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const jsonLd = [
+    blogPostingJsonLd(post),
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Writing", path: "/blog" },
+      { name: post.title, path: `/blog/${post.slug}` },
+    ]),
+  ];
 
   return (
     <>
       <ReadingProgress />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <article className="bg-cream">
         <header className="border-b-[3px] border-ink bg-ink">
           <div className="site-container py-12 md:py-16">

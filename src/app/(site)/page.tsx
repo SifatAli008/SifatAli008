@@ -5,7 +5,13 @@ import {
   getBlogPosts,
 } from "@/lib/firebase/queries";
 import { fallbackBlogPosts } from "@/lib/data/fallback";
-import { personJsonLd } from "@/lib/seo";
+import {
+  personJsonLd,
+  profilePageJsonLd,
+  organizationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Hero } from "@/components/site/hero";
 import { About } from "@/components/site/about";
 import { FeaturedSection } from "@/components/site/featured-section";
@@ -29,14 +35,16 @@ export default async function HomePage() {
   let posts = await getBlogPosts(false);
   if (posts.length === 0) posts = fallbackBlogPosts;
 
-  const jsonLd = personJsonLd(profile);
+  const jsonLd = [
+    websiteJsonLd(),
+    personJsonLd(profile),
+    profilePageJsonLd(profile),
+    organizationJsonLd(),
+  ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <Hero profile={profile} />
       <About profile={profile} />
       <FeaturedSection profile={profile} />
