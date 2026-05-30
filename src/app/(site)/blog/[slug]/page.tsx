@@ -12,8 +12,10 @@ import { fallbackBlogPosts } from "@/lib/data/fallback";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  let posts = await getBlogPosts(false);
-  if (posts.length === 0) posts = fallbackBlogPosts;
+  let posts = await getBlogPosts(true);
+  if (posts.length === 0) {
+    posts = fallbackBlogPosts.filter((p) => p.status === "published");
+  }
   return posts.map((p) => ({ slug: p.slug }));
 }
 

@@ -1,10 +1,12 @@
 import {
   getExperience,
+  getPortfolioWork,
   getProfile,
-  getProjects,
   getBlogPosts,
+  getSkills,
 } from "@/lib/firebase/queries";
 import { fallbackBlogPosts } from "@/lib/data/fallback";
+import { PORTFOLIO_PREVIEW_LIMIT } from "@/lib/github/load-portfolio";
 import {
   personJsonLd,
   profilePageJsonLd,
@@ -23,38 +25,47 @@ import { MarqueeStrip } from "@/components/site/marquee-strip";
 import { WritingSection } from "@/components/site/writing-section";
 import { ContactSection } from "@/components/site/contact-section";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export default async function HomePage() {
-  const [profile, projects, experiences] = await Promise.all([
+  const [profile, portfolio, experiences, skills] = await Promise.all([
     getProfile(),
-    getProjects(),
+    getPortfolioWork(),
     getExperience(),
+    getSkills(),
   ]);
 
   let posts = await getBlogPosts(false);
   if (posts.length === 0) posts = fallbackBlogPosts;
 
+  const profileWithLiveStats = {
+    ...profile,
+    stats: {
+      ...profile.stats,
+      projectsBuilt: portfolio.length,
+    },
+  };
+
   const jsonLd = [
     websiteJsonLd(),
-    personJsonLd(profile),
-    profilePageJsonLd(profile),
+    personJsonLd(profileWithLiveStats),
+    profilePageJsonLd(profileWithLiveStats),
     organizationJsonLd(),
   ];
 
   return (
     <>
       <JsonLd data={jsonLd} />
-      <Hero profile={profile} />
-      <About profile={profile} />
-      <FeaturedSection profile={profile} />
+      <Hero profile={profileWithLiveStats} />
+      <About profile={profileWithLiveStats} />
+      <FeaturedSection profile={profileWithLiveStats} />
       <ExperienceTable experiences={experiences} />
-      <SkillsBands />
+      <SkillsBands skills={skills} />
       <AcademicResearchSection />
-      <ProjectsRows projects={projects} />
+      <ProjectsRows projects={portfolio} limit={PORTFOLIO_PREVIEW_LIMIT} />
       <MarqueeStrip />
       <WritingSection posts={posts} />
-      <ContactSection profile={profile} />
+      <ContactSection profile={profileWithLiveStats} />
     </>
   );
 }

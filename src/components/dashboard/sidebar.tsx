@@ -12,18 +12,21 @@ import {
   Settings,
   LogOut,
   ChevronLeft,
+  Mail,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth/context";
+import { ADMIN_HOME_PATH } from "@/lib/admin/routes";
 
 const nav = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Overview" },
-  { href: "/dashboard/projects", icon: FolderKanban, label: "Projects" },
-  { href: "/dashboard/blog", icon: FileText, label: "Blog" },
-  { href: "/dashboard/skills", icon: Sparkles, label: "Skills" },
-  { href: "/dashboard/experience", icon: Briefcase, label: "Experience" },
-  { href: "/dashboard/achievements", icon: Trophy, label: "Achievements" },
-  { href: "/dashboard/settings", icon: Settings, label: "Settings" },
+  { href: ADMIN_HOME_PATH, icon: LayoutDashboard, label: "Overview" },
+  { href: "/admin/projects", icon: FolderKanban, label: "Projects" },
+  { href: "/admin/blog", icon: FileText, label: "Blog" },
+  { href: "/admin/skills", icon: Sparkles, label: "Skills" },
+  { href: "/admin/experience", icon: Briefcase, label: "Experience" },
+  { href: "/admin/achievements", icon: Trophy, label: "Achievements" },
+  { href: "/admin/contacts", icon: Mail, label: "Contacts" },
+  { href: "/admin/settings", icon: Settings, label: "Settings" },
 ];
 
 interface SidebarProps {
@@ -33,25 +36,34 @@ interface SidebarProps {
 
 export function DashboardSidebar({ collapsed, onToggle }: SidebarProps) {
   const pathname = usePathname();
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+  const initial = (user?.displayName?.[0] ?? user?.email?.[0] ?? "A").toUpperCase();
 
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 z-40 flex h-screen flex-col border-r border-white/[0.06] bg-[#0c0c0c]/90 backdrop-blur-xl transition-all",
+        "fixed left-0 top-0 z-40 flex h-screen flex-col border-r-2 border-white/10 bg-ink transition-all",
         collapsed ? "w-[72px]" : "w-64"
       )}
     >
-      <div className="flex h-16 items-center justify-between border-b border-white/[0.06] px-4">
+      <div
+        className={cn(
+          "flex h-16 items-center border-b-2 border-white/10 px-3",
+          collapsed ? "justify-center" : "justify-between"
+        )}
+      >
         {!collapsed && (
-          <Link href="/dashboard" className="font-display font-semibold text-white">
-            Admin
+          <Link
+            href={ADMIN_HOME_PATH}
+            className="font-display text-lg tracking-wide text-cream"
+          >
+            ADMIN
           </Link>
         )}
         <button
           type="button"
           onClick={onToggle}
-          className="rounded-lg p-2 text-zinc-400 hover:bg-white/5"
+          className="border-2 border-white/10 p-2 text-zinc-400 transition-colors hover:border-accent hover:text-accent"
           aria-label="Toggle sidebar"
         >
           <ChevronLeft
@@ -59,37 +71,56 @@ export function DashboardSidebar({ collapsed, onToggle }: SidebarProps) {
           />
         </button>
       </div>
-      <nav className="flex-1 space-y-1 p-3">
+      <nav className="flex-1 space-y-1 overflow-y-auto p-3">
         {nav.map((item) => {
           const active =
             pathname === item.href ||
-            (item.href !== "/dashboard" && pathname.startsWith(item.href));
+            (item.href !== ADMIN_HOME_PATH && pathname.startsWith(item.href));
           return (
             <Link
               key={item.href}
               href={item.href}
               title={item.label}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors",
+                "relative flex items-center gap-3 border-2 px-3 py-2.5 text-sm transition-all",
                 active
-                  ? "bg-white/10 text-white"
-                  : "text-zinc-500 hover:bg-white/5 hover:text-zinc-300"
+                  ? "border-accent bg-accent/10 text-cream shadow-[3px_3px_0_0_rgba(255,59,0,0.2)]"
+                  : "border-transparent text-zinc-500 hover:translate-x-0.5 hover:border-white/10 hover:bg-white/[0.04] hover:text-zinc-200"
               )}
             >
-              <item.icon className="h-4 w-4 shrink-0" />
-              {!collapsed && item.label}
+              {active && (
+                <span className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 bg-accent" />
+              )}
+              <item.icon
+                className={cn("h-4 w-4 shrink-0", active && "text-accent")}
+                strokeWidth={2.5}
+              />
+              {!collapsed && <span className="label-mono text-[11px]">{item.label}</span>}
             </Link>
           );
         })}
       </nav>
-      <div className="border-t border-white/[0.06] p-3">
+      <div className="border-t-2 border-white/10 p-3">
+        {!collapsed && user && (
+          <div className="mb-3 flex items-center gap-2 px-2 py-1">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/10 bg-white/[0.04] text-xs font-bold text-accent">
+              {initial}
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-[11px] font-medium text-cream">
+                {user.displayName ?? "Admin"}
+              </p>
+              <p className="truncate text-[9px] text-zinc-600">{user.email}</p>
+            </div>
+          </div>
+        )}
         <button
           type="button"
           onClick={() => signOut()}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-zinc-500 hover:bg-white/5 hover:text-zinc-300"
+          className="flex w-full items-center gap-3 border-2 border-transparent px-3 py-2.5 text-sm text-zinc-500 transition-colors hover:border-white/10 hover:text-zinc-200"
         >
           <LogOut className="h-4 w-4" />
-          {!collapsed && "Sign out"}
+          {!collapsed && <span className="label-mono text-[11px]">Sign out</span>}
         </button>
       </div>
     </aside>

@@ -1,26 +1,28 @@
 import type { Metadata } from "next";
-import { getProjects } from "@/lib/firebase/queries";
+import { getPortfolioWork } from "@/lib/firebase/queries";
 import { buildPageMetadata, itemListJsonLd } from "@/lib/seo";
+import { getPortfolioHref } from "@/lib/github/portfolio";
+import { PORTFOLIO_PREVIEW_LIMIT } from "@/lib/github/load-portfolio";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ProjectsRows } from "@/components/site/projects-rows";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Work — Selected Projects",
   description:
-    "Selected projects by Sifat Ali — AI/ML, web, desktop, games, and developer tools.",
+    "Selected projects by Sifat Ali — live GitHub portfolio synced with admin dashboard.",
   path: "/projects",
 });
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export default async function ProjectsPage() {
-  const projects = await getProjects();
+  const portfolio = await getPortfolioWork();
 
   const jsonLd = itemListJsonLd(
     "Sifat Ali — Projects",
-    projects.map((p) => ({
-      name: p.title,
-      url: `/projects/${p.slug}`,
+    portfolio.map((item) => ({
+      name: item.title,
+      url: getPortfolioHref(item),
     }))
   );
 
@@ -33,9 +35,12 @@ export default async function ProjectsPage() {
           <h1 className="font-display text-display leading-none text-cream">
             ALL WORK
           </h1>
+          <p className="mt-2 label-mono text-xs text-cream/60">
+            Live from GitHub · synced with admin dashboard
+          </p>
         </div>
       </div>
-      <ProjectsRows projects={projects} showHeader={false} />
+      <ProjectsRows projects={portfolio} showHeader={false} pageSize={PORTFOLIO_PREVIEW_LIMIT} />
     </>
   );
 }

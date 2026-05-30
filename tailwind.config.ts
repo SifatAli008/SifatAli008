@@ -24,6 +24,15 @@ const config: Config = {
         ink: "#0A0A0A",
         accent: "#FF3B00",
         muted: "#888580",
+        background: "#0A0A0A",
+        foreground: "#F5F0E8",
+        "accent-indigo": "#FF3B00",
+        "accent-violet": "#CC2F00",
+        ring: "#FF3B00",
+        secondary: {
+          DEFAULT: "#1a1a1a",
+          foreground: "#F5F0E8",
+        },
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

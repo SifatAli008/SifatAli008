@@ -16,8 +16,8 @@ export const metadata: Metadata = buildPageMetadata({
 export const revalidate = 3600;
 
 export default async function BlogPage() {
-  let posts = await getBlogPosts(false);
-  if (posts.length === 0) posts = fallbackBlogPosts;
+  let posts = await getBlogPosts(true);
+  if (posts.length === 0) posts = fallbackBlogPosts.filter((p) => p.status === "published");
 
   const jsonLd = itemListJsonLd(
     "Sifat Ali — Writing",

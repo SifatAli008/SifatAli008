@@ -1,47 +1,57 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function isAuthenticated() {
-      return request.auth != null;
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == 'alisifat061@gmail.com' ||
+        request.auth.token.email == 'sifatali008@gmail.com'
+      );
+    }
+
+    function isValidContact() {
+      return request.resource.data.keys().hasAll(['name', 'email', 'subject', 'message', 'read', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.subject is string
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 10
+        && request.resource.data.read == false;
     }
 
     match /profile/{docId} {
       allow read: if true;
-      allow write: if isAuthenticated();
+      allow write: if isAdmin();
     }
 
     match /projects/{projectId} {
       allow read: if true;
-      allow write: if isAuthenticated();
+      allow write: if isAdmin();
     }
 
+    // Public may only read published posts; admins read all
     match /blog_posts/{postId} {
-      allow read: if resource.data.status == 'published' || isAuthenticated();
-      allow write: if isAuthenticated();
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow create, update, delete: if isAdmin();
     }
 
     match /skills/{skillId} {
       allow read: if true;
-      allow write: if isAuthenticated();
+      allow write: if isAdmin();
     }
 
     match /experiences/{expId} {
       allow read: if true;
-      allow write: if isAuthenticated();
+      allow write: if isAdmin();
     }
 
     match /achievements/{achievementId} {
       allow read: if true;
-      allow write: if isAuthenticated();
+      allow write: if isAdmin();
     }
 
     match /contacts/{contactId} {
-      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'subject', 'message'])
-        && request.resource.data.name is string
-        && request.resource.data.email is string
-        && request.resource.data.message.size() >= 10;
-      allow read, update: if isAuthenticated();
-      allow delete: if isAuthenticated();
+      allow create: if isValidContact();
+      allow read, update, delete: if isAdmin();
     }
   }
 }
