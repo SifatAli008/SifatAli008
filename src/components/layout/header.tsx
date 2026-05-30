@@ -21,7 +21,7 @@ const links = [
   { href: "/#about", label: "ABOUT", icon: User },
   { href: "/#featured", label: "FEATURED", icon: BarChart3 },
   { href: "/#research", label: "RESEARCH", icon: FlaskConical },
-  { href: "/#work", label: "WORK", icon: FolderKanban },
+  { href: "/projects", label: "PROJECTS", icon: FolderKanban },
   { href: "/blog", label: "WRITING", icon: PenLine },
   { href: "/contact", label: "CONTACT", icon: Mail },
 ];
@@ -58,7 +58,9 @@ export function Header() {
                     href={link.href}
                     className={cn(
                       "nav-link-underline label-mono flex items-center gap-1.5 text-cream",
-                      pathname === link.href && "text-accent"
+                      (pathname === link.href ||
+                        (link.href === "/projects" && pathname.startsWith("/projects"))) &&
+                        "text-accent"
                     )}
                   >
                     <Icon className="h-3 w-3" strokeWidth={2.5} />

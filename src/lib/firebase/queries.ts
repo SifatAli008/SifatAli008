@@ -22,6 +22,14 @@ import type {
 } from "@/types";
 import { normalizeProfile } from "@/lib/profile-normalize";
 import {
+  loadPortfolio,
+  resolveGitHubUsername,
+} from "@/lib/github/load-portfolio";
+import {
+  mapProjectToPortfolioWork,
+  type PortfolioWorkItem,
+} from "@/lib/github/portfolio";
+import {
   fallbackAchievements,
   fallbackBlogPosts,
   fallbackExperience,
@@ -58,6 +66,24 @@ export async function getProjects(): Promise<Project[]> {
   } catch {
     return fallbackProjects;
   }
+}
+
+/** Live GitHub portfolio — falls back to bundled snapshot if API is rate-limited */
+export async function getPortfolioWork(): Promise<PortfolioWorkItem[]> {
+  const profile = await getProfile();
+  const username = resolveGitHubUsername(profile.socials?.github);
+  const { portfolio } = await loadPortfolio(username);
+  return portfolio;
+}
+
+export async function getPortfolioWorkBySlug(
+  slug: string
+): Promise<PortfolioWorkItem | null> {
+  const cmsProject = await getProjectBySlug(slug);
+  if (cmsProject) return mapProjectToPortfolioWork(cmsProject);
+
+  const portfolio = await getPortfolioWork();
+  return portfolio.find((item) => item.slug === slug.toLowerCase()) ?? null;
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
@@ -114,14 +140,13 @@ export async function getBlogPosts(publishedOnly = true): Promise<BlogPost[]> {
     return publishedOnly ? publishedFallbackPosts : fallbackBlogPosts;
   }
   try {
-    let q = query(collection(db, "blog_posts"), orderBy("createdAt", "desc"));
-    if (publishedOnly) {
-      q = query(
-        collection(db, "blog_posts"),
-        where("status", "==", "published"),
-        orderBy("createdAt", "desc")
-      );
-    }
+    const q = publishedOnly
+      ? query(
+          collection(db, "blog_posts"),
+          where("status", "==", "published"),
+          orderBy("createdAt", "desc")
+        )
+      : query(collection(db, "blog_posts"), orderBy("createdAt", "desc"));
     const snap = await getDocs(q);
     if (snap.empty) {
       return publishedOnly ? publishedFallbackPosts : fallbackBlogPosts;
@@ -132,10 +157,21 @@ export async function getBlogPosts(publishedOnly = true): Promise<BlogPost[]> {
   }
 }
 
-export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+export async function getBlogPostBySlug(
+  slug: string,
+  options: { includeDrafts?: boolean } = {}
+): Promise<BlogPost | null> {
   if (!db) return getFallbackBlogPost(slug) ?? null;
+  const { includeDrafts = false } = options;
+
   try {
-    const q = query(collection(db, "blog_posts"), where("slug", "==", slug));
+    const q = includeDrafts
+      ? query(collection(db, "blog_posts"), where("slug", "==", slug))
+      : query(
+          collection(db, "blog_posts"),
+          where("slug", "==", slug),
+          where("status", "==", "published")
+        );
     const snap = await getDocs(q);
     if (snap.empty) return getFallbackBlogPost(slug) ?? null;
     const d = snap.docs[0];

@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "github:snapshot": "node scripts/build-github-snapshot.mjs",
+    "firebase:rules": "firebase deploy --only firestore:rules",
+    "firebase:indexes": "firebase deploy --only firestore:indexes",
+    "firebase:deploy": "firebase deploy --only firestore:rules,firestore:indexes"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -26,6 +30,7 @@
     "@radix-ui/react-tooltip": "^1.1.6",
     "@uiw/react-md-editor": "^4.0.5",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.10.0",
     "clsx": "^2.1.1",
     "firebase": "^11.1.0",
     "firebase-admin": "^13.0.2",

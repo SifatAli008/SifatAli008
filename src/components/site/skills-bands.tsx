@@ -1,8 +1,19 @@
 "use client";
 
+import { useMemo } from "react";
 import { SectionReveal } from "@/components/motion/section-reveal";
+import type { Skill, SkillCategory } from "@/types";
 
-const bands = [
+const categoryBandMap: Partial<Record<SkillCategory, { label: string; dark: boolean }>> = {
+  Frontend: { label: "FRONTEND", dark: true },
+  Backend: { label: "BACKEND & AI", dark: false },
+  "AI & Data": { label: "BACKEND & AI", dark: false },
+  CMS: { label: "CMS", dark: true },
+  Tools: { label: "TOOLS", dark: false },
+  Games: { label: "TOOLS", dark: false },
+};
+
+const defaultBands = [
   {
     label: "FRONTEND",
     dark: true,
@@ -25,7 +36,36 @@ const bands = [
   },
 ];
 
-export function SkillsBands() {
+interface SkillsBandsProps {
+  skills?: Skill[];
+}
+
+export function SkillsBands({ skills }: SkillsBandsProps) {
+  const bands = useMemo(() => {
+    if (!skills?.length) return defaultBands;
+
+    const grouped = new Map<string, { label: string; dark: boolean; names: string[] }>();
+
+    skills.forEach((skill) => {
+      const band = categoryBandMap[skill.category] ?? {
+        label: skill.category.toUpperCase(),
+        dark: false,
+      };
+      const existing = grouped.get(band.label);
+      if (existing) {
+        existing.names.push(skill.name);
+      } else {
+        grouped.set(band.label, { ...band, names: [skill.name] });
+      }
+    });
+
+    return Array.from(grouped.values()).map((band) => ({
+      label: band.label,
+      dark: band.dark,
+      skills: band.names.join(" · ").toUpperCase(),
+    }));
+  }, [skills]);
+
   return (
     <SectionReveal id="skills" className="bg-cream">
       <div className="site-container section-pad">
@@ -64,7 +104,7 @@ export function SkillsBands() {
                   }`}
                 >
                   {band.skills.split(" · ").map((word, i, arr) => (
-                    <span key={word}>
+                    <span key={`${band.label}-${word}-${i}`}>
                       <span className="cursor-default transition-colors duration-0 hover:text-accent">
                         {word}
                       </span>

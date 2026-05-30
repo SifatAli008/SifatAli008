@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProjectBySlug, getProjects } from "@/lib/firebase/queries";
+import {
+  getPortfolioWork,
+  getPortfolioWorkBySlug,
+  getProjectBySlug,
+} from "@/lib/firebase/queries";
 import { breadcrumbJsonLd, buildPageMetadata, softwareAppJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
 import { MarkdownContent } from "@/components/blog/markdown-content";
@@ -9,8 +13,8 @@ import { MarkdownContent } from "@/components/blog/markdown-content";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const projects = await getProjects();
-  return projects.map((p) => ({ slug: p.slug }));
+  const portfolio = await getPortfolioWork();
+  return portfolio.map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({
@@ -18,13 +22,13 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
-  if (!project) return { title: "Project Not Found" };
+  const item = await getPortfolioWorkBySlug(params.slug);
+  if (!item) return { title: "Project Not Found" };
   return buildPageMetadata({
-    title: project.title,
-    description: project.tagline || project.description,
-    path: `/projects/${project.slug}`,
-    tags: project.techStack,
+    title: item.title,
+    description: item.tagline || item.description,
+    path: `/projects/${item.slug}`,
+    tags: item.techStack,
   });
 }
 
@@ -42,6 +46,71 @@ export default async function ProjectCaseStudyPage({
 }: {
   params: { slug: string };
 }) {
+  const item = await getPortfolioWorkBySlug(params.slug);
+  if (!item) notFound();
+
+  if (item.source === "github") {
+    const jsonLd = breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Work", path: "/projects" },
+      { name: item.title, path: `/projects/${item.slug}` },
+    ]);
+
+    return (
+      <>
+        <JsonLd data={jsonLd} />
+        <article className="bg-cream">
+          <div className="border-b-[3px] border-ink bg-ink">
+            <div className="site-container py-8 md:py-12">
+              <span className="tag-brutal-light">{item.category}</span>
+              <h1 className="mt-4 font-display text-display leading-none text-cream">
+                {item.title.toUpperCase()}
+              </h1>
+              <p className="mt-4 max-w-2xl text-lg text-cream/70">{item.tagline}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {item.techStack.map((tech) => (
+                  <span key={tech} className="tag-brutal-light">
+                    {tech.toUpperCase()}
+                  </span>
+                ))}
+              </div>
+              <p className="label-mono mt-6 text-sm text-cream/50">
+                {item.stars} ★ · {item.forks} forks · synced from GitHub
+              </p>
+            </div>
+          </div>
+
+          <div className="site-container section-pad">
+            <p className="max-w-2xl text-[17px] leading-relaxed">{item.description}</p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href={item.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-brutal-a"
+              >
+                VIEW ON GITHUB →
+              </a>
+              {item.demoUrl && (
+                <a
+                  href={item.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-brutal-b"
+                >
+                  LIVE DEMO →
+                </a>
+              )}
+              <Link href="/projects" className="btn-brutal-b">
+                ← ALL WORK
+              </Link>
+            </div>
+          </div>
+        </article>
+      </>
+    );
+  }
+
   const project = await getProjectBySlug(params.slug);
   if (!project) notFound();
 

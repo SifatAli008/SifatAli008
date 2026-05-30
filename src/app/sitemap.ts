@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts, getProjects } from "@/lib/firebase/queries";
+import { getBlogPosts, getPortfolioWork } from "@/lib/firebase/queries";
 import { fallbackBlogPosts } from "@/lib/data/fallback";
 import { getSiteUrl } from "@/lib/seo";
 
@@ -13,16 +13,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/archive`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
 
-  const projects = await getProjects();
-  const projectRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
-    url: `${base}/projects/${p.slug}`,
-    lastModified: new Date(p.updatedAt),
-    changeFrequency: "monthly",
+  const portfolio = await getPortfolioWork();
+  const projectRoutes: MetadataRoute.Sitemap = portfolio.map((item) => ({
+    url: `${base}/projects/${item.slug}`,
+    lastModified: new Date(item.updatedAt),
+    changeFrequency: "weekly",
     priority: 0.75,
   }));
 
-  let posts = await getBlogPosts(false);
-  if (posts.length === 0) posts = fallbackBlogPosts;
+  let posts = await getBlogPosts(true);
+  if (posts.length === 0) {
+    posts = fallbackBlogPosts.filter((p) => p.status === "published");
+  }
   const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${base}/blog/${p.slug}`,
     lastModified: new Date(p.updatedAt),
