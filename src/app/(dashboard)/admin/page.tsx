@@ -230,7 +230,7 @@ export default function DashboardOverviewPage() {
       <DashboardPageHeader
         label="OVERVIEW"
         title={`Hey, ${firstName}`}
-        description="Your content at a glance — stats, trends, and quick actions."
+        description="Your content at a glance - stats, trends, and quick actions."
         action={
           <div className="flex items-center gap-2 border-2 border-white/10 bg-white/[0.03] px-3 py-2">
             <Clock className="h-3.5 w-3.5 text-accent" />
@@ -283,7 +283,7 @@ export default function DashboardOverviewPage() {
               <TrendingUp className="h-3.5 w-3.5 text-zinc-700 transition-colors group-hover:text-accent" />
             </div>
             <p className="mt-4 font-display text-4xl leading-none text-cream">
-              {loading || card.loading ? "—" : card.value.toLocaleString()}
+              {loading || card.loading ? "-" : card.value.toLocaleString()}
             </p>
             <p className="label-mono mt-2 text-[10px] text-zinc-500">{card.label}</p>
             <ArrowUpRight className="mt-4 h-4 w-4 text-zinc-600 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
@@ -391,7 +391,7 @@ export default function DashboardOverviewPage() {
           </div>
           {recentContacts.length === 0 ? (
             <div className="dashboard-empty mt-6 text-sm text-zinc-500">
-              No inquiries yet — they&apos;ll show up here from your contact form.
+              No inquiries yet - they&apos;ll show up here from your contact form.
             </div>
           ) : (
             <ul className="mt-5 divide-y divide-white/5">
@@ -465,7 +465,7 @@ export default function DashboardOverviewPage() {
           )}
           {githubError && (
             <p className="mt-5 border-l-2 border-accent/40 pl-3 text-xs text-zinc-500">
-              GitHub sync issue — open Projects to retry.
+              GitHub sync issue - open Projects to retry.
             </p>
           )}
         </section>

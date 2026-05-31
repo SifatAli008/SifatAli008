@@ -16,7 +16,7 @@ export const seedProfile: Profile = {
   headline:
     "COO @ Fluvo Soft · Building scalable AI-automation systems and full-stack products from concept to scale.",
   bio: "Technical founder and engineer with 5+ years in software development. 2× National Hackathon Winner. Shipped Web, EdTech, Bioinformatics, and AI-powered tools across Bangladesh and beyond.",
-  aboutStory: `I'm Sifat Ali — COO at Fluvo Soft and an engineer who builds at the intersection of AI/RAG systems, full-stack architecture, and community-driven product delivery.
+  aboutStory: `I'm Sifat Ali - COO at Fluvo Soft and an engineer who builds at the intersection of AI/RAG systems, full-stack architecture, and community-driven product delivery.
 
 Over 5+ years I've shipped products from concept to scale: web platforms, EdTech systems, bioinformatics research tooling, and AI-powered automation. I'm a 2× National Hackathon Winner (InnovateX 2025, NextGen Hackathon @ IIUC Tech Fest) and bring that same execution energy to every sprint.
 
@@ -24,7 +24,7 @@ At Fluvo Soft, I align product, engineering, and business operations to deliver 
 
 I hold a B.Sc. in Computer Science from United International University and care deeply about measurable impact, teaching what I ship, and systems that outlive hype cycles.`,
   engineeringPhilosophy:
-    "Integrate technology, business, and people — ship iteratively, measure relentlessly, and build systems that solve real-world problems at scale.",
+    "Integrate technology, business, and people - ship iteratively, measure relentlessly, and build systems that solve real-world problems at scale.",
   values: [
     "AI-automation with production discipline",
     "Teaching as a force multiplier",
@@ -37,7 +37,7 @@ I hold a B.Sc. in Computer Science from United International University and care
   address: "249/2 South Jatrabari, Dhaka-1204",
   location: "Dhaka, Bangladesh",
   timezone: "GMT+6",
-  education: "B.Sc. Computer Science — United International University",
+  education: "B.Sc. Computer Science - United International University",
   responseTime: "Within 24–48 hours",
   availableForWork: true,
   avatar: assetUrl("/assets/images/profile-image.jpeg"),
@@ -127,7 +127,7 @@ export const seedProjects: Omit<Project, "id">[] = [
     title: "AI Health Diagnosis System",
     tagline: "ClinicalBERT-powered diagnostic assistance",
     description:
-      "Healthcare AI system using ClinicalBERT for symptom analysis, predictive insights, and exportable clinical reports — bioinformatics & research aligned.",
+      "Healthcare AI system using ClinicalBERT for symptom analysis, predictive insights, and exportable clinical reports - bioinformatics & research aligned.",
     category: "AI",
     techStack: ["ClinicalBERT", "Python", "Pandas", "FastAPI"],
     status: "completed",
@@ -182,7 +182,7 @@ export const seedProjects: Omit<Project, "id">[] = [
     title: "PyDItor",
     tagline: "Lightweight Python IDE for UIU Developers Hub",
     description:
-      "Desktop Python IDE with syntax highlighting, integrated execution panel, and file explorer — built to enhance learning and collaboration at UIU Developers Hub.",
+      "Desktop Python IDE with syntax highlighting, integrated execution panel, and file explorer - built to enhance learning and collaboration at UIU Developers Hub.",
     category: "Tool",
     techStack: ["Python", "PyQt5", "QScintilla"],
     status: "completed",
@@ -200,7 +200,7 @@ export const seedProjects: Omit<Project, "id">[] = [
     title: "Sir Kothay",
     tagline: "Location-intelligent service discovery for campus",
     description:
-      "Node.js web platform for service discovery with PostgreSQL-backed search and location intelligence — a UIU Developers Hub community tool.",
+      "Node.js web platform for service discovery with PostgreSQL-backed search and location intelligence - a UIU Developers Hub community tool.",
     category: "Web",
     techStack: ["Node.js", "PostgreSQL", "Leaflet", "Redis"],
     status: "completed",
@@ -254,7 +254,7 @@ export const seedProjects: Omit<Project, "id">[] = [
     title: "Pixel Office",
     tagline: "2D Unity prototype · campus workplace sim",
     description:
-      "Unity 2D project with tilemaps, character controller, and interactable office scenes — built as a UIU Developers Hub experiment.",
+      "Unity 2D project with tilemaps, character controller, and interactable office scenes - built as a UIU Developers Hub experiment.",
     category: "Game",
     techStack: ["Unity", "C#", "2D Tilemaps", "Animator"],
     status: "in-progress",
@@ -296,10 +296,10 @@ export const seedExperience: Omit<Experience, "id">[] = [
   {
     company: "Fluvo Soft",
     role: "Chief Operating Officer (COO)",
-    duration: "Jan 2026 — Present",
+    duration: "Jan 2026 - Present",
     location: "Dhaka, Bangladesh",
     description:
-      "Leading operations at Fluvo Soft — aligning product, engineering, and business to deliver scalable web, mobile, AI, and SaaS solutions.",
+      "Leading operations at Fluvo Soft - aligning product, engineering, and business to deliver scalable web, mobile, AI, and SaaS solutions.",
     impact: [
       "Orchestrate cross-functional delivery across product, engineering, and business",
       "Drive high-standard SaaS offerings aligned to client requirements",
@@ -311,7 +311,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
   {
     company: "UIU Developers Hub",
     role: "Developer & Community Coordinator",
-    duration: "Oct 2024 — Present",
+    duration: "Oct 2024 - Present",
     location: "United International University · United City R/A",
     description:
       "Building community tools (PyDItor, Sir Kothay) and coordinating events, content, and technical mentorship for students and faculty.",
@@ -326,7 +326,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
   {
     company: "Shohoz Skill",
     role: "Assistant Managing Director",
-    duration: "Apr 2021 — Nov 2022",
+    duration: "Apr 2021 - Nov 2022",
     location: "Dhaka, Bangladesh",
     description:
       "Managed developer bootcamp programs and built CMS-powered learning platforms at Shohoz Skill.",
@@ -341,7 +341,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
   {
     company: "Shohoz Skill",
     role: "Web Development Instructor",
-    duration: "Feb 2019 — Apr 2021",
+    duration: "Feb 2019 - Apr 2021",
     location: "Jatrabari, Dhaka",
     description:
       "Developed frontend curriculum adopted by corporate training programs and led intensive bootcamps.",
@@ -356,7 +356,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
   {
     company: "Freelance",
     role: "Frontend Developer",
-    duration: "Feb 2019 — Apr 2022",
+    duration: "Feb 2019 - Apr 2022",
     location: "Remote",
     description:
       "Delivered frontend solutions for global and local clients with a focus on growth and operational scalability.",
@@ -388,7 +388,7 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
     order: 2,
   },
   {
-    title: "UIU Developers Hub — Community Builder",
+    title: "UIU Developers Hub - Community Builder",
     description: "Developer & Community Coordinator building PyDItor, Sir Kothay, and mentorship programs.",
     year: 2024,
     category: "Community",
@@ -396,7 +396,7 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
     order: 3,
   },
   {
-    title: "Shohoz Skill — 300+ Students Trained",
+    title: "Shohoz Skill - 300+ Students Trained",
     description: "Led 12 bootcamps and improved course completion by 65% on CMS platform.",
     year: 2021,
     category: "Learning",
@@ -413,14 +413,14 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
   },
   {
     title: "Prompt Engineering Certification",
-    description: "Smarter Use of AI for Everyone — production-minded AI literacy.",
+    description: "Smarter Use of AI for Everyone - production-minded AI literacy.",
     year: 2024,
     category: "Research",
     metrics: {},
     order: 6,
   },
   {
-    title: "B.Sc. Computer Science — UIU",
+    title: "B.Sc. Computer Science - UIU",
     description: "United International University, Computer Science.",
     year: 2022,
     category: "Achievement",
@@ -437,7 +437,7 @@ export const seedBlogPosts: Omit<BlogPost, "id">[] = [
       "How to architect explainable healthcare AI with ClinicalBERT, validation pipelines, and clinician-ready exports.",
     content: `## Introduction
 
-Healthcare AI demands more than accuracy — it demands trust, explainability, and rigorous validation.
+Healthcare AI demands more than accuracy - it demands trust, explainability, and rigorous validation.
 
 ## Architecture
 
@@ -489,7 +489,7 @@ Avoid unbounded listeners and always structure data for query patterns.`,
       "Bringing SaaS-grade UX to desktop Python with PyQt5, custom widgets, and performance tuning.",
     content: `## Desktop UX in 2025
 
-Desktop apps can feel premium — if you treat them like products.
+Desktop apps can feel premium - if you treat them like products.
 
 ## Widget Strategy
 
@@ -508,7 +508,7 @@ PyQt5 rewards engineers who invest in design systems, not just logic.`,
     slug: "journey-ai-fullstack-developer",
     title: "My Journey as an AI & Full Stack Developer",
     excerpt:
-      "From Shohoz Skill bootcamps to Fluvo Soft COO — building systems, teaching others, and winning national hackathons.",
+      "From Shohoz Skill bootcamps to Fluvo Soft COO - building systems, teaching others, and winning national hackathons.",
     content: `## The Beginning
 
 I started with frontend freelancing and teaching web development at Shohoz Skill.
@@ -518,7 +518,7 @@ I started with frontend freelancing and teaching web development at Shohoz Skill
 - Managing 21+ developers and 300+ bootcamp students
 - Building PyDItor and Sir Kothay at UIU Developers Hub
 - 2× National Hackathon Winner
-- COO @ Fluvo Soft — scaling AI-automation and SaaS delivery
+- COO @ Fluvo Soft - scaling AI-automation and SaaS delivery
 
 ## What I Believe
 

@@ -115,7 +115,7 @@ export interface FeaturedPost {
 export interface TechStackItem {
   id: string;
   label: string;
-  /** simple-icons slug — https://simpleicons.org */
+  /** simple-icons slug - https://simpleicons.org */
   iconSlug?: string;
   order: number;
 }

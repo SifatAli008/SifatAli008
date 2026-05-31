@@ -9,7 +9,7 @@ export default function ProjectsManagerPage() {
       <DashboardPageHeader
         label="GITHUB"
         title="Projects"
-        description="Same live repos as 05 / SELECTED WORK on your landing page — sorted by stars"
+        description="Same live repos as 05 / SELECTED WORK on your landing page - sorted by stars"
       />
 
       <div className="mt-8">

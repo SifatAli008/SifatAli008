@@ -13,6 +13,7 @@ import {
   X,
   BarChart3,
   FlaskConical,
+  Github,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BrutalButton } from "@/components/ui/brutal-button";
@@ -22,6 +23,7 @@ const links = [
   { href: "/#featured", label: "FEATURED", icon: BarChart3 },
   { href: "/#research", label: "RESEARCH", icon: FlaskConical },
   { href: "/projects", label: "PROJECTS", icon: FolderKanban },
+  { href: "/#github", label: "GITHUB", icon: Github },
   { href: "/blog", label: "WRITING", icon: PenLine },
   { href: "/contact", label: "CONTACT", icon: Mail },
 ];
@@ -76,7 +78,7 @@ export function Header() {
               icon={ArrowRight}
               className="btn-3d-on-dark !px-4 !py-2 text-[11px]"
             >
-              HIRE ME
+              COLLABORATE
             </BrutalButton>
           </nav>
 
@@ -131,7 +133,7 @@ export function Header() {
                 icon={ArrowRight}
                 className="w-full max-w-xs"
               >
-                HIRE ME
+                COLLABORATE
               </BrutalButton>
             </div>
           </nav>

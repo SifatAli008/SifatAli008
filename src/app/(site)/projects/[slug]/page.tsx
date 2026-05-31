@@ -175,7 +175,7 @@ export default async function ProjectCaseStudyPage({
                     {section.field === "features" && Array.isArray(value) ? (
                       <ul className="mt-6 space-y-2 font-mono text-sm">
                         {value.map((f) => (
-                          <li key={f}>— {f}</li>
+                          <li key={f}>- {f}</li>
                         ))}
                       </ul>
                     ) : (

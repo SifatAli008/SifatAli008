@@ -147,7 +147,7 @@ export async function fetchGitHubUserRepos(
 
       if (res.status === 403 || res.status === 429) {
         const hint = token
-          ? "GitHub API limit reached — try again later."
+          ? "GitHub API limit reached - try again later."
           : "Add GITHUB_TOKEN to .env.local (github.com/settings/tokens, no scopes needed).";
         throw new GitHubApiError(
           res.status,

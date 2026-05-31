@@ -30,9 +30,9 @@ function matchesFilter(item: PortfolioWorkItem, filter: string): boolean {
 interface ProjectsRowsProps {
   projects: PortfolioWorkItem[];
   showHeader?: boolean;
-  /** Homepage preview — first N only, no pagination */
+  /** Homepage preview - first N only, no pagination */
   limit?: number;
-  /** Paginate list (e.g. /projects) — fixed items per page */
+  /** Paginate list (e.g. /projects) - fixed items per page */
   pageSize?: number;
 }
 
@@ -234,7 +234,7 @@ export function ProjectsRows({
         <div className="site-container border-t-2 border-ink py-16 text-center">
           <p className="font-display text-2xl text-ink">No projects to show yet.</p>
           <p className="mt-2 text-sm text-ink/60">
-            GitHub sync is temporarily unavailable — check back soon or view{" "}
+            GitHub sync is temporarily unavailable - check back soon or view{" "}
             <a
               href="https://github.com/SifatAli008"
               target="_blank"

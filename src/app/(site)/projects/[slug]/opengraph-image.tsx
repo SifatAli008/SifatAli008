@@ -3,7 +3,7 @@ import { getProjectBySlug } from "@/lib/firebase/queries";
 import { createBrutalistOgImage, OG_CONTENT_TYPE, OG_SIZE } from "@/lib/og-template";
 
 export const runtime = "edge";
-export const alt = "Sifat Ali — Project";
+export const alt = "Sifat Ali - Project";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

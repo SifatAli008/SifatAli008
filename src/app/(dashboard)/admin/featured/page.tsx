@@ -101,7 +101,7 @@ export default function FeaturedManagerPage() {
         <DashboardPageHeader
           label="CONTENT"
           title="Featured"
-          description="LinkedIn posts shown in the homepage grid — synced to /#featured"
+          description="LinkedIn posts shown in the homepage grid - synced to /#featured"
         />
         <Button onClick={() => setEditing({ ...emptyFeatured })}>
           <Plus className="mr-2 h-4 w-4" />
@@ -210,7 +210,7 @@ export default function FeaturedManagerPage() {
             </div>
             <DashboardImageUpload
               label="Card image"
-              hint="Upload to Cloudinary — used on the homepage featured grid."
+              hint="Upload to Cloudinary - used on the homepage featured grid."
               folder="sifat-ali/featured"
               value={editing.image ?? ""}
               onChange={(url) => setEditing({ ...editing, image: url })}

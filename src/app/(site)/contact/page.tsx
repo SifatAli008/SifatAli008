@@ -4,9 +4,9 @@ import { buildPageMetadata } from "@/lib/seo";
 import { ContactSection } from "@/components/site/contact-section";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Contact — Work With Sifat Ali",
+  title: "Contact - Work With Sifat Ali",
   description:
-    "Book a call or send a project inquiry to Sifat Ali — AI/RAG engineer and full-stack builder.",
+    "Book a call or send a project inquiry to Sifat Ali - AI/RAG engineer and full-stack builder.",
   path: "/contact",
 });
 

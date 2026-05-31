@@ -17,13 +17,13 @@ export function absoluteUrl(path = ""): string {
 const DEFAULT_OG_IMAGE = "/opengraph-image";
 
 const PERSON_AWARDS = [
-  "InnovateX Hackathon 2025 — 1st Runner-Up (130+ teams)",
-  "NextZen @ IIUC Tech Fest 2025 — 4th Place (152+ teams)",
+  "InnovateX Hackathon 2025 - 1st Runner-Up (130+ teams)",
+  "NextZen @ IIUC Tech Fest 2025 - 4th Place (152+ teams)",
 ];
 
 function parseUniversityName(education?: string): string | undefined {
   if (!education) return undefined;
-  const parts = education.split("—");
+  const parts = education.split("-");
   return parts.length > 1 ? parts[parts.length - 1].trim() : education.trim();
 }
 
@@ -96,11 +96,11 @@ export function buildPageMetadata(input: PageSeoInput): Metadata {
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Sifat Ali — AI/RAG Engineer & Full-Stack Builder",
+    default: "Sifat Ali - AI/RAG Engineer & Full-Stack Builder",
     template: "%s | Sifat Ali",
   },
   description:
-    "Sifat Ali — COO @ Fluvo Soft, AI/RAG Systems Engineer, 2× National Hackathon Winner. Building scalable AI-automation and full-stack products in Bangladesh.",
+    "Sifat Ali - COO @ Fluvo Soft, AI/RAG Systems Engineer, 2× National Hackathon Winner. Building scalable AI-automation and full-stack products in Bangladesh.",
   keywords: [
     "Sifat Ali",
     "Fluvo Soft",
@@ -129,7 +129,7 @@ export const defaultMetadata: Metadata = {
     locale: "en_US",
     url: getSiteUrl(),
     siteName: "Sifat Ali",
-    title: "Sifat Ali — AI/RAG Engineer & Full-Stack Builder",
+    title: "Sifat Ali - AI/RAG Engineer & Full-Stack Builder",
     description:
       "COO @ Fluvo Soft · 2× National Hackathon Winner · AI-automation & full-stack systems.",
     images: [
@@ -137,13 +137,13 @@ export const defaultMetadata: Metadata = {
         url: absoluteUrl(DEFAULT_OG_IMAGE),
         width: 1200,
         height: 630,
-        alt: "Sifat Ali — AI/RAG Engineer & Full-Stack Builder",
+        alt: "Sifat Ali - AI/RAG Engineer & Full-Stack Builder",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sifat Ali — AI/RAG Engineer & Full-Stack Builder",
+    title: "Sifat Ali - AI/RAG Engineer & Full-Stack Builder",
     description:
       "COO @ Fluvo Soft · 2× National Hackathon Winner · AI-automation & full-stack systems.",
     images: [absoluteUrl(DEFAULT_OG_IMAGE)],
@@ -231,7 +231,7 @@ export function profilePageJsonLd(profile: {
     "@type": "ProfilePage",
     "@id": `${siteUrl}/#profilepage`,
     url: siteUrl,
-    name: `${profile.name} — Portfolio`,
+    name: `${profile.name} - Portfolio`,
     description: profile.headline ?? profile.tagline,
     mainEntity: { "@id": `${siteUrl}/#person` },
     inLanguage: "en-US",
@@ -246,7 +246,7 @@ export function organizationJsonLd() {
     "@id": `${siteUrl}/#organization`,
     name: "Fluvo Soft",
     description:
-      "AI, web, mobile, and SaaS product delivery — scalable systems from concept to production.",
+      "AI, web, mobile, and SaaS product delivery - scalable systems from concept to production.",
     logo: (() => {
       const logo = assetUrl("/assets/logos/Fluvo Soft.png");
       return logo.startsWith("http") ? logo : absoluteUrl(logo);

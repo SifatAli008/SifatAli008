@@ -95,7 +95,7 @@ export function GitHubReposSection() {
           <div key={item.label} className="dashboard-stat-card glow-border rounded-xl p-4">
             <item.icon className="h-4 w-4 text-accent" />
             <p className="mt-3 font-display text-3xl leading-none text-cream">
-              {loading ? "—" : item.value}
+              {loading ? "-" : item.value}
             </p>
             <p className="label-mono mt-2 text-[10px] text-zinc-500">{item.label}</p>
           </div>
@@ -258,7 +258,7 @@ export function GitHubReposSection() {
                           {repo.language}
                         </span>
                       ) : (
-                        <span className="text-zinc-600">—</span>
+                        <span className="text-zinc-600">-</span>
                       )}
                     </td>
                     <td className="p-4">

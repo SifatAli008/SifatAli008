@@ -44,7 +44,7 @@ export function About({ profile }: AboutProps) {
                       <span className="font-display text-2xl text-accent">
                         SIFAT
                       </span>{" "}
-                      {para.replace(/^I'm Sifat Ali[^—]*—\s*/, "")}
+                      {para.replace(/^I'm Sifat Ali[^-]*-\s*/, "")}
                     </>
                   ) : (
                     para

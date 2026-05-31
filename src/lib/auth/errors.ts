@@ -14,7 +14,7 @@ export function getAuthErrorMessage(error: unknown): string {
       case "auth/unauthorized-domain":
         return `Domain not authorized. Add "${getHostname()}" in Firebase Console → Authentication → Settings → Authorized domains.`;
       case "auth/popup-blocked":
-        return "Popup blocked — use redirect sign-in or allow popups for this site.";
+        return "Popup blocked - use redirect sign-in or allow popups for this site.";
       case "auth/popup-closed-by-user":
         return "Sign-in cancelled.";
       case "auth/cancelled-popup-request":

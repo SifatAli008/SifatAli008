@@ -77,7 +77,7 @@ export async function getProjects(): Promise<Project[]> {
   }
 }
 
-/** Live GitHub portfolio — falls back to bundled snapshot if API is rate-limited */
+/** Live GitHub portfolio - falls back to bundled snapshot if API is rate-limited */
 export async function getPortfolioWork(): Promise<PortfolioWorkItem[]> {
   const profile = await getProfile();
   const username = resolveGitHubUsername(profile.socials?.github);

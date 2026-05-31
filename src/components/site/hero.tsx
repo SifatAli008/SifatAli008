@@ -182,7 +182,7 @@ export function Hero({ profile }: HeroProps) {
                 >
                   <Image
                     src={avatarSrc}
-                    alt={`${profile.name} — portrait`}
+                    alt={`${profile.name} - portrait`}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 420px"

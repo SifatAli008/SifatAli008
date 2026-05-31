@@ -30,7 +30,7 @@ export function FeaturedSection({ profile, items }: FeaturedSectionProps) {
               LINKEDIN POSTS
             </h2>
             <p className="mt-3 max-w-xl text-[15px] text-ink/70">
-              Three featured posts per row — open any card for the full LinkedIn thread.
+              Three featured posts per row - open any card for the full LinkedIn thread.
             </p>
           </div>
           <a

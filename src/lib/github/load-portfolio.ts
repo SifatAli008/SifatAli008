@@ -11,7 +11,7 @@ import {
 } from "@/lib/github/portfolio";
 import githubSnapshot from "@/lib/data/github-portfolio-snapshot.json";
 
-/** Homepage SELECTED WORK preview — matches admin default list length */
+/** Homepage SELECTED WORK preview - matches admin default list length */
 export const PORTFOLIO_PREVIEW_LIMIT = 10;
 
 export interface LoadPortfolioOptions {

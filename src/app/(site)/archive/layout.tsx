@@ -4,7 +4,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Digital Archive",
   description:
-    "Timeline of Sifat Ali's career milestones — jobs, achievements, learning, and community impact.",
+    "Timeline of Sifat Ali's career milestones - jobs, achievements, learning, and community impact.",
   path: "/archive",
 });
 

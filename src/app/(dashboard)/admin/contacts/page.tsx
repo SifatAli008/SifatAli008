@@ -253,7 +253,7 @@ export default function ContactsManagerPage() {
 
       {!db && (
         <p className="mt-4 text-xs text-amber-500/80">
-          Firebase not configured — contact form submissions will not appear here.
+          Firebase not configured - contact form submissions will not appear here.
         </p>
       )}
     </div>

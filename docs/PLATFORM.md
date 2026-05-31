@@ -1,6 +1,6 @@
-# Sifat Ali — Personal Brand Platform
+# Sifat Ali - Personal Brand Platform
 
-Production-grade personal site for **Sifat Ali** — AI Engineer, Full Stack Developer, Educator, and Community Leader. Built with **Next.js 14**, **Firebase**, and a **Neo-Brutalist Editorial** front end (cream canvas, ink borders, accent orange, hard shadows).
+Production-grade personal site for **Sifat Ali** - AI Engineer, Full Stack Developer, Educator, and Community Leader. Built with **Next.js 14**, **Firebase**, and a **Neo-Brutalist Editorial** front end (cream canvas, ink borders, accent orange, hard shadows).
 
 ## Highlights
 
@@ -155,4 +155,4 @@ If build fails with stale `.next` errors, delete `.next` and run `npm run build`
 
 ## License
 
-Private — © Sifat Ali
+Private - © Sifat Ali

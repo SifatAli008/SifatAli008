@@ -7,9 +7,9 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { ProjectsRows } from "@/components/site/projects-rows";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Work — Selected Projects",
+  title: "Work - Selected Projects",
   description:
-    "Selected projects by Sifat Ali — live GitHub portfolio synced with admin dashboard.",
+    "Selected projects by Sifat Ali - live GitHub portfolio synced with admin dashboard.",
   path: "/projects",
 });
 
@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
   const portfolio = await getPortfolioWork();
 
   const jsonLd = itemListJsonLd(
-    "Sifat Ali — Projects",
+    "Sifat Ali - Projects",
     portfolio.map((item) => ({
       name: item.title,
       url: getPortfolioHref(item),

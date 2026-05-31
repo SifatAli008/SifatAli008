@@ -65,7 +65,7 @@ export function ProjectInquiryForm({
     const result = await submitContact({
       name: data.name,
       email: data.email,
-      subject: `Project inquiry — ${data.service}`,
+      subject: `Project inquiry - ${data.service}`,
       message: body,
     });
     setLoading(false);

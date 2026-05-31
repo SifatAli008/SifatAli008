@@ -64,7 +64,7 @@ export function SkillsBento({ skills }: SkillsBentoProps) {
         <SectionHeading
           label="Skills"
           title="Technical depth"
-          description="Proficiency across the full stack — from interfaces to AI pipelines."
+          description="Proficiency across the full stack - from interfaces to AI pipelines."
         />
 
         <Tabs defaultValue="Frontend" className="mt-12">

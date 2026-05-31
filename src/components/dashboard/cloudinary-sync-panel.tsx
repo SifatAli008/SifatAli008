@@ -32,7 +32,7 @@ export function CloudinarySyncPanel() {
       setLastResult({ uploaded: data.uploaded ?? 0, failed: data.failed ?? 0 });
       toast.success(`Uploaded ${data.uploaded} images to Cloudinary`);
       if (data.failed) {
-        toast.warning(`${data.failed} files failed — check server logs`);
+        toast.warning(`${data.failed} files failed - check server logs`);
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Sync failed");
@@ -60,7 +60,7 @@ export function CloudinarySyncPanel() {
       </Button>
       {lastResult && (
         <p className="label-mono mt-4 text-[10px] text-zinc-500">
-          Last sync — {lastResult.uploaded} uploaded · {lastResult.failed} failed · restart
+          Last sync - {lastResult.uploaded} uploaded · {lastResult.failed} failed · restart
           dev server to pick up manifest changes
         </p>
       )}

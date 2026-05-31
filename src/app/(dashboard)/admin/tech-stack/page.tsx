@@ -90,7 +90,7 @@ export default function TechStackManagerPage() {
         <DashboardPageHeader
           label="CONTENT"
           title="Tech stack"
-          description="Marquee strip on the homepage — icons from simple-icons.org"
+          description="Marquee strip on the homepage - icons from simple-icons.org"
         />
         <Button onClick={() => setEditing({ ...emptyTech })}>
           <Plus className="mr-2 h-4 w-4" />
@@ -170,7 +170,7 @@ export default function TechStackManagerPage() {
                 onChange={(e) => setEditing({ ...editing, iconSlug: e.target.value })}
               />
               <p className="mt-1 text-[11px] text-zinc-600">
-                Browse slugs at simpleicons.org — leave empty for text-only items like RAG.
+                Browse slugs at simpleicons.org - leave empty for text-only items like RAG.
               </p>
             </div>
             <div>

@@ -25,6 +25,7 @@ import { ExperienceTable } from "@/components/site/experience-table";
 import { SkillsBands } from "@/components/site/skills-bands";
 import { AcademicResearchSection } from "@/components/site/academic-research-section";
 import { ProjectsRows } from "@/components/site/projects-rows";
+import { GitHubActivitySection } from "@/components/site/github-activity-section";
 import { MarqueeStrip } from "@/components/site/marquee-strip";
 import { WritingSection } from "@/components/site/writing-section";
 import { ContactSection } from "@/components/site/contact-section";
@@ -80,6 +81,7 @@ export default async function HomePage() {
       <SkillsBands skills={skills} />
       <AcademicResearchSection settings={researchSettings} papers={researchPapers} />
       <ProjectsRows projects={portfolio} limit={PORTFOLIO_PREVIEW_LIMIT} />
+      <GitHubActivitySection profile={profileWithLiveStats} />
       <MarqueeStrip items={techStack} />
       <WritingSection posts={posts} />
       <ContactSection profile={profileWithLiveStats} />

@@ -5,10 +5,10 @@ import { getSiteUrl } from "@/lib/seo";
 export default function manifest(): MetadataRoute.Manifest {
   const base = getSiteUrl();
   return {
-    name: "Sifat Ali — Portfolio",
+    name: "Sifat Ali - Portfolio",
     short_name: "Sifat Ali",
     description:
-      "AI/RAG engineer and full-stack builder — portfolio, projects, and writing.",
+      "AI/RAG engineer and full-stack builder - portfolio, projects, and writing.",
     start_url: "/",
     display: "standalone",
     background_color: "#F5F0E8",

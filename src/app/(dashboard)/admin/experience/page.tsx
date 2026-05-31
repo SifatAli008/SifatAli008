@@ -171,7 +171,7 @@ export default function ExperienceManagerPage() {
                 <Label>Duration</Label>
                 <Input
                   className="dashboard-field mt-2"
-                  placeholder="2024 — Present"
+                  placeholder="2024 - Present"
                   value={editing.duration ?? ""}
                   onChange={(e) => setEditing({ ...editing, duration: e.target.value })}
                 />

@@ -36,7 +36,7 @@
     @apply font-mono text-[11px] uppercase tracking-[0.15em];
   }
 
-  /* Neo-brutalist 3D buttons — hard shadow, press depth */
+  /* Neo-brutalist 3D buttons - hard shadow, press depth */
   .btn-3d {
     @apply relative px-8 py-3.5;
     box-shadow: 5px 5px 0 0 #0a0a0a;

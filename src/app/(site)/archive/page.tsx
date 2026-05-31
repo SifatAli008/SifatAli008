@@ -16,9 +16,9 @@ export default async function ArchivePage() {
       { name: "Archive", path: "/archive" },
     ]),
     itemListJsonLd(
-      "Sifat Ali — Career Archive",
+      "Sifat Ali - Career Archive",
       items.map((item) => ({
-        name: `${item.year} — ${item.title}`,
+        name: `${item.year} - ${item.title}`,
         url: `/archive#${item.year}-${item.title.replace(/\s+/g, "-").toLowerCase()}`,
       }))
     ),

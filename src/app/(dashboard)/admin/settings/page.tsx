@@ -258,13 +258,13 @@ export default function SettingsPage() {
                 </Field>
                 <DashboardImageUpload
                   label="Avatar"
-                  hint="Upload to Cloudinary or paste a URL — shown in hero and featured cards."
+                  hint="Upload to Cloudinary or paste a URL - shown in hero and featured cards."
                   folder="sifat-ali/avatars"
                   value={profile.avatar ?? ""}
                   onChange={(url) => patch("avatar", url)}
                   previewClassName="relative aspect-square h-32 w-32"
                 />
-                <Field label="Typewriter roles" hint="One role per line — hero animation">
+                <Field label="Typewriter roles" hint="One role per line - hero animation">
                   <Textarea
                     className="dashboard-field mt-2"
                     rows={4}
@@ -277,7 +277,7 @@ export default function SettingsPage() {
                     }
                   />
                 </Field>
-                <Field label="Focus domains" hint="Comma separated — e.g. EdTech, SaaS">
+                <Field label="Focus domains" hint="Comma separated - e.g. EdTech, SaaS">
                   <Input
                     className="dashboard-field mt-2"
                     value={(profile.domains ?? []).join(", ")}
@@ -445,7 +445,7 @@ export default function SettingsPage() {
               >
                 <Field
                   label="Projects built"
-                  hint="Read-only — auto-synced from your GitHub repo count on the public site."
+                  hint="Read-only - auto-synced from your GitHub repo count on the public site."
                 >
                   <Input
                     className="dashboard-field mt-2 cursor-not-allowed opacity-70"

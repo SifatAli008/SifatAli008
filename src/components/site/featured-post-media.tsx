@@ -8,7 +8,7 @@ interface FeaturedPostMediaProps {
   compact?: boolean;
 }
 
-/** Static image or lightweight brutalist card — no third-party iframes */
+/** Static image or lightweight brutalist card - no third-party iframes */
 export function FeaturedPostMedia({
   item,
   index,

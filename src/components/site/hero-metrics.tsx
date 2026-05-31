@@ -84,7 +84,7 @@ export function HeroMetrics({ profile }: HeroMetricsProps) {
           <span className="font-display text-2xl tracking-wide text-cream md:text-3xl">
             IMPACT AT A GLANCE
           </span>
-          <span className="label-mono text-cream">SCROLL ↓ FOR FEATURED</span>
+          <span className="label-mono text-cream">SCROLL ↓ FOR ABOUT</span>
         </div>
 
         <div className="grid grid-cols-2 bg-cream md:grid-cols-3 lg:grid-cols-6">

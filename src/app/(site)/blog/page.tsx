@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Writing — Engineering Essays",
+  title: "Writing - Engineering Essays",
   description:
     "Engineering essays on AI, RAG, Firebase, PyQt5, and full-stack development by Sifat Ali.",
   path: "/blog",
@@ -20,7 +20,7 @@ export default async function BlogPage() {
   if (posts.length === 0) posts = fallbackBlogPosts.filter((p) => p.status === "published");
 
   const jsonLd = itemListJsonLd(
-    "Sifat Ali — Writing",
+    "Sifat Ali - Writing",
     posts.map((p) => ({ name: p.title, url: `/blog/${p.slug}` }))
   );
 

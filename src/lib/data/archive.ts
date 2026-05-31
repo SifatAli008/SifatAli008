@@ -40,14 +40,14 @@ export const archiveTimeline: ArchiveTimelineItem[] = [
   {
     year: 2022,
     category: "Achievement",
-    title: "B.SC. CS — UIU",
+    title: "B.SC. CS - UIU",
     description: "United International University.",
     metrics: {},
   },
   {
     year: 2021,
     category: "Learning",
-    title: "SHOHOZ SKILL — 300+ STUDENTS",
+    title: "SHOHOZ SKILL - 300+ STUDENTS",
     description: "12 bootcamps, 65% completion lift.",
     metrics: { students: 300 },
   },

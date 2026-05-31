@@ -1,4 +1,4 @@
-/** Company / org logos — files in public/assets/logos */
+/** Company / org logos - files in public/assets/logos */
 import { assetUrl } from "@/lib/cloudinary/assets";
 
 export interface ExperienceLogo {

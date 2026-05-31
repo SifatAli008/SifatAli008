@@ -109,7 +109,7 @@ export function ExperienceTable({ experiences }: ExperienceTableProps) {
                                 {exp.impact.map((item) => (
                                   <li
                                     key={item}
-                                    className="font-mono text-[13px] text-ink/70 before:content-['—_']"
+                                    className="font-mono text-[13px] text-ink/70 before:content-['-_']"
                                   >
                                     {item}
                                   </li>

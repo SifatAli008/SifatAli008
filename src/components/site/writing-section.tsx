@@ -25,7 +25,7 @@ export function WritingSection({ posts }: WritingSectionProps) {
 
         <div className="grid grid-cols-1 gap-0 lg:grid-cols-2 lg:divide-x-2 lg:divide-cream">
           <div className="pb-12 lg:pb-0 lg:pr-12">
-            <p className="label-mono text-accent">— FEATURED ESSAY</p>
+            <p className="label-mono text-accent">- FEATURED ESSAY</p>
             <Link href={`/blog/${featured.slug}`} className="group mt-6 block">
               <h3 className="mt-4 font-sans text-[32px] font-bold leading-tight text-cream group-hover:text-accent">
                 {featured.title}

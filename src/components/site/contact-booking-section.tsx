@@ -55,7 +55,7 @@ export function ContactBookingSection({ profile }: ContactBookingSectionProps) {
           </a>
 
           <div className="mt-14 grid grid-cols-1 border-[3px] border-ink lg:grid-cols-2">
-            {/* Left — book a call (on accent) */}
+            {/* Left - book a call (on accent) */}
             <div className="border-b-[3px] border-ink p-6 md:p-8 lg:border-b-0 lg:border-r-[3px]">
               <div className="flex items-center gap-3">
                 <div className="relative h-12 w-12 shrink-0 overflow-hidden border-2 border-ink">
@@ -97,7 +97,7 @@ export function ContactBookingSection({ profile }: ContactBookingSectionProps) {
               </div>
             </div>
 
-            {/* Right — project form on cream */}
+            {/* Right - project form on cream */}
             <div className="bg-cream p-6 md:p-8">
               <p className="label-mono text-accent">TELL ME ABOUT YOUR PROJECT</p>
               <h3 className="mt-2 font-display text-[clamp(1.75rem,3vw,2.5rem)] leading-none text-ink">

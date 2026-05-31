@@ -24,7 +24,7 @@ async function main() {
 
   const manifestPath = writeAssetManifest(manifest);
   console.log(`Manifest: ${path.relative(process.cwd(), manifestPath)}`);
-  console.log(`Done — ${results.length} uploaded, ${errors.length} failed.`);
+  console.log(`Done - ${results.length} uploaded, ${errors.length} failed.`);
 }
 
 main().catch((error) => {

@@ -127,7 +127,7 @@ export default function ResearchManagerPage() {
       <DashboardPageHeader
         label="CONTENT"
         title="Research"
-        description="Academic section on the homepage — coming soon or published papers"
+        description="Academic section on the homepage - coming soon or published papers"
       />
 
       <Tabs defaultValue="settings" className="mt-8">
@@ -225,7 +225,7 @@ export default function ResearchManagerPage() {
 
           {papers.length === 0 ? (
             <div className="dashboard-empty text-sm text-zinc-500">
-              No papers yet — add entries here, then set section status to published.
+              No papers yet - add entries here, then set section status to published.
             </div>
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
