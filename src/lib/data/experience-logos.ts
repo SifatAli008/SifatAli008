@@ -1,4 +1,6 @@
 /** Company / org logos — files in public/assets/logos */
+import { assetUrl } from "@/lib/cloudinary/assets";
+
 export interface ExperienceLogo {
   id: string;
   name: string;
@@ -9,16 +11,16 @@ export const experienceLogos: ExperienceLogo[] = [
   {
     id: "fluvo-soft",
     name: "FLUVO SOFT",
-    src: "/assets/logos/Fluvo Soft.png",
+    src: assetUrl("/assets/logos/Fluvo Soft.png"),
   },
   {
     id: "shohoz-skill",
     name: "SHOHOZ SKILL",
-    src: "/assets/logos/Shohoz Skill.jpg",
+    src: assetUrl("/assets/logos/Shohoz Skill.jpg"),
   },
   {
     id: "akino",
     name: "AKINO",
-    src: "/assets/logos/Akino.avif",
+    src: assetUrl("/assets/logos/Akino.avif"),
   },
 ];

@@ -4,10 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Linkedin, ExternalLink } from "lucide-react";
 import { FeaturedPostMedia } from "@/components/site/featured-post-media";
-import type { FeaturedItem } from "@/lib/data/featured";
+import type { FeaturedPost } from "@/types";
 
 interface LinkedInPostCardProps {
-  item: FeaturedItem;
+  item: FeaturedPost;
   profileName: string;
   profileAvatar: string;
   index: number;

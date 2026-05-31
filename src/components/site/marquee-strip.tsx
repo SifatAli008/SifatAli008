@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import { Sparkles } from "lucide-react";
-import { simpleIconUrl, techStackMarquee, type TechStackItem } from "@/lib/data/tech-stack";
+import { simpleIconUrl } from "@/lib/data/tech-stack";
+import type { TechStackItem } from "@/types";
+
+interface MarqueeStripProps {
+  items: TechStackItem[];
+}
 
 function StackIcon({ tech }: { tech: TechStackItem }) {
   if (!tech.iconSlug) {
@@ -38,13 +43,13 @@ function StackItem({ tech }: { tech: TechStackItem }) {
   );
 }
 
-function MarqueeRow({ rowId }: { rowId: string }) {
+function MarqueeRow({ rowId, items }: { rowId: string; items: TechStackItem[] }) {
   return (
     <div
       className="flex shrink-0 items-center py-1 pl-12 pr-4"
       aria-hidden={rowId !== "primary" ? true : undefined}
     >
-      {techStackMarquee.map((tech) => (
+      {items.map((tech) => (
         <span key={`${rowId}-${tech.id}`} className="mr-10 inline-flex shrink-0 items-center">
           <StackItem tech={tech} />
         </span>
@@ -53,15 +58,17 @@ function MarqueeRow({ rowId }: { rowId: string }) {
   );
 }
 
-export function MarqueeStrip() {
+export function MarqueeStrip({ items }: MarqueeStripProps) {
+  if (items.length === 0) return null;
+
   return (
     <div
       className="overflow-hidden border-y border-ink bg-cream py-5"
       aria-label="Tech stack marquee"
     >
       <div className="marquee-track flex w-max items-center">
-        <MarqueeRow rowId="primary" />
-        <MarqueeRow rowId="clone" />
+        <MarqueeRow rowId="primary" items={items} />
+        <MarqueeRow rowId="clone" items={items} />
       </div>
     </div>
   );

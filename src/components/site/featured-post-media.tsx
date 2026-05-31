@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
-import type { FeaturedItem } from "@/lib/data/featured";
+import type { FeaturedPost } from "@/types";
 
 interface FeaturedPostMediaProps {
-  item: FeaturedItem;
+  item: FeaturedPost;
   index: number;
   compact?: boolean;
 }

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { ArchiveTimelineItem } from "@/lib/data/archive";
-import { archiveCategories, archiveYears } from "@/lib/data/archive";
+import { archiveCategories, getArchiveYearsFromItems } from "@/lib/data/archive";
 
 interface ArchiveViewProps {
   items: ArchiveTimelineItem[];
@@ -11,6 +11,8 @@ interface ArchiveViewProps {
 export function ArchiveView({ items }: ArchiveViewProps) {
   const [category, setCategory] = useState<string>("ALL");
   const [year, setYear] = useState<string>("ALL");
+
+  const years = useMemo(() => getArchiveYearsFromItems(items), [items]);
 
   const filtered = useMemo(() => {
     return items.filter((item) => {
@@ -42,7 +44,7 @@ export function ArchiveView({ items }: ArchiveViewProps) {
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2">
-        {["ALL", ...archiveYears.map(String)].map((y) => (
+        {["ALL", ...years.map(String)].map((y) => (
           <button
             key={y}
             type="button"

@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DashboardPageHeader } from "@/components/dashboard/page-header";
 import { useDashboardAuth } from "@/lib/firebase/use-dashboard-auth";
+import { useGitHubRepos } from "@/lib/github/use-github-repos";
 import { toast } from "sonner";
 import {
   User,
@@ -22,7 +23,10 @@ import {
   Loader2,
   Globe,
   CheckCircle2,
+  CloudUpload,
 } from "lucide-react";
+import { DashboardImageUpload } from "@/components/dashboard/dashboard-image-upload";
+import { CloudinarySyncPanel } from "@/components/dashboard/cloudinary-sync-panel";
 
 function SettingsSection({
   label,
@@ -65,6 +69,7 @@ function Field({
 
 export default function SettingsPage() {
   const { ready } = useDashboardAuth();
+  const { profileUsername, stats: githubStats, fetchRepos } = useGitHubRepos();
   const [profile, setProfile] = useState<Profile>(seedProfile);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -81,6 +86,12 @@ export default function SettingsPage() {
       })
       .finally(() => setLoading(false));
   }, [ready]);
+
+  useEffect(() => {
+    if (profileUsername) {
+      void fetchRepos(profileUsername, false);
+    }
+  }, [profileUsername, fetchRepos]);
 
   const save = async () => {
     setSaving(true);
@@ -201,6 +212,13 @@ export default function SettingsPage() {
                 <BarChart3 className="h-3.5 w-3.5" />
                 Stats
               </TabsTrigger>
+              <TabsTrigger
+                value="media"
+                className="gap-1.5 border-2 border-transparent data-[state=active]:border-accent data-[state=active]:bg-accent/10 data-[state=active]:text-cream"
+              >
+                <CloudUpload className="h-3.5 w-3.5" />
+                Media
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="profile" className="mt-6 space-y-6 focus-visible:outline-none">
@@ -238,13 +256,14 @@ export default function SettingsPage() {
                     onChange={(e) => patch("bio", e.target.value)}
                   />
                 </Field>
-                <Field label="Avatar URL">
-                  <Input
-                    className="dashboard-field mt-2 font-mono text-xs"
-                    value={profile.avatar ?? ""}
-                    onChange={(e) => patch("avatar", e.target.value)}
-                  />
-                </Field>
+                <DashboardImageUpload
+                  label="Avatar"
+                  hint="Upload to Cloudinary or paste a URL — shown in hero and featured cards."
+                  folder="sifat-ali/avatars"
+                  value={profile.avatar ?? ""}
+                  onChange={(url) => patch("avatar", url)}
+                  previewClassName="relative aspect-square h-32 w-32"
+                />
                 <Field label="Typewriter roles" hint="One role per line — hero animation">
                   <Textarea
                     className="dashboard-field mt-2"
@@ -422,12 +441,22 @@ export default function SettingsPage() {
               <SettingsSection
                 label="METRICS"
                 title="Public stats"
-                description="Numbers shown on the homepage and about page."
+                description="Numbers shown on the homepage and about page. Projects built is synced from GitHub on the live site."
               >
+                <Field
+                  label="Projects built"
+                  hint="Read-only — auto-synced from your GitHub repo count on the public site."
+                >
+                  <Input
+                    className="dashboard-field mt-2 cursor-not-allowed opacity-70"
+                    type="number"
+                    readOnly
+                    value={githubStats.repos || profile.stats.projectsBuilt}
+                  />
+                </Field>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {(
                     [
-                      ["projectsBuilt", "Projects built"],
                       ["studentsMentored", "Students mentored"],
                       ["eventsOrganized", "Events organized"],
                       ["yearsExperience", "Years experience"],
@@ -471,6 +500,10 @@ export default function SettingsPage() {
                   ))}
                 </div>
               </SettingsSection>
+            </TabsContent>
+
+            <TabsContent value="media" className="mt-6 space-y-6 focus-visible:outline-none">
+              <CloudinarySyncPanel />
             </TabsContent>
           </Tabs>
         </div>

@@ -7,7 +7,8 @@ import { db } from "@/lib/firebase/client";
 import { getFirestoreErrorMessage, isFirestorePermissionError } from "@/lib/firebase/errors";
 import { useDashboardAuth } from "@/lib/firebase/use-dashboard-auth";
 import { useAuth } from "@/lib/auth/context";
-import { fallbackBlogPosts } from "@/lib/data/fallback";
+import { fallbackBlogPosts, fallbackSkills } from "@/lib/data/fallback";
+import { SITE_SYNC_MAP } from "@/lib/portfolio-sync";
 import type { BlogPost, ContactSubmission } from "@/types";
 import { useGitHubRepos } from "@/lib/github/use-github-repos";
 import {
@@ -72,8 +73,9 @@ export default function DashboardOverviewPage() {
   const [counts, setCounts] = useState({
     posts: fallbackBlogPosts.length,
     contacts: 0,
-    skills: 14,
+    skills: fallbackSkills.length,
     experience: 0,
+    achievements: 0,
     unread: 0,
   });
   const [blogStats, setBlogStats] = useState({ published: 0, draft: 0 });
@@ -95,11 +97,12 @@ export default function DashboardOverviewPage() {
 
     (async () => {
       try {
-        const [b, c, s, exp] = await Promise.all([
+        const [b, c, s, exp, ach] = await Promise.all([
           getDocs(collection(db, "blog_posts")),
           getDocs(collection(db, "contacts")),
           getDocs(collection(db, "skills")),
           getDocs(collection(db, "experiences")),
+          getDocs(collection(db, "achievements")),
         ]);
 
         const posts = b.docs.map((d) => ({ id: d.id, ...d.data() } as BlogPost));
@@ -120,8 +123,9 @@ export default function DashboardOverviewPage() {
           ...prev,
           posts: posts.length || fallbackBlogPosts.length,
           contacts: contacts.length,
-          skills: s.size || 14,
+          skills: s.size || fallbackSkills.length,
           experience: exp.size,
+          achievements: ach.size,
           unread: contacts.filter((x) => !x.read).length,
         }));
         setBlogStats({
@@ -158,11 +162,11 @@ export default function DashboardOverviewPage() {
   const contentBars = useMemo(
     () => [
       { label: "Repos", value: githubStats.repos, color: "#FF3B00" },
-      { label: "Blog", value: counts.posts, color: "#F5F0E8" },
+      { label: "Published", value: blogStats.published, color: "#F5F0E8" },
       { label: "Skills", value: counts.skills, color: "#888580" },
-      { label: "Contacts", value: counts.contacts, color: "#CC2F00" },
+      { label: "Archive", value: counts.achievements, color: "#CC2F00" },
     ],
-    [counts, githubStats.repos]
+    [blogStats.published, counts.achievements, counts.skills, githubStats.repos]
   );
 
   const languageBars = useMemo(() => {
@@ -208,7 +212,7 @@ export default function DashboardOverviewPage() {
       href: "/admin/projects",
       loading: githubLoading,
     },
-    { label: "Blog posts", value: counts.posts, icon: FileText, href: "/admin/blog" },
+    { label: "Published posts", value: blogStats.published, icon: FileText, href: "/admin/blog" },
     { label: "Unread", value: counts.unread, icon: Mail, href: "/admin/contacts", highlight: counts.unread > 0 },
     {
       label: "Total stars",
@@ -247,6 +251,25 @@ export default function DashboardOverviewPage() {
           <p className="mt-2 text-zinc-300">{permError}</p>
         </div>
       )}
+
+      <section className="glass-strong rounded-xl p-6">
+        <p className="label-mono text-accent">SITE SYNC</p>
+        <p className="mt-1 text-sm text-zinc-400">
+          Admin sections map directly to the public portfolio.
+        </p>
+        <ul className="mt-4 divide-y divide-white/5">
+          {SITE_SYNC_MAP.map((row) => (
+            <li
+              key={row.admin}
+              className="grid gap-1 py-3 first:pt-0 last:pb-0 sm:grid-cols-[120px_1fr_1fr]"
+            >
+              <span className="label-mono text-[10px] text-accent">{row.admin}</span>
+              <span className="text-sm text-zinc-300">{row.public}</span>
+              <span className="text-xs text-zinc-500">{row.source}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {cards.map((card) => (
@@ -398,6 +421,10 @@ export default function DashboardOverviewPage() {
             <DashboardQuickLink href="/admin/projects">View repos</DashboardQuickLink>
             <DashboardQuickLink href="/admin/blog">Write post</DashboardQuickLink>
             <DashboardQuickLink href="/admin/contacts">Inbox</DashboardQuickLink>
+            <DashboardQuickLink href="/admin/featured">Featured</DashboardQuickLink>
+            <DashboardQuickLink href="/admin/research">Research</DashboardQuickLink>
+            <DashboardQuickLink href="/admin/tech-stack">Tech stack</DashboardQuickLink>
+            <DashboardQuickLink href="/admin/achievements">Archive</DashboardQuickLink>
             <DashboardQuickLink href="/admin/experience">
               <span className="inline-flex items-center gap-1">
                 <Briefcase className="h-3 w-3" />
@@ -432,8 +459,8 @@ export default function DashboardOverviewPage() {
           )}
           {!githubLoading && githubStats.repos > 0 && (
             <p className="mt-5 border-l-2 border-accent/40 pl-3 text-xs text-zinc-500">
-              {counts.experience} roles · {githubStats.repos} repos ·{" "}
-              {githubStats.stars.toLocaleString()} stars on GitHub
+              {counts.experience} roles · {counts.achievements} archive items ·{" "}
+              {githubStats.repos} repos · {githubStats.stars.toLocaleString()} stars on GitHub
             </p>
           )}
           {githubError && (

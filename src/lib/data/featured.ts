@@ -1,19 +1,11 @@
-export interface FeaturedItem {
-  id: string;
-  title: string;
-  subtitle: string;
-  excerpt: string;
-  badge?: string;
-  type: "POST" | "ACTIVITY";
-  href: string;
-  /** Local image: public/assets/linkedin/{filename} — overrides embed preview */
-  image?: string;
-  accent?: boolean;
-  order: number;
-}
+import type { FeaturedPost } from "@/types";
+import { assetUrl } from "@/lib/cloudinary/assets";
 
-/** LinkedIn posts only — from Sifat Ali's profile activity */
-export const featuredItems: FeaturedItem[] = [
+/** @deprecated Use FeaturedPost from @/types */
+export type FeaturedItem = FeaturedPost;
+
+/** LinkedIn posts — seeded to Firestore `featured_posts` */
+export const featuredItems: FeaturedPost[] = [
   {
     id: "nextzen-iiuc",
     title: "NextZen · IIUC Tech Fest 2025",
@@ -23,7 +15,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "4TH PLACE",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7404026694963007488/",
-    image: "/assets/linkedin/NextZen IIUC Tech Fest 2025.jpg",
+    image: assetUrl("/assets/linkedin/NextZen IIUC Tech Fest 2025.jpg"),
     accent: true,
     order: 1,
   },
@@ -36,7 +28,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "1ST RUNNER-UP",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7404033807449792512/",
-    image: "/assets/linkedin/InnovateX Hackathon 2025 BUBT.jpg",
+    image: assetUrl("/assets/linkedin/InnovateX Hackathon 2025 BUBT.png"),
     accent: true,
     order: 2,
   },
@@ -49,7 +41,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "ORGANIZER",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7404037671599235072/",
-    image: "/assets/linkedin/UIU HackDay 2026 Announced.jpg",
+    image: assetUrl("/assets/linkedin/UIU HackDay 2026 Announced.jpg"),
     order: 3,
   },
   {
@@ -60,7 +52,7 @@ export const featuredItems: FeaturedItem[] = [
       "Alhamdulillah — collective effort from organizers, mentors, and participants. Proud to contribute and see UIU Developers Hub grow.",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7417412024864821248/",
-    image: "/assets/linkedin/UIU HackDay 2026 Milestone.jpg",
+    image: assetUrl("/assets/linkedin/UIU HackDay 2026 Milestone.jpg"),
     order: 4,
   },
   {
@@ -72,7 +64,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "WORKSHOP",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7415750283919568897/",
-    image: "/assets/linkedin/UIU HackDay 2026 Category 3 Workshop.jpg",
+    image: assetUrl("/assets/linkedin/UIU HackDay 2026 Category 3 Workshop.jpg"),
     order: 5,
   },
   {
@@ -84,8 +76,7 @@ export const featuredItems: FeaturedItem[] = [
     badge: "RECRUITMENT",
     type: "POST",
     href: "https://www.linkedin.com/feed/update/urn:li:activity:7416498694381801472/",
-    image: "/assets/linkedin/UIU Developers Hub Recruitment.jpg",
+    image: assetUrl("/assets/linkedin/UIU Developers Hub Recruitment.jpg"),
     order: 6,
   },
 ];
-

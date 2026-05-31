@@ -9,6 +9,7 @@
     "lint": "next lint",
     "seed": "tsx scripts/seed.ts",
     "github:snapshot": "node scripts/build-github-snapshot.mjs",
+    "cloudinary:upload": "tsx scripts/upload-assets-to-cloudinary.ts",
     "firebase:rules": "firebase deploy --only firestore:rules",
     "firebase:indexes": "firebase deploy --only firestore:indexes",
     "firebase:deploy": "firebase deploy --only firestore:rules,firestore:indexes"

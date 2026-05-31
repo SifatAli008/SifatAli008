@@ -7,9 +7,10 @@ import { BrutalButton } from "@/components/ui/brutal-button";
 import { HeroSocialLinks } from "@/components/site/hero-social-links";
 import { HeroMetrics } from "@/components/site/hero-metrics";
 import { Typewriter } from "@/components/motion/typewriter";
+import { PROFILE_AVATAR } from "@/lib/cloudinary/assets";
 import type { Profile } from "@/types";
 
-const DEFAULT_AVATAR = "/assets/images/profile-image.jpeg";
+const DEFAULT_AVATAR = PROFILE_AVATAR;
 const DEFAULT_DOMAINS = ["EdTech", "MedTech", "SaaS", "AI"];
 
 interface HeroProps {
@@ -95,7 +96,7 @@ export function Hero({ profile }: HeroProps) {
 
             {/* Domains */}
             <motion.div
-              className="mt-6 border-2 border-ink bg-cream p-4 md:p-5"
+              className="mt-6 w-fit max-w-full border-2 border-ink bg-cream p-4 md:p-5"
               style={{ boxShadow: "5px 5px 0 0 #0a0a0a" }}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}

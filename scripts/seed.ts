@@ -9,6 +9,9 @@ import {
   seedAchievements,
   seedBlogPosts,
 } from "../src/lib/data/seed-data";
+import { featuredItems } from "../src/lib/data/featured";
+import { defaultResearchSettings } from "../src/lib/data/research";
+import { techStackMarquee } from "../src/lib/data/tech-stack";
 
 function initAdmin() {
   if (getApps().length) return getFirestore();
@@ -69,6 +72,21 @@ async function seed() {
     await ref.set({ ...post, id: ref.id });
   }
   console.log(`✓ ${seedBlogPosts.length} blog posts (drafts)`);
+
+  for (const item of featuredItems) {
+    const { id, ...data } = item;
+    await db.collection("featured_posts").doc(id).set(data);
+  }
+  console.log(`✓ ${featuredItems.length} featured posts`);
+
+  for (const item of techStackMarquee) {
+    const { id, ...data } = item;
+    await db.collection("tech_stack").doc(id).set(data);
+  }
+  console.log(`✓ ${techStackMarquee.length} tech stack items`);
+
+  await db.collection("research_settings").doc("main").set(defaultResearchSettings);
+  console.log("✓ research_settings/main");
 
   console.log("\nSeed complete.");
 }

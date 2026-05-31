@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { assetUrl } from "@/lib/cloudinary/assets";
 
 const FALLBACK_SITE_URL = "https://sifatali.dev";
 
@@ -246,7 +247,10 @@ export function organizationJsonLd() {
     name: "Fluvo Soft",
     description:
       "AI, web, mobile, and SaaS product delivery — scalable systems from concept to production.",
-    logo: absoluteUrl("/assets/logos/Fluvo Soft.png"),
+    logo: (() => {
+      const logo = assetUrl("/assets/logos/Fluvo Soft.png");
+      return logo.startsWith("http") ? logo : absoluteUrl(logo);
+    })(),
     url: siteUrl,
     founder: { "@id": `${siteUrl}/#person` },
     employee: { "@id": `${siteUrl}/#person`, name: "Sifat Ali" },

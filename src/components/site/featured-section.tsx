@@ -1,20 +1,24 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
 import { SectionReveal } from "@/components/motion/section-reveal";
 import { LinkedInPostCard } from "@/components/site/linkedin-post-card";
-import { featuredItems } from "@/lib/data/featured";
-import type { Profile } from "@/types";
+import { PROFILE_AVATAR } from "@/lib/cloudinary/assets";
+import type { FeaturedPost, Profile } from "@/types";
 
-const DEFAULT_AVATAR = "/assets/images/profile-image.jpeg";
+const DEFAULT_AVATAR = PROFILE_AVATAR;
 
 interface FeaturedSectionProps {
   profile: Profile;
+  items: FeaturedPost[];
 }
 
-export function FeaturedSection({ profile }: FeaturedSectionProps) {
+export function FeaturedSection({ profile, items }: FeaturedSectionProps) {
   const linkedin = profile.socials.linkedin ?? "https://www.linkedin.com/in/sifat-ali/";
   const avatar = profile.avatar ?? DEFAULT_AVATAR;
+
+  if (items.length === 0) return null;
 
   return (
     <SectionReveal id="featured" className="border-t-[3px] border-ink bg-cream">
@@ -41,7 +45,7 @@ export function FeaturedSection({ profile }: FeaturedSectionProps) {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredItems.map((item, i) => (
+          {items.map((item, i) => (
             <LinkedInPostCard
               key={item.id}
               item={item}

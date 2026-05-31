@@ -1,9 +1,15 @@
 import { ArchiveView } from "@/components/site/archive-view";
-import { archiveTimeline } from "@/lib/data/archive";
+import { getAchievements } from "@/lib/firebase/queries";
+import { achievementsToArchiveItems } from "@/lib/portfolio-sync";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
 
-export default function ArchivePage() {
+export const revalidate = 300;
+
+export default async function ArchivePage() {
+  const achievements = await getAchievements();
+  const items = achievementsToArchiveItems(achievements);
+
   const jsonLd = [
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -11,7 +17,7 @@ export default function ArchivePage() {
     ]),
     itemListJsonLd(
       "Sifat Ali — Career Archive",
-      archiveTimeline.map((item) => ({
+      items.map((item) => ({
         name: `${item.year} — ${item.title}`,
         url: `/archive#${item.year}-${item.title.replace(/\s+/g, "-").toLowerCase()}`,
       }))
@@ -30,7 +36,7 @@ export default function ArchivePage() {
             </h1>
           </div>
         </div>
-        <ArchiveView items={archiveTimeline} />
+        <ArchiveView items={items} />
       </div>
     </>
   );

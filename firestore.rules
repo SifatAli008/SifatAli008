@@ -49,6 +49,26 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /featured_posts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /tech_stack/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /research_settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /research_papers/{paperId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     match /contacts/{contactId} {
       allow create: if isValidContact();
       allow read, update, delete: if isAdmin();

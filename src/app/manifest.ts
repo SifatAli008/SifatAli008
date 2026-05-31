@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { PROFILE_AVATAR } from "@/lib/cloudinary/assets";
 import { getSiteUrl } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
@@ -15,7 +16,7 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en",
     icons: [
       {
-        src: "/assets/images/profile-image.jpeg",
+        src: PROFILE_AVATAR,
         sizes: "512x512",
         type: "image/jpeg",
       },

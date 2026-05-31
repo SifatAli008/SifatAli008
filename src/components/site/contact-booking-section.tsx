@@ -13,8 +13,9 @@ import {
 } from "@/components/site/booking-calendar";
 import { ProjectInquiryForm } from "@/components/site/project-inquiry-form";
 import type { Profile } from "@/types";
+import { PROFILE_AVATAR } from "@/lib/cloudinary/assets";
 
-const DEFAULT_AVATAR = "/assets/images/profile-image.jpeg";
+const DEFAULT_AVATAR = PROFILE_AVATAR;
 
 interface ContactBookingSectionProps {
   profile: Profile;

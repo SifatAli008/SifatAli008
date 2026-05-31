@@ -6,6 +6,7 @@ import type {
   Project,
   Skill,
 } from "@/types";
+import { assetUrl } from "@/lib/cloudinary/assets";
 
 const now = new Date().toISOString();
 
@@ -39,7 +40,7 @@ I hold a B.Sc. in Computer Science from United International University and care
   education: "B.Sc. Computer Science — United International University",
   responseTime: "Within 24–48 hours",
   availableForWork: true,
-  avatar: "/assets/images/profile-image.jpeg",
+  avatar: assetUrl("/assets/images/profile-image.jpeg"),
   resumeUrl: "/resume.pdf",
   socials: {
     github: "https://github.com/SifatAli008",
@@ -259,7 +260,7 @@ export const seedProjects: Omit<Project, "id">[] = [
     status: "in-progress",
     featured: true,
     order: 8,
-    coverImage: "/assets/pixel art/office.gif",
+    coverImage: assetUrl("/assets/pixel art/office.gif"),
     challenge: "Ship a charming playable space without a full art pipeline.",
     process: "Pixel art assets, scene blocking, and input-driven interaction loops in Unity.",
     features: ["Top-down movement", "Interactables", "Scene transitions", "Event-ready build"],

@@ -8,6 +8,8 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  orderBy,
+  query,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/client";
 import { fallbackSkills } from "@/lib/data/fallback";
@@ -47,7 +49,7 @@ export default function SkillsManagerPage() {
 
   useEffect(() => {
     if (!db) return;
-    getDocs(collection(db, "skills")).then((snap) => {
+    getDocs(query(collection(db, "skills"), orderBy("order", "asc"))).then((snap) => {
       if (!snap.empty) {
         setSkills(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Skill)));
       }

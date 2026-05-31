@@ -24,6 +24,7 @@ import {
   DashboardModal,
   DashboardSelect,
 } from "@/components/dashboard/dashboard-modal";
+import { DashboardImageUpload } from "@/components/dashboard/dashboard-image-upload";
 import { getFirestoreErrorMessage } from "@/lib/firebase/errors";
 import { useDashboardAuth } from "@/lib/firebase/use-dashboard-auth";
 import { toast } from "sonner";
@@ -76,6 +77,8 @@ export default function BlogManagerPage() {
       readingTime: calculateReadingTime(editing.content),
       seoTitle: editing.seoTitle,
       seoDescription: editing.seoDescription,
+      coverImage: editing.coverImage,
+      ogImage: editing.ogImage,
       updatedAt: now,
       createdAt: editing.createdAt ?? now,
       publishedAt:
@@ -223,6 +226,20 @@ export default function BlogManagerPage() {
                 }
               />
             </div>
+            <DashboardImageUpload
+              label="Cover image"
+              hint="Blog card and post header image."
+              folder="sifat-ali/blog"
+              value={editing.coverImage ?? ""}
+              onChange={(url) => setEditing({ ...editing, coverImage: url })}
+            />
+            <DashboardImageUpload
+              label="Social preview (OG)"
+              hint="Open Graph image for link previews."
+              folder="sifat-ali/blog/og"
+              value={editing.ogImage ?? ""}
+              onChange={(url) => setEditing({ ...editing, ogImage: url })}
+            />
             <div>
               <Label>Content</Label>
               <div className="mt-2 overflow-hidden border-2 border-white/10">

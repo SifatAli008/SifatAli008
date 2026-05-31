@@ -3,9 +3,12 @@ import { ADMIN_HOME_PATH } from "./routes";
 export const ADMIN_NAV_LABELS: Record<string, string> = {
   [ADMIN_HOME_PATH]: "Overview",
   "/admin/projects": "Projects",
+  "/admin/featured": "Featured",
   "/admin/blog": "Blog",
   "/admin/skills": "Skills",
   "/admin/experience": "Experience",
+  "/admin/research": "Research",
+  "/admin/tech-stack": "Tech stack",
   "/admin/achievements": "Achievements",
   "/admin/contacts": "Contacts",
   "/admin/settings": "Settings",

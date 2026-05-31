@@ -1,11 +1,15 @@
 import {
   getExperience,
+  getFeaturedPosts,
   getPortfolioWork,
   getProfile,
   getBlogPosts,
+  getResearchPapers,
+  getResearchSettings,
   getSkills,
+  getTechStack,
 } from "@/lib/firebase/queries";
-import { fallbackBlogPosts } from "@/lib/data/fallback";
+import { publishedFallbackPosts } from "@/lib/data/fallback";
 import { PORTFOLIO_PREVIEW_LIMIT } from "@/lib/github/load-portfolio";
 import {
   personJsonLd,
@@ -28,15 +32,28 @@ import { ContactSection } from "@/components/site/contact-section";
 export const revalidate = 300;
 
 export default async function HomePage() {
-  const [profile, portfolio, experiences, skills] = await Promise.all([
+  const [
+    profile,
+    portfolio,
+    experiences,
+    skills,
+    featuredPosts,
+    researchSettings,
+    researchPapers,
+    techStack,
+  ] = await Promise.all([
     getProfile(),
     getPortfolioWork(),
     getExperience(),
     getSkills(),
+    getFeaturedPosts(),
+    getResearchSettings(),
+    getResearchPapers(),
+    getTechStack(),
   ]);
 
-  let posts = await getBlogPosts(false);
-  if (posts.length === 0) posts = fallbackBlogPosts;
+  let posts = await getBlogPosts(true);
+  if (posts.length === 0) posts = publishedFallbackPosts;
 
   const profileWithLiveStats = {
     ...profile,
@@ -58,12 +75,12 @@ export default async function HomePage() {
       <JsonLd data={jsonLd} />
       <Hero profile={profileWithLiveStats} />
       <About profile={profileWithLiveStats} />
-      <FeaturedSection profile={profileWithLiveStats} />
+      <FeaturedSection profile={profileWithLiveStats} items={featuredPosts} />
       <ExperienceTable experiences={experiences} />
       <SkillsBands skills={skills} />
-      <AcademicResearchSection />
+      <AcademicResearchSection settings={researchSettings} papers={researchPapers} />
       <ProjectsRows projects={portfolio} limit={PORTFOLIO_PREVIEW_LIMIT} />
-      <MarqueeStrip />
+      <MarqueeStrip items={techStack} />
       <WritingSection posts={posts} />
       <ContactSection profile={profileWithLiveStats} />
     </>

@@ -16,9 +16,13 @@ import type {
   BlogPost,
   ContactSubmission,
   Experience,
+  FeaturedPost,
   Profile,
   Project,
+  ResearchPaper,
+  ResearchSectionSettings,
   Skill,
+  TechStackItem,
 } from "@/types";
 import { normalizeProfile } from "@/lib/profile-normalize";
 import {
@@ -33,13 +37,18 @@ import {
   fallbackAchievements,
   fallbackBlogPosts,
   fallbackExperience,
+  fallbackFeaturedPosts,
   fallbackProfile,
   fallbackProjects,
+  fallbackResearchPapers,
+  fallbackResearchSettings,
   fallbackSkills,
+  fallbackTechStack,
   getFallbackBlogPost,
   getFallbackProject,
   publishedFallbackPosts,
 } from "@/lib/data/fallback";
+import { assetUrl } from "@/lib/cloudinary/assets";
 
 function mapDoc<T>(id: string, data: DocumentData): T {
   return { id, ...data } as T;
@@ -132,6 +141,70 @@ export async function getAchievements(): Promise<Achievement[]> {
     return snap.docs.map((d) => mapDoc<Achievement>(d.id, d.data()));
   } catch {
     return fallbackAchievements;
+  }
+}
+
+export async function getFeaturedPosts(): Promise<FeaturedPost[]> {
+  if (!db) return fallbackFeaturedPosts.map((post) => ({
+    ...post,
+    image: post.image ? assetUrl(post.image) : undefined,
+  }));
+  try {
+    const q = query(collection(db, "featured_posts"), orderBy("order", "asc"));
+    const snap = await getDocs(q);
+    if (snap.empty) {
+      return fallbackFeaturedPosts.map((post) => ({
+        ...post,
+        image: post.image ? assetUrl(post.image) : undefined,
+      }));
+    }
+    return snap.docs.map((d) => {
+      const post = mapDoc<FeaturedPost>(d.id, d.data());
+      return {
+        ...post,
+        image: post.image ? assetUrl(post.image) : undefined,
+      };
+    });
+  } catch {
+    return fallbackFeaturedPosts.map((post) => ({
+      ...post,
+      image: post.image ? assetUrl(post.image) : undefined,
+    }));
+  }
+}
+
+export async function getTechStack(): Promise<TechStackItem[]> {
+  if (!db) return fallbackTechStack;
+  try {
+    const q = query(collection(db, "tech_stack"), orderBy("order", "asc"));
+    const snap = await getDocs(q);
+    if (snap.empty) return fallbackTechStack;
+    return snap.docs.map((d) => mapDoc<TechStackItem>(d.id, d.data()));
+  } catch {
+    return fallbackTechStack;
+  }
+}
+
+export async function getResearchSettings(): Promise<ResearchSectionSettings> {
+  if (!db) return fallbackResearchSettings;
+  try {
+    const snap = await getDoc(doc(db, "research_settings", "main"));
+    if (snap.exists()) return snap.data() as ResearchSectionSettings;
+  } catch {
+    /* fallback */
+  }
+  return fallbackResearchSettings;
+}
+
+export async function getResearchPapers(): Promise<ResearchPaper[]> {
+  if (!db) return fallbackResearchPapers;
+  try {
+    const q = query(collection(db, "research_papers"), orderBy("order", "asc"));
+    const snap = await getDocs(q);
+    if (snap.empty) return fallbackResearchPapers;
+    return snap.docs.map((d) => mapDoc<ResearchPaper>(d.id, d.data()));
+  } catch {
+    return fallbackResearchPapers;
   }
 }
 

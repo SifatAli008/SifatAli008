@@ -70,6 +70,8 @@ export const archiveCategories: (ArchiveCategory | "ALL")[] = [
   "Achievement",
 ];
 
-export const archiveYears = Array.from(
-  new Set(archiveTimeline.map((a) => a.year))
-).sort((a, b) => b - a);
+export function getArchiveYearsFromItems(items: ArchiveTimelineItem[]): number[] {
+  return Array.from(new Set(items.map((item) => item.year))).sort((a, b) => b - a);
+}
+
+export const archiveYears = getArchiveYearsFromItems(archiveTimeline);

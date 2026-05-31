@@ -97,6 +97,51 @@ export interface ContactSubmission {
   createdAt: string;
 }
 
+export type FeaturedPostType = "POST" | "ACTIVITY";
+
+export interface FeaturedPost {
+  id: string;
+  title: string;
+  subtitle: string;
+  excerpt: string;
+  badge?: string;
+  type: FeaturedPostType;
+  href: string;
+  image?: string;
+  accent?: boolean;
+  order: number;
+}
+
+export interface TechStackItem {
+  id: string;
+  label: string;
+  /** simple-icons slug — https://simpleicons.org */
+  iconSlug?: string;
+  order: number;
+}
+
+export type ResearchSectionStatus = "coming_soon" | "published";
+
+export interface ResearchSectionSettings {
+  status: ResearchSectionStatus;
+  sectionLabel: string;
+  headline: string;
+  message: string;
+  statusBadge: string;
+}
+
+export interface ResearchPaper {
+  id: string;
+  title: string;
+  authors: string;
+  venue: string;
+  year: number;
+  abstract: string;
+  href?: string;
+  pdfUrl?: string;
+  order: number;
+}
+
 export interface Profile {
   name: string;
   tagline: string;

@@ -13,6 +13,9 @@ import {
   LogOut,
   ChevronLeft,
   Mail,
+  Linkedin,
+  Layers,
+  FlaskConical,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth/context";
@@ -21,9 +24,12 @@ import { ADMIN_HOME_PATH } from "@/lib/admin/routes";
 const nav = [
   { href: ADMIN_HOME_PATH, icon: LayoutDashboard, label: "Overview" },
   { href: "/admin/projects", icon: FolderKanban, label: "Projects" },
+  { href: "/admin/featured", icon: Linkedin, label: "Featured" },
   { href: "/admin/blog", icon: FileText, label: "Blog" },
   { href: "/admin/skills", icon: Sparkles, label: "Skills" },
   { href: "/admin/experience", icon: Briefcase, label: "Experience" },
+  { href: "/admin/research", icon: FlaskConical, label: "Research" },
+  { href: "/admin/tech-stack", icon: Layers, label: "Tech stack" },
   { href: "/admin/achievements", icon: Trophy, label: "Achievements" },
   { href: "/admin/contacts", icon: Mail, label: "Contacts" },
   { href: "/admin/settings", icon: Settings, label: "Settings" },

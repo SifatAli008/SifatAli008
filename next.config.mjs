@@ -5,6 +5,7 @@ const nextConfig = {
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "cdn.jsdelivr.net" },
+      { protocol: "https", hostname: "res.cloudinary.com" },
     ],
   },
   experimental: {
