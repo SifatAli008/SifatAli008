@@ -47,6 +47,56 @@ interface ChatPanelProps {
   onToggleFullscreen: () => void;
 }
 
+function AssistantMessage({
+  content,
+  character,
+}: {
+  content: string;
+  character?: MessageCharacter;
+}) {
+  return (
+    <div className="mr-auto w-full max-w-[min(100%,calc(100%-0.5rem))] overflow-visible sm:max-w-[92%]">
+      <div
+        className={cn(
+          "border-2 border-ink bg-white text-ink",
+          "shadow-[4px_4px_0_0_#0a0a0a]",
+          character ? "overflow-visible" : "overflow-hidden"
+        )}
+      >
+        <div className="flex items-center gap-2 border-b border-ink/10 bg-cream/80 px-3 py-1.5">
+          <Bot className="h-3.5 w-3.5 shrink-0 text-accent" aria-hidden="true" />
+          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink/55">
+            Sifat
+          </span>
+        </div>
+        <p className="px-4 py-3 font-mono text-sm leading-relaxed">{content}</p>
+        {character ? (
+          <div className="border-t border-dashed border-ink/15 bg-cream/40 px-3 pb-4 pt-2">
+            <SifatChatCharacter
+              sheetId={character.sheetId}
+              poseKey={character.poseKey}
+              moodLabel={character.moodLabel}
+              size="inline"
+            />
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function UserMessage({ content }: { content: string }) {
+  return (
+    <div className="ml-auto w-full max-w-[min(100%,calc(100%-0.5rem))] sm:max-w-[55%]">
+      <div
+        className="border-2 border-ink bg-ink px-4 py-2.5 font-mono text-sm leading-relaxed text-cream shadow-[4px_4px_0_0_#ff3b00]"
+      >
+        {content}
+      </div>
+    </div>
+  );
+}
+
 function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -131,7 +181,7 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
           </span>
           <div className="min-w-0">
             <h2 className="font-display text-2xl leading-none">Sifat</h2>
-            <p className="font-mono text-[11px] uppercase leading-tight tracking-[0.12em]">
+            <p className="truncate font-mono text-[11px] uppercase leading-tight tracking-[0.12em] text-cream/90">
               {getMoodCaption(reaction)}
             </p>
           </div>
@@ -164,58 +214,55 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
         <div
           ref={scrollRef}
           className={cn(
-            "min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-4",
+            "min-h-0 flex-1 overflow-y-auto",
             fullscreen ? "max-h-none" : "max-h-[min(360px,calc(100dvh-21rem))]"
           )}
         >
-          {visibleMessages.map((message, index) => (
-            <motion.div
-              key={`${message.role}-${index}-${message.content.slice(0, 12)}`}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
-              className={cn(
-                "border-2 border-ink font-mono text-sm leading-relaxed",
-                message.role === "user"
-                  ? "ml-8 bg-ink text-cream"
-                  : "mr-8 bg-white text-ink"
-              )}
-            >
-              {message.role === "user" ? (
-                <div className="px-3 py-2">{message.content}</div>
-              ) : (
-                <>
-                  <div className="px-3 py-2">{message.content}</div>
-                  {message.character ? (
-                    <div className="px-2 pb-2 pt-3">
-                      <SifatChatCharacter
-                        sheetId={message.character.sheetId}
-                        poseKey={message.character.poseKey}
-                        moodLabel={message.character.moodLabel}
-                        size="inline"
-                      />
-                    </div>
-                  ) : null}
-                </>
-              )}
-            </motion.div>
-          ))}
+          <div
+            className={cn(
+              "flex w-full flex-col gap-4 px-4 py-4",
+              fullscreen && "px-6 py-6 sm:px-8"
+            )}
+          >
+            {visibleMessages.map((message, index) => (
+              <motion.div
+                key={`${message.role}-${index}-${message.content.slice(0, 12)}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {message.role === "user" ? (
+                  <UserMessage content={message.content} />
+                ) : (
+                  <AssistantMessage
+                    content={message.content}
+                    character={message.character}
+                  />
+                )}
+              </motion.div>
+            ))}
 
-          {loading && (
-            <div className="mr-8 flex items-center gap-2 border-2 border-ink bg-white px-3 py-2 font-mono text-sm">
-              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-              One sec...
-            </div>
-          )}
+            {loading ? (
+              <div className="mr-auto w-full max-w-[min(100%,calc(100%-0.5rem))] sm:max-w-[92%]">
+                <div className="flex items-center gap-2 border-2 border-ink bg-white px-4 py-3 font-mono text-sm shadow-[4px_4px_0_0_#0a0a0a]">
+                  <Loader2 className="h-4 w-4 shrink-0 animate-spin text-accent" />
+                  <span className="text-ink/70">One sec...</span>
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
 
-        <div className="shrink-0 border-t-[3px] border-ink px-4 py-3">
-          <div className="mb-3 flex gap-2 overflow-x-auto pb-1">
+        <div className="shrink-0 border-t-[3px] border-ink bg-cream px-4 py-3">
+          <p className="label-mono mb-2 text-[10px] uppercase tracking-wider text-ink/45">
+            Try asking
+          </p>
+          <div className="mb-3 flex flex-wrap gap-2">
             {starterPrompts.map((prompt) => (
               <button
                 key={prompt}
                 type="button"
-                className="shrink-0 border-2 border-ink bg-white px-2.5 py-1 font-mono text-[10px] uppercase leading-tight transition-colors hover:bg-accent hover:text-cream sm:text-[11px]"
+                className="border-2 border-ink bg-white px-3 py-1.5 font-mono text-[10px] uppercase leading-tight transition-colors hover:bg-accent hover:text-cream disabled:opacity-50 sm:text-[11px]"
                 onClick={() => void sendMessage(prompt)}
                 disabled={loading}
               >
@@ -229,14 +276,14 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
               value={input}
               onChange={(event) => setInput(event.target.value)}
               placeholder="Ask about Sifat only..."
-              className="min-w-0 flex-1 border-2 border-ink bg-white px-3 py-2 font-mono text-sm text-ink placeholder:text-ink/50 focus:outline-none"
+              className="min-w-0 flex-1 border-2 border-ink bg-white px-3 py-2.5 font-mono text-sm text-ink placeholder:text-ink/45 focus:outline-none focus:ring-2 focus:ring-accent/30"
               maxLength={500}
             />
             <button
               type="submit"
               aria-label="Send message"
               disabled={!canSend}
-              className="flex h-11 w-11 shrink-0 items-center justify-center border-2 border-ink bg-accent text-cream disabled:cursor-not-allowed disabled:bg-ink/20 disabled:text-ink/50"
+              className="flex h-11 w-11 shrink-0 items-center justify-center border-2 border-ink bg-accent text-cream transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:translate-y-0 disabled:bg-ink/15 disabled:text-ink/40"
             >
               <Send className="h-4 w-4" aria-hidden="true" />
             </button>

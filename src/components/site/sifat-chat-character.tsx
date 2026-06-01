@@ -18,7 +18,7 @@ interface SifatChatCharacterProps {
 }
 
 const FRAME = {
-  inline: "mx-auto h-40 w-full max-w-[220px] shrink-0 sm:h-44",
+  inline: "mx-auto h-[7.5rem] w-full max-w-[200px] sm:h-32",
   sm: "size-28 shrink-0",
   md: "size-44 shrink-0 sm:size-52",
   lg: "size-56 shrink-0 sm:size-64 md:size-72",
@@ -45,18 +45,21 @@ export function SifatChatCharacter({
   return (
     <div
       className={cn(
-        "flex max-w-full shrink-0 flex-col items-center gap-2",
+        "flex max-w-full shrink-0 flex-col items-center gap-1.5",
         className
       )}
     >
       <AnimatePresence mode="wait">
         <motion.div
           key={`${sheetId}-${poseKey}-${burst}`}
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 420, damping: 28 }}
-          className={cn("relative flex items-center justify-center", FRAME[size])}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className={cn(
+            "relative flex items-end justify-center overflow-visible",
+            FRAME[size]
+          )}
           role="img"
           aria-label={`Sifat character: ${moodLabel}`}
         >
@@ -66,13 +69,13 @@ export function SifatChatCharacter({
             alt=""
             width={512}
             height={512}
-            className="h-full w-full object-contain object-center"
+            className="max-h-full w-auto max-w-full object-contain object-bottom"
             style={PIXEL}
           />
         </motion.div>
       </AnimatePresence>
       {showLabel ? (
-        <p className="label-mono max-w-full text-center text-[10px] uppercase tracking-wider text-muted">
+        <p className="label-mono text-center text-[10px] font-bold uppercase tracking-wider text-ink/65">
           {moodLabel}
         </p>
       ) : null}
