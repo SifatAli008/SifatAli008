@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
+import { userFacingChatError } from "@/lib/chat/chat-errors";
 import {
-  generateGeminiReply,
-  userFacingGeminiError,
-} from "@/lib/chat/gemini";
+  generateChatReply,
+  hasChatProvider,
+} from "@/lib/chat/generate-reply";
+import type { ChatTurn } from "@/lib/chat/types";
 import {
   seedAchievements,
   seedExperience,
@@ -121,24 +123,23 @@ type ChatMessage = {
   content?: string;
 };
 
-function cleanMessages(messages: ChatMessage[]) {
+function cleanMessages(messages: ChatMessage[]): ChatTurn[] {
   return messages
     .filter((message) => message.content && message.content.trim().length > 0)
     .slice(-8)
     .map((message) => ({
-      role: message.role === "assistant" ? ("model" as const) : ("user" as const),
-      parts: [{ text: message.content!.slice(0, 1200) }],
+      role: message.role === "assistant" ? "assistant" : "user",
+      content: message.content!.slice(0, 1200),
     }));
 }
 
 export async function POST(request: Request) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
+    if (!hasChatProvider()) {
       return NextResponse.json(
         {
           reply:
-            "Brain's not wired up yet - Gemini key is missing on the server.",
+            "Brain's not wired up yet — add GEMINI_API_KEY, GROQ_API_KEY, or OPENROUTER_API_KEY on the server.",
         },
         { status: 503 }
       );
@@ -155,13 +156,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await generateGeminiReply(apiKey, systemInstruction, messages);
+    const result = await generateChatReply(systemInstruction, messages);
 
     if (!result.ok) {
       const status = result.status && result.status >= 400 ? result.status : 503;
       return NextResponse.json(
         {
-          reply: userFacingGeminiError(result.reason, result.status),
+          reply: userFacingChatError(result.reason, result.status),
           retryable: true,
         },
         { status }

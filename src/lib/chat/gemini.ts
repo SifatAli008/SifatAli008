@@ -1,20 +1,30 @@
 const REQUEST_TIMEOUT_MS = 28_000;
 const MAX_ATTEMPTS_PER_MODEL = 2;
 
+/** Models available on Google AI (generativelanguage.googleapis.com) free tier. */
 const DEFAULT_FALLBACK_MODELS = [
   "gemini-2.5-flash-lite",
-  "gemini-2.0-flash",
-  "gemini-1.5-flash",
+  "gemini-2.5-flash",
+  "gemini-2.0-flash-lite",
 ];
+
+import type { ChatTurn } from "@/lib/chat/types";
 
 type GeminiContent = {
   role: "user" | "model";
   parts: { text: string }[];
 };
 
-type GeminiResult =
+export type GeminiResult =
   | { ok: true; text: string; model: string }
   | { ok: false; reason: string; status?: number };
+
+function toGeminiContents(turns: ChatTurn[]): GeminiContent[] {
+  return turns.map((turn) => ({
+    role: turn.role === "assistant" ? ("model" as const) : ("user" as const),
+    parts: [{ text: turn.content }],
+  }));
+}
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -28,6 +38,26 @@ function modelList(): string[] {
 
 function isRetryableStatus(status: number): boolean {
   return status === 429 || status === 500 || status === 502 || status === 503 || status === 504;
+}
+
+/** Prefer quota/auth errors over "model not found" when every model fails. */
+function failurePriority(result: Extract<GeminiResult, { ok: false }>): number {
+  if (result.status === 429) return 100;
+  if (result.status === 403 || result.status === 401) return 90;
+  if (result.reason === "empty_candidate") return 80;
+  if (result.status === 503) return 70;
+  if (result.status === 504 || result.reason === "timeout") return 60;
+  if (result.status === 404) return 10;
+  return 40;
+}
+
+function pickFailure(
+  current: Extract<GeminiResult, { ok: false }>,
+  candidate: Extract<GeminiResult, { ok: false }>
+): Extract<GeminiResult, { ok: false }> {
+  return failurePriority(candidate) > failurePriority(current)
+    ? candidate
+    : current;
 }
 
 function extractReplyText(data: {
@@ -70,7 +100,10 @@ async function callGeminiModel(
         generationConfig: {
           temperature: 0.82,
           topP: 0.92,
-          maxOutputTokens: 380,
+          maxOutputTokens: 512,
+          // 2.5 Flash uses thinking tokens against maxOutputTokens; without this,
+          // replies can be empty (finishReason MAX_TOKENS, no text parts).
+          thinkingConfig: { thinkingBudget: 0 },
         },
       }),
     });
@@ -135,8 +168,9 @@ async function callGeminiModel(
 export async function generateGeminiReply(
   apiKey: string,
   systemInstruction: string,
-  contents: GeminiContent[]
+  turns: ChatTurn[]
 ): Promise<GeminiResult> {
+  const contents = toGeminiContents(turns);
   const models = modelList();
   let lastFailure: GeminiResult = { ok: false, reason: "unknown" };
 
@@ -151,11 +185,12 @@ export async function generateGeminiReply(
 
       if (result.ok) return result;
 
-      lastFailure = result;
+      lastFailure = pickFailure(lastFailure, result);
 
       const retryable =
         result.status === undefined || isRetryableStatus(result.status);
-      if (!retryable) break;
+      // 404 = retired model id — try next model, do not retry same id.
+      if (!retryable && result.status !== 404) break;
 
       if (attempt < MAX_ATTEMPTS_PER_MODEL - 1) {
         await sleep(500 * (attempt + 1));
@@ -164,17 +199,4 @@ export async function generateGeminiReply(
   }
 
   return lastFailure;
-}
-
-export function userFacingGeminiError(reason: string, status?: number): string {
-  if (status === 429 || reason.includes("RESOURCE_EXHAUSTED")) {
-    return "Too many requests at once - wait a few seconds and try again.";
-  }
-  if (status === 504 || reason === "timeout") {
-    return "That took too long - try again with a shorter question.";
-  }
-  if (status === 503 || status === 502 || status === 500) {
-    return "The AI service is busy right now - try again in a moment.";
-  }
-  return "I could not reach the AI model right now - try again in a moment.";
 }
