@@ -35,18 +35,20 @@ interface ToneCandidate {
   confidence: number;
 }
 
+const BENGALI_SCRIPT = /[\u0980-\u09FF]/;
+
 const GREETING_PATTERN =
-  /^\s*(hi|hello|hey|yo|sup|assalam|salam|namaste|good\s+(morning|evening|afternoon))\b/i;
+  /^\s*(hi|hello|hey|yo|sup|assalam|salam|namaste|kemon|ki\s*obostha|good\s+(morning|evening|afternoon)|হ্যালো|হাই|আসসালাম|সালাম|নমস্কার)/i;
 const PRAISE_PATTERN =
-  /\b(love|amazing|awesome|great|brilliant|legend|best|thank|thanks|cool|impressive|wonderful|excellent|🔥|❤|wow|appreciate)\b/i;
+  /\b(love|amazing|awesome|great|brilliant|legend|best|thank|thanks|cool|impressive|wonderful|excellent|🔥|❤|wow|appreciate|dhonnobad|dhanobar|onek valo|khub bhalo|darun|ভালো|ধন্যবাদ|দারুণ|অসাধারণ)\b/i;
 const HIRE_PATTERN =
-  /\b(hire|hiring|collaborat|work together|freelance|contract|budget|rate|availability|project inquiry|reach out|korbo|kaaj|consult|partnership)\b/i;
+  /\b(hire|hiring|collaborat|work together|freelance|contract|budget|rate|availability|project inquiry|reach out|korbo|kaaj|kaj|consult|partnership|হায়ার|নিয়োগ|কাজ|করব|করবো)\b/i;
 const TECH_PATTERN =
-  /\b(code|coding|github|api|ai|rag|llm|react|next\.?js|firebase|stack|build|built|developer|engineer|project|portfolio|deploy|vercel|cloudinary|full[- ]?stack|typescript|javascript)\b/i;
+  /\b(code|coding|github|api|ai|rag|llm|react|next\.?js|firebase|stack|build|built|developer|engineer|project|portfolio|deploy|vercel|cloudinary|full[- ]?stack|typescript|javascript|প্রজেক্ট|স্কিল|টেক)\b/i;
 const CURIOUS_PATTERN =
-  /\b(who is|what is|what's|tell me|about sifat|his (work|skills|projects|experience)|best at|background|education|achievement)\b/i;
+  /\b(who is|what is|what's|tell me|about sifat|his (work|skills|projects|experience)|best at|background|education|achievement|ki kore|ki kor|kon|kemon|bolen|bolo|সিফাত|কী|কি|কেমন|বলেন|বলো|কাজ|পোর্টফোলিও)\b/i;
 const CONFUSED_PATTERN =
-  /\b(confus|don't understand|didn't get|not sure what|clarify|explain (this|that|how)|what do you mean)\b/i;
+  /\b(confus|don't understand|didn't get|not sure what|clarify|explain (this|that|how)|what do you mean|bujhini|bujhi na|বুঝিনা|বুঝি না|মানে কী|মানে কি)\b/i;
 const QUESTION_PATTERN = /\?\s*$/;
 const NEGATIVE_PATTERN =
   /\b(sorry|can't|cannot|unfortunately|don't know|no idea|outside my lane|not sure on that)\b/i;
@@ -57,15 +59,22 @@ function scoreUser(text: string): ToneScores {
   const t = text.trim();
   const lower = t.toLowerCase();
   const words = lower.split(/\s+/).length;
+  const hasBengali = BENGALI_SCRIPT.test(t);
 
   return {
-    greeting: GREETING_PATTERN.test(t) && words <= 12 ? 4 : 0,
-    praise: PRAISE_PATTERN.test(lower) ? 4 : 0,
-    hire: HIRE_PATTERN.test(lower) ? 4 : 0,
-    tech: TECH_PATTERN.test(lower) ? 3 : 0,
-    curious: CURIOUS_PATTERN.test(lower) ? 3 : 0,
+    greeting:
+      (GREETING_PATTERN.test(t) && words <= 12 ? 4 : 0) +
+      (hasBengali && words <= 8 ? 1 : 0),
+    praise: PRAISE_PATTERN.test(lower) || PRAISE_PATTERN.test(t) ? 4 : 0,
+    hire: HIRE_PATTERN.test(lower) || HIRE_PATTERN.test(t) ? 4 : 0,
+    tech: TECH_PATTERN.test(lower) || TECH_PATTERN.test(t) ? 3 : 0,
+    curious:
+      (CURIOUS_PATTERN.test(lower) || CURIOUS_PATTERN.test(t) ? 3 : 0) +
+      (hasBengali ? 1 : 0),
     confused:
-      CONFUSED_PATTERN.test(lower) || (QUESTION_PATTERN.test(t) && words >= 4)
+      CONFUSED_PATTERN.test(lower) ||
+      CONFUSED_PATTERN.test(t) ||
+      (QUESTION_PATTERN.test(t) && words >= 4)
         ? 2
         : 0,
     negative: 0,

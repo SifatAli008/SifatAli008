@@ -11,6 +11,7 @@
     "github:snapshot": "node scripts/build-github-snapshot.mjs",
     "cloudinary:upload": "tsx scripts/upload-assets-to-cloudinary.ts",
     "cloudinary:characters": "tsx scripts/rename-and-upload-characters.ts",
+    "sounds:chat": "node scripts/generate-chat-sounds.mjs",
     "firebase:rules": "firebase deploy --only firestore:rules",
     "firebase:indexes": "firebase deploy --only firestore:indexes",
     "firebase:deploy": "firebase deploy --only firestore:rules,firestore:indexes"
@@ -52,6 +53,7 @@
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "use-sound": "^5.0.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

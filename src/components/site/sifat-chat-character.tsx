@@ -18,7 +18,7 @@ interface SifatChatCharacterProps {
 }
 
 const FRAME = {
-  inline: "mx-auto h-[7.5rem] w-full max-w-[200px] sm:h-32",
+  inline: "mx-auto h-44 w-full max-w-[min(100%,280px)] sm:h-52 sm:max-w-[320px]",
   sm: "size-28 shrink-0",
   md: "size-44 shrink-0 sm:size-52",
   lg: "size-56 shrink-0 sm:size-64 md:size-72",
@@ -45,7 +45,7 @@ export function SifatChatCharacter({
   return (
     <div
       className={cn(
-        "flex max-w-full shrink-0 flex-col items-center gap-1.5",
+        "flex w-full shrink-0 flex-col items-center gap-0.5",
         className
       )}
     >
@@ -69,13 +69,13 @@ export function SifatChatCharacter({
             alt=""
             width={512}
             height={512}
-            className="max-h-full w-auto max-w-full object-contain object-bottom"
+            className="h-full w-full object-contain object-bottom"
             style={PIXEL}
           />
         </motion.div>
       </AnimatePresence>
       {showLabel ? (
-        <p className="label-mono text-center text-[10px] font-bold uppercase tracking-wider text-ink/65">
+        <p className="label-mono text-center text-[11px] font-bold uppercase tracking-wider text-ink/70">
           {moodLabel}
         </p>
       ) : null}

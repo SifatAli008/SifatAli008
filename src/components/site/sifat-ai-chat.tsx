@@ -14,6 +14,8 @@ import {
   MessageCircle,
   Minimize2,
   Send,
+  Volume2,
+  VolumeX,
   X,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,6 +26,7 @@ import {
   resolveCharacterReaction,
   type MessageCharacter,
 } from "@/lib/chat/character-state";
+import { useChatSounds } from "@/lib/chat/use-chat-sounds";
 import { cn } from "@/lib/utils";
 
 type ChatMessage = {
@@ -34,17 +37,18 @@ type ChatMessage = {
 
 const starterPrompts = [
   "What does Sifat build?",
-  "Sifat's best project?",
+  "Sifat er best project ki?",
   "How do I hire Sifat?",
 ];
 
 const WELCOME =
-  "Hey - I'm Sifat, Sifat Ali's portfolio assistant. Ask about his work, skills, projects, or how to reach him. Sifat-related questions only.";
+  "Hey - I'm Sifat, Sifat Ali's Assistant. Ask in English or Bangla about his work, skills, projects, or how to reach him.";
 
 interface ChatPanelProps {
   fullscreen: boolean;
   onClose: () => void;
   onToggleFullscreen: () => void;
+  sounds: ReturnType<typeof useChatSounds>;
 }
 
 function AssistantMessage({
@@ -71,7 +75,7 @@ function AssistantMessage({
         </div>
         <p className="px-4 py-3 font-mono text-sm leading-relaxed">{content}</p>
         {character ? (
-          <div className="border-t border-dashed border-ink/15 bg-cream/40 px-3 pb-4 pt-2">
+          <div className="border-t border-dashed border-ink/15 bg-cream/30 px-1 pb-1 pt-1">
             <SifatChatCharacter
               sheetId={character.sheetId}
               poseKey={character.poseKey}
@@ -97,7 +101,12 @@ function UserMessage({ content }: { content: string }) {
   );
 }
 
-function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) {
+function ChatPanel({
+  fullscreen,
+  onClose,
+  onToggleFullscreen,
+  sounds,
+}: ChatPanelProps) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -137,6 +146,7 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
     const nextMessages: ChatMessage[] = [...messages, { role: "user", content }];
     setMessages(nextMessages);
     setInput("");
+    sounds.playSend();
     setLoading(true);
 
     try {
@@ -151,8 +161,11 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
         data.reply ||
           "Not sure on that one. Email Sifat at sifatali008@gmail.com."
       );
+      if (response.ok) sounds.playReceive();
+      else sounds.playError();
     } catch {
       pushAssistantReply(content, "Couldn't connect. Try again in a sec.");
+      sounds.playError();
     } finally {
       setLoading(false);
       window.setTimeout(() => inputRef.current?.focus(), 0);
@@ -187,6 +200,19 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-2">
+          <button
+            type="button"
+            aria-label={sounds.soundEnabled ? "Mute chat sounds" : "Unmute chat sounds"}
+            aria-pressed={!sounds.soundEnabled}
+            className="flex h-9 w-9 items-center justify-center border-2 border-cream bg-ink text-cream transition-transform hover:-translate-y-0.5"
+            onClick={sounds.toggleSound}
+          >
+            {sounds.soundEnabled ? (
+              <Volume2 className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <VolumeX className="h-4 w-4" aria-hidden="true" />
+            )}
+          </button>
           <button
             type="button"
             aria-label={fullscreen ? "Exit full-screen chat" : "Open full-screen chat"}
@@ -275,7 +301,7 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
               ref={inputRef}
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              placeholder="Ask about Sifat only..."
+              placeholder="Ask about Sifat in English or Bangla..."
               className="min-w-0 flex-1 border-2 border-ink bg-white px-3 py-2.5 font-mono text-sm text-ink placeholder:text-ink/45 focus:outline-none focus:ring-2 focus:ring-accent/30"
               maxLength={500}
             />
@@ -297,6 +323,7 @@ function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) 
 export function SifatAiChat() {
   const [open, setOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const sounds = useChatSounds();
 
   useEffect(() => {
     if (!open || !fullscreen) return;
@@ -339,6 +366,7 @@ export function SifatAiChat() {
               fullscreen
               onClose={handleClose}
               onToggleFullscreen={() => setFullscreen(false)}
+              sounds={sounds}
             />
           </motion.div>
         )}
@@ -355,6 +383,7 @@ export function SifatAiChat() {
             fullscreen={false}
             onClose={handleClose}
             onToggleFullscreen={() => setFullscreen(true)}
+            sounds={sounds}
           />
         )}
 
@@ -363,7 +392,12 @@ export function SifatAiChat() {
             type="button"
             aria-label={open ? "Close Sifat chat" : "Open Sifat chat"}
             className="btn-3d pointer-events-auto flex items-center gap-2 border-[3px] border-ink bg-accent px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-cream"
-            onClick={() => setOpen((current) => !current)}
+            onClick={() =>
+              setOpen((current) => {
+                if (!current) sounds.playOpen();
+                return !current;
+              })
+            }
           >
             <MessageCircle className="h-5 w-5" aria-hidden="true" />
             Ask Sifat
