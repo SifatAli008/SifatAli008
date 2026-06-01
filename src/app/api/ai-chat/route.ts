@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import {
+  generateGeminiReply,
+  userFacingGeminiError,
+} from "@/lib/chat/gemini";
+import {
   seedAchievements,
   seedExperience,
   seedProfile,
@@ -9,9 +13,7 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
-const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+export const maxDuration = 60;
 
 const portfolioContext = [
   `Name: ${seedProfile.name}`,
@@ -54,7 +56,15 @@ PERSONALITY:
 - Share concise, actionable insights - not lectures
 - Confident and direct, never arrogant or salesy
 - Dry, situational humor only when it fits naturally - never forced
+- Read sarcasm and playful teasing: notice it, do not take it literally, answer the real question underneath with a short witty line first if it fits
 - Casual language - no corporate brochure voice
+
+SARCASM & PLAYFUL TONE:
+- Signals: exaggerated praise ("best dev ever", "definitely not a chatbot"), "yeah right", "sure", "obviously", "as if", "let me guess", "/s", rhetorical digs, Bangla teasing ("তো", "নাকি", "অবশ্যই", "হ্যাঁ ঠিক আই")
+- Respond in the same language as the user
+- Pattern: one dry acknowledgment (optional) + straight useful answer about Sifat - never lecture them for joking, never get defensive
+- If they are only joking with no real question, joke back lightly once and invite a real Sifat question
+- If sarcasm is mean or off-topic, stay brief and redirect - still in scope
 - Never ask for or reveal personal or sensitive details (yours or the user's)
 - You know Sifat well: AI/RAG builder, full-stack engineer, COO at Fluvo Soft, educator, community builder, 2x national hackathon winner
 
@@ -96,6 +106,12 @@ Voice examples:
   Answer: "আমি Sifat - সিফাত আলীর Assistant। তার কাজ, স্কিল, প্রজেক্ট বা যোগাযোগ নিয়ে জিজ্ঞেস করুন।"
 - User: "best project ki?"
   Answer: "Depends what you mean - AI/RAG builds and full-stack products are where he shines most. Bolo konkret area (AI, web app, hackathon) - ami narrow kore bolte pari."
+- User: "yeah sure Sifat definitely invented AI single-handedly"
+  Answer: "He didn't - but he does ship real AI/RAG and full-stack work. Want projects, stack, or how to hire him?"
+- User: "wow another portfolio bot, groundbreaking"
+  Answer: "Fair. I'm here for his work though - skills, projects, or email if you want the human."
+- User: "তুমি কি সত্যি জানো নাকি শুধু বলছ?"
+  Answer: "জানি - পোর্টফোলিও ফ্যাক্ট অনুযায়ী বলি। কোনটা জানতে চাও - প্রজেক্ট, স্কিল, নাকি যোগাযোগ?"
 
 Portfolio facts:
 ${portfolioContext}`;
@@ -110,7 +126,7 @@ function cleanMessages(messages: ChatMessage[]) {
     .filter((message) => message.content && message.content.trim().length > 0)
     .slice(-8)
     .map((message) => ({
-      role: message.role === "assistant" ? "model" : "user",
+      role: message.role === "assistant" ? ("model" as const) : ("user" as const),
       parts: [{ text: message.content!.slice(0, 1200) }],
     }));
 }
@@ -139,47 +155,26 @@ export async function POST(request: Request) {
       );
     }
 
-    const response = await fetch(`${GEMINI_ENDPOINT}?key=${apiKey}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        systemInstruction: {
-          parts: [{ text: systemInstruction }],
-        },
-        contents: messages,
-        generationConfig: {
-          temperature: 0.82,
-          topP: 0.92,
-          maxOutputTokens: 380,
-        },
-      }),
-    });
+    const result = await generateGeminiReply(apiKey, systemInstruction, messages);
 
-    if (!response.ok) {
+    if (!result.ok) {
+      const status = result.status && result.status >= 400 ? result.status : 503;
       return NextResponse.json(
         {
-          reply:
-            "I could not reach the AI model right now. Please try again in a moment.",
+          reply: userFacingGeminiError(result.reason, result.status),
+          retryable: true,
         },
-        { status: response.status }
+        { status }
       );
     }
 
-    const data = await response.json();
-    const reply =
-      data?.candidates?.[0]?.content?.parts
-        ?.map((part: { text?: string }) => part.text)
-        .filter(Boolean)
-        .join("\n")
-        .trim() ||
-      "Not sure on that one. Email Sifat at sifatali008@gmail.com - he'll know.";
-
-    return NextResponse.json({ reply });
-  } catch {
+    return NextResponse.json({ reply: result.text });
+  } catch (error) {
+    console.error("[ai-chat] Unhandled error", error);
     return NextResponse.json(
       {
-        reply:
-          "Something broke on my end. Try again.",
+        reply: "Something broke on my end - try again.",
+        retryable: true,
       },
       { status: 500 }
     );

@@ -139,6 +139,19 @@ function ChatPanel({
     ]);
   }
 
+  async function requestAssistantReply(nextMessages: ChatMessage[]) {
+    const response = await fetch("/api/ai-chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: nextMessages }),
+    });
+    const data = (await response.json()) as {
+      reply?: string;
+      retryable?: boolean;
+    };
+    return { response, data };
+  }
+
   async function sendMessage(nextInput?: string) {
     const content = (nextInput ?? input).trim();
     if (!content || loading) return;
@@ -150,12 +163,13 @@ function ChatPanel({
     setLoading(true);
 
     try {
-      const response = await fetch("/api/ai-chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
-      });
-      const data = await response.json();
+      let { response, data } = await requestAssistantReply(nextMessages);
+
+      if (!response.ok && data.retryable) {
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        ({ response, data } = await requestAssistantReply(nextMessages));
+      }
+
       pushAssistantReply(
         content,
         data.reply ||

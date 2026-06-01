@@ -26,6 +26,7 @@ interface ToneScores {
   curious: number;
   confused: number;
   negative: number;
+  sarcasm: number;
 }
 
 interface ToneCandidate {
@@ -52,8 +53,31 @@ const CONFUSED_PATTERN =
 const QUESTION_PATTERN = /\?\s*$/;
 const NEGATIVE_PATTERN =
   /\b(sorry|can't|cannot|unfortunately|don't know|no idea|outside my lane|not sure on that)\b/i;
+const SARCASM_PATTERN =
+  /\b(yeah right|as if|obviously|totally|sure sure|let me guess|must be nice|so original|real creative|genius|oh great|another (portfolio|chat) bot|groundbreaking|wow so|not bad for a bot|\/s|🙅|🙄|bet he|invented ai|single.?handedly|তো নাকি|নাকি তো|অবশ্যই তো|হ্যাঁ ঠিক|ঠিক আই|onek bhalo re|ki re)\b/i;
 const ASSISTANT_SHARE_PATTERN =
   /\b(he |sifat |his )(built|works|shipped|leads|runs|stack|project)/i;
+
+function scoreSarcasm(text: string): number {
+  const lower = text.toLowerCase();
+  let score = 0;
+
+  if (SARCASM_PATTERN.test(lower) || SARCASM_PATTERN.test(text)) score += 4;
+  if (
+    /\b(sure|totally|obviously|clearly|definitely)\b/i.test(lower) &&
+    /\bsifat\b/i.test(lower)
+  ) {
+    score += 2;
+  }
+  if (PRAISE_PATTERN.test(lower) && /\b(bot|fake|chatgpt|useless|mid)\b/i.test(lower)) {
+    score += 3;
+  }
+  if (text.includes("...") && /\b(best|greatest|legend|genius)\b/i.test(lower)) {
+    score += 2;
+  }
+
+  return score;
+}
 
 function scoreUser(text: string): ToneScores {
   const t = text.trim();
@@ -78,6 +102,7 @@ function scoreUser(text: string): ToneScores {
         ? 2
         : 0,
     negative: 0,
+    sarcasm: scoreSarcasm(t),
   };
 }
 
@@ -93,6 +118,7 @@ function scoreAssistant(text: string): ToneScores {
     curious: 0,
     confused: 0,
     negative: NEGATIVE_PATTERN.test(lower) ? 3 : 0,
+    sarcasm: scoreSarcasm(text),
     ...(len > 140 && ASSISTANT_SHARE_PATTERN.test(text)
       ? { tech: 2, curious: 0 }
       : {}),
@@ -129,7 +155,22 @@ function pickToneCandidate(
     });
   }
 
-  if (user.praise >= 4) {
+  if (user.sarcasm >= 3) {
+    candidates.push({
+      sheetId: "casual",
+      poseKey: "determined",
+      moodLabel: "Fair point",
+      confidence: 5,
+    });
+    candidates.push({
+      sheetId: "enthusiastic",
+      poseKey: "thinking",
+      moodLabel: "Nice try",
+      confidence: 4,
+    });
+  }
+
+  if (user.praise >= 4 && user.sarcasm < 2) {
     candidates.push({
       sheetId: "enthusiastic",
       poseKey: "cheer",
