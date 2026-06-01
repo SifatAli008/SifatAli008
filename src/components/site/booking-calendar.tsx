@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface BookingSlot {
@@ -106,11 +106,23 @@ export function BookingCalendar({
     })
     .toUpperCase();
 
-  const nowTime = new Date().toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short",
-  });
+  /** Avoid hydration mismatch: clock only updates after mount. */
+  const [nowTime, setNowTime] = useState<string | null>(null);
+
+  useEffect(() => {
+    const tick = () => {
+      setNowTime(
+        new Date().toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          timeZoneName: "short",
+        })
+      );
+    };
+    tick();
+    const id = window.setInterval(tick, 30_000);
+    return () => window.clearInterval(id);
+  }, []);
 
   return (
     <div
@@ -173,7 +185,8 @@ export function BookingCalendar({
           </div>
 
           <p className="label-mono mt-4 text-[10px] text-ink/70">
-            {timezoneLabel} · {nowTime}
+            {timezoneLabel}
+            {nowTime ? ` · ${nowTime}` : null}
           </p>
         </div>
 

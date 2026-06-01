@@ -3,7 +3,7 @@ import path from "path";
 import { v2 as cloudinary, type UploadApiResponse } from "cloudinary";
 import { isCloudinaryConfigured } from "./client";
 
-const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"]);
+const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".svg"]);
 
 export interface AssetUploadResult {
   localPath: string;

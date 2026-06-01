@@ -1,12 +1,35 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
-import { Bot, Loader2, MessageCircle, Send, X } from "lucide-react";
+import {
+  FormEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import {
+  Bot,
+  Loader2,
+  Maximize2,
+  MessageCircle,
+  Minimize2,
+  Send,
+  X,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { SifatChatCharacter } from "@/components/site/sifat-chat-character";
+import {
+  attachMessageCharacter,
+  getMoodCaption,
+  resolveCharacterReaction,
+  type MessageCharacter,
+} from "@/lib/chat/character-state";
 import { cn } from "@/lib/utils";
 
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
+  character?: MessageCharacter;
 };
 
 const starterPrompts = [
@@ -15,22 +38,47 @@ const starterPrompts = [
   "How do I hire Sifat?",
 ];
 
-export function SifatAiChat() {
-  const [open, setOpen] = useState(false);
+const WELCOME =
+  "Hey - I'm Sifat, Sifat Ali's portfolio assistant. Ask about his work, skills, projects, or how to reach him. Sifat-related questions only.";
+
+interface ChatPanelProps {
+  fullscreen: boolean;
+  onClose: () => void;
+  onToggleFullscreen: () => void;
+}
+
+function ChatPanel({ fullscreen, onClose, onToggleFullscreen }: ChatPanelProps) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      role: "assistant",
-      content:
-        "Hey - I'm Sifat, Sifat Ali's portfolio assistant. Ask about his work, skills, projects, or how to reach him. Sifat-related questions only.",
-    },
+    { role: "assistant", content: WELCOME },
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const canSend = input.trim().length > 0 && !loading;
+  const visibleMessages = useMemo(() => messages.slice(-20), [messages]);
 
-  const visibleMessages = useMemo(() => messages.slice(-10), [messages]);
+  const reaction = useMemo(
+    () => resolveCharacterReaction(messages, loading),
+    [messages, loading]
+  );
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages, loading]);
+
+  function pushAssistantReply(userContent: string, assistantContent: string) {
+    setMessages((current) => [
+      ...current,
+      {
+        role: "assistant",
+        content: assistantContent,
+        character: attachMessageCharacter(userContent, assistantContent),
+      },
+    ]);
+  }
 
   async function sendMessage(nextInput?: string) {
     const content = (nextInput ?? input).trim();
@@ -48,23 +96,13 @@ export function SifatAiChat() {
         body: JSON.stringify({ messages: nextMessages }),
       });
       const data = await response.json();
-      setMessages((current) => [
-        ...current,
-        {
-          role: "assistant",
-          content:
-            data.reply ||
-            "Not sure on that one. Email Sifat at sifatali008@gmail.com.",
-        },
-      ]);
+      pushAssistantReply(
+        content,
+        data.reply ||
+          "Not sure on that one. Email Sifat at sifatali008@gmail.com."
+      );
     } catch {
-      setMessages((current) => [
-        ...current,
-        {
-          role: "assistant",
-          content: "Couldn't connect. Try again in a sec.",
-        },
-      ]);
+      pushAssistantReply(content, "Couldn't connect. Try again in a sec.");
     } finally {
       setLoading(false);
       window.setTimeout(() => inputRef.current?.focus(), 0);
@@ -77,105 +115,214 @@ export function SifatAiChat() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex max-w-[calc(100vw-2.5rem)] flex-col items-end gap-3">
-      {open && (
-        <section
-          aria-label="Sifat chat"
-          className="max-h-[calc(100dvh-7.5rem)] w-[min(430px,calc(100vw-2.5rem))] border-[3px] border-ink bg-cream text-ink shadow-[8px_8px_0_0_#0a0a0a]"
-        >
-          <div className="flex items-center justify-between border-b-[3px] border-ink bg-accent px-4 py-3 text-cream">
-            <div className="flex min-w-0 items-center gap-3">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center border-2 border-cream bg-ink">
-                <Bot className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <div className="min-w-0">
-                <h2 className="font-display text-2xl leading-none">Sifat</h2>
-                <p className="font-mono text-[11px] uppercase leading-tight tracking-[0.12em]">
-                  Portfolio assistant
-                </p>
-              </div>
-            </div>
-            <button
-              type="button"
-              aria-label="Close Sifat chat"
-              className="flex h-9 w-9 items-center justify-center border-2 border-cream bg-ink text-cream transition-transform hover:-translate-y-0.5"
-              onClick={() => setOpen(false)}
-            >
-              <X className="h-5 w-5" aria-hidden="true" />
-            </button>
-          </div>
-
-          <div className="max-h-[min(360px,calc(100dvh-21rem))] space-y-3 overflow-y-auto px-4 py-4">
-            {visibleMessages.map((message, index) => (
-              <div
-                key={`${message.role}-${index}-${message.content.slice(0, 12)}`}
-                className={cn(
-                  "border-2 border-ink px-3 py-2 font-mono text-sm leading-relaxed",
-                  message.role === "user"
-                    ? "ml-8 bg-ink text-cream"
-                    : "mr-8 bg-white text-ink"
-                )}
-              >
-                {message.content}
-              </div>
-            ))}
-
-            {loading && (
-              <div className="mr-8 flex items-center gap-2 border-2 border-ink bg-white px-3 py-2 font-mono text-sm">
-                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                One sec...
-              </div>
-            )}
-          </div>
-
-          <div className="border-t-[3px] border-ink px-4 py-3">
-            <div className="mb-3 flex gap-2 overflow-x-auto pb-1">
-              {starterPrompts.map((prompt) => (
-                <button
-                  key={prompt}
-                  type="button"
-                  className="shrink-0 border-2 border-ink bg-white px-2.5 py-1 font-mono text-[10px] uppercase leading-tight transition-colors hover:bg-accent hover:text-cream sm:text-[11px]"
-                  onClick={() => void sendMessage(prompt)}
-                  disabled={loading}
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
-            <form className="flex gap-2" onSubmit={handleSubmit}>
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-                placeholder="Ask about Sifat only..."
-                className="min-w-0 flex-1 border-2 border-ink bg-white px-3 py-2 font-mono text-sm text-ink placeholder:text-ink/50 focus:outline-none"
-                maxLength={500}
-              />
-              <button
-                type="submit"
-                aria-label="Send message"
-                disabled={!canSend}
-                className="flex h-11 w-11 shrink-0 items-center justify-center border-2 border-ink bg-accent text-cream disabled:cursor-not-allowed disabled:bg-ink/20 disabled:text-ink/50"
-              >
-                <Send className="h-4 w-4" aria-hidden="true" />
-              </button>
-            </form>
-          </div>
-        </section>
+    <section
+      aria-label="Sifat chat"
+      className={cn(
+        "flex flex-col border-[3px] border-ink bg-cream text-ink",
+        fullscreen
+          ? "h-full w-full shadow-none"
+          : "max-h-[calc(100dvh-7.5rem)] w-[min(430px,calc(100vw-2.5rem))] shadow-[8px_8px_0_0_#0a0a0a]"
       )}
+    >
+      <div className="flex shrink-0 items-center justify-between border-b-[3px] border-ink bg-accent px-4 py-3 text-cream">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center border-2 border-cream bg-ink">
+            <Bot className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <div className="min-w-0">
+            <h2 className="font-display text-2xl leading-none">Sifat</h2>
+            <p className="font-mono text-[11px] uppercase leading-tight tracking-[0.12em]">
+              {getMoodCaption(reaction)}
+            </p>
+          </div>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            type="button"
+            aria-label={fullscreen ? "Exit full-screen chat" : "Open full-screen chat"}
+            className="flex h-9 w-9 items-center justify-center border-2 border-cream bg-ink text-cream transition-transform hover:-translate-y-0.5"
+            onClick={onToggleFullscreen}
+          >
+            {fullscreen ? (
+              <Minimize2 className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Maximize2 className="h-4 w-4" aria-hidden="true" />
+            )}
+          </button>
+          <button
+            type="button"
+            aria-label="Close Sifat chat"
+            className="flex h-9 w-9 items-center justify-center border-2 border-cream bg-ink text-cream transition-transform hover:-translate-y-0.5"
+            onClick={onClose}
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
 
-      <button
-        type="button"
-        aria-label={open ? "Close Sifat chat" : "Open Sifat chat"}
-        className="btn-3d flex items-center gap-2 border-[3px] border-ink bg-accent px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-cream"
-        onClick={() => {
-          setOpen((current) => !current);
-          window.setTimeout(() => inputRef.current?.focus(), 0);
-        }}
+      <div className="flex min-h-0 flex-1 flex-col">
+        <div
+          ref={scrollRef}
+          className={cn(
+            "min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-4",
+            fullscreen ? "max-h-none" : "max-h-[min(360px,calc(100dvh-21rem))]"
+          )}
+        >
+          {visibleMessages.map((message, index) => (
+            <motion.div
+              key={`${message.role}-${index}-${message.content.slice(0, 12)}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+              className={cn(
+                "border-2 border-ink font-mono text-sm leading-relaxed",
+                message.role === "user"
+                  ? "ml-8 bg-ink text-cream"
+                  : "mr-8 bg-white text-ink"
+              )}
+            >
+              {message.role === "user" ? (
+                <div className="px-3 py-2">{message.content}</div>
+              ) : (
+                <>
+                  <div className="px-3 py-2">{message.content}</div>
+                  {message.character ? (
+                    <div className="px-2 pb-2 pt-3">
+                      <SifatChatCharacter
+                        sheetId={message.character.sheetId}
+                        poseKey={message.character.poseKey}
+                        moodLabel={message.character.moodLabel}
+                        size="inline"
+                      />
+                    </div>
+                  ) : null}
+                </>
+              )}
+            </motion.div>
+          ))}
+
+          {loading && (
+            <div className="mr-8 flex items-center gap-2 border-2 border-ink bg-white px-3 py-2 font-mono text-sm">
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              One sec...
+            </div>
+          )}
+        </div>
+
+        <div className="shrink-0 border-t-[3px] border-ink px-4 py-3">
+          <div className="mb-3 flex gap-2 overflow-x-auto pb-1">
+            {starterPrompts.map((prompt) => (
+              <button
+                key={prompt}
+                type="button"
+                className="shrink-0 border-2 border-ink bg-white px-2.5 py-1 font-mono text-[10px] uppercase leading-tight transition-colors hover:bg-accent hover:text-cream sm:text-[11px]"
+                onClick={() => void sendMessage(prompt)}
+                disabled={loading}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+          <form className="flex gap-2" onSubmit={handleSubmit}>
+            <input
+              ref={inputRef}
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              placeholder="Ask about Sifat only..."
+              className="min-w-0 flex-1 border-2 border-ink bg-white px-3 py-2 font-mono text-sm text-ink placeholder:text-ink/50 focus:outline-none"
+              maxLength={500}
+            />
+            <button
+              type="submit"
+              aria-label="Send message"
+              disabled={!canSend}
+              className="flex h-11 w-11 shrink-0 items-center justify-center border-2 border-ink bg-accent text-cream disabled:cursor-not-allowed disabled:bg-ink/20 disabled:text-ink/50"
+            >
+              <Send className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function SifatAiChat() {
+  const [open, setOpen] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+
+  useEffect(() => {
+    if (!open || !fullscreen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setFullscreen(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open, fullscreen]);
+
+  useEffect(() => {
+    if (!open) setFullscreen(false);
+  }, [open]);
+
+  function handleClose() {
+    setOpen(false);
+    setFullscreen(false);
+  }
+
+  return (
+    <>
+      <AnimatePresence>
+        {open && fullscreen && (
+          <motion.div
+            key="chat-fullscreen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex flex-col bg-cream"
+          >
+            <ChatPanel
+              fullscreen
+              onClose={handleClose}
+              onToggleFullscreen={() => setFullscreen(false)}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div
+        className={cn(
+          "fixed bottom-5 right-5 z-40 flex max-w-[calc(100vw-2.5rem)] flex-col items-end gap-3",
+          open && fullscreen && "pointer-events-none opacity-0"
+        )}
       >
-        <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        Ask Sifat
-      </button>
-    </div>
+        {open && !fullscreen && (
+          <ChatPanel
+            fullscreen={false}
+            onClose={handleClose}
+            onToggleFullscreen={() => setFullscreen(true)}
+          />
+        )}
+
+        {!fullscreen && (
+          <button
+            type="button"
+            aria-label={open ? "Close Sifat chat" : "Open Sifat chat"}
+            className="btn-3d pointer-events-auto flex items-center gap-2 border-[3px] border-ink bg-accent px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-cream"
+            onClick={() => setOpen((current) => !current)}
+          >
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            Ask Sifat
+          </button>
+        )}
+      </div>
+    </>
   );
 }

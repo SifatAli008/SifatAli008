@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { experienceLogos } from "@/lib/data/experience-logos";
 
 export function ExperienceLogosStrip() {
@@ -12,9 +13,13 @@ export function ExperienceLogosStrip() {
       <p className="label-mono mb-8 text-center text-muted">ORGANIZATIONS</p>
       <div className="site-container flex flex-wrap items-end justify-center gap-x-16 gap-y-10">
         {experienceLogos.map((logo) => (
-          <span
+          <Link
             key={logo.id}
-            className="group flex flex-col items-center gap-4 text-center"
+            href={logo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col items-center gap-4 text-center transition-transform hover:-translate-y-0.5"
+            aria-label={`Visit ${logo.name}`}
           >
             <Image
               src={logo.src}
@@ -24,10 +29,10 @@ export function ExperienceLogosStrip() {
               className="experience-logo-img h-16 w-auto max-h-16 max-w-[120px] bg-transparent object-contain md:h-20 md:max-h-20 md:max-w-[140px]"
               unoptimized
             />
-            <span className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink/45 transition-colors group-hover:text-ink/75 md:text-[13px]">
+            <span className="font-sans text-xs font-semibold uppercase tracking-[0.16em] text-ink/45 transition-colors group-hover:text-accent md:text-[13px]">
               {logo.name}
             </span>
-          </span>
+          </Link>
         ))}
       </div>
     </div>

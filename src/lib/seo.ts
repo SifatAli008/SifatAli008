@@ -251,7 +251,7 @@ export function organizationJsonLd() {
       const logo = assetUrl("/assets/logos/Fluvo Soft.png");
       return logo.startsWith("http") ? logo : absoluteUrl(logo);
     })(),
-    url: siteUrl,
+    url: "https://www.fluvosoft.com/",
     founder: { "@id": `${siteUrl}/#person` },
     employee: { "@id": `${siteUrl}/#person`, name: "Sifat Ali" },
     sameAs: ["https://www.linkedin.com/in/sifat-ali/"],
