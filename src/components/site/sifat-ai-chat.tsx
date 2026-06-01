@@ -10,9 +10,9 @@ type ChatMessage = {
 };
 
 const starterPrompts = [
-  "What is Sifat best at?",
-  "Tell me about his AI projects",
-  "How can I contact Sifat?",
+  "What does Sifat build?",
+  "Sifat's best project?",
+  "How do I hire Sifat?",
 ];
 
 export function SifatAiChat() {
@@ -23,7 +23,7 @@ export function SifatAiChat() {
     {
       role: "assistant",
       content:
-        "Hey, I am Sifat AI. Ask me what Sifat builds, where he shines, or whether he is the right fit for your next project.",
+        "Hey - I'm Sifat, Sifat Ali's portfolio assistant. Ask about his work, skills, projects, or how to reach him. Sifat-related questions only.",
     },
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -54,7 +54,7 @@ export function SifatAiChat() {
           role: "assistant",
           content:
             data.reply ||
-            "I do not have a confident answer for that yet. You can contact Sifat directly.",
+            "Not sure on that one. Email Sifat at sifatali008@gmail.com.",
         },
       ]);
     } catch {
@@ -62,8 +62,7 @@ export function SifatAiChat() {
         ...current,
         {
           role: "assistant",
-          content:
-            "I could not connect to the AI service right now. Please try again.",
+          content: "Couldn't connect. Try again in a sec.",
         },
       ]);
     } finally {
@@ -81,7 +80,7 @@ export function SifatAiChat() {
     <div className="fixed bottom-5 right-5 z-40 flex max-w-[calc(100vw-2.5rem)] flex-col items-end gap-3">
       {open && (
         <section
-          aria-label="Sifat AI chat"
+          aria-label="Sifat chat"
           className="max-h-[calc(100dvh-7.5rem)] w-[min(430px,calc(100vw-2.5rem))] border-[3px] border-ink bg-cream text-ink shadow-[8px_8px_0_0_#0a0a0a]"
         >
           <div className="flex items-center justify-between border-b-[3px] border-ink bg-accent px-4 py-3 text-cream">
@@ -90,15 +89,15 @@ export function SifatAiChat() {
                 <Bot className="h-5 w-5" aria-hidden="true" />
               </span>
               <div className="min-w-0">
-                <h2 className="font-display text-2xl leading-none">Sifat AI</h2>
+                <h2 className="font-display text-2xl leading-none">Sifat</h2>
                 <p className="font-mono text-[11px] uppercase leading-tight tracking-[0.12em]">
-                  Portfolio guide
+                  Portfolio assistant
                 </p>
               </div>
             </div>
             <button
               type="button"
-              aria-label="Close Sifat AI chat"
+              aria-label="Close Sifat chat"
               className="flex h-9 w-9 items-center justify-center border-2 border-cream bg-ink text-cream transition-transform hover:-translate-y-0.5"
               onClick={() => setOpen(false)}
             >
@@ -124,7 +123,7 @@ export function SifatAiChat() {
             {loading && (
               <div className="mr-8 flex items-center gap-2 border-2 border-ink bg-white px-3 py-2 font-mono text-sm">
                 <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                Thinking with personality...
+                One sec...
               </div>
             )}
           </div>
@@ -148,7 +147,7 @@ export function SifatAiChat() {
                 ref={inputRef}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder="Ask about Sifat..."
+                placeholder="Ask about Sifat only..."
                 className="min-w-0 flex-1 border-2 border-ink bg-white px-3 py-2 font-mono text-sm text-ink placeholder:text-ink/50 focus:outline-none"
                 maxLength={500}
               />
@@ -167,7 +166,7 @@ export function SifatAiChat() {
 
       <button
         type="button"
-        aria-label={open ? "Close Sifat AI chat" : "Open Sifat AI chat"}
+        aria-label={open ? "Close Sifat chat" : "Open Sifat chat"}
         className="btn-3d flex items-center gap-2 border-[3px] border-ink bg-accent px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] text-cream"
         onClick={() => {
           setOpen((current) => !current);
@@ -175,7 +174,7 @@ export function SifatAiChat() {
         }}
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        Sifat AI
+        Ask Sifat
       </button>
     </div>
   );
