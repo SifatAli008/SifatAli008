@@ -14,17 +14,29 @@
 # production
 /build
 
+# turbo
+.turbo
+
 # misc
 .DS_Store
 *.pem
+
+# windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+*.log
 
-# env
+# env & secrets (never commit)
 .env
+.env.*
+!.env.example
 .env*.local
 
 # vercel
@@ -36,3 +48,24 @@ next-env.d.ts
 
 # firebase
 serviceAccountKey.json
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# git history rewrite leftovers
+.git-rewrite/
+
+# cursor — keep shared project rules only
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
+
+# editor / os swap files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
