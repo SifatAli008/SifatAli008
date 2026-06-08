@@ -79,8 +79,8 @@ export default async function HomePage() {
       <FeaturedSection profile={profileWithLiveStats} items={featuredPosts} />
       <ExperienceTable experiences={experiences} />
       <SkillsBands skills={skills} />
-      <AcademicResearchSection settings={researchSettings} papers={researchPapers} />
       <ProjectsRows projects={portfolio} limit={PORTFOLIO_PREVIEW_LIMIT} />
+      <AcademicResearchSection settings={researchSettings} papers={researchPapers} />
       <GitHubActivitySection profile={profileWithLiveStats} />
       <MarqueeStrip items={techStack} />
       <WritingSection posts={posts} />
