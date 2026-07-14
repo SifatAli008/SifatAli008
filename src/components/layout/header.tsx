@@ -13,6 +13,7 @@ import {
   X,
   BarChart3,
   FlaskConical,
+  CircleHelp,
   Github,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,7 @@ const links = [
   { href: "/#about", label: "ABOUT", icon: User },
   { href: "/#featured", label: "FEATURED", icon: BarChart3 },
   { href: "/#research", label: "RESEARCH", icon: FlaskConical },
+  { href: "/#faq", label: "FAQ", icon: CircleHelp },
   { href: "/projects", label: "PROJECTS", icon: FolderKanban },
   { href: "/#github", label: "GITHUB", icon: Github },
   { href: "/blog", label: "WRITING", icon: PenLine },

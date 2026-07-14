@@ -48,7 +48,7 @@ async function callOpenRouterModel(
   turns: ChatTurn[]
 ): Promise<ChatResult> {
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://sifatali.dev";
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://sifatali.site";
 
   try {
     const response = await fetch(OPENROUTER_URL, {

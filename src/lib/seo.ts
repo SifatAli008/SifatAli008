@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { assetUrl } from "@/lib/cloudinary/assets";
 
-const FALLBACK_SITE_URL = "https://sifatali.dev";
+const FALLBACK_SITE_URL = "https://sifatali.site";
 
 export function getSiteUrl(): string {
   const url = process.env.NEXT_PUBLIC_SITE_URL ?? FALLBACK_SITE_URL;
@@ -430,7 +430,7 @@ export function siteWideJsonLd() {
             name: "How can I hire or contact Sifat Ali?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Email sifatali008@gmail.com with project scope, or book a call from the contact page at sifatali.dev/contact.",
+              text: "Email sifatali008@gmail.com with project scope, or book a call from the contact page at https://sifatali.site/contact.",
             },
           },
           {

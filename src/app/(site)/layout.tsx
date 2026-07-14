@@ -1,6 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { SifatAiChat } from "@/components/site/sifat-ai-chat";
+import { LazySifatAiChat } from "@/components/site/lazy-sifat-ai-chat";
 
 export default function SiteLayout({
   children,
@@ -17,7 +17,7 @@ export default function SiteLayout({
       </a>
       <Header />
       <main id="main-content">{children}</main>
-      <SifatAiChat />
+      <LazySifatAiChat />
       <Footer />
     </>
   );

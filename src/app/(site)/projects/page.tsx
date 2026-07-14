@@ -37,6 +37,10 @@ export default async function ProjectsPage() {
           <h1 className="font-display text-display leading-none text-cream">
             ALL WORK
           </h1>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-cream/70 md:text-base">
+            Selected ships by Sifat Ali - AI/RAG tools, web apps, desktop builds, and
+            hackathon systems. Sources sync from GitHub so status, stars, and stack stay current.
+          </p>
           <p className="mt-2 label-mono text-xs text-cream/60">
             Live from GitHub · synced with admin dashboard
           </p>

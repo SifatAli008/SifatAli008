@@ -30,6 +30,7 @@ import { ProjectsRows } from "@/components/site/projects-rows";
 import { GitHubActivitySection } from "@/components/site/github-activity-section";
 import { MarqueeStrip } from "@/components/site/marquee-strip";
 import { WritingSection } from "@/components/site/writing-section";
+import { FaqSection } from "@/components/site/faq-section";
 import { ContactSection } from "@/components/site/contact-section";
 
 export const revalidate = 300;
@@ -101,6 +102,7 @@ export default async function HomePage() {
       <GitHubActivitySection profile={profileWithLiveStats} />
       <MarqueeStrip items={techStack} />
       <WritingSection posts={posts} />
+      <FaqSection />
       <ContactSection profile={profileWithLiveStats} />
     </>
   );

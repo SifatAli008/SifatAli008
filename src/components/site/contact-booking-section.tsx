@@ -76,6 +76,12 @@ export function ContactBookingSection({ profile }: ContactBookingSectionProps) {
               <p className="mt-4 max-w-lg font-sans text-[15px] leading-relaxed text-ink/85">
                 {profile.headline}
               </p>
+              <p className="mt-3 max-w-lg font-sans text-[14px] leading-relaxed text-ink/75">
+                Book a 30-minute Google Meet to discuss AI/RAG builds, full-stack
+                products, or collaboration. Bring your problem, timeline, and preferred
+                stack - Sifat will say if he is the right fit and outline next steps.
+                Prefer async? Email {profile.email} with scope.
+              </p>
 
               <div className="label-mono mt-6 flex flex-wrap gap-6 text-[12px] text-ink">
                 <span className="flex items-center gap-2">

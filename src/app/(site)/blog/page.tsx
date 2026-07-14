@@ -35,10 +35,24 @@ export default async function BlogPage() {
         <div className="site-container py-4">
           <p className="label-mono text-accent">WRITING</p>
           <h1 className="font-display text-display leading-none">ALL ESSAYS</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-cream/65 md:text-base">
+            Engineering notes from Sifat Ali on AI, retrieval-augmented generation (RAG),
+            Firebase, desktop tools, and shipping full-stack products. Read for practical
+            architecture decisions - not fluff.
+          </p>
         </div>
       </div>
       <div className="site-container section-pad divide-y-2 divide-cream/20">
-        {posts.map((post) => (
+        {posts.length === 0 ? (
+          <p className="py-12 text-cream/60">
+            New essays are in progress. Meanwhile, explore{" "}
+            <Link href="/projects" className="text-accent underline">
+              selected work
+            </Link>{" "}
+            or ask about Sifat&apos;s stack on the homepage chat.
+          </p>
+        ) : (
+          posts.map((post) => (
           <Link
             key={post.id}
             href={`/blog/${post.slug}`}
@@ -55,7 +69,8 @@ export default async function BlogPage() {
               {post.readingTime} MIN · {formatDate(post.createdAt).toUpperCase()}
             </p>
           </Link>
-        ))}
+          ))
+        )}
       </div>
     </div>
     </>

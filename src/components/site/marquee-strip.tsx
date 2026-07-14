@@ -27,6 +27,8 @@ function StackIcon({ tech }: { tech: TechStackItem }) {
       width={18}
       height={18}
       className="marquee-tech-icon shrink-0"
+      loading="lazy"
+      decoding="async"
       unoptimized
     />
   );
@@ -43,15 +45,38 @@ function StackItem({ tech }: { tech: TechStackItem }) {
   );
 }
 
-function MarqueeRow({ rowId, items }: { rowId: string; items: TechStackItem[] }) {
+function MarqueeRow({
+  rowId,
+  items,
+  decorative,
+}: {
+  rowId: string;
+  items: TechStackItem[];
+  decorative?: boolean;
+}) {
   return (
     <div
       className="flex shrink-0 items-center py-1 pl-12 pr-4"
-      aria-hidden={rowId !== "primary" ? true : undefined}
+      aria-hidden={decorative ? true : undefined}
     >
       {items.map((tech) => (
-        <span key={`${rowId}-${tech.id}`} className="mr-10 inline-flex shrink-0 items-center">
-          <StackItem tech={tech} />
+        <span
+          key={`${rowId}-${tech.id}`}
+          className="mr-10 inline-flex shrink-0 items-center"
+        >
+          {decorative ? (
+            <span className="group inline-flex shrink-0 items-center gap-2.5">
+              <span
+                className="marquee-tech-icon h-[18px] w-[18px] shrink-0 rounded-sm bg-ink/10"
+                aria-hidden
+              />
+              <span className="font-sans text-[13px] font-semibold uppercase tracking-[0.14em] text-ink/45">
+                {tech.label}
+              </span>
+            </span>
+          ) : (
+            <StackItem tech={tech} />
+          )}
         </span>
       ))}
     </div>
@@ -68,7 +93,7 @@ export function MarqueeStrip({ items }: MarqueeStripProps) {
     >
       <div className="marquee-track flex w-max items-center">
         <MarqueeRow rowId="primary" items={items} />
-        <MarqueeRow rowId="clone" items={items} />
+        <MarqueeRow rowId="clone" items={items} decorative />
       </div>
     </div>
   );

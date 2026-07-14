@@ -112,7 +112,7 @@ export function createBrutalistOgImage(input: OgImageInput) {
             textTransform: "uppercase",
           }}
         >
-          sifatali.dev
+          sifatali.site
         </p>
       </div>
     ),
