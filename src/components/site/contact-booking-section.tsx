@@ -61,7 +61,7 @@ export function ContactBookingSection({ profile }: ContactBookingSectionProps) {
                 <div className="relative h-12 w-12 shrink-0 overflow-hidden border-2 border-ink">
                   <Image
                     src={avatar}
-                    alt={profile.name}
+                    alt={`${profile.name} - contact portrait`}
                     fill
                     className="object-cover object-top"
                     sizes="48px"

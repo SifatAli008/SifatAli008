@@ -6,12 +6,15 @@ import { buildPageMetadata, itemListJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
 import { formatDate } from "@/lib/utils";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Writing - Engineering Essays",
-  description:
-    "Engineering essays on AI, RAG, Firebase, PyQt5, and full-stack development by Sifat Ali.",
-  path: "/blog",
-});
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: "Writing - Engineering Essays",
+    description:
+      "Engineering essays on AI, RAG, Firebase, PyQt5, and full-stack development by Sifat Ali.",
+    path: "/blog",
+  }),
+  title: { absolute: "Writing by Sifat Ali | AI & Engineering Essays" },
+};
 
 export const revalidate = 3600;
 

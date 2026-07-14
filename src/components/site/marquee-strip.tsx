@@ -23,7 +23,7 @@ function StackIcon({ tech }: { tech: TechStackItem }) {
   return (
     <Image
       src={simpleIconUrl(tech.iconSlug)}
-      alt=""
+      alt={`${tech.label} logo`}
       width={18}
       height={18}
       className="marquee-tech-icon shrink-0"

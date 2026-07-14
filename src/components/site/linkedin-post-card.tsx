@@ -43,7 +43,7 @@ export function LinkedInPostCard({
         >
           <Image
             src={profileAvatar}
-            alt={profileName}
+            alt={`${profileName} profile photo`}
             fill
             className="object-cover object-top"
             sizes={compact ? "32px" : "44px"}

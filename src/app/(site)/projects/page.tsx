@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import { getPortfolioWork } from "@/lib/firebase/queries";
 import { buildPageMetadata, itemListJsonLd } from "@/lib/seo";
-import { getPortfolioHref } from "@/lib/github/portfolio";
 import { PORTFOLIO_PREVIEW_LIMIT } from "@/lib/github/load-portfolio";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ProjectsRows } from "@/components/site/projects-rows";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Work - Selected Projects",
-  description:
-    "Selected projects by Sifat Ali - live GitHub portfolio synced with admin dashboard.",
-  path: "/projects",
-});
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: "Work - Selected Projects",
+    description:
+      "Selected projects by Sifat Ali - live GitHub portfolio synced with admin dashboard.",
+    path: "/projects",
+  }),
+  title: { absolute: "Selected Work by Sifat Ali | AI & Full-Stack Projects" },
+};
 
 export const revalidate = 300;
 
@@ -22,7 +24,7 @@ export default async function ProjectsPage() {
     "Sifat Ali - Projects",
     portfolio.map((item) => ({
       name: item.title,
-      url: getPortfolioHref(item),
+      url: `/projects/${item.slug}`,
     }))
   );
 

@@ -6,7 +6,7 @@ import {
   DM_Serif_Display,
 } from "next/font/google";
 import { Toaster } from "sonner";
-import { defaultMetadata } from "@/lib/seo";
+import { defaultMetadata, serializeJsonLd, siteWideJsonLd } from "@/lib/seo";
 import "highlight.js/styles/github.css";
 import "./globals.css";
 
@@ -44,8 +44,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const siteSchema = siteWideJsonLd();
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteSchema) }}
+        />
+      </head>
       <body
         className={`${bebas.variable} ${spaceGrotesk.variable} ${jetbrains.variable} ${dmSerif.variable} font-sans antialiased`}
       >

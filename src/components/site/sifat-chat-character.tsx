@@ -66,7 +66,7 @@ export function SifatChatCharacter({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={src}
-            alt=""
+            alt={`Sifat character pose: ${moodLabel}`}
             width={512}
             height={512}
             className="h-full w-full object-contain object-bottom"

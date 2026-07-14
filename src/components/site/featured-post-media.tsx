@@ -19,7 +19,7 @@ export function FeaturedPostMedia({
       <div className="relative aspect-[4/3] w-full bg-ink">
         <Image
           src={encodeURI(item.image)}
-          alt={item.title}
+          alt={`${item.title} - LinkedIn featured post`}
           fill
           className="object-cover"
           sizes="(max-width: 1024px) 33vw, 400px"

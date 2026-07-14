@@ -23,7 +23,7 @@ export function ExperienceLogosStrip() {
           >
             <Image
               src={logo.src}
-              alt={logo.name}
+              alt={`${logo.name} logo`}
               width={80}
               height={80}
               className="experience-logo-img h-16 w-auto max-h-16 max-w-[120px] bg-transparent object-contain md:h-20 md:max-h-20 md:max-w-[140px]"

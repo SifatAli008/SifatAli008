@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   getExperience,
   getFeaturedPosts,
@@ -12,6 +13,7 @@ import {
 import { publishedFallbackPosts } from "@/lib/data/fallback";
 import { PORTFOLIO_PREVIEW_LIMIT } from "@/lib/github/load-portfolio";
 import {
+  buildPageMetadata,
   personJsonLd,
   profilePageJsonLd,
   organizationJsonLd,
@@ -31,6 +33,21 @@ import { WritingSection } from "@/components/site/writing-section";
 import { ContactSection } from "@/components/site/contact-section";
 
 export const revalidate = 300;
+
+const HOME_TITLE = "Sifat Ali - AI/RAG Engineer & Full-Stack Builder";
+const HOME_DESCRIPTION =
+  "Sifat Ali — COO @ Fluvo Soft, AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.";
+
+export const metadata: Metadata = {
+  ...buildPageMetadata({
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    path: "/",
+  }),
+  title: {
+    absolute: HOME_TITLE,
+  },
+};
 
 export default async function HomePage() {
   const [
