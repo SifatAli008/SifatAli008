@@ -139,6 +139,58 @@
     @apply scale-x-100;
   }
 
+  /* Nav cover hover — stacked text slide */
+  .nav-link-cover {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-link-cover-mask {
+    display: block;
+    height: 1.25em;
+    overflow: hidden;
+    line-height: 1.25em;
+  }
+
+  .nav-link-cover-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .nav-link-cover-track > span {
+    display: block;
+    height: 1.25em;
+    line-height: 1.25em;
+    white-space: nowrap;
+  }
+
+  .nav-link-cover:hover .nav-link-cover-track,
+  .nav-link-cover:focus-visible .nav-link-cover-track {
+    transform: translateY(-50%);
+  }
+
+  .nav-link-cover::after {
+    content: "";
+    display: block;
+    height: 1.5px;
+    width: 100%;
+    margin-top: 3px;
+    background: #ff3b00;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-link-cover:hover::after,
+  .nav-link-cover:focus-visible::after,
+  .nav-link-cover[data-active="true"]::after {
+    transform: scaleX(1);
+  }
+
   .field-brutal {
     @apply w-full border-0 border-b-2 border-ink bg-transparent py-3 font-mono text-sm text-ink placeholder:text-ink/50 focus:outline-none focus:ring-0;
   }

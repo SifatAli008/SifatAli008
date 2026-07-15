@@ -2,141 +2,182 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import {
-  User,
-  FolderKanban,
-  PenLine,
-  Mail,
-  ArrowRight,
-  Menu,
-  X,
-  BarChart3,
-  FlaskConical,
-  CircleHelp,
-  Github,
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { BrutalButton } from "@/components/ui/brutal-button";
 
 const links = [
-  { href: "/#about", label: "ABOUT", icon: User },
-  { href: "/#featured", label: "FEATURED", icon: BarChart3 },
-  { href: "/#research", label: "RESEARCH", icon: FlaskConical },
-  { href: "/#faq", label: "FAQ", icon: CircleHelp },
-  { href: "/projects", label: "PROJECTS", icon: FolderKanban },
-  { href: "/#github", label: "GITHUB", icon: Github },
-  { href: "/blog", label: "WRITING", icon: PenLine },
-  { href: "/contact", label: "CONTACT", icon: Mail },
+  { href: "/#about", label: "About" },
+  { href: "/#featured", label: "Featured" },
+  { href: "/#research", label: "Research" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/projects", label: "Projects" },
+  { href: "/#github", label: "GitHub" },
+  { href: "/blog", label: "Writing" },
+  { href: "/contact", label: "Contact" },
 ];
+
+function useDhakaClock() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const format = () => {
+      const now = new Date();
+      const formatted = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Dhaka",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      }).format(now);
+      setTime(formatted.toUpperCase());
+    };
+    format();
+    const id = window.setInterval(format, 30_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return time;
+}
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const dhakaTime = useDhakaClock();
+
+  const isActive = (href: string) =>
+    pathname === href ||
+    (href === "/projects" && pathname.startsWith("/projects")) ||
+    (href === "/blog" && pathname.startsWith("/blog")) ||
+    (href === "/contact" && pathname.startsWith("/contact"));
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-ink">
-        <div className="site-container flex h-16 items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/90 backdrop-blur-md">
+        <div className="site-container relative flex h-[4.25rem] items-center justify-between gap-4">
           <Link
             href="/"
-            className="group flex items-center gap-2 font-display text-[22px] tracking-[0.1em] text-cream"
+            className="relative z-10 shrink-0 font-display text-[1.15rem] font-bold tracking-[0.08em] text-ink transition-colors hover:text-accent"
           >
-            <span className="icon-3d-box flex h-8 w-8 items-center justify-center border-2 border-cream bg-accent transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
-              <span className="font-display text-sm text-cream">SA</span>
-            </span>
             SIFAT ALI
           </Link>
 
-          <nav className="hidden items-center md:flex" aria-label="Primary">
-            {links.map((link, i) => {
-              const Icon = link.icon;
-              return (
-                <span key={link.href} className="flex items-center">
-                  {i > 0 && (
-                    <span className="mx-3 text-cream/40" aria-hidden>
-                      |
+          <nav
+            className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 lg:flex xl:gap-8"
+            aria-label="Primary"
+          >
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                data-active={isActive(link.href) ? "true" : undefined}
+                className={cn(
+                  "nav-link-cover font-sans text-[14px] font-semibold tracking-[-0.01em] text-ink",
+                  isActive(link.href) && "text-ink"
+                )}
+              >
+                <span className="nav-link-cover-mask">
+                  <span className="nav-link-cover-track">
+                    <span>{link.label}</span>
+                    <span aria-hidden className="text-accent">
+                      {link.label}
                     </span>
-                  )}
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "nav-link-underline label-mono flex items-center gap-1.5 text-cream",
-                      (pathname === link.href ||
-                        (link.href === "/projects" && pathname.startsWith("/projects"))) &&
-                        "text-accent"
-                    )}
-                  >
-                    <Icon className="h-3 w-3" strokeWidth={2.5} />
-                    {link.label}
-                  </Link>
+                  </span>
                 </span>
-              );
-            })}
-            <span className="mx-4 text-cream/40">|</span>
-            <BrutalButton
-              href="/contact"
-              variant="cream-outline"
-              icon={ArrowRight}
-              className="btn-3d-on-dark !px-4 !py-2 text-[11px]"
-            >
-              COLLABORATE
-            </BrutalButton>
+              </Link>
+            ))}
           </nav>
+
+          <div className="relative z-10 hidden items-center gap-5 lg:flex">
+            <div className="min-w-[4.5rem] text-right leading-tight">
+              <p className="font-sans text-[12px] font-semibold tracking-wide text-ink">
+                {dhakaTime || "—"}{" "}
+                <span className="text-ink/45">DHK</span>
+              </p>
+              <p className="font-sans text-[11px] text-ink/40">GMT+6</p>
+            </div>
+
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-ink"
+            >
+              <span className="nav-link-cover">
+                <span className="nav-link-cover-mask">
+                  <span className="nav-link-cover-track">
+                    <span>Collaborate</span>
+                    <span aria-hidden className="text-accent">
+                      Collaborate
+                    </span>
+                  </span>
+                </span>
+              </span>
+              <ArrowUpRight
+                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                strokeWidth={2.25}
+              />
+            </Link>
+          </div>
 
           <button
             type="button"
-            className="icon-3d-box flex h-10 w-10 items-center justify-center border-2 border-cream bg-ink md:hidden"
+            className="relative z-10 flex h-10 w-10 items-center justify-center text-ink lg:hidden"
             onClick={() => setOpen(true)}
             aria-label="Open menu"
           >
-            <Menu className="h-5 w-5 text-cream" strokeWidth={2.5} />
+            <Menu className="h-5 w-5" strokeWidth={2} />
           </button>
         </div>
       </header>
 
       {open && (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-ink">
-          <div className="site-container flex h-16 items-center justify-between border-b border-cream/20">
-            <span className="font-display text-[22px] tracking-[0.1em] text-cream">
+        <div className="fixed inset-0 z-[100] flex flex-col bg-cream lg:hidden">
+          <div className="site-container flex h-[4.25rem] items-center justify-between border-b border-ink/10">
+            <span className="font-display text-[1.15rem] font-bold tracking-[0.08em] text-ink">
               SIFAT ALI
             </span>
             <button
               type="button"
-              className="icon-3d-box flex h-10 w-10 items-center justify-center border-2 border-cream"
+              className="flex h-10 w-10 items-center justify-center text-ink"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
             >
-              <X className="h-5 w-5 text-cream" strokeWidth={2.5} />
+              <X className="h-5 w-5" strokeWidth={2} />
             </button>
           </div>
-          <nav className="flex flex-1 flex-col justify-center gap-6 px-6" aria-label="Mobile">
-            {links.map((link) => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="group flex items-center gap-4 font-display text-[64px] leading-none text-cream transition-colors duration-0 hover:text-accent"
-                  onClick={() => setOpen(false)}
-                >
-                  <Icon
-                    className="h-10 w-10 shrink-0 opacity-40 group-hover:opacity-100 group-hover:text-accent"
-                    strokeWidth={1.5}
-                  />
-                  {link.label}
-                </Link>
-              );
-            })}
-            <div className="mt-8" onClick={() => setOpen(false)}>
-              <BrutalButton
-                href="/contact"
-                variant="accent"
-                icon={ArrowRight}
-                className="w-full max-w-xs"
+
+          <nav
+            className="flex flex-1 flex-col gap-1 overflow-y-auto px-6 py-8"
+            aria-label="Mobile"
+          >
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "border-b border-ink/8 py-4 font-sans text-2xl font-medium text-ink/70 transition-colors hover:text-ink",
+                  isActive(link.href) && "text-ink"
+                )}
+                onClick={() => setOpen(false)}
               >
-                COLLABORATE
-              </BrutalButton>
+                {link.label}
+              </Link>
+            ))}
+
+            <div className="mt-8 flex items-center justify-between gap-4">
+              <div className="leading-tight">
+                <p className="font-sans text-sm font-semibold text-ink">
+                  {dhakaTime || "—"}{" "}
+                  <span className="text-ink/45">DHK</span>
+                </p>
+                <p className="font-sans text-xs text-ink/40">GMT+6</p>
+              </div>
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-1.5 font-sans text-base font-semibold text-ink hover:text-accent"
+              >
+                Collaborate
+                <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
+              </Link>
             </div>
           </nav>
         </div>

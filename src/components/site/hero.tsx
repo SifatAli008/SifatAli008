@@ -1,141 +1,341 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Briefcase, Download, FolderKanban, Layers } from "lucide-react";
+import { ArrowDown, Download, FolderKanban } from "lucide-react";
 import { BrutalButton } from "@/components/ui/brutal-button";
 import { HeroSocialLinks } from "@/components/site/hero-social-links";
-import { HeroMetrics } from "@/components/site/hero-metrics";
-import { Typewriter } from "@/components/motion/typewriter";
-import { PROFILE_AVATAR } from "@/lib/cloudinary/assets";
+import { HeroMetrics, HeroOrbitMetrics } from "@/components/site/hero-metrics";
 import type { Profile } from "@/types";
 
-const DEFAULT_AVATAR = PROFILE_AVATAR;
-const DEFAULT_DOMAINS = ["EdTech", "MedTech", "SaaS", "AI"];
+const HERO_PORTRAIT = "/assets/images/hero-portrait.png?v=6";
+
+const ROLES = [
+  "AI/RAG ENGINEER",
+  "FULL-STACK BUILDER",
+  "COO @ FLUVO SOFT",
+  "HACKATHON WINNER",
+];
+
+const BG_WORDS = [
+  { text: "MACHINE LEARNING", className: "left-[8%] top-[10%] rotate-[3deg]" },
+  { text: "FULL STACK", className: "right-[6%] top-[14%] rotate-[6deg]" },
+  { text: "RAG", className: "left-[4%] top-[42%] -rotate-[5deg]" },
+  { text: "AUTOMATION", className: "right-[5%] top-[48%] rotate-[4deg]" },
+  { text: "PYTHON", className: "left-[12%] bottom-[18%] rotate-[5deg]" },
+  { text: "FIREBASE", className: "right-[10%] bottom-[22%] -rotate-[4deg]" },
+  { text: "CLOUD", className: "left-[38%] top-[16%] rotate-[2deg]" },
+  { text: "RESEARCH", className: "right-[28%] top-[11%] -rotate-[5deg]" },
+];
+
+const BIO =
+  "I build AI systems that shouldn't be fragile — then ship them to production. Clarity before complexity.";
+
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, delay, ease: easeOut },
+  }),
+};
+
+const fadeSide = (dir: "left" | "right") => ({
+  hidden: { opacity: 0, x: dir === "left" ? -28 : 28 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.55, delay, ease: easeOut },
+  }),
+});
 
 interface HeroProps {
   profile: Profile;
 }
 
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const slideLeft = {
-  hidden: { opacity: 0, x: -40 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
-};
-
-const slideUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-};
-
 export function Hero({ profile }: HeroProps) {
-  const avatarSrc = profile.avatar ?? DEFAULT_AVATAR;
-  const domains = profile.domains?.length ? profile.domains : DEFAULT_DOMAINS;
-
   return (
-    <section className="bg-cream">
-      <motion.div
-        className="border-b-[3px] border-ink bg-ink"
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35 }}
+    <section className="relative overflow-hidden bg-cream">
+      {/* Atmosphere */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden"
+        aria-hidden
       >
-        <div className="site-container flex flex-wrap items-center justify-between gap-4 py-3">
-          {profile.availableForWork && (
+        {BG_WORDS.map((word, i) => (
+          <motion.span
+            key={word.text}
+            className={`absolute font-display text-[clamp(1rem,2.4vw,2rem)] leading-none tracking-wide text-ink/[0.03] ${word.className}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 + i * 0.07 }}
+          >
+            {word.text}
+          </motion.span>
+        ))}
+        <div
+          className="absolute inset-0 opacity-[0.028]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #0a0a0a 1px, transparent 1px), linear-gradient(to bottom, #0a0a0a 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+      </div>
+
+      {/* Desktop / large — 3-column cinematic frame */}
+      <div className="relative z-[1] hidden min-h-[calc(100dvh-4.25rem)] lg:block">
+        <h1 className="sr-only">{profile.name}</h1>
+
+        {/* Giant name */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-[10%] z-0 flex select-none justify-center xl:top-[8%]"
+          aria-hidden
+        >
+          <div className="flex items-baseline">
             <motion.span
-              className="label-mono flex items-center gap-2 text-cream"
-              animate={{ opacity: [1, 0.7, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="font-display text-[clamp(7rem,22vw,16rem)] leading-[0.72] tracking-[-0.07em] text-accent"
+              initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: easeOut }}
             >
-              <span className="inline-block h-2 w-2 bg-accent pulse-dot" />
-              [ AVAILABLE FOR WORK ]
+              SIFAT
             </motion.span>
-          )}
-          <span className="label-mono text-cream md:ml-auto">
-            {profile.location.toUpperCase()} · {profile.timezone}
-          </span>
+            <span className="w-[min(5vw,48px)] shrink-0 sm:w-[min(4.5vw,56px)]" aria-hidden />
+            <motion.span
+              className="-ml-3 font-display text-[clamp(7rem,22vw,16rem)] leading-[0.72] tracking-[-0.07em] text-accent md:-ml-4"
+              initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, delay: 0.08, ease: easeOut }}
+            >
+              ALI
+            </motion.span>
+          </div>
         </div>
-      </motion.div>
 
-      <motion.div
-        className="site-container section-pad !pb-16 md:!pb-20"
-        variants={stagger}
-        initial="hidden"
-        animate="show"
-      >
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
-          <motion.div variants={slideLeft} className="lg:col-span-7">
-            <p className="label-mono text-muted">01 / INTRO</p>
+        <div className="site-container relative z-10 grid h-full min-h-[calc(100dvh-4.25rem)] grid-cols-[minmax(130px,170px)_minmax(0,1fr)_minmax(180px,240px)] items-stretch gap-4 pt-6 xl:gap-6 xl:pt-8">
+          {/* LEFT */}
+          <motion.div
+            className="relative z-20 flex flex-col justify-end gap-8 pb-[20%] pt-[28%]"
+            variants={fadeSide("left")}
+            initial="hidden"
+            animate="show"
+            custom={0.28}
+          >
+            <div className="flex flex-col gap-2">
+              <motion.p
+                className="label-mono tracking-[0.16em] text-muted"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.35, duration: 0.4 }}
+              >
+                01 / INTRO
+              </motion.p>
+              {ROLES.map((role, i) => (
+                <motion.p
+                  key={role}
+                  className="font-sans text-[11px] font-bold uppercase leading-tight tracking-[0.14em] text-ink xl:text-xs"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1 - i * 0.07, x: 0 }}
+                  transition={{ delay: 0.4 + i * 0.07, duration: 0.4, ease: easeOut }}
+                >
+                  {role}
+                </motion.p>
+              ))}
+            </div>
+            <HeroSocialLinks profile={profile} ghost align="left" />
+          </motion.div>
 
-            <div className="mt-3 flex items-end gap-3">
-              <h1 className="font-display text-hero leading-[0.88] tracking-[-0.02em] text-ink">
-                SIFAT AL<span className="text-accent">I</span>
-              </h1>
-              <span
-                className="mb-2 hidden h-16 w-2 shrink-0 bg-accent sm:block md:h-20"
-                aria-hidden
-              />
+          {/* CENTER */}
+          <div className="relative z-10 flex items-end justify-center gap-3 self-end xl:gap-5">
+            <div className="mb-[16%] shrink-0">
+              <HeroOrbitMetrics profile={profile} side="left" />
             </div>
 
             <motion.div
-              className="mt-6 h-[3px] w-full max-w-lg bg-ink"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              style={{ originX: 0 }}
+              className="relative w-full max-w-[400px] xl:max-w-[430px]"
+              initial={{ opacity: 0, y: 36, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.75, delay: 0.12, ease: easeOut }}
+            >
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 5.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
+              >
+                <div
+                  className="pointer-events-none absolute bottom-[2%] left-1/2 z-0 h-[18%] w-[78%] -translate-x-1/2 rounded-[100%] bg-ink/35 blur-2xl"
+                  aria-hidden
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={HERO_PORTRAIT}
+                  alt={`${profile.name} - portrait`}
+                  width={673}
+                  height={983}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="relative z-[1] mx-auto h-auto max-h-[min(82dvh,720px)] w-full select-none object-contain object-bottom drop-shadow-[0_28px_50px_rgba(10,10,10,0.45)]"
+                />
+              </motion.div>
+            </motion.div>
+
+            <div className="mb-[16%] shrink-0">
+              <HeroOrbitMetrics profile={profile} side="right" />
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <motion.div
+            className="relative z-20 flex flex-col items-end justify-end gap-6 pb-[20%] pt-[28%]"
+            variants={fadeSide("right")}
+            initial="hidden"
+            animate="show"
+            custom={0.32}
+          >
+            <motion.p
+              className="max-w-[220px] text-right font-sans text-[14px] font-medium leading-[1.55] tracking-[-0.01em] text-ink xl:max-w-[240px] xl:text-[15px]"
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0.42}
+            >
+              {BIO}
+            </motion.p>
+            <div className="flex w-full flex-col gap-3">
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.45, ease: easeOut }}
+              >
+                <BrutalButton
+                  href="/#work"
+                  variant="primary"
+                  icon={FolderKanban}
+                  iconPosition="left"
+                  className="w-full justify-center px-5 py-3.5 text-[13px]"
+                >
+                  VIEW WORK
+                </BrutalButton>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.58, duration: 0.45, ease: easeOut }}
+              >
+                <BrutalButton
+                  href={profile.resumeUrl ?? "/resume.pdf"}
+                  variant="outline"
+                  icon={Download}
+                  external
+                  download
+                  className="w-full justify-center px-5 py-3.5 text-[13px]"
+                >
+                  RESUME
+                </BrutalButton>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom scroll cue */}
+        <motion.a
+          href="#about"
+          className="absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 items-center gap-2 font-sans text-xs font-bold uppercase tracking-[0.2em] text-ink transition-colors hover:text-accent lg:flex"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.5, ease: easeOut }}
+        >
+          SCROLL
+          <motion.span
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowDown className="h-3.5 w-3.5 text-accent" strokeWidth={2.75} />
+          </motion.span>
+        </motion.a>
+      </div>
+
+      {/* Mobile / tablet */}
+      <div className="relative z-[1] lg:hidden">
+        <h1 className="sr-only">{profile.name}</h1>
+
+        <div
+          className="pointer-events-none absolute inset-x-0 top-6 z-0 flex select-none justify-center"
+          aria-hidden
+        >
+          <div className="flex items-baseline">
+            <motion.span
+              className="font-display text-[clamp(4.5rem,26vw,9rem)] leading-[0.72] tracking-[-0.07em] text-accent"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, ease: easeOut }}
+            >
+              SIFAT
+            </motion.span>
+            <span className="w-[min(6vw,32px)] shrink-0" aria-hidden />
+            <motion.span
+              className="-ml-1.5 font-display text-[clamp(4.5rem,26vw,9rem)] leading-[0.72] tracking-[-0.07em] text-accent"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.55, delay: 0.06, ease: easeOut }}
+            >
+              ALI
+            </motion.span>
+          </div>
+        </div>
+
+        <motion.div
+          className="relative z-10 flex justify-center px-4 pt-14"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.15, ease: easeOut }}
+        >
+          <div className="relative">
+            <div
+              className="pointer-events-none absolute bottom-[2%] left-1/2 z-0 h-[16%] w-[75%] -translate-x-1/2 rounded-[100%] bg-ink/30 blur-2xl"
+              aria-hidden
             />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={HERO_PORTRAIT}
+              alt={`${profile.name} - portrait`}
+              width={673}
+              height={983}
+              decoding="async"
+              fetchPriority="high"
+              className="relative z-[1] h-auto max-h-[min(58vh,520px)] w-[min(86vw,380px)] select-none object-contain object-bottom drop-shadow-[0_24px_44px_rgba(10,10,10,0.42)]"
+            />
+          </div>
+        </motion.div>
 
-            <p className="label-mono mt-6 flex items-center gap-2 text-ink">
-              <Briefcase className="h-3.5 w-3.5 icon-animate" strokeWidth={2.5} />
-              {profile.tagline.toUpperCase()}
-            </p>
-
-            {/* Domains */}
-            <motion.div
-              className="mt-6 w-fit max-w-full border-2 border-ink bg-cream p-4 md:p-5"
-              style={{ boxShadow: "5px 5px 0 0 #0a0a0a" }}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.4 }}
-            >
-              <p className="label-mono flex items-center gap-2 text-muted">
-                <Layers className="h-3.5 w-3.5" strokeWidth={2.5} />
-                DOMAIN
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {domains.map((domain, i) => (
-                  <motion.span
-                    key={domain}
-                    className="label-mono border-2 border-ink bg-cream px-3 py-1.5 text-ink transition-colors hover:bg-ink hover:text-cream"
-                    initial={{ opacity: 0, scale: 0.92 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + i * 0.06 }}
-                    whileHover={{ x: -2, y: -2 }}
-                  >
-                    {domain.toUpperCase()}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="mt-5 inline-flex min-h-[2.75rem] min-w-[min(100%,320px)] items-center border-2 border-ink bg-ink px-4 py-2"
-              style={{ boxShadow: "4px 4px 0 0 #ff3b00" }}
-            >
-              <p className="font-mono text-sm text-cream">
-                <Typewriter words={profile.typewriterRoles} />
-              </p>
-            </motion.div>
-
-            <p className="mt-6 max-w-xl border-l-[4px] border-accent pl-4 text-[17px] leading-[1.85] text-ink/90">
-              {profile.headline}
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-5">
+        <motion.div
+          className="border-t-[3px] border-ink px-6 py-8"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: easeOut }}
+        >
+          <div className="mx-auto flex max-w-lg flex-col gap-6">
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              {ROLES.map((role, i) => (
+                <motion.span
+                  key={role}
+                  className="label-mono text-[11px] tracking-wider text-ink"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 + i * 0.06, duration: 0.35 }}
+                >
+                  {role}
+                </motion.span>
+              ))}
+            </div>
+            <p className="text-[15px] font-medium leading-[1.6] text-ink">{BIO}</p>
+            <HeroSocialLinks profile={profile} ghost align="left" />
+            <div className="flex flex-wrap gap-3">
               <BrutalButton
                 href="/#work"
                 variant="primary"
@@ -154,71 +354,10 @@ export function Hero({ profile }: HeroProps) {
                 RESUME
               </BrutalButton>
             </div>
-
-            <HeroSocialLinks profile={profile} />
-          </motion.div>
-
-          <motion.div variants={slideUp} className="lg:col-span-5 lg:pt-8">
-            <motion.div
-              className="relative"
-              whileHover={{ x: -2, y: -2 }}
-              transition={{ type: "spring", stiffness: 400, damping: 28 }}
-            >
-              <div
-                className="absolute -right-2 -top-2 z-20 border-2 border-ink bg-accent px-3 py-1"
-                aria-hidden
-              >
-                <span className="label-mono text-cream">PORTRAIT</span>
-              </div>
-
-              <div
-                className="relative border-[3px] border-ink bg-ink"
-                style={{ boxShadow: "8px 8px 0 0 #0a0a0a" }}
-              >
-                <motion.div
-                  className="relative aspect-[4/5] w-full overflow-hidden"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Image
-                    src={avatarSrc}
-                    alt={`${profile.name} - portrait photo`}
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 420px"
-                    className="object-cover object-top grayscale transition-[filter] duration-300 hover:grayscale-0"
-                  />
-                </motion.div>
-                <motion.div
-                  className="flex items-center justify-between border-t-[3px] border-ink bg-cream px-4 py-3"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.35 }}
-                >
-                  <div>
-                    <p className="font-display text-xl leading-none text-ink">
-                      {profile.name.toUpperCase()}
-                    </p>
-                    <p className="label-mono mt-1 text-muted">
-                      {profile.location.split(",")[0].toUpperCase()}
-                    </p>
-                  </div>
-                  <span className="font-display text-4xl text-accent">↗</span>
-                </motion.div>
-              </div>
-
-              <span
-                className="pointer-events-none absolute -left-4 bottom-12 hidden font-display text-[72px] leading-none text-ink/[0.06] lg:block"
-                aria-hidden
-              >
-                SA
-              </span>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        <HeroMetrics profile={profile} />
-      </motion.div>
+            <HeroMetrics profile={profile} />
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

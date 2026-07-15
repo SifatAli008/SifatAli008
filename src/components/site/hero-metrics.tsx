@@ -12,23 +12,19 @@ import {
 } from "lucide-react";
 import type { Profile } from "@/types";
 
-interface HeroMetricsProps {
-  profile: Profile;
-}
-
-interface MetricCard {
+interface MetricItem {
   icon: LucideIcon;
   value: string;
   label: string;
   sub?: string;
-  highlight?: boolean;
+  accentValue?: boolean;
 }
 
-export function HeroMetrics({ profile }: HeroMetricsProps) {
+function getMetrics(profile: Profile): MetricItem[] {
   const s = profile.stats;
   const lc = s.leetcode;
 
-  const cards: MetricCard[] = [
+  return [
     {
       icon: FolderKanban,
       value: `${s.projectsBuilt}+`,
@@ -52,14 +48,14 @@ export function HeroMetrics({ profile }: HeroMetricsProps) {
       value: `${lc.solved}+`,
       label: "LEETCODE",
       sub: "Problems solved",
-      highlight: true,
+      accentValue: true,
     },
     {
       icon: Trophy,
       value: `${s.hackathonWins}×`,
       label: "HACKATHONS",
       sub: "National wins",
-      highlight: true,
+      accentValue: true,
     },
     {
       icon: Users,
@@ -68,74 +64,165 @@ export function HeroMetrics({ profile }: HeroMetricsProps) {
       sub: "Delivered globally",
     },
   ];
+}
+
+function SideStat({
+  item,
+  index,
+  align,
+}: {
+  item: MetricItem;
+  index: number;
+  align: "left" | "right";
+}) {
+  const Icon = item.icon;
+  const isRight = align === "right";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      className="relative mt-10 lg:mt-14"
+      className={`flex flex-col gap-1 ${
+        isRight ? "items-start text-left" : "items-end text-right"
+      }`}
+      initial={{ opacity: 0, x: isRight ? 20 : -20 }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        y: [0, index % 2 === 0 ? -4 : 4, 0],
+      }}
+      transition={{
+        opacity: { delay: 0.35 + index * 0.12, duration: 0.4 },
+        x: { delay: 0.35 + index * 0.12, duration: 0.4 },
+        y: {
+          delay: 1 + index * 0.1,
+          duration: 4.4 + index * 0.25,
+          repeat: Infinity,
+          ease: "easeInOut",
+        },
+      }}
     >
       <div
-        className="border-[3px] border-ink bg-accent"
-        style={{ boxShadow: "10px 10px 0 0 #0a0a0a" }}
+        className={`flex items-center gap-2 ${isRight ? "flex-row" : "flex-row-reverse"}`}
       >
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b-[3px] border-ink bg-ink px-5 py-4">
-          <span className="font-display text-2xl tracking-wide text-cream md:text-3xl">
-            IMPACT AT A GLANCE
-          </span>
-          <span className="label-mono text-cream">SCROLL ↓ FOR ABOUT</span>
-        </div>
+        <Icon className="h-4 w-4 shrink-0 text-accent" strokeWidth={2.25} />
+        <span className="h-px w-5 bg-accent/70" aria-hidden />
+      </div>
+      <p
+        className={`font-display text-[clamp(1.7rem,2.6vw,2.25rem)] font-bold leading-none tracking-tight ${
+          item.accentValue ? "text-accent" : "text-ink"
+        }`}
+      >
+        {item.value}
+      </p>
+      <p className="label-mono text-[10px] font-bold tracking-[0.16em] text-ink">
+        {item.label}
+      </p>
+      {item.sub && (
+        <p className="max-w-[9rem] font-sans text-[9px] font-medium uppercase tracking-[0.1em] text-ink/40">
+          {item.sub}
+        </p>
+      )}
+    </motion.div>
+  );
+}
 
-        <div className="grid grid-cols-2 bg-cream md:grid-cols-3 lg:grid-cols-6">
-          {cards.map((card, i) => {
-            const Icon = card.icon;
-            const isHighlight = card.highlight;
-            return (
-              <motion.div
-                key={card.label}
-                className={`flex flex-col px-4 py-6 md:px-5 md:py-8 ${
-                  i < cards.length - 1 ? "border-r-[3px] border-ink" : ""
-                } ${i < 4 ? "border-b-[3px] border-ink lg:border-b-0" : ""} ${
-                  isHighlight ? "bg-ink text-cream" : "bg-cream text-ink"
+/** One side column — sits BESIDE the portrait in the rail */
+export function HeroOrbitMetrics({
+  profile,
+  side,
+}: {
+  profile: Profile;
+  side: "left" | "right";
+}) {
+  const items = getMetrics(profile);
+  const column = side === "left" ? items.slice(0, 3) : items.slice(3);
+  const indexOffset = side === "left" ? 0 : 3;
+
+  return (
+    <div
+      className={`flex w-full max-w-[148px] flex-col gap-6 xl:gap-8 ${
+        side === "right" ? "items-start" : "items-end"
+      }`}
+    >
+      {column.map((item, i) => (
+        <SideStat
+          key={item.label}
+          item={item}
+          index={i + indexOffset}
+          align={side}
+        />
+      ))}
+    </div>
+  );
+}
+
+function MetricsStrip({ items }: { items: MetricItem[] }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.2 }}
+      className="relative"
+    >
+      <div className="mb-5 flex items-end justify-between gap-3">
+        <p className="label-mono tracking-[0.16em] text-muted">IMPACT</p>
+        <a
+          href="#about"
+          className="label-mono text-[10px] text-ink/45 transition-colors hover:text-accent"
+        >
+          SCROLL ↓ FOR ABOUT
+        </a>
+      </div>
+
+      <div className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3">
+        {items.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={item.label}
+              className="flex flex-col gap-1"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.28 + i * 0.07, duration: 0.3 }}
+            >
+              <Icon className="mb-0.5 h-3.5 w-3.5 text-accent" strokeWidth={2.25} />
+              <p
+                className={`font-display text-[1.75rem] font-bold leading-none tracking-tight ${
+                  item.accentValue ? "text-accent" : "text-ink"
                 }`}
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 400, damping: 22 }}
               >
-                <Icon
-                  className={`mb-3 h-6 w-6 ${isHighlight ? "text-accent" : "text-accent"}`}
-                  strokeWidth={2.5}
-                />
-                <p
-                  className={`font-display font-bold leading-none ${
-                    isHighlight
-                      ? "text-[clamp(44px,6vw,64px)] text-accent"
-                      : "text-[clamp(40px,5.5vw,56px)] text-ink"
-                  }`}
-                >
-                  {card.value}
+                {item.value}
+              </p>
+              <p className="label-mono text-[10px] font-bold tracking-[0.14em] text-ink">
+                {item.label}
+              </p>
+              {item.sub && (
+                <p className="font-sans text-[9px] font-medium uppercase tracking-[0.08em] text-ink/40">
+                  {item.sub}
                 </p>
-                <p
-                  className={`label-mono mt-2 text-sm font-bold tracking-widest ${
-                    isHighlight ? "text-cream" : "text-ink"
-                  }`}
-                >
-                  {card.label}
-                </p>
-                {card.sub && (
-                  <p
-                    className={`mt-2 font-sans text-xs font-semibold uppercase tracking-wide ${
-                      isHighlight ? "text-cream/70" : "text-muted"
-                    }`}
-                  >
-                    {card.sub}
-                  </p>
-                )}
-              </motion.div>
-            );
-          })}
-        </div>
+              )}
+            </motion.div>
+          );
+        })}
       </div>
     </motion.div>
   );
+}
+
+export function HeroMetrics({
+  profile,
+  mode = "strip",
+}: {
+  profile: Profile;
+  mode?: "orbit" | "strip";
+}) {
+  const items = getMetrics(profile);
+  if (mode === "orbit") {
+    return (
+      <div className="flex gap-10">
+        <HeroOrbitMetrics profile={profile} side="left" />
+        <HeroOrbitMetrics profile={profile} side="right" />
+      </div>
+    );
+  }
+  return <MetricsStrip items={items} />;
 }
