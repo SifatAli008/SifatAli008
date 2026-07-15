@@ -83,21 +83,12 @@ function SideStat({
       className={`flex flex-col gap-1 ${
         isRight ? "items-start text-left" : "items-end text-right"
       }`}
-      initial={{ opacity: 0, x: isRight ? 20 : -20 }}
-      animate={{
-        opacity: 1,
-        x: 0,
-        y: [0, index % 2 === 0 ? -4 : 4, 0],
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        opacity: { delay: 0.35 + index * 0.12, duration: 0.4 },
-        x: { delay: 0.35 + index * 0.12, duration: 0.4 },
-        y: {
-          delay: 1 + index * 0.1,
-          duration: 4.4 + index * 0.25,
-          repeat: Infinity,
-          ease: "easeInOut",
-        },
+        delay: 0.28 + index * 0.08,
+        duration: 0.45,
+        ease: [0.22, 1, 0.36, 1],
       }}
     >
       <div

@@ -237,8 +237,24 @@
     }
   }
 
+  /* Hero idle — GPU-friendly CSS only (no JS loops) */
+  @keyframes hero-portrait-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -10px, 0);
+    }
+  }
+
+  .hero-portrait-idle {
+    animation: hero-portrait-float 5.5s ease-in-out infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
+    .marquee-track,
+    .hero-portrait-idle {
       animation: none;
     }
   }

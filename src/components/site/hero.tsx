@@ -153,20 +153,12 @@ export function Hero({ profile }: HeroProps) {
             </div>
 
             <motion.div
-              className="relative w-full max-w-[400px] xl:max-w-[430px]"
-              initial={{ opacity: 0, y: 36, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.75, delay: 0.12, ease: easeOut }}
+              className="relative w-full max-w-[420px] xl:max-w-[460px]"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.12, ease: easeOut }}
             >
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 5.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-              >
+              <div className="hero-portrait-idle relative">
                 <div
                   className="pointer-events-none absolute bottom-[2%] left-1/2 z-0 h-[18%] w-[78%] -translate-x-1/2 rounded-[100%] bg-ink/35 blur-2xl"
                   aria-hidden
@@ -179,9 +171,9 @@ export function Hero({ profile }: HeroProps) {
                   height={983}
                   decoding="async"
                   fetchPriority="high"
-                  className="relative z-[1] mx-auto h-auto max-h-[min(82dvh,720px)] w-full select-none object-contain object-bottom drop-shadow-[0_28px_50px_rgba(10,10,10,0.45)]"
+                  className="relative z-[1] mx-auto h-auto max-h-[min(84dvh,740px)] w-full select-none object-contain object-bottom drop-shadow-[0_28px_50px_rgba(10,10,10,0.45)]"
                 />
-              </motion.div>
+              </div>
             </motion.div>
 
             <div className="mb-[16%] shrink-0">
@@ -252,8 +244,8 @@ export function Hero({ profile }: HeroProps) {
         >
           SCROLL
           <motion.span
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+            className="inline-flex animate-bounce"
+            style={{ animationDuration: "2s" }}
           >
             <ArrowDown className="h-3.5 w-3.5 text-accent" strokeWidth={2.75} />
           </motion.span>
@@ -295,7 +287,7 @@ export function Hero({ profile }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.15, ease: easeOut }}
         >
-          <div className="relative">
+          <div className="hero-portrait-idle relative">
             <div
               className="pointer-events-none absolute bottom-[2%] left-1/2 z-0 h-[16%] w-[75%] -translate-x-1/2 rounded-[100%] bg-ink/30 blur-2xl"
               aria-hidden
@@ -308,7 +300,7 @@ export function Hero({ profile }: HeroProps) {
               height={983}
               decoding="async"
               fetchPriority="high"
-              className="relative z-[1] h-auto max-h-[min(58vh,520px)] w-[min(86vw,380px)] select-none object-contain object-bottom drop-shadow-[0_24px_44px_rgba(10,10,10,0.42)]"
+              className="relative z-[1] h-auto max-h-[min(62vh,560px)] w-[min(88vw,400px)] select-none object-contain object-bottom drop-shadow-[0_24px_44px_rgba(10,10,10,0.42)]"
             />
           </div>
         </motion.div>
