@@ -321,3 +321,21 @@
 .hljs {
   @apply border-2 border-ink bg-cream p-4 font-mono text-sm;
 }
+
+@keyframes loader-slide {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(380%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes loader-slide {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+  }
+}

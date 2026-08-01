@@ -328,6 +328,28 @@ export function blogPostingJsonLd(post: {
   };
 }
 
+export function faqPageJsonLd(
+  faqs: { question: string; answer: string }[],
+  path: string
+) {
+  const siteUrl = getSiteUrl();
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    url,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
 export function itemListJsonLd(
   name: string,
   items: { name: string; url: string }[]

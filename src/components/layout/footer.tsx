@@ -6,6 +6,8 @@ const footerLinks = [
   { href: "/blog", label: "Writing" },
   { href: "/archive", label: "Archive" },
   { href: "/contact", label: "Contact" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/security", label: "Security" },
 ];
 
 export function Footer() {

@@ -3,11 +3,9 @@ import {
   doc,
   getDoc,
   getDocs,
-  addDoc,
   query,
   where,
   orderBy,
-  serverTimestamp,
   type DocumentData,
 } from "firebase/firestore";
 import { db } from "./client";
@@ -35,7 +33,6 @@ import {
 } from "@/lib/github/portfolio";
 import {
   fallbackAchievements,
-  fallbackBlogPosts,
   fallbackExperience,
   fallbackFeaturedPosts,
   fallbackProfile,
@@ -44,11 +41,13 @@ import {
   fallbackResearchSettings,
   fallbackSkills,
   fallbackTechStack,
-  getFallbackBlogPost,
   getFallbackProject,
-  publishedFallbackPosts,
 } from "@/lib/data/fallback";
 import { assetUrl } from "@/lib/cloudinary/assets";
+
+async function loadBlogFallback() {
+  return import("@/lib/data/blog-fallback");
+}
 
 function mapDoc<T>(id: string, data: DocumentData): T {
   return { id, ...data } as T;
@@ -208,10 +207,27 @@ export async function getResearchPapers(): Promise<ResearchPaper[]> {
   }
 }
 
+function mergeBlogPosts(
+  fromDb: BlogPost[],
+  fallback: BlogPost[],
+  publishedOnly: boolean
+): BlogPost[] {
+  const slugs = new Set(fromDb.map((p) => p.slug));
+  const extras = fallback.filter((p) => {
+    if (slugs.has(p.slug)) return false;
+    return publishedOnly ? p.status === "published" : true;
+  });
+  return [...fromDb, ...extras].sort((a, b) => {
+    const aDate = a.publishedAt ?? a.createdAt;
+    const bDate = b.publishedAt ?? b.createdAt;
+    return bDate.localeCompare(aDate);
+  });
+}
+
 export async function getBlogPosts(publishedOnly = true): Promise<BlogPost[]> {
-  if (!db) {
-    return publishedOnly ? publishedFallbackPosts : fallbackBlogPosts;
-  }
+  const { fallbackBlogPosts, publishedFallbackPosts } = await loadBlogFallback();
+  const fallback = publishedOnly ? publishedFallbackPosts : fallbackBlogPosts;
+  if (!db) return fallback;
   try {
     const q = publishedOnly
       ? query(
@@ -221,12 +237,14 @@ export async function getBlogPosts(publishedOnly = true): Promise<BlogPost[]> {
         )
       : query(collection(db, "blog_posts"), orderBy("createdAt", "desc"));
     const snap = await getDocs(q);
-    if (snap.empty) {
-      return publishedOnly ? publishedFallbackPosts : fallbackBlogPosts;
-    }
-    return snap.docs.map((d) => mapDoc<BlogPost>(d.id, d.data()));
+    if (snap.empty) return fallback;
+    return mergeBlogPosts(
+      snap.docs.map((d) => mapDoc<BlogPost>(d.id, d.data())),
+      fallbackBlogPosts,
+      publishedOnly
+    );
   } catch {
-    return publishedOnly ? publishedFallbackPosts : fallbackBlogPosts;
+    return fallback;
   }
 }
 
@@ -234,6 +252,7 @@ export async function getBlogPostBySlug(
   slug: string,
   options: { includeDrafts?: boolean } = {}
 ): Promise<BlogPost | null> {
+  const { getFallbackBlogPost } = await loadBlogFallback();
   if (!db) return getFallbackBlogPost(slug) ?? null;
   const { includeDrafts = false } = options;
 
@@ -254,27 +273,4 @@ export async function getBlogPostBySlug(
   }
 }
 
-export async function submitContact(data: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}): Promise<{ success: boolean; error?: string }> {
-  if (!db) {
-    console.info("[Contact fallback]", data);
-    return { success: true };
-  }
-  try {
-    await addDoc(collection(db, "contacts"), {
-      ...data,
-      read: false,
-      createdAt: new Date().toISOString(),
-    });
-    return { success: true };
-  } catch (e) {
-    return {
-      success: false,
-      error: e instanceof Error ? e.message : "Failed to submit",
-    };
-  }
-}
+export { submitContact } from "./submit-contact";

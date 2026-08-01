@@ -9,6 +9,7 @@ import {
   seedAchievements,
   seedBlogPosts,
 } from "../src/lib/data/seed-data";
+import { publishedArticles } from "../src/lib/data/articles";
 import { featuredItems } from "../src/lib/data/featured";
 import { defaultResearchSettings } from "../src/lib/data/research";
 import { techStackMarquee } from "../src/lib/data/tech-stack";
@@ -67,11 +68,14 @@ async function seed() {
   }
   console.log(`✓ ${seedAchievements.length} achievements`);
 
-  for (const post of seedBlogPosts) {
+  const allPosts = [...publishedArticles, ...seedBlogPosts];
+  for (const post of allPosts) {
     const ref = db.collection("blog_posts").doc();
     await ref.set({ ...post, id: ref.id });
   }
-  console.log(`✓ ${seedBlogPosts.length} blog posts (drafts)`);
+  console.log(
+    `✓ ${allPosts.length} blog posts (${publishedArticles.length} published, ${seedBlogPosts.length} drafts)`
+  );
 
   for (const item of featuredItems) {
     const { id, ...data } = item;

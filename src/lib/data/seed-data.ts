@@ -2,92 +2,15 @@ import type {
   Achievement,
   BlogPost,
   Experience,
-  Profile,
   Project,
   Skill,
 } from "@/types";
 import { assetUrl } from "@/lib/cloudinary/assets";
+import { seedProfile } from "@/lib/data/seed-profile";
+
+export { seedProfile };
 
 const now = new Date().toISOString();
-
-export const seedProfile: Profile = {
-  name: "Sifat Ali",
-  tagline: "AI/RAG Systems Engineer & Full-Stack Builder",
-  headline:
-    "COO @ Fluvo Soft · Building scalable AI-automation systems and full-stack products from concept to scale.",
-  bio: "Technical founder and engineer with 5+ years in software development. 2× National Hackathon Winner. Shipped Web, EdTech, Bioinformatics, and AI-powered tools across Bangladesh and beyond.",
-  aboutStory: `I'm Sifat Ali - COO at Fluvo Soft and an engineer who builds at the intersection of AI/RAG systems, full-stack architecture, and community-driven product delivery.
-
-Over 5+ years I've shipped products from concept to scale: web platforms, EdTech systems, bioinformatics research tooling, and AI-powered automation. I'm a 2× National Hackathon Winner (InnovateX 2025, NextGen Hackathon @ IIUC Tech Fest) and bring that same execution energy to every sprint.
-
-At Fluvo Soft, I align product, engineering, and business operations to deliver high-standard SaaS, web, mobile, and AI systems. At UIU Developers Hub, I build tools like PyDItor and Sir Kothay while mentoring students on React.js, Python, and AI. Previously at Shohoz Skill, I managed 21+ developers, led 12 bootcamps for 300+ students, and built CMS-powered learning platforms that improved course completion by 65%.
-
-I hold a B.Sc. in Computer Science from United International University and care deeply about measurable impact, teaching what I ship, and systems that outlive hype cycles.`,
-  engineeringPhilosophy:
-    "Integrate technology, business, and people - ship iteratively, measure relentlessly, and build systems that solve real-world problems at scale.",
-  values: [
-    "AI-automation with production discipline",
-    "Teaching as a force multiplier",
-    "Community-driven engineering",
-    "Product craft with technical depth",
-    "Operations that scale teams",
-  ],
-  email: "sifatali008@gmail.com",
-  phone: "+880 1315-576968",
-  address: "249/2 South Jatrabari, Dhaka-1204",
-  location: "Dhaka, Bangladesh",
-  timezone: "GMT+6",
-  education: "B.Sc. Computer Science - United International University",
-  responseTime: "Within 24–48 hours",
-  availableForWork: true,
-  avatar: assetUrl("/assets/images/profile-image.jpeg"),
-  resumeUrl: "/resume.pdf",
-  socials: {
-    github: "https://github.com/SifatAli008",
-    linkedin: "https://www.linkedin.com/in/sifat-ali/",
-    leetcode: "https://leetcode.com/SifatAli008/",
-    medium: "https://medium.com/@sifatali008",
-  },
-  stats: {
-    projectsBuilt: 25,
-    studentsMentored: 300,
-    eventsOrganized: 12,
-    yearsExperience: 5,
-    hackathonWins: 2,
-    bootcampsLed: 12,
-    clientsServed: 500,
-    leetcode: {
-      solved: 100,
-      easy: 45,
-      medium: 48,
-      hard: 7,
-    },
-  },
-  metrics: {
-    yearlyImpact: [
-      { year: 2019, label: "Freelance start", value: 40 },
-      { year: 2021, label: "Shohoz Skill AMD", value: 65 },
-      { year: 2023, label: "UIU Dev Hub", value: 80 },
-      { year: 2024, label: "AI healthcare", value: 90 },
-      { year: 2025, label: "2× hackathon wins", value: 95 },
-      { year: 2026, label: "COO Fluvo Soft", value: 100 },
-    ],
-    activityMix: [
-      { label: "BUILD", value: 35 },
-      { label: "TEACH", value: 28 },
-      { label: "LEET", value: 22 },
-      { label: "OPS", value: 15 },
-    ],
-  },
-  typewriterRoles: [
-    "COO @ Fluvo Soft",
-    "AI/RAG Systems Engineer",
-    "Full-Stack Builder",
-    "Community Coordinator",
-    "2× Hackathon Winner",
-  ],
-  domains: ["EdTech", "MedTech", "SaaS", "AI"],
-};
 
 export const seedProjects: Omit<Project, "id">[] = [
   {
@@ -429,81 +352,8 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
   },
 ];
 
+/** Draft/sample posts only. Published long-form articles live in `articles/`. */
 export const seedBlogPosts: Omit<BlogPost, "id">[] = [
-  {
-    slug: "building-ai-healthcare-systems-clinicalbert",
-    title: "Building AI Healthcare Systems with ClinicalBERT",
-    excerpt:
-      "How to architect explainable healthcare AI with ClinicalBERT, validation pipelines, and clinician-ready exports.",
-    content: `## Introduction
-
-Healthcare AI demands more than accuracy - it demands trust, explainability, and rigorous validation.
-
-## Architecture
-
-We use a three-layer pipeline: ingestion → ClinicalBERT inference → explainable scoring.
-
-## Lessons Learned
-
-- Domain-specific models outperform general LLMs for medical vocabulary
-- Export formats matter as much as model metrics
-- Always pair predictions with confidence intervals
-
-## Conclusion
-
-ClinicalBERT is a force multiplier when embedded in disciplined engineering workflows.`,
-    tags: ["AI", "Healthcare", "ClinicalBERT"],
-    status: "draft",
-    readingTime: 6,
-    createdAt: now,
-    updatedAt: now,
-  },
-  {
-    slug: "real-time-firebase-lessons",
-    title: "Real-Time Firebase Lessons from Production",
-    excerpt:
-      "Patterns for Realtime Database sync, security rules, and scaling live tracking apps.",
-    content: `## Why Firebase
-
-Speed to market without sacrificing realtime guarantees.
-
-## Key Patterns
-
-- Optimistic UI with conflict resolution
-- Geo-indexed listeners for tracking apps
-- Security rules as your first line of defense
-
-## Pitfalls
-
-Avoid unbounded listeners and always structure data for query patterns.`,
-    tags: ["Firebase", "Backend"],
-    status: "draft",
-    readingTime: 5,
-    createdAt: now,
-    updatedAt: now,
-  },
-  {
-    slug: "designing-pyqt5-dashboards",
-    title: "Designing PyQt5 Dashboards That Feel Modern",
-    excerpt:
-      "Bringing SaaS-grade UX to desktop Python with PyQt5, custom widgets, and performance tuning.",
-    content: `## Desktop UX in 2025
-
-Desktop apps can feel premium - if you treat them like products.
-
-## Widget Strategy
-
-Custom cards, glass surfaces, and async workers keep UI responsive.
-
-## Takeaway
-
-PyQt5 rewards engineers who invest in design systems, not just logic.`,
-    tags: ["PyQt5", "Desktop", "UX"],
-    status: "draft",
-    readingTime: 4,
-    createdAt: now,
-    updatedAt: now,
-  },
   {
     slug: "journey-ai-fullstack-developer",
     title: "My Journey as an AI & Full Stack Developer",

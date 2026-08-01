@@ -7,7 +7,7 @@ import { z } from "zod";
 import { Mail, MessageSquare, Send, User } from "lucide-react";
 import { toast } from "sonner";
 import { BrutalButton } from "@/components/ui/brutal-button";
-import { submitContact } from "@/lib/firebase/queries";
+import { submitContact } from "@/lib/firebase/submit-contact";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),

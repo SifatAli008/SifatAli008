@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts, getPortfolioWork } from "@/lib/firebase/queries";
-import { fallbackBlogPosts } from "@/lib/data/fallback";
+import { fallbackBlogPosts } from "@/lib/data/blog-fallback";
 import { getSiteUrl } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

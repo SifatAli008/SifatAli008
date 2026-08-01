@@ -7,7 +7,7 @@ import { z } from "zod";
 import { Calendar, ChevronDown, Send } from "lucide-react";
 import { toast } from "sonner";
 import { BrutalButton } from "@/components/ui/brutal-button";
-import { submitContact } from "@/lib/firebase/queries";
+import { submitContact } from "@/lib/firebase/submit-contact";
 import type { BookingSlot } from "@/components/site/booking-calendar";
 
 const SERVICES = [

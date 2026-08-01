@@ -7,7 +7,6 @@ import {
 } from "next/font/google";
 import { Toaster } from "sonner";
 import { defaultMetadata, serializeJsonLd, siteWideJsonLd } from "@/lib/seo";
-import "highlight.js/styles/github.css";
 import "./globals.css";
 
 const bebas = Bebas_Neue({

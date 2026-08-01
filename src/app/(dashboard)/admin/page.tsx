@@ -7,7 +7,8 @@ import { db } from "@/lib/firebase/client";
 import { getFirestoreErrorMessage, isFirestorePermissionError } from "@/lib/firebase/errors";
 import { useDashboardAuth } from "@/lib/firebase/use-dashboard-auth";
 import { useAuth } from "@/lib/auth/context";
-import { fallbackBlogPosts, fallbackSkills } from "@/lib/data/fallback";
+import { blogFallbackMeta } from "@/lib/data/blog-meta";
+import { fallbackSkills } from "@/lib/data/fallback";
 import { SITE_SYNC_MAP } from "@/lib/portfolio-sync";
 import type { BlogPost, ContactSubmission } from "@/types";
 import { useGitHubRepos } from "@/lib/github/use-github-repos";
@@ -71,7 +72,7 @@ export default function DashboardOverviewPage() {
   const [permError, setPermError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [counts, setCounts] = useState({
-    posts: fallbackBlogPosts.length,
+    posts: blogFallbackMeta.length,
     contacts: 0,
     skills: fallbackSkills.length,
     experience: 0,
@@ -121,7 +122,7 @@ export default function DashboardOverviewPage() {
 
         setCounts((prev) => ({
           ...prev,
-          posts: posts.length || fallbackBlogPosts.length,
+          posts: posts.length || blogFallbackMeta.length,
           contacts: contacts.length,
           skills: s.size || fallbackSkills.length,
           experience: exp.size,
@@ -129,8 +130,11 @@ export default function DashboardOverviewPage() {
           unread: contacts.filter((x) => !x.read).length,
         }));
         setBlogStats({
-          published: published || fallbackBlogPosts.filter((x) => x.status === "published").length,
-          draft: draft || fallbackBlogPosts.filter((x) => x.status === "draft").length,
+          published:
+            published ||
+            blogFallbackMeta.filter((x) => x.status === "published").length,
+          draft:
+            draft || blogFallbackMeta.filter((x) => x.status === "draft").length,
         });
         setContactTrend(
           buckets.map((key) => ({ label: monthLabel(key), value: trendMap[key] ?? 0 }))

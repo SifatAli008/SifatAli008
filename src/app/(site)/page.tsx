@@ -4,13 +4,11 @@ import {
   getFeaturedPosts,
   getPortfolioWork,
   getProfile,
-  getBlogPosts,
   getResearchPapers,
   getResearchSettings,
   getSkills,
   getTechStack,
 } from "@/lib/firebase/queries";
-import { publishedFallbackPosts } from "@/lib/data/fallback";
 import { PORTFOLIO_PREVIEW_LIMIT } from "@/lib/github/load-portfolio";
 import {
   buildPageMetadata,
@@ -32,6 +30,7 @@ import { MarqueeStrip } from "@/components/site/marquee-strip";
 import { WritingSection } from "@/components/site/writing-section";
 import { FaqSection } from "@/components/site/faq-section";
 import { ContactSection } from "@/components/site/contact-section";
+import { blogFallbackMeta } from "@/lib/data/blog-meta";
 
 export const revalidate = 300;
 
@@ -71,8 +70,8 @@ export default async function HomePage() {
     getTechStack(),
   ]);
 
-  let posts = await getBlogPosts(true);
-  if (posts.length === 0) posts = publishedFallbackPosts;
+  // Meta only — avoids loading full article markdown on the homepage
+  const posts = blogFallbackMeta.filter((p) => p.status === "published");
 
   const profileWithLiveStats = {
     ...profile,

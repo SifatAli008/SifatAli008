@@ -1,6 +1,5 @@
 import {
   seedAchievements,
-  seedBlogPosts,
   seedExperience,
   seedProfile,
   seedProjects,
@@ -11,7 +10,6 @@ import { defaultResearchSettings } from "./research";
 import { techStackMarquee } from "./tech-stack";
 import type {
   Achievement,
-  BlogPost,
   Experience,
   FeaturedPost,
   Profile,
@@ -51,22 +49,9 @@ export const fallbackAchievements: Achievement[] = withIds<Achievement>(
   "ach"
 );
 
-export const fallbackBlogPosts: BlogPost[] = withIds<BlogPost>(
-  seedBlogPosts,
-  "blog"
-);
-
 export function getFallbackProject(slug: string): Project | undefined {
   return fallbackProjects.find((p) => p.slug === slug);
 }
-
-export function getFallbackBlogPost(slug: string): BlogPost | undefined {
-  return fallbackBlogPosts.find((p) => p.slug === slug);
-}
-
-export const publishedFallbackPosts = fallbackBlogPosts.filter(
-  (p) => p.status === "published"
-);
 
 export const fallbackFeaturedPosts: FeaturedPost[] = featuredItems;
 

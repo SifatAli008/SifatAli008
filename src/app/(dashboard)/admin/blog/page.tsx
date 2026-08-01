@@ -10,7 +10,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/client";
-import { fallbackBlogPosts } from "@/lib/data/fallback";
+import { blogFallbackMeta } from "@/lib/data/blog-meta";
 import { slugify, calculateReadingTime } from "@/lib/utils";
 import type { BlogPost, BlogStatus } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -45,7 +45,7 @@ const emptyPost: Partial<BlogPost> = {
 
 export default function BlogManagerPage() {
   const { ready } = useDashboardAuth();
-  const [posts, setPosts] = useState<BlogPost[]>(fallbackBlogPosts);
+  const [posts, setPosts] = useState<BlogPost[]>(blogFallbackMeta);
   const [editing, setEditing] = useState<Partial<BlogPost> | null>(null);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { seedProfile } from "@/lib/data/seed-data";
+import { seedProfile } from "@/lib/data/seed-profile";
 import { assetUrl } from "@/lib/cloudinary/assets";
 import type { Profile } from "@/types";
 
