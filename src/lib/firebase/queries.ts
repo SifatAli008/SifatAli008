@@ -45,8 +45,44 @@ import {
 } from "@/lib/data/fallback";
 import { assetUrl } from "@/lib/cloudinary/assets";
 
-async function loadBlogFallback() {
+async function loadBlogBodiesFallback() {
   return import("@/lib/data/blog-fallback");
+}
+
+/** Lazy full-body fallback — never pull article TS into list/home graphs. */
+async function getFallbackBlogPostLazy(slug: string) {
+  const { getFallbackBlogPost } = await loadBlogBodiesFallback();
+  return getFallbackBlogPost(slug) ?? null;
+}
+
+async function fetchBlogBody(
+  postId: string,
+  slug: string,
+  inlineContent?: string
+): Promise<string> {
+  if (inlineContent && inlineContent.trim().length > 0) return inlineContent;
+  if (!db) return "";
+  try {
+    const bodySnap = await getDoc(doc(db, "blog_posts", postId, "body", "main"));
+    if (bodySnap.exists()) {
+      const data = bodySnap.data();
+      if (typeof data.content === "string" && data.content.trim()) {
+        return data.content;
+      }
+    }
+  } catch {
+    /* fall through */
+  }
+  try {
+    const bySlug = await getDoc(doc(db, "blog_post_bodies", slug));
+    if (bySlug.exists()) {
+      const data = bySlug.data();
+      if (typeof data.content === "string") return data.content;
+    }
+  } catch {
+    /* fall through */
+  }
+  return "";
 }
 
 function mapDoc<T>(id: string, data: DocumentData): T {
@@ -224,9 +260,16 @@ function mergeBlogPosts(
   });
 }
 
+/**
+ * List/meta only — never downloads markdown bodies or imports article TS modules.
+ * Bodies live in `blog_posts/{id}/body/main` (or legacy `blog_post_bodies/{slug}`).
+ */
 export async function getBlogPosts(publishedOnly = true): Promise<BlogPost[]> {
-  const { fallbackBlogPosts, publishedFallbackPosts } = await loadBlogFallback();
-  const fallback = publishedOnly ? publishedFallbackPosts : fallbackBlogPosts;
+  const { blogFallbackMeta } = await import("@/lib/data/blog-meta");
+  const fallback = publishedOnly
+    ? blogFallbackMeta.filter((p) => p.status === "published")
+    : blogFallbackMeta;
+
   if (!db) return fallback;
   try {
     const q = publishedOnly
@@ -238,23 +281,24 @@ export async function getBlogPosts(publishedOnly = true): Promise<BlogPost[]> {
       : query(collection(db, "blog_posts"), orderBy("createdAt", "desc"));
     const snap = await getDocs(q);
     if (snap.empty) return fallback;
-    return mergeBlogPosts(
-      snap.docs.map((d) => mapDoc<BlogPost>(d.id, d.data())),
-      fallbackBlogPosts,
-      publishedOnly
-    );
+    const fromDb = snap.docs.map((d) => {
+      const post = mapDoc<BlogPost>(d.id, d.data());
+      return { ...post, content: "" };
+    });
+    return mergeBlogPosts(fromDb, fallback, publishedOnly);
   } catch {
     return fallback;
   }
 }
 
+/** Full article — Firestore body first, codebase fallback only on miss. */
 export async function getBlogPostBySlug(
   slug: string,
   options: { includeDrafts?: boolean } = {}
 ): Promise<BlogPost | null> {
-  const { getFallbackBlogPost } = await loadBlogFallback();
-  if (!db) return getFallbackBlogPost(slug) ?? null;
   const { includeDrafts = false } = options;
+
+  if (!db) return getFallbackBlogPostLazy(slug);
 
   try {
     const q = includeDrafts
@@ -265,11 +309,17 @@ export async function getBlogPostBySlug(
           where("status", "==", "published")
         );
     const snap = await getDocs(q);
-    if (snap.empty) return getFallbackBlogPost(slug) ?? null;
+    if (snap.empty) return getFallbackBlogPostLazy(slug);
+
     const d = snap.docs[0];
-    return mapDoc<BlogPost>(d.id, d.data());
+    const meta = mapDoc<BlogPost>(d.id, d.data());
+    const content = await fetchBlogBody(d.id, slug, meta.content);
+    if (content.trim()) {
+      return { ...meta, content };
+    }
+    return (await getFallbackBlogPostLazy(slug)) ?? { ...meta, content: "" };
   } catch {
-    return getFallbackBlogPost(slug) ?? null;
+    return getFallbackBlogPostLazy(slug);
   }
 }
 

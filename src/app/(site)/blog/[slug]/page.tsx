@@ -13,17 +13,16 @@ import { MarkdownContent } from "@/components/blog/markdown-content";
 import { ArticleToc } from "@/components/blog/article-toc";
 import { ReadingProgress } from "@/components/blog/reading-progress";
 import { formatDate } from "@/lib/utils";
-import { fallbackBlogPosts } from "@/lib/data/blog-fallback";
+import { blogFallbackMeta } from "@/lib/data/blog-meta";
 import { articleFaqsBySlug } from "@/lib/data/article-faqs";
 import { extractToc } from "@/lib/blog/extract-toc";
-import { slimBlogPosts } from "@/lib/blog/slim-post";
 
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
   let posts = await getBlogPosts(true);
   if (posts.length === 0) {
-    posts = fallbackBlogPosts.filter((p) => p.status === "published");
+    posts = blogFallbackMeta.filter((p) => p.status === "published");
   }
   return posts.map((p) => ({ slug: p.slug }));
 }
@@ -54,11 +53,11 @@ export default async function BlogPostPage({
   const post = await getBlogPostBySlug(params.slug);
   if (!post) notFound();
 
-  let posts = await getBlogPosts(false);
-  if (posts.length === 0) posts = fallbackBlogPosts;
-  const related = slimBlogPosts(
-    posts.filter((p) => p.slug !== post.slug).slice(0, 3)
-  );
+  let posts = await getBlogPosts(true);
+  if (posts.length === 0) {
+    posts = blogFallbackMeta.filter((p) => p.status === "published");
+  }
+  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
   const faqs = articleFaqsBySlug[post.slug];
   const toc = extractToc(post.content).filter((item) => item.level === 2);
   const jsonLd = [

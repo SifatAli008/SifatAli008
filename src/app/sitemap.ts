@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts, getPortfolioWork } from "@/lib/firebase/queries";
-import { fallbackBlogPosts } from "@/lib/data/blog-fallback";
+import { blogFallbackMeta } from "@/lib/data/blog-meta";
 import { getSiteUrl } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let posts = await getBlogPosts(true);
   if (posts.length === 0) {
-    posts = fallbackBlogPosts.filter((p) => p.status === "published");
+    posts = blogFallbackMeta.filter((p) => p.status === "published");
   }
   const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${base}/blog/${p.slug}`,

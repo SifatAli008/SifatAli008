@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getBlogPosts } from "@/lib/firebase/queries";
-import { fallbackBlogPosts } from "@/lib/data/blog-fallback";
+import { blogFallbackMeta } from "@/lib/data/blog-meta";
 import { buildPageMetadata, itemListJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
 import { formatDate } from "@/lib/utils";
-import { slimBlogPosts } from "@/lib/blog/slim-post";
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
@@ -21,9 +20,9 @@ export const revalidate = 3600;
 
 export default async function BlogPage() {
   let posts = await getBlogPosts(true);
-  if (posts.length === 0)
-    posts = fallbackBlogPosts.filter((p) => p.status === "published");
-  posts = slimBlogPosts(posts);
+  if (posts.length === 0) {
+    posts = blogFallbackMeta.filter((p) => p.status === "published");
+  }
 
   const jsonLd = itemListJsonLd(
     "Sifat Ali - Writing",

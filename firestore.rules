@@ -28,9 +28,22 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Public may only read published posts; admins read all
+    // Public may only read published posts; admins read all.
+    // Markdown bodies live in blog_posts/{id}/body/main (keeps list reads light).
     match /blog_posts/{postId} {
       allow read: if resource.data.status == 'published' || isAdmin();
+      allow create, update, delete: if isAdmin();
+
+      match /body/{docId} {
+        allow read: if isAdmin() ||
+          get(/databases/$(database)/documents/blog_posts/$(postId)).data.status == 'published';
+        allow create, update, delete: if isAdmin();
+      }
+    }
+
+    // Legacy slug → body map (optional; prefer subcollection above)
+    match /blog_post_bodies/{slug} {
+      allow read: if true;
       allow create, update, delete: if isAdmin();
     }
 
