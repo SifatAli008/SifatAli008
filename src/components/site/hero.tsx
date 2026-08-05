@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, FolderKanban } from "lucide-react";
 import { BrutalButton } from "@/components/ui/brutal-button";
@@ -8,7 +7,7 @@ import { HeroSocialLinks } from "@/components/site/hero-social-links";
 import { HeroMetrics, HeroOrbitMetrics } from "@/components/site/hero-metrics";
 import type { Profile } from "@/types";
 
-const HERO_PORTRAIT = "/assets/images/hero-portrait.jpg?v=7";
+const HERO_PORTRAIT = "/assets/images/hero-portrait.png?v=6";
 
 const ROLES = [
   "AI/RAG ENGINEER",
@@ -164,13 +163,13 @@ export function Hero({ profile }: HeroProps) {
                   className="pointer-events-none absolute bottom-[2%] left-1/2 z-0 h-[18%] w-[78%] -translate-x-1/2 rounded-[100%] bg-ink/35 blur-2xl"
                   aria-hidden
                 />
-                <Image
+                <img
                   src={HERO_PORTRAIT}
                   alt={`${profile.name} - portrait`}
-                  width={460}
-                  height={672}
-                  priority
-                  sizes="(max-width: 1024px) 88vw, 460px"
+                  width={673}
+                  height={983}
+                  decoding="async"
+                  fetchPriority="high"
                   className="relative z-[1] mx-auto h-auto max-h-[min(84dvh,740px)] w-full select-none object-contain object-bottom drop-shadow-[0_28px_50px_rgba(10,10,10,0.45)]"
                 />
               </div>
@@ -292,13 +291,13 @@ export function Hero({ profile }: HeroProps) {
               className="pointer-events-none absolute bottom-[2%] left-1/2 z-0 h-[16%] w-[75%] -translate-x-1/2 rounded-[100%] bg-ink/30 blur-2xl"
               aria-hidden
             />
-            <Image
+            <img
               src={HERO_PORTRAIT}
               alt={`${profile.name} - portrait`}
-              width={400}
-              height={584}
-              priority
-              sizes="(max-width: 1024px) 88vw, 400px"
+              width={673}
+              height={983}
+              decoding="async"
+              fetchPriority="high"
               className="relative z-[1] h-auto max-h-[min(62vh,560px)] w-[min(88vw,400px)] select-none object-contain object-bottom drop-shadow-[0_24px_44px_rgba(10,10,10,0.42)]"
             />
           </div>
