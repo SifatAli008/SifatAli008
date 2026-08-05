@@ -1,7 +1,6 @@
-# Fires daily at 8:30 PM Asia/Dhaka (14:30 UTC).
-# Creates a tracking issue so a Cursor Cloud / scheduled agent (or you)
-# can run the daily-tech-article skill and publish.
-name: Daily article trigger
+# Daily auto blog at 8:30 PM Asia/Dhaka (14:30 UTC).
+# Generates article with Gemini, commits to main, optional Firestore sync.
+name: Daily auto blog post
 
 on:
   schedule:
@@ -9,75 +8,58 @@ on:
   workflow_dispatch:
 
 permissions:
-  issues: write
-  contents: read
+  contents: write
+
+concurrency:
+  group: daily-auto-blog
+  cancel-in-progress: false
 
 jobs:
-  open-daily-article-issue:
+  publish-daily-article:
     runs-on: ubuntu-latest
     steps:
-      - name: Create daily article issue
-        uses: actions/github-script@v7
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          script: |
-            const dhaka = new Date().toLocaleString("en-CA", {
-              timeZone: "Asia/Dhaka",
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            });
-            const title = `Daily tech article — ${dhaka} (8:30 PM Asia/Dhaka)`;
-            const body = [
-              "## Autonomous publish task",
-              "",
-              "Run the project skill **daily-tech-article** and ship ONE verified long-form post.",
-              "",
-              "### Agent instructions",
-              "1. Research today's verifiable tech developments.",
-              "2. Write the article under `src/lib/data/articles/`.",
-              "3. Sync FAQs in `src/lib/data/article-faqs.ts` and meta in `src/lib/data/blog-meta.ts`.",
-              "4. Register in `src/lib/data/articles/index.ts`.",
-              "5. Try `npm.cmd run publish:article -- --slug=<slug>` if Firebase Admin env is available.",
-              "",
-              "Skill path: `.cursor/skills/daily-tech-article/SKILL.md`",
-              "",
-              `Window: 8:30 PM Asia/Dhaka · date ${dhaka}`,
-            ].join("\n");
+          node-version: "20"
+          cache: npm
 
-            try {
-              await github.rest.issues.getLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: "daily-article",
-              });
-            } catch {
-              await github.rest.issues.createLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: "daily-article",
-                color: "FF3B00",
-                description: "Daily 8:30 PM Asia/Dhaka article publish task",
-              });
-            }
+      - name: Install dependencies
+        run: npm ci
 
-            const existing = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-              labels: "daily-article",
-              per_page: 10,
-            });
-            const already = existing.data.find((i) => i.title === title);
-            if (already) {
-              core.info(`Issue already open: #${already.number}`);
-              return;
-            }
+      - name: Generate daily article
+        id: generate
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash-lite
+          OPENROUTER_MODEL: openrouter/free
+        run: npm run daily:article
 
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body,
-              labels: ["daily-article"],
-            });
-            core.info(`Opened #${issue.data.number}`);
+      - name: Publish to Firestore
+        if: steps.generate.outcome == 'success' && steps.generate.outputs.article_slug != ''
+        env:
+          FIREBASE_ADMIN_PROJECT_ID: ${{ secrets.FIREBASE_ADMIN_PROJECT_ID }}
+          FIREBASE_ADMIN_CLIENT_EMAIL: ${{ secrets.FIREBASE_ADMIN_CLIENT_EMAIL }}
+          FIREBASE_ADMIN_PRIVATE_KEY: ${{ secrets.FIREBASE_ADMIN_PRIVATE_KEY }}
+        run: |
+          if [ -z "$FIREBASE_ADMIN_PROJECT_ID" ] || [ -z "$FIREBASE_ADMIN_CLIENT_EMAIL" ] || [ -z "$FIREBASE_ADMIN_PRIVATE_KEY" ]; then
+            echo "Firestore admin secrets not set — skipping Firestore publish (codebase fallback still works)."
+            exit 0
+          fi
+          npm run publish:article -- --slug=${{ steps.generate.outputs.article_slug }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/lib/data/articles src/lib/data/article-faqs.ts src/lib/data/blog-meta.ts src/lib/data/blog-fallback.ts
+          if git diff --staged --quiet; then
+            echo "No file changes to commit (article may already exist for today)."
+            exit 0
+          fi
+          git commit -m "chore: publish daily tech article (${{ steps.generate.outputs.article_slug }})"
+          git push

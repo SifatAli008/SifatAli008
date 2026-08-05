@@ -53,11 +53,9 @@ export default async function BlogPostPage({
   const post = await getBlogPostBySlug(params.slug);
   if (!post) notFound();
 
-  let posts = await getBlogPosts(true);
-  if (posts.length === 0) {
-    posts = blogFallbackMeta.filter((p) => p.status === "published");
-  }
-  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const related = blogFallbackMeta
+    .filter((p) => p.status === "published" && p.slug !== post.slug)
+    .slice(0, 3);
   const faqs = articleFaqsBySlug[post.slug];
   const toc = extractToc(post.content).filter((item) => item.level === 2);
   const jsonLd = [

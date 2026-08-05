@@ -1,27 +1,52 @@
-import { publishedArticles } from "@/lib/data/articles";
 import { seedBlogPosts } from "@/lib/data/seed-data";
 import type { BlogPost } from "@/types";
 
-function withIds(
-  items: Omit<BlogPost, "id">[],
-  prefix: string
-): BlogPost[] {
-  return items.map((item, i) => ({
-    ...item,
-    id: `${prefix}-${i + 1}`,
-  }));
+type ArticleModule = Omit<BlogPost, "id">;
+
+/** Per-slug dynamic imports — load one article body, not the whole library. */
+const ARTICLE_LOADERS: Record<string, () => Promise<ArticleModule>> = {
+  "eu-ai-act-august-2-2026-agentic-ai-enterprise-governance": async () =>
+    (await import("./articles/eu-ai-act-august-2-2026-agentic-ai"))
+      .euAiActAugust2026Article,
+  "building-ai-healthcare-systems-clinicalbert": async () =>
+    (await import("./articles/clinicalbert-healthcare-ai"))
+      .clinicalBertHealthcareArticle,
+  "real-time-firebase-lessons": async () =>
+    (await import("./articles/firebase-realtime-lessons"))
+      .firebaseRealtimeLessonsArticle,
+  "designing-pyqt5-dashboards": async () =>
+    (await import("./articles/pyqt5-modern-dashboards")).pyqt5DashboardsArticle,
+};
+
+function withId(article: ArticleModule, prefix: string): BlogPost {
+  return { ...article, id: `${prefix}-${article.slug}` };
 }
 
-/** Blog fallbacks only — keep heavy article bodies out of non-blog client graphs. */
-export const fallbackBlogPosts: BlogPost[] = withIds(
-  [...publishedArticles, ...seedBlogPosts],
-  "blog"
-);
+/** Load a single article body from codebase fallback (async). */
+export async function getFallbackBlogPost(
+  slug: string
+): Promise<BlogPost | undefined> {
+  const loader = ARTICLE_LOADERS[slug];
+  if (loader) {
+    return withId(await loader(), "blog-fb");
+  }
 
-export function getFallbackBlogPost(slug: string): BlogPost | undefined {
-  return fallbackBlogPosts.find((p) => p.slug === slug);
+  const seed = seedBlogPosts.find((p) => p.slug === slug);
+  if (seed) return withId(seed, "blog-seed");
+  return undefined;
 }
 
-export const publishedFallbackPosts = fallbackBlogPosts.filter(
-  (p) => p.status === "published"
-);
+/** Loads all published fallback bodies (scripts / one-off migrations only). */
+export async function loadAllFallbackBlogPosts(): Promise<BlogPost[]> {
+  const slugs = Object.keys(ARTICLE_LOADERS);
+  const articles = await Promise.all(
+    slugs.map((slug) => getFallbackBlogPost(slug))
+  );
+  const published = articles.filter(
+    (p): p is BlogPost => !!p && p.status === "published"
+  );
+  const seeds = seedBlogPosts
+    .filter((p) => p.status === "published")
+    .map((p, i) => withId(p, `blog-seed-${i}`));
+  return [...published, ...seeds];
+}

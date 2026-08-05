@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import {
   getExperience,
   getFeaturedPosts,
-  getPortfolioWork,
   getProfile,
   getResearchPapers,
   getResearchSettings,
   getSkills,
   getTechStack,
 } from "@/lib/firebase/queries";
-import { PORTFOLIO_PREVIEW_LIMIT } from "@/lib/github/load-portfolio";
+import {
+  loadPortfolio,
+  PORTFOLIO_PREVIEW_LIMIT,
+  resolveGitHubUsername,
+} from "@/lib/github/load-portfolio";
 import {
   buildPageMetadata,
   personJsonLd,
@@ -23,16 +27,42 @@ import { About } from "@/components/site/about";
 import { FeaturedSection } from "@/components/site/featured-section";
 import { ExperienceTable } from "@/components/site/experience-table";
 import { SkillsBands } from "@/components/site/skills-bands";
-import { AcademicResearchSection } from "@/components/site/academic-research-section";
 import { ProjectsRows } from "@/components/site/projects-rows";
-import { GitHubActivitySection } from "@/components/site/github-activity-section";
-import { MarqueeStrip } from "@/components/site/marquee-strip";
-import { WritingSection } from "@/components/site/writing-section";
 import { FaqSection } from "@/components/site/faq-section";
-import { ContactSection } from "@/components/site/contact-section";
 import { blogFallbackMeta } from "@/lib/data/blog-meta";
 
-export const revalidate = 300;
+const AcademicResearchSection = dynamic(
+  () =>
+    import("@/components/site/academic-research-section").then((m) => ({
+      default: m.AcademicResearchSection,
+    }))
+);
+const GitHubActivitySection = dynamic(
+  () =>
+    import("@/components/site/github-activity-section").then((m) => ({
+      default: m.GitHubActivitySection,
+    }))
+);
+const MarqueeStrip = dynamic(
+  () =>
+    import("@/components/site/marquee-strip").then((m) => ({
+      default: m.MarqueeStrip,
+    }))
+);
+const WritingSection = dynamic(
+  () =>
+    import("@/components/site/writing-section").then((m) => ({
+      default: m.WritingSection,
+    }))
+);
+const ContactSection = dynamic(
+  () =>
+    import("@/components/site/contact-section").then((m) => ({
+      default: m.ContactSection,
+    }))
+);
+
+export const revalidate = 3600;
 
 const HOME_TITLE = "Sifat Ali - AI/RAG Engineer & Full-Stack Builder";
 const HOME_DESCRIPTION =
@@ -50,8 +80,10 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  const profile = await getProfile();
+  const username = resolveGitHubUsername(profile.socials?.github);
+
   const [
-    profile,
     portfolio,
     experiences,
     skills,
@@ -60,8 +92,7 @@ export default async function HomePage() {
     researchPapers,
     techStack,
   ] = await Promise.all([
-    getProfile(),
-    getPortfolioWork(),
+    loadPortfolio(username, { preferSnapshot: true }).then((r) => r.portfolio),
     getExperience(),
     getSkills(),
     getFeaturedPosts(),
@@ -70,7 +101,6 @@ export default async function HomePage() {
     getTechStack(),
   ]);
 
-  // Meta only — avoids loading full article markdown on the homepage
   const posts = blogFallbackMeta.filter((p) => p.status === "published");
 
   const profileWithLiveStats = {

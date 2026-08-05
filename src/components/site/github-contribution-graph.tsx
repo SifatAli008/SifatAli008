@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Loader2 } from "lucide-react";
@@ -69,8 +69,29 @@ export function GitHubContributionGraph({ githubUrl }: GitHubContributionGraphPr
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hovered, setHovered] = useState<HoveredCell | null>(null);
+  const [inView, setInView] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "240px 0px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
+
     let cancelled = false;
 
     (async () => {
@@ -101,7 +122,7 @@ export function GitHubContributionGraph({ githubUrl }: GitHubContributionGraphPr
     return () => {
       cancelled = true;
     };
-  }, [username, year]);
+  }, [username, year, inView]);
 
   useEffect(() => {
     setHovered(null);
@@ -132,7 +153,7 @@ export function GitHubContributionGraph({ githubUrl }: GitHubContributionGraphPr
   }, [calendar?.weeks]);
 
   return (
-    <div className="max-w-full overflow-x-auto pb-1">
+    <div ref={rootRef} className="max-w-full overflow-x-auto pb-1">
       <motion.div
         className="inline-block w-fit max-w-none border-[3px] border-ink bg-cream"
         style={{ boxShadow: "8px 8px 0 0 #0a0a0a" }}

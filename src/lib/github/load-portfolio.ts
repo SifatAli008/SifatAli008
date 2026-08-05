@@ -19,6 +19,8 @@ export interface LoadPortfolioOptions {
   includeArchived?: boolean;
   /** Pass false to force a live GitHub fetch (admin refresh). */
   revalidate?: number | false;
+  /** Skip live GitHub API — use bundled snapshot (faster for public pages). */
+  preferSnapshot?: boolean;
 }
 
 export interface LoadedPortfolio {
@@ -70,6 +72,10 @@ export async function loadPortfolio(
   username: string,
   options: LoadPortfolioOptions = {}
 ): Promise<LoadedPortfolio> {
+  if (options.preferSnapshot) {
+    return loadPortfolioFromSnapshot(username);
+  }
+
   try {
     const resolved = parseGitHubUsername(username);
     const repos = await loadGitHubRepos(resolved, options);

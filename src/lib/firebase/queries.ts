@@ -8,6 +8,7 @@ import {
   orderBy,
   type DocumentData,
 } from "firebase/firestore";
+import { cache } from "react";
 import { db } from "./client";
 import type {
   Achievement,
@@ -26,6 +27,7 @@ import { normalizeProfile } from "@/lib/profile-normalize";
 import {
   loadPortfolio,
   resolveGitHubUsername,
+  type LoadPortfolioOptions,
 } from "@/lib/github/load-portfolio";
 import {
   mapProjectToPortfolioWork,
@@ -45,14 +47,9 @@ import {
 } from "@/lib/data/fallback";
 import { assetUrl } from "@/lib/cloudinary/assets";
 
-async function loadBlogBodiesFallback() {
-  return import("@/lib/data/blog-fallback");
-}
-
-/** Lazy full-body fallback — never pull article TS into list/home graphs. */
 async function getFallbackBlogPostLazy(slug: string) {
-  const { getFallbackBlogPost } = await loadBlogBodiesFallback();
-  return getFallbackBlogPost(slug) ?? null;
+  const { getFallbackBlogPost } = await import("@/lib/data/blog-fallback");
+  return (await getFallbackBlogPost(slug)) ?? null;
 }
 
 async function fetchBlogBody(
@@ -112,11 +109,13 @@ export async function getProjects(): Promise<Project[]> {
   }
 }
 
-/** Live GitHub portfolio - falls back to bundled snapshot if API is rate-limited */
-export async function getPortfolioWork(): Promise<PortfolioWorkItem[]> {
+/** Portfolio list — prefer snapshot on marketing pages for fast TTFB. */
+export async function getPortfolioWork(
+  options: LoadPortfolioOptions = {}
+): Promise<PortfolioWorkItem[]> {
   const profile = await getProfile();
   const username = resolveGitHubUsername(profile.socials?.github);
-  const { portfolio } = await loadPortfolio(username);
+  const { portfolio } = await loadPortfolio(username, options);
   return portfolio;
 }
 
@@ -291,36 +290,38 @@ export async function getBlogPosts(publishedOnly = true): Promise<BlogPost[]> {
   }
 }
 
-/** Full article — Firestore body first, codebase fallback only on miss. */
-export async function getBlogPostBySlug(
-  slug: string,
-  options: { includeDrafts?: boolean } = {}
-): Promise<BlogPost | null> {
-  const { includeDrafts = false } = options;
+/** Full article — Firestore body first, per-slug codebase fallback on miss. */
+export const getBlogPostBySlug = cache(
+  async (
+    slug: string,
+    options: { includeDrafts?: boolean } = {}
+  ): Promise<BlogPost | null> => {
+    const { includeDrafts = false } = options;
 
-  if (!db) return getFallbackBlogPostLazy(slug);
+    if (!db) return getFallbackBlogPostLazy(slug);
 
-  try {
-    const q = includeDrafts
-      ? query(collection(db, "blog_posts"), where("slug", "==", slug))
-      : query(
-          collection(db, "blog_posts"),
-          where("slug", "==", slug),
-          where("status", "==", "published")
-        );
-    const snap = await getDocs(q);
-    if (snap.empty) return getFallbackBlogPostLazy(slug);
+    try {
+      const q = includeDrafts
+        ? query(collection(db, "blog_posts"), where("slug", "==", slug))
+        : query(
+            collection(db, "blog_posts"),
+            where("slug", "==", slug),
+            where("status", "==", "published")
+          );
+      const snap = await getDocs(q);
+      if (snap.empty) return getFallbackBlogPostLazy(slug);
 
-    const d = snap.docs[0];
-    const meta = mapDoc<BlogPost>(d.id, d.data());
-    const content = await fetchBlogBody(d.id, slug, meta.content);
-    if (content.trim()) {
-      return { ...meta, content };
+      const d = snap.docs[0];
+      const meta = mapDoc<BlogPost>(d.id, d.data());
+      const content = await fetchBlogBody(d.id, slug, meta.content);
+      if (content.trim()) {
+        return { ...meta, content };
+      }
+      return (await getFallbackBlogPostLazy(slug)) ?? { ...meta, content: "" };
+    } catch {
+      return getFallbackBlogPostLazy(slug);
     }
-    return (await getFallbackBlogPostLazy(slug)) ?? { ...meta, content: "" };
-  } catch {
-    return getFallbackBlogPostLazy(slug);
   }
-}
+);
 
 export { submitContact } from "./submit-contact";
