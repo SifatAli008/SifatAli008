@@ -339,3 +339,13 @@
     }
   }
 }
+
+html.boot-loading body {
+  overflow: hidden;
+}
+
+html.boot-loading #main-content,
+html.boot-loading header,
+html.boot-loading footer {
+  visibility: hidden;
+}

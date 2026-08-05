@@ -1,3 +1,5 @@
+import { LoadingScreen } from "@/components/site/loading-screen";
+
 export default function SiteLoading() {
-  return null;
+  return <LoadingScreen label="Loading page" />;
 }
