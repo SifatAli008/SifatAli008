@@ -97,7 +97,7 @@ export async function generateDailyArticleWithGemini(input: {
   const errors: string[] = [];
 
   if (input.apiKey) {
-    for (const model of [...new Set(GEMINI_MODELS)]) {
+    for (const model of Array.from(new Set(GEMINI_MODELS))) {
       for (let attempt = 0; attempt < 2; attempt++) {
         try {
           const text = await callGemini(input.apiKey, model, system, user);
@@ -117,7 +117,7 @@ export async function generateDailyArticleWithGemini(input: {
 
   const openRouterKey = process.env.OPENROUTER_API_KEY?.trim();
   if (openRouterKey) {
-    for (const model of [...new Set(OPENROUTER_MODELS)]) {
+    for (const model of Array.from(new Set(OPENROUTER_MODELS))) {
       try {
         const text = await callOpenRouter(openRouterKey, model, system, user);
         return validateArticle(extractJson(text));
