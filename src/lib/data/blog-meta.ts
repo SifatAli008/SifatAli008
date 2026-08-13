@@ -6,6 +6,19 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-6",
+    slug: "ai-agent-advancements-august-13-2026",
+    title: "AI Agents Evolve: Navigating the Next Wave of Autonomous Systems",
+    excerpt: "This week, we delve into the accelerating capabilities of AI agents, examining their impact on development, cloud infrastructure, and the evolving landscape of ",
+    content: "",
+    tags: ["AI", "AI Agents", "Autonomous Systems", "Cloud Computing", "Developer Tools", "Future of Work"],
+    status: "published",
+    readingTime: 8,
+    publishedAt: "2026-08-13T14:30:00.000Z",
+    createdAt: "2026-08-13T14:30:00.000Z",
+    updatedAt: "2026-08-13T14:30:00.000Z",
+  },
+  {
     id: "blog-meta-1",
     slug: "eu-ai-act-august-2-2026-agentic-ai-enterprise-governance",
     title:

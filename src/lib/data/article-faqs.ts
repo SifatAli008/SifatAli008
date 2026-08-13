@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agent-advancements-august-13-2026": [
+    {
+      question: "What is the primary difference between current AI agents and earlier AI systems?",
+      answer: "Current AI agents, especially those leveraging LLMs and advanced planning, can autonomously perceive, reason, and act to achieve complex, multi-step goals. Earlier AI systems were typically limited to narrow, pre-defined tasks with less adaptability and independent decision-making capability.",
+    },
+    {
+      question: "How are AI agents impacting the role of software developers?",
+      answer: "AI agents are increasingly assisting developers by automating code generation, debugging, testing, and even project management. This allows developers to focus on higher-level design and innovation, potentially accelerating development cycles significantly.",
+    },
+    {
+      question: "What kind of cloud infrastructure is most crucial for deploying AI agents?",
+      answer: "Deploying advanced AI agents often requires scalable compute resources, particularly GPUs and specialized AI accelerators for training and inference. Efficient, low-latency storage and integration with edge computing solutions are also becoming increasingly important, depending on the agent's application.",
+    },
+    {
+      question: "What are the biggest safety concerns with AI agents?",
+      answer: "The primary safety concerns revolve around ensuring agents operate reliably, predictably, and ethically. This includes preventing unintended harmful actions, ensuring robustness against adversarial attacks, and building trust through explainable decision-making processes.",
+    },
+    {
+      question: "Are AI agents currently cost-prohibitive for small businesses?",
+      answer: "While the computational resources for advanced AI agents can be substantial, the cost is decreasing due to hardware advancements and more efficient software. Emerging tools and platforms are also aiming to make AI agent technology more accessible, though significant operational costs can still be a factor for complex, large-scale deployments.",
+    },
+    {
+      question: "What is the 'ReAct' framework in AI agents?",
+      answer: "ReAct stands for Reasoning and Acting. It's an architectural framework that allows AI agents to interleave thought processes (reasoning) with the execution of actions using external tools. This synergy helps agents tackle more complex problems by combining LLM-based reasoning with practical task execution.",
+    },
+  ],
   "eu-ai-act-august-2-2026-agentic-ai-enterprise-governance": [
     {
       question: "Does the EU AI Act fully apply on 2 August 2026?",
