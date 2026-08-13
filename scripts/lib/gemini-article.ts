@@ -172,7 +172,9 @@ Rules:
 - No em dashes. Use commas or periods instead.
 - Include Executive Summary, tables, Key Takeaways, References with markdown links.
 - Include one ~~~chart fence with JSON (type bar|donut|timeline|hbar) — NOT triple backticks.
-- Include inline citations like [[1]](#ref-1-name) in content.
+- Chart JSON must use an "items" array: [{ "label": "...", "value": 123, "display": "123%" }]. Do NOT use Chart.js "datasets" or "labels".
+- References section: use markdown headings like "### Ref 1. Source Title" with optional links. Do NOT use raw HTML <a name="..."> tags.
+- Inline citations must link to heading slugs, e.g. [[1]](#ref-1-source-title).
 - exportName must be valid JavaScript identifier ending with Article.
 - fileBase should be short kebab-case, include date hint when possible.
 - faqs: 5-6 practical questions.
