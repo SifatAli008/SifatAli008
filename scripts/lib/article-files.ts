@@ -144,17 +144,25 @@ export async function updateArticlesIndex(article: GeneratedArticle): Promise<vo
 
   const importLine = `import { ${article.exportName} } from "./${article.fileBase}";`;
   if (!src.includes(importLine)) {
-    src = src.replace(
-      /(import type { BlogPost } from "@\/types";\n)/,
-      `$1${importLine}\n`
+    const next = src.replace(
+      /import type \{ BlogPost \} from "@\/types";\r?\n/,
+      (m) => `${m}${importLine}\n`
     );
+    if (next === src) {
+      throw new Error("updateArticlesIndex: could not insert import line");
+    }
+    src = next;
   }
 
   if (!src.includes(`${article.exportName},`)) {
-    src = src.replace(
-      /export const publishedArticles: Omit<BlogPost, "id">\[\] = \[\n/,
-      `export const publishedArticles: Omit<BlogPost, "id">[] = [\n  ${article.exportName},\n`
+    const next = src.replace(
+      /export const publishedArticles: Omit<BlogPost, "id">\[\] = \[\r?\n/,
+      (m) => `${m}  ${article.exportName},\n`
     );
+    if (next === src) {
+      throw new Error("updateArticlesIndex: could not insert export entry");
+    }
+    src = next;
   }
 
   await fs.writeFile(indexPath, src, "utf8");
@@ -177,12 +185,15 @@ export async function updateArticleFaqs(article: GeneratedArticle): Promise<void
 
   const entry = `  "${article.slug}": [\n${faqBlock},\n  ],\n`;
 
-  src = src.replace(
-    /export const articleFaqsBySlug: Record<\n  string,\n  { question: string; answer: string }\[\]\n> = \{\n/,
-    `export const articleFaqsBySlug: Record<\n  string,\n  { question: string; answer: string }[]\n> = {\n${entry}`
+  const next = src.replace(
+    /export const articleFaqsBySlug: Record<\r?\n  string,\r?\n  \{ question: string; answer: string \}\[\]\r?\n> = \{\r?\n/,
+    (m) => `${m}${entry}`
   );
+  if (next === src) {
+    throw new Error("updateArticleFaqs: could not insert FAQ entry");
+  }
 
-  await fs.writeFile(faqsPath, src, "utf8");
+  await fs.writeFile(faqsPath, next, "utf8");
 }
 
 export async function updateBlogMeta(
@@ -217,12 +228,15 @@ export async function updateBlogMeta(
   },
 `;
 
-  src = src.replace(
-    /export const blogFallbackMeta: BlogPost\[\] = \[\n/,
-    `export const blogFallbackMeta: BlogPost[] = [\n${entry}`
+  const next = src.replace(
+    /export const blogFallbackMeta: BlogPost\[\] = \[\r?\n/,
+    (m) => `${m}${entry}`
   );
+  if (next === src) {
+    throw new Error("updateBlogMeta: could not insert meta entry");
+  }
 
-  await fs.writeFile(metaPath, src, "utf8");
+  await fs.writeFile(metaPath, next, "utf8");
 }
 
 export async function updateBlogFallbackLoader(
@@ -236,12 +250,15 @@ export async function updateBlogFallbackLoader(
   const loader = `  "${article.slug}": async () =>
     (await import("./articles/${article.fileBase}")).${article.exportName},`;
 
-  src = src.replace(
-    /const ARTICLE_LOADERS: Record<string, \(\) => Promise<ArticleModule>> = \{\n/,
-    `const ARTICLE_LOADERS: Record<string, () => Promise<ArticleModule>> = {\n${loader}\n`
+  const next = src.replace(
+    /const ARTICLE_LOADERS: Record<string, \(\) => Promise<ArticleModule>> = \{\r?\n/,
+    (m) => `${m}${loader}\n`
   );
+  if (next === src) {
+    throw new Error("updateBlogFallbackLoader: could not insert loader");
+  }
 
-  await fs.writeFile(fallbackPath, src, "utf8");
+  await fs.writeFile(fallbackPath, next, "utf8");
 }
 
 export async function applyArticleToRepo(

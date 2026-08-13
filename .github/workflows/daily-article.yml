@@ -32,6 +32,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -111,4 +114,21 @@ jobs:
             exit 0
           fi
           git commit -m "chore: publish ${{ steps.slot.outputs.value }} tech article (${{ steps.generate.outputs.article_slug }})"
-          git push
+
+          # Remote may have moved (manual pushes / parallel jobs). Rebase then push with retries.
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Pushed successfully."
+                exit 0
+              fi
+            else
+              echo "Rebase conflict on attempt $i — aborting rebase."
+              git rebase --abort || true
+            fi
+            echo "Push/rebase attempt $i failed; retrying in $((i * 3))s..."
+            sleep $((i * 3))
+          done
+          echo "::error::Failed to push after retries. Remote main moved repeatedly."
+          exit 1

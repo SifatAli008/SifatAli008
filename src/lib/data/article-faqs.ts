@@ -3,6 +3,33 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "nlp-agent-synergy-august-13-2026": [
+    {
+      question: "How does RAG help NLP agents stay accurate?",
+      answer:
+        "Retrieval-Augmented Generation pulls relevant documents into the prompt before generation, so agents ground answers in retrieved context instead of relying only on model memory. That reduces hallucinations and supports private or frequently updated knowledge bases.",
+    },
+    {
+      question: "Why use domain-specific NLP models like ClinicalBERT?",
+      answer:
+        "General LLMs often miss specialized vocabulary and norms. Domain models and fine-tunes improve precision for healthcare, finance, and legal text where terminology and risk tolerance differ from open-web language.",
+    },
+    {
+      question: "What cloud pieces matter most for production NLP agents?",
+      answer:
+        "Plan for scalable inference (often GPU), a managed or self-hosted vector store for RAG, container orchestration for agent services, and observability for latency, cost, and task success rates.",
+    },
+    {
+      question: "How should teams allocate effort when shipping an NLP agent?",
+      answer:
+        "Expect most work in model/data quality and RAG preparation, then orchestration logic, with smaller but essential shares for deployment and continuous evaluation. Skipping evaluation usually creates silent production failures.",
+    },
+    {
+      question: "What is a practical first use case for founders?",
+      answer:
+        "Pick one high-value workflow with clear success criteria, such as support ticket summarization or internal doc Q&A. Ship a RAG-backed agent with human review before expanding autonomy.",
+    },
+  ],
   "ai-agent-advancements-august-13-2026": [
     {
       question: "What is the primary difference between current AI agents and earlier AI systems?",
