@@ -92,6 +92,8 @@ export async function generateDailyArticleWithGemini(input: {
   dayLabel: string;
   publishedAt: string;
   existingSlugs: string[];
+  slot?: "afternoon" | "evening";
+  topicFocus?: string;
 }): Promise<GeneratedArticle> {
   const { system, user } = buildPrompts(input);
   const errors: string[] = [];
@@ -138,7 +140,14 @@ function buildPrompts(input: {
   dayLabel: string;
   publishedAt: string;
   existingSlugs: string[];
+  slot?: "afternoon" | "evening";
+  topicFocus?: string;
 }) {
+  const slotLabel = input.slot ?? "daily";
+  const topicFocus =
+    input.topicFocus ??
+    "Focus on AI, NLP, agents, cloud, developer tools, or shipping lessons relevant this week.";
+
   const system = `You are a senior technology journalist writing for sifatali.site.
 Return ONLY valid JSON (no markdown wrapper) matching this schema:
 {
@@ -149,7 +158,7 @@ Return ONLY valid JSON (no markdown wrapper) matching this schema:
   "excerpt": "string",
   "seoTitle": "string",
   "seoDescription": "string",
-  "tags": ["AI", "..."],
+  "tags": ["AI", "NLP", "..."],
   "content": "markdown string",
   "faqs": [{ "question": "string", "answer": "string" }]
 }
@@ -157,6 +166,8 @@ Return ONLY valid JSON (no markdown wrapper) matching this schema:
 Rules:
 - Write 1500-2500 words in content (markdown).
 - Topic: timely, verifiable technology news for founders and engineers on ${input.dayLabel}.
+- Priority topic areas: NLP, AI/RAG, agents, cloud, developer tools, healthcare AI, shipping lessons.
+- ${topicFocus}
 - Do NOT reuse these slugs: ${input.existingSlugs.join(", ") || "none"}.
 - No em dashes. Use commas or periods instead.
 - Include Executive Summary, tables, Key Takeaways, References with markdown links.
@@ -165,11 +176,13 @@ Rules:
 - exportName must be valid JavaScript identifier ending with Article.
 - fileBase should be short kebab-case, include date hint when possible.
 - faqs: 5-6 practical questions.
-- Be factual; if uncertain, say so. Do not invent company announcements.`;
+- Be factual; if uncertain, say so. Do not invent company announcements.
+- When the piece covers language models, text pipelines, or clinical text, include "NLP" in tags.`;
 
-  const user = `Generate today's daily tech article for ${input.dayLabel}.
+  const user = `Generate today's ${slotLabel} tech article for ${input.dayLabel}.
 Publish timestamp ISO: ${input.publishedAt}.
-Focus on AI, agents, cloud, developer tools, or shipping lessons relevant this week.`;
+${topicFocus}
+Cover AI, NLP, agents, cloud, developer tools, or shipping lessons relevant this week.`;
 
   return { system, user };
 }

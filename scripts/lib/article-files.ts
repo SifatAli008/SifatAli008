@@ -34,13 +34,55 @@ export async function listArticleSlugs(): Promise<string[]> {
   return slugs;
 }
 
-export async function hasArticleForDhakaDay(dayKey: string): Promise<boolean> {
+export type ArticleSlot = "afternoon" | "evening";
+
+const SLOT_UTC_HOUR: Record<ArticleSlot, string> = {
+  afternoon: "09", // 3:00 PM Asia/Dhaka
+  evening: "14", // 8:00 PM Asia/Dhaka
+};
+
+/** Count daily briefs already written for this Dhaka calendar day. */
+export async function countArticlesForDhakaDay(
+  dayLabel: string,
+  dayKey: string
+): Promise<number> {
+  const files = await fs.readdir(ARTICLES_DIR);
+  let count = 0;
+  for (const file of files) {
+    if (!file.endsWith(".ts") || file === "index.ts") continue;
+    const src = await fs.readFile(path.join(ARTICLES_DIR, file), "utf8");
+    if (
+      src.includes(`Daily technology brief, ${dayLabel}`) ||
+      src.includes(`publishedAt = "${dayKey}T`)
+    ) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
+export async function hasArticleForDhakaDay(dayLabelOrKey: string): Promise<boolean> {
   const files = await fs.readdir(ARTICLES_DIR);
   for (const file of files) {
     if (!file.endsWith(".ts") || file === "index.ts") continue;
     const src = await fs.readFile(path.join(ARTICLES_DIR, file), "utf8");
-    if (src.includes(`Daily technology brief, ${dayKey}`)) return true;
-    if (src.includes(`publishedAt = "${dayKey}`)) return true;
+    if (src.includes(`Daily technology brief, ${dayLabelOrKey}`)) return true;
+    if (src.includes(`publishedAt = "${dayLabelOrKey}`)) return true;
+  }
+  return false;
+}
+
+export async function hasArticleForSlot(
+  dayKey: string,
+  slot: ArticleSlot
+): Promise<boolean> {
+  const stamp = `${dayKey}T${SLOT_UTC_HOUR[slot]}:00:00.000Z`;
+  const files = await fs.readdir(ARTICLES_DIR);
+  for (const file of files) {
+    if (!file.endsWith(".ts") || file === "index.ts") continue;
+    const src = await fs.readFile(path.join(ARTICLES_DIR, file), "utf8");
+    if (src.includes(`publishedAt = "${stamp}"`)) return true;
+    if (src.includes(`slot: ${slot}`) && src.includes(dayKey)) return true;
   }
   return false;
 }
@@ -48,18 +90,21 @@ export async function hasArticleForDhakaDay(dayKey: string): Promise<boolean> {
 export function buildArticleSource(
   article: GeneratedArticle,
   publishedAt: string,
-  dayLabel: string
+  dayLabel: string,
+  slot?: ArticleSlot
 ): string {
   const tags = article.tags.map((t) => `"${t.replace(/"/g, '\\"')}"`).join(", ");
   const content = escapeTemplateLiteral(article.content.trim());
   const readingTime = Math.max(1, Math.ceil(content.split(/\s+/).length / 200));
+  const slotNote = slot ? ` (${slot} slot)` : "";
 
   return `import type { BlogPost } from "@/types";
 
 const publishedAt = "${publishedAt}";
 
 /**
- * Daily technology brief, ${dayLabel}
+ * Daily technology brief, ${dayLabel}${slotNote}
+ * slot: ${slot ?? "unspecified"}
  */
 export const ${article.exportName}: Omit<BlogPost, "id"> = {
   slug: "${article.slug}",
@@ -81,12 +126,13 @@ export const ${article.exportName}: Omit<BlogPost, "id"> = {
 export async function writeArticleFile(
   article: GeneratedArticle,
   publishedAt: string,
-  dayLabel: string
+  dayLabel: string,
+  slot?: ArticleSlot
 ): Promise<string> {
   const filePath = path.join(ARTICLES_DIR, `${article.fileBase}.ts`);
   await fs.writeFile(
     filePath,
-    buildArticleSource(article, publishedAt, dayLabel),
+    buildArticleSource(article, publishedAt, dayLabel, slot),
     "utf8"
   );
   return filePath;
@@ -201,9 +247,10 @@ export async function updateBlogFallbackLoader(
 export async function applyArticleToRepo(
   article: GeneratedArticle,
   publishedAt: string,
-  dayLabel: string
+  dayLabel: string,
+  slot?: ArticleSlot
 ): Promise<void> {
-  await writeArticleFile(article, publishedAt, dayLabel);
+  await writeArticleFile(article, publishedAt, dayLabel, slot);
   await updateArticlesIndex(article);
   await updateArticleFaqs(article);
   await updateBlogMeta(article, publishedAt);

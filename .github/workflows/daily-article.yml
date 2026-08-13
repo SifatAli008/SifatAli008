@@ -1,11 +1,23 @@
-# Daily auto blog at 8:30 PM Asia/Dhaka (14:30 UTC).
-# Generates article with Gemini, commits to main, optional Firestore sync.
+# Daily auto blog — 2 posts/day Asia/Dhaka
+# 3:00 PM Dhaka = 09:00 UTC | 8:00 PM Dhaka = 14:00 UTC
+# Afternoon slot prefers NLP; evening covers AI/NLP/cloud/dev tools.
 name: Daily auto blog post
 
 on:
   schedule:
-    - cron: "30 14 * * *"
+    - cron: "0 9 * * *"   # 3:00 PM Asia/Dhaka
+    - cron: "0 14 * * *"  # 8:00 PM Asia/Dhaka
   workflow_dispatch:
+    inputs:
+      slot:
+        description: "Publish slot (afternoon = 3 PM, evening = 8 PM Dhaka)"
+        required: false
+        default: "auto"
+        type: choice
+        options:
+          - auto
+          - afternoon
+          - evening
 
 permissions:
   contents: write
@@ -30,14 +42,51 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate AI secrets
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          if [ -n "$GEMINI_API_KEY" ] || [ -n "$OPENROUTER_API_KEY" ]; then
+            echo "AI key present — proceeding."
+            exit 0
+          fi
+          echo "::error::Missing GitHub Actions secrets for daily article generation."
+          echo ""
+          echo "Add at least one secret:"
+          echo "  Repo → Settings → Secrets and variables → Actions → New repository secret"
+          echo ""
+          echo "  GEMINI_API_KEY       — https://aistudio.google.com/apikey"
+          echo "  OPENROUTER_API_KEY   — https://openrouter.ai/keys (free fallback)"
+          echo ""
+          echo "Then re-run: Actions → Daily auto blog post → Run workflow"
+          exit 1
+
+      - name: Resolve publish slot
+        id: slot
+        run: |
+          INPUT="${{ github.event.inputs.slot }}"
+          if [ "$INPUT" = "afternoon" ] || [ "$INPUT" = "evening" ]; then
+            echo "value=$INPUT" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Cron: 09:00 UTC → afternoon, 14:00 UTC → evening
+          HOUR_UTC=$(date -u +%H)
+          if [ "$HOUR_UTC" -lt 12 ]; then
+            echo "value=afternoon" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=evening" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Generate daily article
         id: generate
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GEMINI_MODEL: gemini-2.5-flash-lite
-          OPENROUTER_MODEL: openrouter/free
-        run: npm run daily:article
+          OPENROUTER_MODEL: google/gemini-2.0-flash-exp:free
+          ARTICLE_SLOT: ${{ steps.slot.outputs.value }}
+        run: npm run daily:article -- --slot=${{ steps.slot.outputs.value }}
 
       - name: Publish to Firestore
         if: steps.generate.outcome == 'success' && steps.generate.outputs.article_slug != ''
@@ -58,8 +107,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/lib/data/articles src/lib/data/article-faqs.ts src/lib/data/blog-meta.ts src/lib/data/blog-fallback.ts
           if git diff --staged --quiet; then
-            echo "No file changes to commit (article may already exist for today)."
+            echo "No file changes to commit (article may already exist for this slot)."
             exit 0
           fi
-          git commit -m "chore: publish daily tech article (${{ steps.generate.outputs.article_slug }})"
+          git commit -m "chore: publish ${{ steps.slot.outputs.value }} tech article (${{ steps.generate.outputs.article_slug }})"
           git push
