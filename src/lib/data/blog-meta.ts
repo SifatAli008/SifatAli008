@@ -3,6 +3,7 @@ import type { BlogPost } from "@/types";
 /**
  * Lightweight blog metadata for admin/client bundles.
  * Avoid importing full article markdown bodies on the client.
+ * Keep seoTitle/seoDescription in sync with article source files.
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
@@ -10,7 +11,11 @@ export const blogFallbackMeta: BlogPost[] = [
     slug: "nlp-agent-synergy-august-13-2026",
     title: "The NLP-Agent Synergy: Powering Next-Gen Applications on August 13, 2026",
     excerpt:
-      "This article explores the burgeoning integration of Natural Language Processing (NLP) with AI agents, detailing how this synergy is reshaping developer tools, cloud",
+      "How NLP and AI agents combine for RAG pipelines, embeddings, transformers, and production systems that founders and engineers can ship today.",
+    seoTitle:
+      "NLP and AI Agents: The Synergy Driving Future Applications | Sifat Ali",
+    seoDescription:
+      "Learn how NLP and AI agents work together for RAG, transformers, embeddings, and production pipelines. A practical guide for founders and engineers.",
     content: "",
     tags: ["AI", "NLP", "Agents", "RAG", "Transformers", "Embeddings", "Cloud", "Developer Tools", "Production Pipelines", "LLMs"],
     status: "published",
@@ -23,7 +28,12 @@ export const blogFallbackMeta: BlogPost[] = [
     id: "blog-meta-6",
     slug: "ai-agent-advancements-august-13-2026",
     title: "AI Agents Evolve: Navigating the Next Wave of Autonomous Systems",
-    excerpt: "This week, we delve into the accelerating capabilities of AI agents, examining their impact on development, cloud infrastructure, and the evolving landscape of ",
+    excerpt:
+      "How autonomous AI agents are reshaping development, cloud infrastructure, and business workflows for founders and engineers.",
+    seoTitle:
+      "AI Agents August 2026: Autonomous Systems Guide for Engineers | Sifat Ali",
+    seoDescription:
+      "Explore AI agent advances in reasoning, tool use, cloud infrastructure, and enterprise automation. Insights for founders and engineers shipping agentic systems.",
     content: "",
     tags: ["AI", "AI Agents", "Autonomous Systems", "Cloud Computing", "Developer Tools", "Future of Work"],
     status: "published",
@@ -38,9 +48,13 @@ export const blogFallbackMeta: BlogPost[] = [
     title:
       "EU AI Act Goes Live August 2, 2026: What Actually Changes for Agentic AI",
     excerpt:
-      "August 2, 2026 is the EU AI Act's general application date, but high-risk deadlines moved.",
+      "August 2, 2026 is the EU AI Act's general application date, but high-risk deadlines moved. Here is what enterprises, founders, and engineers must know.",
+    seoTitle:
+      "EU AI Act August 2, 2026: Agentic AI Governance Guide | Sifat Ali",
+    seoDescription:
+      "Verified briefing on the EU AI Act's 2 August 2026 application date, Digital Omnibus deadline shifts, and enterprise agentic AI governance for builders.",
     content: "",
-    tags: ["AI", "Agentic AI", "EU AI Act"],
+    tags: ["AI", "Agentic AI", "EU AI Act", "Enterprise AI", "AI Governance", "LLMs"],
     status: "published",
     readingTime: 16,
     publishedAt: "2026-08-02T08:00:00.000Z",
@@ -53,8 +67,12 @@ export const blogFallbackMeta: BlogPost[] = [
     title: "Building AI Healthcare Systems with ClinicalBERT",
     excerpt:
       "A production playbook for ClinicalBERT: ingestion, explainability, FHIR exports, and validation that survives audit.",
+    seoTitle:
+      "ClinicalBERT Healthcare AI: Production Architecture Guide | Sifat Ali",
+    seoDescription:
+      "Practical ClinicalBERT healthcare AI guide: ingestion, chunking, explainability, validation slices, FHIR exports, human-in-the-loop, and production guardrails.",
     content: "",
-    tags: ["AI", "Healthcare", "ClinicalBERT"],
+    tags: ["AI", "Healthcare", "ClinicalBERT", "NLP", "MLOps"],
     status: "published",
     readingTime: 14,
     publishedAt: "2026-07-18T10:00:00.000Z",
@@ -67,8 +85,12 @@ export const blogFallbackMeta: BlogPost[] = [
     title: "Real-Time Firebase Lessons from Production",
     excerpt:
       "Hard-won Firebase patterns: optimistic UI, security rules, viewport geo listeners, and read budgets that survive growth.",
+    seoTitle:
+      "Firebase Realtime Lessons from Production: Sync, Rules, Scale | Sifat Ali",
+    seoDescription:
+      "Production Firebase lessons: optimistic UI, security rules, listener design, geohash queries, conflict resolution, App Check, and cost control for live apps.",
     content: "",
-    tags: ["Firebase", "Backend"],
+    tags: ["Firebase", "Backend", "Realtime", "Firestore", "Mobile"],
     status: "published",
     readingTime: 13,
     publishedAt: "2026-07-22T11:00:00.000Z",
@@ -81,8 +103,12 @@ export const blogFallbackMeta: BlogPost[] = [
     title: "Designing PyQt5 Dashboards That Feel Modern",
     excerpt:
       "SaaS-grade desktop UX with PyQt5: tokens, QThread workers, virtualized tables, and chart redraw budgets.",
+    seoTitle:
+      "Modern PyQt5 Dashboards: UX and Performance Guide | Sifat Ali",
+    seoDescription:
+      "Build modern PyQt5 dashboards with design tokens, QThread workers, model/view tables, charts, responsive layouts, and desktop UX patterns that feel like premium SaaS.",
     content: "",
-    tags: ["PyQt5", "Desktop", "UX"],
+    tags: ["PyQt5", "Desktop", "UX", "Python", "Qt"],
     status: "published",
     readingTime: 13,
     publishedAt: "2026-07-26T12:00:00.000Z",
@@ -95,6 +121,10 @@ export const blogFallbackMeta: BlogPost[] = [
     title: "My Journey as an AI & Full Stack Developer",
     excerpt:
       "From Shohoz Skill bootcamps to Fluvo Soft COO - building systems and winning hackathons.",
+    seoTitle:
+      "My Journey as an AI and Full-Stack Developer | Sifat Ali",
+    seoDescription:
+      "Career notes from bootcamps to COO: building AI systems, teaching developers, and winning national hackathons while shipping production software.",
     content: "",
     tags: ["Career", "AI", "Community"],
     status: "draft",

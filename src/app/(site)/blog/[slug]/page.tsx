@@ -9,6 +9,7 @@ import {
   faqPageJsonLd,
 } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
+import { ArticleFaqSection } from "@/components/blog/article-faq-section";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { ArticleToc } from "@/components/blog/article-toc";
 import { ReadingProgress } from "@/components/blog/reading-progress";
@@ -114,6 +115,8 @@ export default async function BlogPostPage({
               </details>
 
               <MarkdownContent content={post.content} />
+
+              {faqs?.length ? <ArticleFaqSection faqs={faqs} /> : null}
 
               {related.length > 0 && (
                 <aside className="mt-20 border-t-2 border-ink pt-12">

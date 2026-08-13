@@ -8,12 +8,12 @@ import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
-    title: "Writing - Engineering Essays",
+    title: "Writing - AI, NLP & Engineering Essays",
     description:
-      "Engineering essays on AI, RAG, Firebase, PyQt5, and full-stack development by Sifat Ali.",
+      "Long-form engineering essays on AI agents, NLP, RAG, ClinicalBERT, Firebase, PyQt5, and full-stack development by Sifat Ali.",
     path: "/blog",
   }),
-  title: { absolute: "Writing by Sifat Ali | AI & Engineering Essays" },
+  title: { absolute: "Writing by Sifat Ali | AI, NLP & Engineering Essays" },
 };
 
 export const revalidate = 3600;

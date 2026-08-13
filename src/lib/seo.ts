@@ -303,6 +303,8 @@ export function blogPostingJsonLd(post: {
   title: string;
   excerpt: string;
   slug: string;
+  seoTitle?: string;
+  seoDescription?: string;
   publishedAt?: string;
   updatedAt?: string;
   coverImage?: string;
@@ -314,8 +316,8 @@ export function blogPostingJsonLd(post: {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${url}#article`,
-    headline: post.title,
-    description: post.excerpt,
+    headline: post.seoTitle ?? post.title,
+    description: post.seoDescription ?? post.excerpt,
     url,
     mainEntityOfPage: url,
     datePublished: post.publishedAt ?? post.updatedAt,

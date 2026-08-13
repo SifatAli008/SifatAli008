@@ -218,6 +218,8 @@ export async function updateBlogMeta(
     slug: "${article.slug}",
     title: ${JSON.stringify(article.title)},
     excerpt: ${JSON.stringify(article.excerpt.slice(0, 160))},
+    seoTitle: ${JSON.stringify(article.seoTitle)},
+    seoDescription: ${JSON.stringify(article.seoDescription.slice(0, 160))},
     content: "",
     tags: [${tags}],
     status: "published",
