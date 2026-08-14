@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "production-nlp-pipelines-august-14-2026": [
+    {
+      question: "What is the primary driver behind the evolution of production NLP pipelines?",
+      answer: "The increasing sophistication and widespread adoption of AI agents are the primary drivers. These agents demand real-time, highly accurate, cost-effective, and explainable NLP capabilities, pushing pipelines towards more modular, scalable, and resilient architectures.",
+    },
+    {
+      question: "How do microservices benefit production NLP pipelines?",
+      answer: "Microservices break down complex NLP tasks into smaller, independent services. This allows for individual scaling, easier maintenance, independent deployment, and improved fault tolerance, making the entire pipeline more robust and flexible.",
+    },
+    {
+      question: "What role do vector databases play in modern NLP production?",
+      answer: "Vector databases are crucial for efficiently storing and retrieving high-dimensional embeddings. They are fundamental to Retrieval-Augmented Generation (RAG) systems, semantic search, and other applications where finding semantically similar information quickly is vital for grounding LLM responses.",
+    },
+    {
+      question: "What are some key strategies for optimizing NLP inference costs?",
+      answer: "Key strategies include model quantization and pruning (reducing model size), knowledge distillation (training smaller models), dynamic batching (processing multiple requests simultaneously), and strategic cloud resource allocation (e.g., using serverless or reserved instances).",
+    },
+    {
+      question: "Why is explainability important for production NLP, especially with AI agents?",
+      answer: "As AI agents take on more critical roles, understanding *why* an NLP model made a particular decision is essential for building trust, debugging errors, ensuring regulatory compliance, and identifying potential biases. Tools like LIME and SHAP provide these crucial insights.",
+    },
+    {
+      question: "How can data drift impact an NLP pipeline and how is it managed?",
+      answer: "Data drift, or changes in the distribution of input data over time, can significantly degrade an NLP model's performance. It's managed through continuous monitoring of data statistics, automated data validation, and triggering model retraining when significant drift is detected to ensure the model remains relevant and accurate.",
+    },
+  ],
   "nlp-agent-synergy-august-13-2026": [
     {
       question: "How does RAG help NLP agents stay accurate?",

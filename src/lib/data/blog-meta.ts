@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-8",
+    slug: "production-nlp-pipelines-august-14-2026",
+    title: "Scaling NLP: The Evolution of Production Pipelines in the Age of Agents",
+    excerpt: "As AI agents become more sophisticated, the demands on production NLP pipelines are escalating. This article explores the critical advancements in architecture,",
+    seoTitle: "Production NLP Pipelines: Scaling for AI Agents - sifatali.site",
+    seoDescription: "Explore the latest in production NLP pipelines, addressing challenges of real-time inference, cost, and explainability for AI agents. Deep dive into architectur",
+    content: "",
+    tags: ["NLP", "AI", "Agents", "Cloud", "Developer Tools", "Production ML", "Transformers", "Embeddings", "RAG"],
+    status: "published",
+    readingTime: 11,
+    publishedAt: "2026-08-14T09:00:00.000Z",
+    createdAt: "2026-08-14T09:00:00.000Z",
+    updatedAt: "2026-08-14T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-7",
     slug: "nlp-agent-synergy-august-13-2026",
     title: "The NLP-Agent Synergy: Powering Next-Gen Applications on August 13, 2026",
