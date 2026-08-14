@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-august-14-2026": [
+    {
+      question: "What are the primary cloud cost concerns when deploying AI agents?",
+      answer: "The primary cloud cost concerns revolve around the significant expense of LLM inference. This includes the cost per token, API calls, and GPU time, which can escalate rapidly with scale. Other factors include data storage, networking, and the compute required for agent state management and coordination.",
+    },
+    {
+      question: "How can I improve the reliability and predictability of my AI agents?",
+      answer: "Improving reliability involves implementing robust error handling and fallback mechanisms, ensuring consistent state management and persistence, developing strong guardrails and safety constraints, and conducting thorough testing and simulation. Understanding the probabilistic nature of LLMs and building systems that account for potential deviations is key.",
+    },
+    {
+      question: "Which developer tools are most helpful for orchestrating AI agents?",
+      answer: "Emerging frameworks like LangChain and LlamaIndex are crucial for chaining LLM calls, managing memory, and integrating tools. Enhanced observability and debugging tools are also vital for understanding agent behavior. Cloud provider services offering managed LLM endpoints and AI orchestration are also becoming increasingly important.",
+    },
+    {
+      question: "What are the key metrics for measuring the success of an AI agent?",
+      answer: "Key metrics include task completion rate (without human intervention), user satisfaction scores, quantifiable efficiency gains or cost savings achieved, and reduction in errors. Traditional metrics like uptime and latency are also important but don't capture the full effectiveness of an agent.",
+    },
+    {
+      question: "Should AI agents always operate autonomously, or is a human in the loop necessary?",
+      answer: "While full autonomy is the goal for many applications, a 'human in the loop' strategy remains beneficial. This can involve human supervision for critical decisions, agents assisting humans, or humans providing feedback for agent training. This approach enhances reliability, builds trust, and provides valuable data for continuous improvement.",
+    },
+    {
+      question: "How does prompt engineering impact the cost and performance of AI agents?",
+      answer: "Effective prompt engineering is critical. Concise and well-structured prompts can significantly reduce the number of tokens processed, thereby lowering inference costs. They also improve the quality and relevance of the LLM's output, directly impacting the agent's performance and ability to complete tasks successfully.",
+    },
+  ],
   "production-nlp-pipelines-august-14-2026": [
     {
       question: "What is the primary driver behind the evolution of production NLP pipelines?",

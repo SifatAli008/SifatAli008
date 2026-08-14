@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-9",
+    slug: "cloud-agent-orchestration-scaling-lessons-august-14-2026",
+    title: "Orchestrating AI Agents in the Cloud: Scaling Lessons from the Frontlines",
+    excerpt: "As AI agents move from research labs to production, founders and engineers are grappling with the complexities of cloud deployment, scaling, and cost management",
+    seoTitle: "AI Agent Cloud Orchestration: Scaling Strategies for Founders & Engineers",
+    seoDescription: "Discover critical lessons learned for deploying and scaling AI agents in the cloud. Focus on cost optimization, reliability, and developer tooling for productio",
+    content: "",
+    tags: ["AI", "Cloud", "Developer Tools", "Agents", "LLMs", "Scalability", "DevOps"],
+    status: "published",
+    readingTime: 9,
+    publishedAt: "2026-08-14T14:00:00.000Z",
+    createdAt: "2026-08-14T14:00:00.000Z",
+    updatedAt: "2026-08-14T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-8",
     slug: "production-nlp-pipelines-august-14-2026",
     title: "Scaling NLP: The Evolution of Production Pipelines in the Age of Agents",
