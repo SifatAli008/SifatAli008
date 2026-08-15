@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "unlocking-nlp-performance-metrics-august-15-2026": [
+    {
+      question: "Why is overall accuracy often a poor metric for NLP tasks?",
+      answer: "Overall accuracy can be misleading, especially in imbalanced datasets. A model might achieve high accuracy by simply predicting the majority class for every instance, failing to correctly identify the minority class which is often the class of most interest (e.g., detecting rare diseases or fraudulent transactions).",
+    },
+    {
+      question: "When should I prioritize precision over recall, or vice versa?",
+      answer: "Prioritize precision when the cost of false positives is high (e.g., flagging a legitimate transaction as fraud, or marking a non-spam email as spam). Prioritize recall when the cost of false negatives is high (e.g., failing to detect a critical medical condition, or missing a fraudulent transaction).",
+    },
+    {
+      question: "How can I evaluate text generation models effectively?",
+      answer: "Evaluating text generation is challenging. Use a combination of automated metrics like ROUGE (for summarization), BLEU (for translation), and BERTScore (for semantic similarity). Crucially, incorporate human evaluation to assess fluency, coherence, and overall quality, as automated metrics have limitations.",
+    },
+    {
+      question: "What are the key considerations for evaluating NLP models in production?",
+      answer: "Beyond standard metrics, consider latency, throughput, computational costs (CPU/GPU usage, memory), robustness to out-of-distribution data, fairness and bias across different demographics, and model interpretability. These factors are critical for reliable and cost-effective deployment.",
+    },
+    {
+      question: "How does BERTScore differ from traditional metrics like BLEU and ROUGE?",
+      answer: "BERTScore leverages contextual embeddings from BERT to measure semantic similarity between generated text and reference text, capturing meaning more effectively than n-gram overlap metrics like BLEU and ROUGE. While BLEU and ROUGE focus on exact word or n-gram matches, BERTScore understands synonyms and paraphrases better.",
+    },
+    {
+      question: "What is 'out-of-distribution' (OOD) evaluation in NLP, and why is it important?",
+      answer: "OOD evaluation tests how well an NLP model performs on data that differs from its training distribution. This is crucial because real-world data often contains variations (new slang, different writing styles, typos) not present in training sets. Poor OOD performance can lead to unexpected failures in production.",
+    },
+  ],
   "cloud-agent-orchestration-scaling-lessons-august-14-2026": [
     {
       question: "What are the primary cloud cost concerns when deploying AI agents?",

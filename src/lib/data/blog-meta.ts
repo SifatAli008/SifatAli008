@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-10",
+    slug: "unlocking-nlp-performance-metrics-august-15-2026",
+    title: "Unlocking NLP Performance: Beyond Accuracy on August 15, 2026",
+    excerpt: "As AI-driven applications mature, founders and engineers must look beyond simple accuracy metrics to truly understand and optimize their NLP models. This articl",
+    seoTitle: "Advanced NLP Evaluation Metrics for Founders & Engineers - August 15, 2026",
+    seoDescription: "Discover essential NLP evaluation metrics beyond accuracy for AI applications. Learn about precision, recall, F1-score, BLEU, ROUGE, and more for production-rea",
+    content: "",
+    tags: ["NLP", "AI", "Machine Learning", "Developer Tools", "Evaluation", "Transformers", "Production NLP"],
+    status: "published",
+    readingTime: 13,
+    publishedAt: "2026-08-15T09:00:00.000Z",
+    createdAt: "2026-08-15T09:00:00.000Z",
+    updatedAt: "2026-08-15T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-9",
     slug: "cloud-agent-orchestration-scaling-lessons-august-14-2026",
     title: "Orchestrating AI Agents in the Cloud: Scaling Lessons from the Frontlines",
