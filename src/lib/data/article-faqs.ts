@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-seamless-cloud-integration-august-16-2026": [
+    {
+      question: "What are the primary benefits of a modular agent architecture for cloud deployment?",
+      answer: "Modular architectures allow for easier swapping of components (like NLP models or action modules), enabling developers to adapt to new technologies quickly, optimize for specific tasks, and simplify testing and debugging. This flexibility is crucial for maintaining agility in the fast-evolving AI landscape.",
+    },
+    {
+      question: "How can founders manage the potentially high costs of running AI agents in the cloud?",
+      answer: "Founders should prioritize cost monitoring from day one. This involves choosing cost-effective cloud services (like serverless functions for certain tasks), optimizing model inference, selecting appropriate instance types, and potentially using spot instances. Regular review and optimization of cloud spend are essential.",
+    },
+    {
+      question: "What is the role of orchestration in AI agent cloud integration?",
+      answer: "Orchestration is vital for managing the lifecycle and interactions of multiple AI agents or complex, multi-step tasks. It ensures agents work together effectively, data is passed correctly, and errors are handled gracefully, transforming individual agents into a cohesive intelligent system.",
+    },
+    {
+      question: "Why are vector databases becoming so important for AI agents in the cloud?",
+      answer: "Many AI agents rely on accessing and retrieving information from large knowledge bases to provide context for their decisions or responses. Vector databases are highly efficient for storing and querying this type of data (embeddings), making them a critical component for agents using Retrieval Augmented Generation (RAG).",
+    },
+    {
+      question: "How can developers ensure their AI agents are observable in a cloud environment?",
+      answer: "Observability involves implementing comprehensive logging, tracing, and monitoring for agent behavior. This allows developers to track agent decisions, identify performance bottlenecks, debug issues effectively, and understand resource consumption, which is crucial for maintaining reliable and efficient AI systems.",
+    },
+    {
+      question: "What is the relationship between NLP advancements and the need for better cloud integration for AI agents?",
+      answer: "As NLP models become more capable, AI agents can perform more complex tasks and interact more naturally. This increased capability leads to a greater demand for robust, scalable, and efficient cloud infrastructure to deploy and manage these more sophisticated agents effectively.",
+    },
+  ],
   "advances-in-clinical-nlp-and-rag-august-16-2026": [
     {
       question: "How can founders prioritize which clinical NLP tasks to tackle first?",
