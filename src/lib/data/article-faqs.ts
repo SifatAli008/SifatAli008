@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-rag-august-16-2026": [
+    {
+      question: "How can founders prioritize which clinical NLP tasks to tackle first?",
+      answer: "Founders should prioritize clinical NLP tasks that address the most significant pain points or offer the highest potential ROI. This often involves automating time-consuming documentation, improving diagnostic accuracy for specific conditions, or accelerating research processes. Engaging directly with clinicians to understand their daily challenges is the most effective way to identify these high-impact areas.",
+    },
+    {
+      question: "What are the biggest data privacy challenges when implementing RAG in healthcare?",
+      answer: "The primary challenges involve ensuring patient data remains anonymized and secure throughout the RAG pipeline. This includes secure data ingestion, robust access controls for the knowledge base, and careful handling of any patient-specific information used for personalization. Techniques like federated learning and differential privacy are crucial, alongside strict adherence to regulations like HIPAA.",
+    },
+    {
+      question: "How can a startup realistically build and deploy a production-grade NLP pipeline for clinical use?",
+      answer: "Startups can leverage managed cloud services (AWS, Azure, GCP) for infrastructure and MLOps. Utilizing open-source frameworks like Hugging Face Transformers for models and LangChain/LlamaIndex for RAG/agent development can accelerate the process. Focusing on a Minimum Viable Product (MVP) for a specific use case and iterating based on real-world feedback is essential. Building a strong engineering team with MLOps expertise is critical.",
+    },
+    {
+      question: "What is the role of human oversight in agentic healthcare workflows?",
+      answer: "Human oversight is critical, especially for high-stakes decisions. Agents should be designed with 'human-in-the-loop' mechanisms where clinicians can review, approve, or override agent actions before they are executed. This ensures patient safety, accountability, and builds trust in the AI system. The level of autonomy should be carefully calibrated based on the risk associated with the task.",
+    },
+    {
+      question: "How can the accuracy and reliability of clinical NLP models be continuously improved?",
+      answer: "Continuous improvement involves establishing feedback loops. This includes collecting clinician feedback on model predictions, monitoring for model drift in production, and periodically retraining models with new, high-quality data. Implementing robust evaluation metrics that go beyond simple accuracy, such as those that account for clinical significance and safety, is also vital.",
+    },
+    {
+      question: "What are the key differences between general NLP and clinical NLP?",
+      answer: "Clinical NLP deals with highly specialized, often ambiguous, and context-dependent medical terminology, including abbreviations, jargon, and negation. It requires models trained on vast amounts of medical literature and electronic health records (EHRs) to understand nuances like disease progression, medication interactions, and patient history. General NLP models lack this specialized domain knowledge.",
+    },
+  ],
   "unlocking-nlp-performance-metrics-august-15-2026": [
     {
       question: "Why is overall accuracy often a poor metric for NLP tasks?",
