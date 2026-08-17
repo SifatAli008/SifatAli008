@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "scaling-ai-agents-in-the-cloud-lessons-learned-august-17-2026": [
+    {
+      question: "What are the biggest cost drivers for AI agents in the cloud?",
+      answer: "The primary cost drivers are typically GPU compute time for LLM inference, API calls to LLM providers, data storage and egress, and the operational overhead of managing complex distributed systems. Inefficient prompting, redundant computations, and over-provisioning infrastructure also contribute significantly.",
+    },
+    {
+      question: "How can I effectively monitor the performance of my AI agents?",
+      answer: "Effective monitoring involves tracking standard application metrics (latency, throughput, error rates) alongside AI-specific metrics. This includes LLM call success/failure rates, prompt execution times, tool usage success, agent task completion rates, and potentially metrics related to output quality or hallucination rates. Comprehensive logging and tracing of agent decision-making processes are crucial.",
+    },
+    {
+      question: "What are the essential components of an AI agent orchestration system?",
+      answer: "Key components include a task scheduler, a state manager to track progress and context, a mechanism for inter-agent communication (if applicable), error handling and retry logic, integration points for external tools and APIs, and a robust observability layer. Frameworks like LangChain or dedicated workflow engines often provide these capabilities.",
+    },
+    {
+      question: "How do I choose between using managed cloud AI services and building my own infrastructure?",
+      answer: "Managed services (e.g., AWS SageMaker, Azure ML, Google Vertex AI) offer faster deployment, reduced operational burden, and often integrate well with other cloud services. Building your own infrastructure provides maximum control but requires significant expertise and ongoing maintenance. For most startups and many enterprises, leveraging managed services for core AI infrastructure is the more efficient path.",
+    },
+    {
+      question: "What are the key security considerations when deploying AI agents?",
+      answer: "Critical security considerations include securing access to models and data, preventing prompt injection attacks, ensuring data privacy and compliance, managing API keys and credentials securely, and implementing robust authentication and authorization for agent actions. Regular security audits and adherence to least-privilege principles are essential.",
+    },
+    {
+      question: "How can I ensure my AI agent scales reliably with user demand?",
+      answer: "Scalability relies on designing for elasticity. This involves using container orchestration platforms (like Kubernetes), leveraging auto-scaling features for compute resources, optimizing LLM inference (e.g., batching, quantization), implementing efficient caching strategies, and ensuring that all dependent services (databases, APIs) can also scale accordingly. Load testing and performance profiling are vital steps in this process.",
+    },
+  ],
   "advances-in-domain-specific-nlp-august-17-2026": [
     {
       question: "How does ClinicalBERT differ from a general-purpose NLP model for medical text?",
