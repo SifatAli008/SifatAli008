@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-13",
+    slug: "advances-in-domain-specific-nlp-august-17-2026",
+    title: "Domain-Specific NLP Surges: From Clinical Insights to Code Generation",
+    excerpt: "Explore the latest breakthroughs in domain-specific Natural Language Processing, focusing on specialized models, RAG advancements for factual accuracy, and thei",
+    seoTitle: "Domain-Specific NLP: ClinicalBERT, Code Gen, and RAG Innovations - August 17, 2026",
+    seoDescription: "Discover the cutting edge of domain-specific NLP on August 17, 2026. Learn about ClinicalBERT advancements, AI-assisted code generation, and how Retrieval Augme",
+    content: "",
+    tags: ["NLP", "AI", "RAG", "Clinical NLP", "Developer Tools", "Transformers", "Embeddings", "LLMs"],
+    status: "published",
+    readingTime: 9,
+    publishedAt: "2026-08-17T09:00:00.000Z",
+    createdAt: "2026-08-17T09:00:00.000Z",
+    updatedAt: "2026-08-17T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-12",
     slug: "ai-agents-seamless-cloud-integration-august-16-2026",
     title: "AI Agents Achieve Seamless Cloud Integration: New Architectures Emerge for Scalable Deployment",
