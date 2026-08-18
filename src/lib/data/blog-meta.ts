@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-16",
+    slug: "ai-agents-secure-cloud-deployment-august-18-2026",
+    title: "Navigating the New Frontier: Securely Deploying AI Agents in the Cloud on August 18, 2026",
+    excerpt: "This article explores the latest advancements and critical considerations for deploying AI agents in cloud environments, focusing on security, scalability, and ",
+    seoTitle: "Secure AI Agent Cloud Deployment: August 18, 2026 Tech Insights",
+    seoDescription: "Learn about the cutting-edge strategies and challenges in deploying AI agents to the cloud. Covering security best practices, scalable architectures, and essent",
+    content: "",
+    tags: ["AI", "Cloud Computing", "Developer Tools", "AI Agents", "Security", "DevOps", "Scalability", "NLP"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-08-18T14:00:00.000Z",
+    createdAt: "2026-08-18T14:00:00.000Z",
+    updatedAt: "2026-08-18T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-15",
     slug: "domain-specific-nlp-production-challenges-and-solutions-aug-18-2026",
     title: "Navigating the Nuances: Productionizing Domain-Specific NLP in 2026",

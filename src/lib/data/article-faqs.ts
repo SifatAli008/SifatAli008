@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-secure-cloud-deployment-august-18-2026": [
+    {
+      question: "What are the biggest security risks when deploying AI agents to the cloud?",
+      answer: "The primary security risks include data poisoning, prompt injection attacks, model extraction, insecure API usage by the agent, and vulnerabilities in the orchestration layer that manages multiple agents. Implementing Zero Trust principles and robust input validation are crucial.",
+    },
+    {
+      question: "How can organizations ensure their AI agent deployments are scalable?",
+      answer: "Scalability is achieved through cloud-native architectural patterns like microservices, event-driven systems, and leveraging managed cloud services such as Kubernetes, serverless compute, and auto-scaling databases. Designing agents as independent, horizontally scalable services is key.",
+    },
+    {
+      question: "What developer tools are essential for building and deploying AI agents?",
+      answer: "Essential tools include agent development frameworks (e.g., LangChain, LlamaIndex), cloud-native development platforms (e.g., AWS SageMaker, Azure ML), containerization technologies (Docker, Kubernetes), and robust observability and MLOps platforms for monitoring and managing the AI lifecycle.",
+    },
+    {
+      question: "What is the role of NLP in AI agent development?",
+      answer: "NLP, particularly through large language models (LLMs), is foundational for AI agents. It enables them to understand and generate human language, interpret instructions, and interact naturally with users. NLP techniques are often integrated as sub-components for tasks like data analysis and understanding.",
+    },
+    {
+      question: "What are the most important lessons learned from early AI agent deployments?",
+      answer: "Key lessons include starting with small, iterative deployments, prioritizing security from the outset, investing heavily in observability, adopting MLOps practices, understanding data quality, choosing the right cloud services, and fostering cross-functional teams.",
+    },
+    {
+      question: "How does confidential computing apply to AI agent deployments?",
+      answer: "Confidential computing uses hardware-based security to protect AI models and data while they are being processed in the cloud. This ensures that even the cloud provider cannot access sensitive information, adding an extra layer of security for AI agent operations.",
+    },
+  ],
   "domain-specific-nlp-production-challenges-and-solutions-aug-18-2026": [
     {
       question: "How do I choose between fine-tuning a general NLP model and training a domain-specific model from scratch?",
