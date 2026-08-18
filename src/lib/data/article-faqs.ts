@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "domain-specific-nlp-production-challenges-and-solutions-aug-18-2026": [
+    {
+      question: "How do I choose between fine-tuning a general NLP model and training a domain-specific model from scratch?",
+      answer: "Fine-tuning a general model is often more practical and cost-effective, especially if you have limited domain-specific data. It leverages the broad knowledge of large pre-trained models and adapts it to your specific domain. Training from scratch is typically reserved for highly specialized domains with vast amounts of unique data, or when existing models fail to capture essential domain nuances even after fine-tuning.",
+    },
+    {
+      question: "What are the biggest security concerns when deploying NLP models with sensitive data?",
+      answer: "The primary concerns include data breaches during ingestion, storage, and processing, unauthorized access to models and inference endpoints, and potential model vulnerabilities that could be exploited to infer sensitive information. Robust encryption, access controls, anonymization techniques, and secure coding practices are essential.",
+    },
+    {
+      question: "How can I measure the ROI of investing in domain-specific NLP?",
+      answer: "ROI can be measured through improved efficiency (e.g., faster document processing, reduced manual effort), increased accuracy leading to better decision-making (e.g., fewer misdiagnoses, better investment insights), enhanced customer satisfaction (e.g., more accurate chatbots), and compliance with regulatory requirements, thereby avoiding penalties.",
+    },
+    {
+      question: "What is the role of prompt engineering in production NLP systems?",
+      answer: "Prompt engineering is crucial for guiding LLMs, especially in RAG systems, to generate outputs that are relevant, accurate, and adhere to domain-specific constraints. Well-crafted prompts can improve the model's ability to interpret retrieved context, maintain a specific tone, and avoid generating off-topic or incorrect information.",
+    },
+    {
+      question: "How often should I retrain my domain-specific NLP models?",
+      answer: "The frequency of retraining depends on the rate of change in the domain's data and language. For rapidly evolving fields like finance or healthcare, retraining quarterly or even monthly might be necessary. For more stable domains, an annual or bi-annual retraining schedule might suffice. Continuous monitoring for performance degradation is key to determining when retraining is needed.",
+    },
+    {
+      question: "What are the trade-offs between using a large, complex model versus a smaller, optimized model for domain-specific tasks?",
+      answer: "Large models generally offer higher accuracy and better generalization but come with higher computational costs, latency, and memory requirements. Smaller, optimized models are more efficient, faster, and cheaper to run, making them suitable for real-time applications or resource-constrained environments, but they might sacrifice some accuracy or nuance.",
+    },
+  ],
   "scaling-ai-agents-in-the-cloud-lessons-learned-august-17-2026": [
     {
       question: "What are the biggest cost drivers for AI agents in the cloud?",
