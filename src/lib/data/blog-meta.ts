@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-18",
+    slug: "ai-agents-transforming-cloud-dev-workflows-aug-19-2026",
+    title: "AI Agents Streamline Cloud Development: New Tools and Shipping Lessons Emerge",
+    excerpt: "This week's tech landscape sees AI agents making significant inroads into cloud development, promising enhanced efficiency for developers. We explore emerging t",
+    seoTitle: "AI Agents Revolutionize Cloud Development Workflows: Tools, Tips & Lessons",
+    seoDescription: "Discover how AI agents are transforming cloud development and DevOps. This article covers new tools, practical use cases, and essential shipping lessons for fou",
+    content: "",
+    tags: ["AI", "Agents", "Cloud", "Developer Tools", "DevOps", "Shipping Lessons", "NLP"],
+    status: "published",
+    readingTime: 12,
+    publishedAt: "2026-08-19T14:00:00.000Z",
+    createdAt: "2026-08-19T14:00:00.000Z",
+    updatedAt: "2026-08-19T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-17",
     slug: "nlp-agents-cloud-synergy-august-19-2026",
     title: "NLP Agents and Cloud Architectures: The Next Frontier for Enterprise AI",
