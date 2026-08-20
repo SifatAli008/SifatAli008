@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "scaling-ai-agents-cloud-orchestration-lessons-aug-20-2026": [
+    {
+      question: "What is the primary challenge when scaling AI agents in the cloud?",
+      answer: "The primary challenge is moving from single, isolated agents to complex, coordinated systems. This involves managing inter-agent communication, state synchronization, scalability, and ensuring overall system resilience and fault tolerance in a distributed cloud environment.",
+    },
+    {
+      question: "How can I ensure my AI agent system is resilient to failures?",
+      answer: "Implement design patterns like idempotency, circuit breakers, and timeouts. Leverage cloud-native features for automated recovery and self-healing. Design for graceful degradation and ensure robust data backup and disaster recovery strategies are in place.",
+    },
+    {
+      question: "What role do workflow orchestration engines play in scaling AI agents?",
+      answer: "Workflow orchestration engines are crucial for managing complex, multi-step agent tasks. They allow you to define, schedule, monitor, and handle retries for agent workflows, providing visibility and control over intricate agent interactions.",
+    },
+    {
+      question: "How can I manage the costs associated with running AI agents in the cloud?",
+      answer: "Cost management involves optimizing LLM API calls through prompt engineering and caching, using smaller or fine-tuned models where appropriate, and leveraging efficient cloud resource utilization. Proactive monitoring of resource consumption is key.",
+    },
+    {
+      question: "Why is observability so important for AI agent systems?",
+      answer: "Observability (logging, metrics, tracing) is vital because the distributed nature of agent systems makes them inherently complex to debug. It provides the necessary insights to understand agent behavior, diagnose issues, and optimize performance.",
+    },
+    {
+      question: "Are NLP advancements directly impacting the scalability of AI agents?",
+      answer: "Yes, advancements in NLP, particularly LLMs and RAG, are the core drivers of agent capabilities. However, the efficiency and scalability of the NLP inference itself (e.g., model serving, API calls) directly impact the overall performance, latency, and cost of the agent system.",
+    },
+  ],
   "ai-agents-transforming-cloud-dev-workflows-aug-19-2026": [
     {
       question: "How can small startups leverage AI agents for cloud development without a large budget?",
