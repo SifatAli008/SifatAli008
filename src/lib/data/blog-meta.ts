@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-21",
+    slug: "advances-in-clinical-nlp-and-rag-august-22-2026",
+    title: "Clinical NLP and RAG: Enhancing Patient Care and Accelerating Research on August 22, 2026",
+    excerpt: "This article explores the latest advancements in Clinical Natural Language Processing (NLP) and Retrieval Augmented Generation (RAG) as of August 22, 2026, focu",
+    seoTitle: "Clinical NLP & RAG Advancements - August 22, 2026 | Sifat Ali",
+    seoDescription: "Discover the cutting-edge of Clinical NLP and RAG on August 22, 2026. Learn how these technologies are revolutionizing patient data analysis, accelerating drug ",
+    content: "",
+    tags: ["AI", "NLP", "RAG", "Healthcare AI", "ClinicalBERT", "Embeddings", "Transformers", "Developer Tools", "Research"],
+    status: "published",
+    readingTime: 9,
+    publishedAt: "2026-08-22T09:00:00.000Z",
+    createdAt: "2026-08-22T09:00:00.000Z",
+    updatedAt: "2026-08-22T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-20",
     slug: "nlp-agent-synergy-driving-enterprise-intelligence-aug-21-2026",
     title: "NLP Agents: The Next Frontier in Enterprise Intelligence",
