@@ -1,4 +1,9 @@
 import type { GeneratedArticle } from "./article-files";
+import {
+  articleChartsAreValid,
+  articleHasReferences,
+  sanitizeArticleContent,
+} from "./sanitize-article-content";
 
 const GEMINI_MODELS = [
   process.env.GEMINI_MODEL?.trim(),
@@ -65,9 +70,15 @@ function validateArticle(data: unknown): GeneratedArticle {
     throw new Error("faqs must include at least 3 items");
   }
 
-  const content = String(d.content);
+  const content = sanitizeArticleContent(String(d.content));
   if (content.split(/\s+/).length < 600) {
     throw new Error("Article content too short (need ~1200+ words target)");
+  }
+  if (!articleChartsAreValid(content)) {
+    throw new Error("Article chart fence is missing or invalid after sanitize");
+  }
+  if (!articleHasReferences(content)) {
+    throw new Error("Article is missing a References section with ### Ref headings");
   }
 
   return {
@@ -170,11 +181,14 @@ Rules:
 - ${topicFocus}
 - Do NOT reuse these slugs: ${input.existingSlugs.join(", ") || "none"}.
 - No em dashes. Use commas or periods instead.
-- Include Executive Summary, tables, Key Takeaways, References with markdown links.
-- Include one ~~~chart fence with JSON (type bar|donut|timeline|hbar) — NOT triple backticks.
-- Chart JSON must use an "items" array: [{ "label": "...", "value": 123, "display": "123%" }]. Do NOT use Chart.js "datasets" or "labels".
-- References section: use markdown headings like "### Ref 1. Source Title" with optional links. Do NOT use raw HTML <a name="..."> tags.
-- Inline citations must link to heading slugs, e.g. [[1]](#ref-1-source-title).
+- Include Executive Summary, tables, Key Takeaways (exact heading "## Key Takeaways"), and References.
+- Include exactly one ~~~chart fence with JSON. Required shape:
+  {"type":"hbar","title":"Chart title","items":[{"label":"A","value":70,"display":"70%"}]}
+  Allowed type: bar|line|donut|hbar|timeline. NEVER use Chart.js "datasets"/"labels". NEVER omit "title" or "items".
+- References MUST start with "## References" then headings like "### Ref 1. Source Title" with a short citation paragraph and a markdown link when possible.
+- NEVER use raw HTML anchors like <a name="ref-1">.
+- Inline citations MUST be [[1]](#ref-1-source-title) matching the slug of "### Ref 1. Source Title".
+- Include at least 3 references and cite them inline in the body.
 - exportName must be valid JavaScript identifier ending with Article.
 - fileBase should be short kebab-case, include date hint when possible.
 - faqs: 5-6 practical questions.

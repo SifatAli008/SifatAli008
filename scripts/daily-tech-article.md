@@ -18,6 +18,12 @@ Automated pipeline for **two verified long-form posts per day** in **Asia/Dhaka*
 
 Max **2 articles per Dhaka calendar day** (one per slot). Re-running the same slot is a no-op unless `--force`.
 
+After generation, content is **sanitized automatically**:
+- Chart fences converted to `{ type, title, items[] }` (Chart.js `datasets` rejected / normalized)
+- HTML `<a name>` anchors stripped
+- `## References` + `### Ref N.` headings ensured
+- Inline `[[n]](#…)` links rewritten to match heading slugs
+
 ## Required GitHub secrets
 
 | Secret | Required |
