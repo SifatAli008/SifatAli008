@@ -37,6 +37,12 @@ export type PageSeoInput = {
   publishedTime?: string;
   modifiedTime?: string;
   tags?: string[];
+  /** Open Graph locale, e.g. en_US / bn_BD */
+  locale?: string;
+  /** OG alternate locales */
+  alternateLocales?: string[];
+  /** hreflang map (path or absolute — Next resolves via metadataBase) */
+  languages?: Record<string, string>;
 };
 
 /** Per-page metadata with canonical, Open Graph, and Twitter cards */
@@ -51,6 +57,9 @@ export function buildPageMetadata(input: PageSeoInput): Metadata {
     publishedTime,
     modifiedTime,
     tags,
+    locale = "en_US",
+    alternateLocales,
+    languages,
   } = input;
 
   const url = absoluteUrl(path);
@@ -59,10 +68,14 @@ export function buildPageMetadata(input: PageSeoInput): Metadata {
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(languages ? { languages } : {}),
+    },
     openGraph: {
       type: ogType,
-      locale: "en_US",
+      locale,
+      ...(alternateLocales?.length ? { alternateLocale: alternateLocales } : {}),
       url,
       siteName: "Sifat Ali",
       title,
@@ -309,9 +322,14 @@ export function blogPostingJsonLd(post: {
   updatedAt?: string;
   coverImage?: string;
   tags?: string[];
+  /** Article language code path segment (en omits suffix) */
+  lang?: string;
+  inLanguage?: string;
 }) {
   const siteUrl = getSiteUrl();
-  const url = `${siteUrl}/blog/${post.slug}`;
+  const langPath =
+    post.lang && post.lang !== "en" ? `/blog/${post.slug}/${post.lang}` : `/blog/${post.slug}`;
+  const url = `${siteUrl}${langPath}`;
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -322,7 +340,7 @@ export function blogPostingJsonLd(post: {
     mainEntityOfPage: url,
     datePublished: post.publishedAt ?? post.updatedAt,
     dateModified: post.updatedAt ?? post.publishedAt,
-    inLanguage: "en-US",
+    inLanguage: post.inLanguage ?? "en-US",
     ...(post.coverImage ? { image: absoluteUrl(post.coverImage) } : {}),
     ...(post.tags?.length ? { keywords: post.tags.join(", ") } : {}),
     author: { "@type": "Person", "@id": `${siteUrl}/#person`, name: "Sifat Ali" },

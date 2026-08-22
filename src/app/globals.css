@@ -350,18 +350,48 @@ html.boot-loading footer {
   visibility: hidden;
 }
 
-/* Bangla UI: use system Bengali stack — no extra webfont download */
-html[lang="bn"] body {
-  font-feature-settings: "kern";
+/* Bangla article reading — Noto Sans Bengali loaded on demand only */
+.article-script-bn {
+  font-family: "Noto Sans Bengali", var(--font-sans), system-ui, sans-serif;
+  font-feature-settings: "kern" 1;
+  line-height: 1.95;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
-html[lang="bn"] .font-sans,
-html[lang="bn"] body {
-  font-family: "Noto Sans Bengali", "Hind Siliguri", "Vrinda", system-ui,
-    sans-serif;
+.article-script-bn.article-title-bn {
+  font-family: "Noto Sans Bengali", var(--font-sans), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-transform: none;
 }
 
-/* Keep display headings Latin for brand lockup */
-html[lang="bn"] .font-display {
-  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+.article-script-bn.article-lede-bn {
+  font-size: 1.125rem;
+  line-height: 1.85;
 }
+
+.article-script-bn .article-prose {
+  font-size: 1.0625rem;
+  line-height: 1.95;
+}
+
+.article-script-bn .article-prose h2,
+.article-script-bn .article-prose h3,
+.article-script-bn h2 {
+  font-family: "Noto Sans Bengali", var(--font-sans), system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.35 !important;
+}
+
+.article-script-bn .article-prose p,
+.article-script-bn .article-prose li,
+.article-script-bn .article-prose td,
+.article-script-bn .article-prose blockquote {
+  line-height: 1.95;
+}
+

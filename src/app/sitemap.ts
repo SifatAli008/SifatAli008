@@ -2,6 +2,10 @@ import type { MetadataRoute } from "next";
 import { getBlogPosts, getPortfolioWork } from "@/lib/firebase/queries";
 import { blogFallbackMeta } from "@/lib/data/blog-meta";
 import { getSiteUrl } from "@/lib/seo";
+import {
+  ARTICLE_LANGUAGES,
+  articlePath,
+} from "@/lib/blog/article-languages";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
@@ -27,12 +31,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (posts.length === 0) {
     posts = blogFallbackMeta.filter((p) => p.status === "published");
   }
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: `${base}/blog/${p.slug}`,
-    lastModified: new Date(p.updatedAt),
-    changeFrequency: "monthly",
-    priority: 0.65,
-  }));
 
-  return [...staticRoutes, ...projectRoutes, ...blogRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => {
+    const languages: Record<string, string> = {};
+    for (const lang of ARTICLE_LANGUAGES) {
+      languages[lang.hreflang] = `${base}${articlePath(p.slug, lang.code)}`;
+    }
+    languages["x-default"] = `${base}${articlePath(p.slug, "en")}`;
+
+    return {
+      url: `${base}${articlePath(p.slug, "en")}`,
+      lastModified: new Date(p.updatedAt),
+      changeFrequency: "monthly",
+      priority: 0.65,
+      alternates: { languages },
+    };
+  });
+
+  /** Explicit language URLs so crawlers discover every locale page */
+  const blogLangRoutes: MetadataRoute.Sitemap = posts.flatMap((p) =>
+    ARTICLE_LANGUAGES.filter((l) => l.code !== "en").map((lang) => {
+      const languages: Record<string, string> = {};
+      for (const l of ARTICLE_LANGUAGES) {
+        languages[l.hreflang] = `${base}${articlePath(p.slug, l.code)}`;
+      }
+      languages["x-default"] = `${base}${articlePath(p.slug, "en")}`;
+
+      return {
+        url: `${base}${articlePath(p.slug, lang.code)}`,
+        lastModified: new Date(p.updatedAt),
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+        alternates: { languages },
+      };
+    })
+  );
+
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes, ...blogLangRoutes];
 }

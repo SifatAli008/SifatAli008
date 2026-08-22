@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Search, X } from "lucide-react";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLocale } from "@/components/i18n/locale-provider";
 import { formatDate } from "@/lib/utils";
 import type { BlogPost } from "@/types";
 
@@ -12,15 +11,7 @@ const PAGE_SIZE = 6;
 
 export type BlogCardPost = Pick<
   BlogPost,
-  | "id"
-  | "slug"
-  | "title"
-  | "excerpt"
-  | "tags"
-  | "status"
-  | "readingTime"
-  | "createdAt"
-  | "publishedAt"
+  "id" | "slug" | "title" | "excerpt" | "tags" | "status" | "readingTime" | "createdAt" | "publishedAt"
 >;
 
 type BlogListingProps = {
@@ -39,7 +30,6 @@ function uniqueTopics(posts: BlogCardPost[]): string[] {
 }
 
 export function BlogListing({ posts }: BlogListingProps) {
-  const { t } = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -64,8 +54,7 @@ export function BlogListing({ posts }: BlogListingProps) {
         (post.tags ?? []).some((t) => t.toLowerCase() === topic.toLowerCase());
       if (!matchesTopic) return false;
       if (!q) return true;
-      const hay =
-        `${post.title} ${post.excerpt} ${(post.tags ?? []).join(" ")}`.toLowerCase();
+      const hay = `${post.title} ${post.excerpt} ${(post.tags ?? []).join(" ")}`.toLowerCase();
       return hay.includes(q);
     });
   }, [posts, query, topic]);
@@ -80,13 +69,13 @@ export function BlogListing({ posts }: BlogListingProps) {
   function pushParams(next: { q?: string; topic?: string; page?: number }) {
     const params = new URLSearchParams(searchParams.toString());
     const q = next.q ?? query;
-    const topicValue = next.topic ?? topic;
+    const t = next.topic ?? topic;
     const p = next.page ?? 1;
 
     if (q.trim()) params.set("q", q.trim());
     else params.delete("q");
 
-    if (topicValue && topicValue !== "all") params.set("topic", topicValue);
+    if (t && t !== "all") params.set("topic", t);
     else params.delete("topic");
 
     if (p > 1) params.set("page", String(p));
@@ -100,86 +89,79 @@ export function BlogListing({ posts }: BlogListingProps) {
 
   return (
     <div>
-      <div className="mb-8 border-[3px] border-ink bg-white p-4 shadow-[4px_4px_0_0_#0A0A0A] md:p-5">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1fr)_13.5rem] md:items-end md:gap-5">
-          <label className="flex min-w-0 flex-col gap-1.5">
-            <span className="label-mono text-[10px] text-ink/50">
-              {t("blog.search")}
-            </span>
-            <span className="relative block">
-              <Search
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/40"
-                aria-hidden
-              />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setQuery(value);
-                  pushParams({ q: value, page: 1 });
-                }}
-                placeholder={t("blog.searchPlaceholder")}
-                className="h-12 w-full border-[3px] border-ink bg-[#f5f0e8] py-0 pl-10 pr-10 font-sans text-sm text-ink outline-none placeholder:text-ink/40 focus:bg-white"
-              />
-              {query ? (
-                <button
-                  type="button"
-                  aria-label="Clear search"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 border-2 border-ink bg-white p-1 hover:bg-accent hover:text-cream"
-                  onClick={() => {
-                    setQuery("");
-                    pushParams({ q: "", page: 1 });
-                  }}
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
-              ) : null}
-            </span>
-          </label>
-
-          <label className="flex w-full flex-col gap-1.5">
-            <span className="label-mono text-[10px] text-ink/50">
-              {t("blog.topic")}
-            </span>
-            <select
-              value={topic}
+      <div className="mb-8 grid grid-cols-1 gap-3 border-[3px] border-ink bg-white p-4 shadow-[4px_4px_0_0_#0A0A0A] md:grid-cols-[minmax(0,1fr)_220px] md:items-end md:gap-4 md:p-5">
+        <label className="flex min-w-0 flex-col gap-1.5">
+          <span className="label-mono text-[10px] text-ink/50">Search</span>
+          <span className="relative block">
+            <Search
+              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/40"
+              aria-hidden
+            />
+            <input
+              type="search"
+              value={query}
               onChange={(e) => {
                 const value = e.target.value;
-                setTopic(value);
-                pushParams({ topic: value, page: 1 });
+                setQuery(value);
+                pushParams({ q: value, page: 1 });
               }}
-              className="h-12 w-full border-[3px] border-ink bg-[#f5f0e8] px-3 font-mono text-xs uppercase tracking-wider text-ink outline-none focus:bg-white"
-            >
-              <option value="all">{t("blog.allTopics")}</option>
-              {topics.map((topicName) => (
-                <option key={topicName} value={topicName}>
-                  {topicName}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+              placeholder="Search essays…"
+              className="h-12 w-full border-[3px] border-ink bg-[#f5f0e8] py-0 pl-10 pr-10 font-sans text-sm text-ink outline-none placeholder:text-ink/40 focus:bg-white"
+            />
+            {query ? (
+              <button
+                type="button"
+                aria-label="Clear search"
+                className="absolute right-2 top-1/2 -translate-y-1/2 border-2 border-ink bg-white p-1 hover:bg-accent hover:text-cream"
+                onClick={() => {
+                  setQuery("");
+                  pushParams({ q: "", page: 1 });
+                }}
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            ) : null}
+          </span>
+        </label>
+
+        <label className="flex min-w-0 flex-col gap-1.5">
+          <span className="label-mono text-[10px] text-ink/50">Topic</span>
+          <select
+            value={topic}
+            onChange={(e) => {
+              const value = e.target.value;
+              setTopic(value);
+              pushParams({ topic: value, page: 1 });
+            }}
+            className="h-12 w-full border-[3px] border-ink bg-[#f5f0e8] px-3 font-mono text-xs uppercase tracking-wider text-ink outline-none focus:bg-white"
+          >
+            <option value="all">All topics</option>
+            {topics.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-ink/50">
-          {filtered.length}{" "}
-          {filtered.length === 1 ? t("blog.essay") : t("blog.essays")}
+          {filtered.length} essay{filtered.length === 1 ? "" : "s"}
           {topic !== "all" ? ` · ${topic}` : ""}
           {query.trim() ? ` · “${query.trim()}”` : ""}
         </p>
         <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-ink/50">
-          {t("blog.page")} {safePage} / {totalPages}
+          Page {safePage} / {totalPages}
         </p>
       </div>
 
       {pagePosts.length === 0 ? (
         <div className="border-[3px] border-ink bg-white p-10 text-center shadow-[4px_4px_0_0_#0A0A0A]">
-          <p className="font-sans text-lg font-bold text-ink">
-            {t("blog.noMatch")}
+          <p className="font-sans text-lg font-bold text-ink">No essays matched</p>
+          <p className="mt-2 text-sm text-ink/60">
+            Try another topic or clear the search.
           </p>
-          <p className="mt-2 text-sm text-ink/60">{t("blog.noMatchHint")}</p>
           <button
             type="button"
             className="mt-6 border-[3px] border-ink bg-accent px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-cream shadow-[3px_3px_0_0_#0A0A0A]"
@@ -189,7 +171,7 @@ export function BlogListing({ posts }: BlogListingProps) {
               pushParams({ q: "", topic: "all", page: 1 });
             }}
           >
-            {t("blog.reset")}
+            Reset filters
           </button>
         </div>
       ) : (
@@ -214,7 +196,7 @@ export function BlogListing({ posts }: BlogListingProps) {
                 {post.excerpt}
               </p>
               <p className="label-mono mt-6 border-t-2 border-ink/15 pt-4 text-ink/45">
-                {post.readingTime} {t("blog.min").toUpperCase()} ·{" "}
+                {post.readingTime} MIN ·{" "}
                 {formatDate(post.publishedAt ?? post.createdAt).toUpperCase()}
               </p>
             </Link>
@@ -233,7 +215,7 @@ export function BlogListing({ posts }: BlogListingProps) {
             onClick={() => pushParams({ page: safePage - 1 })}
             className="border-[3px] border-ink bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-ink shadow-[3px_3px_0_0_#0A0A0A] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {t("blog.prev")}
+            Prev
           </button>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
             <button
@@ -256,7 +238,7 @@ export function BlogListing({ posts }: BlogListingProps) {
             onClick={() => pushParams({ page: safePage + 1 })}
             className="border-[3px] border-ink bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-ink shadow-[3px_3px_0_0_#0A0A0A] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {t("blog.next")}
+            Next
           </button>
         </nav>
       ) : null}

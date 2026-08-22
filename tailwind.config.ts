@@ -39,6 +39,12 @@ const config: Config = {
         sans: ["var(--font-sans)", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
         serif: ["var(--font-serif)", "serif"],
+        bangla: [
+          '"Noto Sans Bengali"',
+          "var(--font-sans)",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       fontSize: {
         hero: "clamp(80px, 14vw, 180px)",
