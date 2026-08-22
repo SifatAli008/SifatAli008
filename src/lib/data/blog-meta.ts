@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-22",
+    slug: "cloud-agent-scaling-lessons-august-22-2026",
+    title: "Navigating the AI Agent Frontier: Scaling Strategies and Cloud Realities on August 22, 2026",
+    excerpt: "As AI agents move from research labs to production, founders and engineers face critical scaling challenges. This article explores the latest strategies for dep",
+    seoTitle: "AI Agent Scaling: Cloud Strategies & Lessons Learned August 22, 2026",
+    seoDescription: "Discover essential strategies for scaling AI agents in the cloud. Learn from real-world lessons on orchestration, cost management, and performance optimization ",
+    content: "",
+    tags: ["AI Agents", "Cloud Computing", "Developer Tools", "Scalability", "Orchestration", "LLMs", "NLP"],
+    status: "published",
+    readingTime: 14,
+    publishedAt: "2026-08-22T14:00:00.000Z",
+    createdAt: "2026-08-22T14:00:00.000Z",
+    updatedAt: "2026-08-22T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-21",
     slug: "advances-in-clinical-nlp-and-rag-august-22-2026",
     title: "Clinical NLP and RAG: Enhancing Patient Care and Accelerating Research on August 22, 2026",

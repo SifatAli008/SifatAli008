@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-scaling-lessons-august-22-2026": [
+    {
+      question: "How can I estimate the cloud costs for my AI agent deployment before going to production?",
+      answer: "Start by profiling individual agent components and LLM calls in a development environment. Use tools to measure token usage, inference time, and resource consumption. Extrapolate these metrics based on expected usage volumes, and factor in the costs of orchestration services, databases, and other cloud infrastructure. Cloud cost calculators and simulation tools can also provide estimates.",
+    },
+    {
+      question: "What are the most common pitfalls when orchestrating multiple AI agents?",
+      answer: "Common pitfalls include complex dependency management, lack of clear communication protocols between agents, insufficient error handling and retry mechanisms, state management issues in distributed systems, and difficulties in debugging cross-agent interactions. Designing for modularity and using established workflow engines can mitigate these.",
+    },
+    {
+      question: "How important is prompt engineering for scaling AI agents?",
+      answer: "Prompt engineering is critically important. Well-crafted prompts are essential for guiding LLMs within agents to produce accurate, relevant, and consistent outputs. For scaling, effective prompt engineering can reduce the need for expensive fine-tuning, minimize LLM token consumption, and improve the reliability of agent actions. It's an ongoing process that often requires iteration.",
+    },
+    {
+      question: "What developer tools are essential for managing AI agents in the cloud?",
+      answer: "Essential tools include LLM orchestration frameworks (e.g., LangChain, LlamaIndex), cloud-native managed services for compute and inference (e.g., SageMaker, Vertex AI), message queues (e.g., SQS, Pub/Sub), workflow engines (e.g., Step Functions, Temporal), observability platforms (e.g., Datadog, Honeycomb), and potentially specialized agent monitoring tools.",
+    },
+    {
+      question: "How can I ensure my AI agents adhere to data privacy regulations like GDPR or CCPA?",
+      answer: "Implement data minimization principles, ensuring agents only access and process necessary data. Encrypt sensitive data at rest and in transit. Anonymize or pseudonymize data where possible. Implement strict access controls and audit logs for agent data interactions. Consult with legal counsel to ensure compliance with specific regional regulations and update agent logic accordingly.",
+    },
+    {
+      question: "What is the role of NLP in ensuring agents can interact with legacy enterprise systems?",
+      answer: "NLP can act as a bridge. For instance, an agent can use NLP to interpret natural language commands from users and translate them into structured API calls or database queries that legacy systems understand. Conversely, NLP can process the structured or often cryptic output from legacy systems and present it to users in an easily digestible natural language format.",
+    },
+  ],
   "advances-in-clinical-nlp-and-rag-august-22-2026": [
     {
       question: "How does ClinicalBERT differ from general-purpose language models?",
