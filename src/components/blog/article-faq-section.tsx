@@ -1,9 +1,14 @@
+"use client";
+
+import { useLocale } from "@/components/i18n/locale-provider";
+
 type ArticleFaqSectionProps = {
   faqs: { question: string; answer: string }[];
 };
 
 /** Visible FAQ block for AEO/SEO — pairs with faqPageJsonLd on blog posts. */
 export function ArticleFaqSection({ faqs }: ArticleFaqSectionProps) {
+  const { t } = useLocale();
   if (!faqs.length) return null;
 
   return (
@@ -12,12 +17,12 @@ export function ArticleFaqSection({ faqs }: ArticleFaqSectionProps) {
       aria-labelledby="article-faq-heading"
       className="mt-20 scroll-mt-28 border-t-2 border-ink pt-12"
     >
-      <p className="label-mono text-accent">FAQ</p>
+      <p className="label-mono text-accent">{t("article.faq")}</p>
       <h2
         id="article-faq-heading"
         className="mt-3 font-display text-[1.75rem] uppercase leading-none tracking-tight text-ink md:text-[2.1rem]"
       >
-        Frequently asked questions
+        {t("article.faq")}
       </h2>
       <div className="mt-8 space-y-4">
         {faqs.map((faq) => (

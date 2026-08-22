@@ -349,3 +349,19 @@ html.boot-loading header,
 html.boot-loading footer {
   visibility: hidden;
 }
+
+/* Bangla UI: use system Bengali stack — no extra webfont download */
+html[lang="bn"] body {
+  font-feature-settings: "kern";
+}
+
+html[lang="bn"] .font-sans,
+html[lang="bn"] body {
+  font-family: "Noto Sans Bengali", "Hind Siliguri", "Vrinda", system-ui,
+    sans-serif;
+}
+
+/* Keep display headings Latin for brand lockup */
+html[lang="bn"] .font-display {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+}

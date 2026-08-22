@@ -13,6 +13,12 @@ import { ArticleFaqSection } from "@/components/blog/article-faq-section";
 import { MarkdownContent } from "@/components/blog/markdown-content";
 import { ArticleToc } from "@/components/blog/article-toc";
 import { ReadingProgress } from "@/components/blog/reading-progress";
+import {
+  ArticleLangNote,
+  ArticleRelatedBlock,
+  ArticleSidebarLabels,
+  ArticleTocSummary,
+} from "@/components/blog/article-reading-chrome";
 import { formatDate } from "@/lib/utils";
 import { blogFallbackMeta } from "@/lib/data/blog-meta";
 import { articleFaqsBySlug } from "@/lib/data/article-faqs";
@@ -56,9 +62,21 @@ export default async function BlogPostPage({
 
   const related = blogFallbackMeta
     .filter((p) => p.status === "published" && p.slug !== post.slug)
-    .slice(0, 3);
+    .slice(0, 3)
+    .map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      title: p.title,
+      excerpt: p.excerpt,
+      tags: p.tags,
+      status: p.status,
+      readingTime: p.readingTime,
+      createdAt: p.createdAt,
+      publishedAt: p.publishedAt,
+    }));
   const faqs = articleFaqsBySlug[post.slug];
   const toc = extractToc(post.content).filter((item) => item.level === 2);
+  const year = new Date(post.publishedAt ?? post.createdAt).getFullYear();
   const jsonLd = [
     blogPostingJsonLd(post),
     breadcrumbJsonLd([
@@ -78,12 +96,14 @@ export default async function BlogPostPage({
           <div className="site-container py-12 md:py-16">
             <p className="label-mono text-accent">
               {post.readingTime} MIN READ ·{" "}
-              {formatDate(post.createdAt).toUpperCase()}
+              {formatDate(post.publishedAt ?? post.createdAt).toUpperCase()}
             </p>
-            <h1 className="mt-4 max-w-4xl font-display text-display leading-none text-cream">
+            <h1 className="mt-4 max-w-3xl font-display text-[clamp(2.4rem,6vw,4.5rem)] leading-[0.95] tracking-tight text-cream">
               {post.title.toUpperCase()}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg text-cream/70">{post.excerpt}</p>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/70">
+              {post.excerpt}
+            </p>
             {post.tags?.length ? (
               <div className="mt-6 flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
@@ -93,81 +113,47 @@ export default async function BlogPostPage({
                 ))}
               </div>
             ) : null}
+            <p className="mt-8">
+              <Link
+                href="/blog"
+                className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent"
+              >
+                ← Writing
+              </Link>
+            </p>
           </div>
         </header>
 
         <div className="site-container section-pad">
-          <div className="grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[260px_minmax(0,1fr)_200px]">
+          <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,42rem)] lg:justify-between xl:grid-cols-[220px_minmax(0,42rem)_200px]">
             <aside className="hidden lg:block">
               <div className="sticky top-28 border-[3px] border-ink bg-white p-5 shadow-[4px_4px_0_0_#0A0A0A]">
                 <ArticleToc items={toc} />
               </div>
             </aside>
 
-            <div className="min-w-0">
+            <div className="min-w-0 max-w-[42rem] justify-self-center lg:justify-self-start">
               <details className="mb-8 border-[3px] border-ink bg-white p-4 lg:hidden">
                 <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-                  Table of contents
+                  <ArticleTocSummary />
                 </summary>
                 <div className="mt-4">
                   <ArticleToc items={toc} />
                 </div>
               </details>
 
+              <ArticleLangNote />
               <MarkdownContent content={post.content} />
-
               {faqs?.length ? <ArticleFaqSection faqs={faqs} /> : null}
-
-              {related.length > 0 && (
-                <aside className="mt-20 border-t-2 border-ink pt-12">
-                  <p className="label-mono text-accent">RELATED</p>
-                  <ul className="mt-6 divide-y-2 divide-ink">
-                    {related.map((p) => (
-                      <li key={p.id}>
-                        <Link
-                          href={`/blog/${p.slug}`}
-                          className="block py-4 font-sans text-lg font-bold hover:text-accent"
-                        >
-                          {p.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </aside>
-              )}
+              <ArticleRelatedBlock related={related} />
             </div>
 
             <aside className="hidden xl:block">
-              <div className="sticky top-28 space-y-4">
-                <div className="border-[3px] border-ink bg-white p-4 shadow-[4px_4px_0_0_#0A0A0A]">
-                  <p className="label-mono text-accent">Cite this</p>
-                  <p className="mt-3 text-sm leading-relaxed text-ink/70">
-                    Sifat Ali. ({new Date(post.publishedAt ?? post.createdAt).getFullYear()}).{" "}
-                    <span className="font-medium text-ink">{post.title}</span>.
-                  </p>
-                </div>
-                <div className="border-[3px] border-ink bg-white p-4 shadow-[4px_4px_0_0_#0A0A0A]">
-                  <p className="label-mono text-accent">Jump</p>
-                  <a
-                    href="#references"
-                    className="mt-3 block text-sm font-medium text-ink underline decoration-accent/40 hover:text-accent"
-                  >
-                    References
-                  </a>
-                  <a
-                    href="#faq"
-                    className="mt-2 block text-sm font-medium text-ink underline decoration-accent/40 hover:text-accent"
-                  >
-                    FAQ
-                  </a>
-                  <a
-                    href="#key-takeaways"
-                    className="mt-2 block text-sm font-medium text-ink underline decoration-accent/40 hover:text-accent"
-                  >
-                    Key takeaways
-                  </a>
-                </div>
-              </div>
+              <ArticleSidebarLabels
+                title={post.title}
+                year={year}
+                showFaq={Boolean(faqs?.length)}
+              />
             </aside>
           </div>
         </div>

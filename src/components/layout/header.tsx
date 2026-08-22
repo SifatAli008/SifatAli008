@@ -4,17 +4,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { LanguageSwitcher } from "@/components/i18n/language-switcher";
+import { useLocale } from "@/components/i18n/locale-provider";
 import { cn } from "@/lib/utils";
+import type { MessageKey } from "@/lib/i18n/messages";
 
-const links = [
-  { href: "/#about", label: "About" },
-  { href: "/#featured", label: "Featured" },
-  { href: "/#research", label: "Research" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/projects", label: "Projects" },
-  { href: "/#github", label: "GitHub" },
-  { href: "/blog", label: "Writing" },
-  { href: "/contact", label: "Contact" },
+const linkDefs: { href: string; key: MessageKey }[] = [
+  { href: "/#about", key: "nav.about" },
+  { href: "/#featured", key: "nav.featured" },
+  { href: "/#research", key: "nav.research" },
+  { href: "/#faq", key: "nav.faq" },
+  { href: "/projects", key: "nav.projects" },
+  { href: "/#github", key: "nav.github" },
+  { href: "/blog", key: "nav.writing" },
+  { href: "/contact", key: "nav.contact" },
 ];
 
 function useDhakaClock() {
@@ -43,6 +46,7 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const dhakaTime = useDhakaClock();
+  const { t } = useLocale();
 
   const isActive = (href: string) =>
     pathname === href ||
@@ -65,7 +69,7 @@ export function Header() {
             className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 lg:flex xl:gap-8"
             aria-label="Primary"
           >
-            {links.map((link) => (
+            {linkDefs.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -77,9 +81,9 @@ export function Header() {
               >
                 <span className="nav-link-cover-mask">
                   <span className="nav-link-cover-track">
-                    <span>{link.label}</span>
+                    <span>{t(link.key)}</span>
                     <span aria-hidden className="text-accent">
-                      {link.label}
+                      {t(link.key)}
                     </span>
                   </span>
                 </span>
@@ -87,7 +91,8 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="relative z-10 hidden items-center gap-5 lg:flex">
+          <div className="relative z-10 hidden items-center gap-4 lg:flex">
+            <LanguageSwitcher />
             <div className="min-w-[4.5rem] text-right leading-tight">
               <p className="font-sans text-[12px] font-semibold tracking-wide text-ink">
                 {dhakaTime || "—"}{" "}
@@ -103,9 +108,9 @@ export function Header() {
               <span className="nav-link-cover">
                 <span className="nav-link-cover-mask">
                   <span className="nav-link-cover-track">
-                    <span>Collaborate</span>
+                    <span>{t("nav.collaborate")}</span>
                     <span aria-hidden className="text-accent">
-                      Collaborate
+                      {t("nav.collaborate")}
                     </span>
                   </span>
                 </span>
@@ -148,7 +153,7 @@ export function Header() {
             className="flex flex-1 flex-col gap-1 overflow-y-auto px-6 py-8"
             aria-label="Mobile"
           >
-            {links.map((link) => (
+            {linkDefs.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -158,9 +163,13 @@ export function Header() {
                 )}
                 onClick={() => setOpen(false)}
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
+
+            <div className="mt-6">
+              <LanguageSwitcher />
+            </div>
 
             <div className="mt-8 flex items-center justify-between gap-4">
               <div className="leading-tight">
@@ -175,7 +184,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center gap-1.5 font-sans text-base font-semibold text-ink hover:text-accent"
               >
-                Collaborate
+                {t("nav.collaborate")}
                 <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
               </Link>
             </div>
