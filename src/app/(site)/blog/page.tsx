@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { getBlogPosts } from "@/lib/firebase/queries";
 import { blogFallbackMeta } from "@/lib/data/blog-meta";
 import { buildPageMetadata, itemListJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
-import { formatDate } from "@/lib/utils";
+import {
+  BlogListing,
+  type BlogCardPost,
+} from "@/components/blog/blog-listing";
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
@@ -18,11 +22,37 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
+function toCardPost(post: {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  tags: string[];
+  status: BlogCardPost["status"];
+  readingTime: number;
+  createdAt: string;
+  publishedAt?: string;
+}): BlogCardPost {
+  return {
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    tags: post.tags,
+    status: post.status,
+    readingTime: post.readingTime,
+    createdAt: post.createdAt,
+    publishedAt: post.publishedAt,
+  };
+}
+
 export default async function BlogPage() {
   let posts = await getBlogPosts(true);
   if (posts.length === 0) {
     posts = blogFallbackMeta.filter((p) => p.status === "published");
   }
+
+  const cards = posts.map(toCardPost);
 
   const jsonLd = itemListJsonLd(
     "Sifat Ali - Writing",
@@ -48,7 +78,7 @@ export default async function BlogPage() {
         </div>
 
         <div className="site-container section-pad">
-          {posts.length === 0 ? (
+          {cards.length === 0 ? (
             <p className="py-12 text-ink/60">
               New essays are in progress. Meanwhile, explore{" "}
               <Link href="/projects" className="text-accent underline">
@@ -57,27 +87,20 @@ export default async function BlogPage() {
               or ask about Sifat&apos;s stack on the homepage chat.
             </p>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="group flex h-full min-h-[340px] flex-col border-[3px] border-ink bg-white p-7 shadow-[4px_4px_0_0_#0A0A0A] transition-[transform,box-shadow,background-color] duration-100 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-[#fff8ef] hover:shadow-[7px_7px_0_0_#FF3B00]"
-                >
-                  <span className="tag-brutal w-fit">{post.status}</span>
-                  <h2 className="mt-5 line-clamp-3 font-sans text-xl font-bold leading-snug text-ink group-hover:text-accent md:text-2xl">
-                    {post.title}
-                  </h2>
-                  <p className="mt-4 line-clamp-5 flex-1 text-base leading-relaxed text-ink/60">
-                    {post.excerpt}
-                  </p>
-                  <p className="label-mono mt-6 border-t-2 border-ink/15 pt-4 text-ink/45">
-                    {post.readingTime} MIN ·{" "}
-                    {formatDate(post.createdAt).toUpperCase()}
-                  </p>
-                </Link>
-              ))}
-            </div>
+            <Suspense
+              fallback={
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="min-h-[340px] animate-pulse border-[3px] border-ink/20 bg-white"
+                    />
+                  ))}
+                </div>
+              }
+            >
+              <BlogListing posts={cards} />
+            </Suspense>
           )}
         </div>
       </div>

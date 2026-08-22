@@ -26,13 +26,41 @@ function asNumber(value: unknown, fallback = 0): number {
   return Number.isFinite(n) ? n : fallback;
 }
 
+/** Pull a JSON object from noisy LLM fence content. */
+function extractJsonObject(raw: string): Record<string, unknown> | null {
+  const trimmed = raw
+    .trim()
+    .replace(/^\uFEFF/, "")
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/```$/i, "")
+    .trim();
+
+  const tryParse = (text: string) => {
+    try {
+      return JSON.parse(text) as Record<string, unknown>;
+    } catch {
+      return null;
+    }
+  };
+
+  const direct = tryParse(trimmed);
+  if (direct && typeof direct === "object") return direct;
+
+  const start = trimmed.indexOf("{");
+  const end = trimmed.lastIndexOf("}");
+  if (start >= 0 && end > start) {
+    return tryParse(trimmed.slice(start, end + 1));
+  }
+  return null;
+}
+
 /**
- * Accept site format and common LLM mistakes (Chart.js datasets, missing title).
+ * Accept site format and common LLM mistakes (missing title, Chart.js datasets).
  */
 export function parseArticleChart(raw: string): ArticleChartConfig | null {
   try {
-    const parsed = JSON.parse(raw) as Record<string, unknown>;
-    if (!parsed || typeof parsed !== "object") return null;
+    const parsed = extractJsonObject(raw);
+    if (!parsed) return null;
 
     const typeRaw = String(parsed.type ?? "bar").toLowerCase();
     const type = (
@@ -70,6 +98,16 @@ export function parseArticleChart(raw: string): ArticleChartConfig | null {
       items = labels.map((label, i) => {
         const value = asNumber(data[i], 0);
         return { label, value, display: String(value) };
+      });
+    } else if (Array.isArray(parsed.data) && parsed.data.length > 0) {
+      items = parsed.data.map((item, i) => {
+        if (typeof item === "number") {
+          return { label: `Item ${i + 1}`, value: item, display: String(item) };
+        }
+        const row = (item ?? {}) as Record<string, unknown>;
+        const label = String(row.label ?? row.name ?? `Item ${i + 1}`);
+        const value = asNumber(row.value ?? row.y, i + 1);
+        return { label, value, display: String(row.display ?? value) };
       });
     }
 

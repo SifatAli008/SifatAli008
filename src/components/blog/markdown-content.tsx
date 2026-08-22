@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
+import type { ReactNode } from "react";
 import { parseArticleChart } from "@/lib/blog/parse-article-chart";
 
 const ArticleChart = dynamic(
@@ -17,6 +18,19 @@ const ArticleChart = dynamic(
 
 interface MarkdownContentProps {
   content: string;
+}
+
+/** react-markdown may pass code children as a string or string[]. */
+function codeText(children: ReactNode): string {
+  if (typeof children === "string") return children.replace(/\n$/, "");
+  if (Array.isArray(children)) {
+    return children
+      .map((c) => (typeof c === "string" ? c : ""))
+      .join("")
+      .replace(/\n$/, "");
+  }
+  if (children == null || typeof children === "boolean") return "";
+  return String(children).replace(/\n$/, "");
 }
 
 export function MarkdownContent({ content }: MarkdownContentProps) {
@@ -108,7 +122,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           pre: ({ children }) => <>{children}</>,
           code: ({ className, children }) => {
             const lang = /language-(\w+)/.exec(className ?? "")?.[1];
-            const raw = String(children).replace(/\n$/, "");
+            const raw = codeText(children);
 
             if (lang === "chart") {
               const config = parseArticleChart(raw);
