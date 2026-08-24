@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/types";
+import { domainSpecificNLPProductionArticle } from "./domain-nlp-production-aug-24-2026";
 import { cloudAgentScalingLessonsArticle } from "./cloud-agent-scaling-lessons-aug-22";
 import { advancesInClinicalNLPAndRagArticle } from "./clinical-nlp-rag-aug-22-2026";
 import { nlpAgentSynergyArticle } from "./nlp-agent-synergy-aug-21-2026";
@@ -25,6 +26,7 @@ export { articleFaqsBySlug } from "@/lib/data/article-faqs";
 
 /** Published long-form articles shipped with the codebase */
 export const publishedArticles: Omit<BlogPost, "id">[] = [
+  domainSpecificNLPProductionArticle,
   cloudAgentScalingLessonsArticle,
   advancesInClinicalNLPAndRagArticle,
   nlpAgentSynergyArticle,

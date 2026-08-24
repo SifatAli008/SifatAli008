@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "navigating-domain-specific-nlp-production-august-24-2026": [
+    {
+      question: "What is data drift in the context of domain-specific NLP, and how can it be managed?",
+      answer: "Data drift refers to the phenomenon where the statistical properties of the data used to train an NLP model change over time, leading to performance degradation. This can happen in specialized fields as new terminology, research, or legal precedents emerge. It can be managed through continuous monitoring of input data and model outputs, followed by periodic retraining or employing online learning techniques with curated, up-to-date domain-specific datasets.",
+    },
+    {
+      question: "How does Retrieval Augmented Generation (RAG) help in productionizing domain-specific NLP models?",
+      answer: "RAG enhances domain-specific NLP models by allowing them to retrieve relevant information from external knowledge bases before generating a response. This grounding in factual, up-to-date information significantly reduces model hallucinations, improves accuracy, and makes models more reliable. It's particularly useful for rapidly evolving fields where keeping the model's internal parameters current through retraining alone is impractical or too costly.",
+    },
+    {
+      question: "What are the key considerations for ensuring the robustness of a domain-specific NLP model in production?",
+      answer: "Ensuring robustness involves preparing the model for real-world data variations. This includes techniques like data augmentation (e.g., introducing common typos or grammatical errors), adversarial training to make the model resilient to tricky inputs, and using ensemble methods. For domain-specific models, it's also vital to understand the typical errors or variations encountered in that particular domain, such as specific abbreviations or phrasing in clinical notes.",
+    },
+    {
+      question: "Why is explainability important for domain-specific NLP, especially in healthcare and legal fields?",
+      answer: "In high-stakes domains like healthcare and law, understanding *why* an NLP model makes a particular recommendation or extraction is critical. Explainability builds trust with users (doctors, lawyers, patients, clients), aids in debugging and model improvement, and is often a regulatory requirement. Techniques like LIME, SHAP, and attention visualization help provide insights into the model's decision-making process.",
+    },
+    {
+      question: "What is MLOps, and how does it contribute to the successful deployment of domain-specific NLP models?",
+      answer: "MLOps (Machine Learning Operations) is a set of practices that combines Machine Learning, DevOps, and Data Engineering to automate and streamline the entire ML lifecycle. For domain-specific NLP, MLOps platforms provide tools for data management, model training, versioning, deployment, monitoring, and continuous integration/continuous deployment (CI/CD). This automation is crucial for managing the complexity and ensuring the reliability of NLP models in production.",
+    },
+    {
+      question: "How can I evaluate the real-world performance of a domain-specific NLP model beyond standard metrics like F1-score?",
+      answer: "Standard metrics may not capture the full picture. For real-world evaluation, consider domain-specific metrics that align with business or clinical goals. This could include measuring the reduction in time for a specific task, the accuracy of critical information extraction (e.g., patient safety flags), or the user satisfaction rate. Human-in-the-loop review and A/B testing against existing systems or human experts are also vital for comprehensive evaluation.",
+    },
+  ],
   "cloud-agent-scaling-lessons-august-22-2026": [
     {
       question: "How can I estimate the cloud costs for my AI agent deployment before going to production?",

@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-23",
+    slug: "navigating-domain-specific-nlp-production-august-24-2026",
+    title: "Navigating Domain-Specific NLP Production: Bridging the Gap from Lab to Real-World Impact",
+    excerpt: "This article delves into the critical challenges and emerging solutions for deploying domain-specific Natural Language Processing models into production environ",
+    seoTitle: "Domain-Specific NLP Production: Challenges & Solutions for Real-World AI",
+    seoDescription: "Learn about the production hurdles for domain-specific NLP models in healthcare and legal fields, and discover practical strategies for successful deployment an",
+    content: "",
+    tags: ["NLP", "AI", "Production NLP", "Domain-Specific NLP", "Healthcare AI", "Legal Tech", "Transformers", "Embeddings", "RAG", "Cloud"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-08-24T09:00:00.000Z",
+    createdAt: "2026-08-24T09:00:00.000Z",
+    updatedAt: "2026-08-24T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-22",
     slug: "cloud-agent-scaling-lessons-august-22-2026",
     title: "Navigating the AI Agent Frontier: Scaling Strategies and Cloud Realities on August 22, 2026",
