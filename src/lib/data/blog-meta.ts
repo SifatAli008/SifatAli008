@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-24",
+    slug: "ai-agents-streamlining-cloud-operations-aug-24-2026",
+    title: "AI Agents Revolutionize Cloud Operations: A Deep Dive into Integration and Developer Tooling",
+    excerpt: "This article explores the burgeoning trend of AI agents in cloud environments, examining their impact on developer workflows, operational efficiency, and the cr",
+    seoTitle: "AI Agents in Cloud Operations: Integration, Developer Tools, and Lessons Learned (August 24, 2026)",
+    seoDescription: "Discover how AI agents are transforming cloud operations. Learn about integration best practices, essential developer tools, and key lessons for founders and en",
+    content: "",
+    tags: ["AI", "Cloud Computing", "Developer Tools", "AI Agents", "DevOps", "Automation", "SRE"],
+    status: "published",
+    readingTime: 9,
+    publishedAt: "2026-08-24T14:00:00.000Z",
+    createdAt: "2026-08-24T14:00:00.000Z",
+    updatedAt: "2026-08-24T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-23",
     slug: "navigating-domain-specific-nlp-production-august-24-2026",
     title: "Navigating Domain-Specific NLP Production: Bridging the Gap from Lab to Real-World Impact",

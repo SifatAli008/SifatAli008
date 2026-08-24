@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-streamlining-cloud-operations-aug-24-2026": [
+    {
+      question: "What are the primary benefits of using AI agents for cloud operations?",
+      answer: "AI agents offer significant benefits including enhanced efficiency through automation of routine tasks, improved system reliability via proactive monitoring and faster incident response, cost optimization through intelligent resource management, and enhanced security by detecting and mitigating threats rapidly.",
+    },
+    {
+      question: "How can organizations ensure the security of AI agents operating in their cloud environments?",
+      answer: "Security is paramount. Organizations must implement strict access controls, follow the principle of least privilege, regularly audit agent actions, use secure methods for credential management, and integrate agents within a robust security monitoring framework.",
+    },
+    {
+      question: "What are the essential developer tools for building and deploying AI agents in the cloud?",
+      answer: "Key tools include agent development frameworks (e.g., LangChain, LlamaIndex), cloud-native orchestration platforms (leveraging Kubernetes), enhanced observability and debugging tools, and potentially low-code/no-code builders for simpler agent tasks. Prompt engineering tools are also crucial.",
+    },
+    {
+      question: "Is NLP a requirement for all AI agents in cloud operations?",
+      answer: "While not all agents strictly require advanced NLP, it is a foundational technology for many. Agents that interpret natural language commands, analyze unstructured log data, or generate human-readable reports heavily rely on NLP capabilities. As NLP advances, agent capabilities expand.",
+    },
+    {
+      question: "What is the first step for a company looking to integrate AI agents into their cloud infrastructure?",
+      answer: "It is recommended to start with a small, well-defined use case that offers clear business value, such as automating a specific monitoring or alerting task. This allows teams to gain experience, build confidence, and iterate on their approach before scaling to more complex operations.",
+    },
+    {
+      question: "How do AI agents differ from traditional automation scripts?",
+      answer: "Unlike static automation scripts that follow predefined logic, AI agents possess reasoning capabilities. They can learn from data, adapt to changing conditions, make decisions based on context, and interact with multiple tools and services more dynamically. This allows for more sophisticated and autonomous problem-solving.",
+    },
+  ],
   "navigating-domain-specific-nlp-production-august-24-2026": [
     {
       question: "What is data drift in the context of domain-specific NLP, and how can it be managed?",
