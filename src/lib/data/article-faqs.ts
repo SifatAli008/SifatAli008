@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-nlp-production-pipelines-aug-26-2026": [
+    {
+      question: "What are the primary challenges in deploying NLP models to production?",
+      answer: "Key challenges include optimizing resource-intensive transformer models for low latency and high throughput, managing and updating large embedding datasets, ensuring the relevance and freshness of data in RAG systems, dealing with domain-specific language complexities, and implementing robust monitoring and MLOps practices. Cost management for LLM inference is also a significant hurdle.",
+    },
+    {
+      question: "How can I optimize transformer models for production environments?",
+      answer: "Common optimization techniques include quantization (reducing model precision), pruning (removing redundant weights), knowledge distillation (training smaller models from larger ones), using efficient transformer variants, and leveraging specialized hardware accelerators like GPUs or TPUs. Efficient data loading and custom kernels are also vital.",
+    },
+    {
+      question: "What is RAG and why is it important for production NLP?",
+      answer: "Retrieval-Augmented Generation (RAG) combines LLMs with external knowledge retrieval. It's crucial for production because it grounds LLM responses in factual, up-to-date information, reducing hallucinations and improving accuracy. This is essential for applications requiring reliability and current knowledge.",
+    },
+    {
+      question: "How do I handle the cost of running LLMs in production?",
+      answer: "Strategies include optimizing models (quantization, pruning), using smaller specialized models where appropriate, efficient hardware utilization, caching common responses, carefully managing prompt and response lengths, and continuously monitoring inference costs. Understanding your cost per query or token is critical.",
+    },
+    {
+      question: "What is the role of domain-specific NLP models like ClinicalBERT?",
+      answer: "Domain-specific models, like ClinicalBERT for healthcare, are trained on specialized datasets and excel at understanding the nuances of that particular field (e.g., medical jargon, legal terminology). They offer higher accuracy and reliability for specialized tasks compared to general-purpose models, but require tailored pipelines and expertise.",
+    },
+    {
+      question: "Why is continuous monitoring so critical for NLP production pipelines?",
+      answer: "Continuous monitoring is essential to detect performance degradation (model drift), identify data quality issues, track inference latency and costs, and catch errors before they impact users. It enables proactive maintenance, iterative improvements, and ensures the reliability and effectiveness of the NLP system over time.",
+    },
+  ],
   "ai-agents-streamlining-cloud-operations-aug-24-2026": [
     {
       question: "What are the primary benefits of using AI agents for cloud operations?",

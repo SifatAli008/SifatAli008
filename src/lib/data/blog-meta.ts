@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-25",
+    slug: "advances-in-nlp-production-pipelines-aug-26-2026",
+    title: "Advancements in NLP Production Pipelines: Bridging the Gap from Research to Real-World Impact",
+    excerpt: "This article explores the latest innovations and critical considerations in deploying Natural Language Processing (NLP) models into robust, scalable production ",
+    seoTitle: "NLP Production Pipelines: Innovations & Best Practices for AI Founders & Engineers - August 26, 2026",
+    seoDescription: "Discover the cutting-edge advancements in NLP production pipelines, from transformer optimization to retrieval-augmented generation (RAG) and domain-specific mo",
+    content: "",
+    tags: ["NLP", "AI", "Production AI", "Machine Learning", "Cloud Computing", "Developer Tools", "Transformers", "RAG", "Embeddings", "LLM"],
+    status: "published",
+    readingTime: 12,
+    publishedAt: "2026-08-26T09:00:00.000Z",
+    createdAt: "2026-08-26T09:00:00.000Z",
+    updatedAt: "2026-08-26T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-24",
     slug: "ai-agents-streamlining-cloud-operations-aug-24-2026",
     title: "AI Agents Revolutionize Cloud Operations: A Deep Dive into Integration and Developer Tooling",
