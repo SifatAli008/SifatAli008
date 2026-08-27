@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/types";
+import { aiAgentsCloudDevToolsArticle } from "./ai-agents-cloud-dev-aug-27-2026";
 import { nlpProductionPipelinesArticle } from "./nlp-production-pipelines-aug-26-2026";
 import { aiAgentCloudIntegrationArticle } from "./ai-agents-cloud-integration-aug-24-2026";
 import { domainSpecificNLPProductionArticle } from "./domain-nlp-production-aug-24-2026";
@@ -28,6 +29,7 @@ export { articleFaqsBySlug } from "@/lib/data/article-faqs";
 
 /** Published long-form articles shipped with the codebase */
 export const publishedArticles: Omit<BlogPost, "id">[] = [
+  aiAgentsCloudDevToolsArticle,
   nlpProductionPipelinesArticle,
   domainSpecificNLPProductionArticle,
   cloudAgentScalingLessonsArticle,

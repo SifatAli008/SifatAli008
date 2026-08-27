@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-workflow-august-27-2026": [
+    {
+      question: "What are the most immediate benefits of using AI agents in cloud development today?",
+      answer: "The most immediate benefits include significant boosts in developer productivity through automated coding assistance, faster infrastructure provisioning, and more efficient testing processes. Agents also help reduce the cognitive load on developers by handling repetitive tasks.",
+    },
+    {
+      question: "How can I ensure the security of my cloud environment when using AI agents?",
+      answer: "Security is paramount. Ensure agents have least-privilege access, implement robust authentication and authorization mechanisms, regularly audit agent actions, and monitor for suspicious activity. Data encryption and secure handling of credentials used by agents are also critical.",
+    },
+    {
+      question: "What is the role of NLP in the current wave of AI agents for cloud development?",
+      answer: "NLP is crucial for enabling intuitive human-agent interaction. It allows developers to issue commands, ask questions, and receive explanations in natural language, making complex cloud operations more accessible and manageable without requiring deep technical expertise in every tool.",
+    },
+    {
+      question: "How do I start integrating AI agents into my existing cloud development workflow?",
+      answer: "Begin by identifying a specific, repetitive task that is well-defined and has clear success metrics. Implement an AI agent for that task, measure its performance, and iterate. Gradually expand the scope of automation as you gain experience and confidence.",
+    },
+    {
+      question: "What are the biggest risks associated with autonomous AI agents in cloud operations?",
+      answer: "The biggest risks include unintended consequences from complex decision-making, potential for cascading failures if not properly monitored, security vulnerabilities if compromised, and 'agent drift' where performance degrades over time. Robust observability and human oversight are key mitigation strategies.",
+    },
+    {
+      question: "Will AI agents replace human developers in cloud environments?",
+      answer: "It's unlikely that AI agents will completely replace human developers. Instead, they are evolving into powerful collaborators. Agents will handle routine and complex automated tasks, freeing up human developers to focus on creativity, strategic decision-making, architectural design, and complex problem-solving.",
+    },
+  ],
   "advances-in-nlp-production-pipelines-aug-26-2026": [
     {
       question: "What are the primary challenges in deploying NLP models to production?",
