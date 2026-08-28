@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-aug-29-2026": [
+    {
+      question: "What is the biggest challenge in scaling AI agents in the cloud today?",
+      answer: "The primary challenge is moving beyond individual agent capabilities to effectively orchestrate and manage complex multi-agent systems in production environments, ensuring reliability, scalability, and efficient resource utilization.",
+    },
+    {
+      question: "How can founders ensure their AI agent systems are fault-tolerant?",
+      answer: "Adopting decentralized orchestration models, using robust message queuing systems, implementing state persistence patterns like event sourcing, and leveraging managed cloud services for critical infrastructure components can significantly enhance fault tolerance.",
+    },
+    {
+      question: "What role do developer tools play in scaling AI agents?",
+      answer: "Frameworks like LangGraph and AutoGen simplify agent orchestration, while vector databases are essential for RAG, and LLMOps platforms manage model lifecycles. Cloud-native tools provide the underlying scalable infrastructure.",
+    },
+    {
+      question: "Why is observability so important for AI agent systems?",
+      answer: "Observability, through structured logging, distributed tracing, and custom metrics, is crucial for debugging complex agent interactions, identifying performance bottlenecks, monitoring agent behavior, and ensuring overall system reliability and predictability.",
+    },
+    {
+      question: "What are some practical lessons learned this week for shipping AI agents?",
+      answer: "Key lessons include starting simple and iterating fast, prioritizing observability from the outset, embracing managed cloud services, rigorously testing agent interactions, understanding cost models, and ensuring robust security practices.",
+    },
+    {
+      question: "How do NLP advancements contribute to the scaling of AI agents?",
+      answer: "Better NLP enables agents to understand user intent more accurately, synthesize information more effectively from text, and generate more coherent responses, all of which are foundational for more complex and scalable agentic applications.",
+    },
+  ],
   "ai-agents-cloud-dev-workflow-august-27-2026": [
     {
       question: "What are the most immediate benefits of using AI agents in cloud development today?",
