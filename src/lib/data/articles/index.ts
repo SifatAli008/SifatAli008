@@ -14,10 +14,10 @@ import { aiAgentCloudIntegrationArticle as aiAgentCloudAug18Article } from "./ai
 import { domainSpecificNlpProductionArticle } from "./domain-nlp-prod-aug-18-2026";
 import { cloudAgentOrchestrationLessonsArticle as cloudAgentOrchestrationAug17Article } from "./cloud-agent-orchestration-aug-17";
 import { advancesInDomainSpecificNLPArticle } from "./advances-domain-nlp-aug-17";
-import { aiAgentCloudIntegrationArticle } from "./ai-agent-cloud-integration-august-16";
+import { aiAgentCloudIntegrationArticle as aiAgentCloudIntegrationAug16Article } from "./ai-agent-cloud-integration-august-16";
 import { advancesInClinicalNLPaug16Article } from "./clinical-nlp-aug16";
 import { nlpEvaluationMetricsArticle } from "./nlp-evaluation-metrics-august-15-2026";
-import { cloudAgentOrchestrationLessonsArticle } from "./cloud-agent-orchestration-aug-14-2026";
+import { cloudAgentOrchestrationLessonsArticle as cloudAgentOrchestrationAug14Article } from "./cloud-agent-orchestration-aug-14-2026";
 import { productionNlpPipelinesArticle } from "./production-nlp-pipelines-aug-14-2026";
 import { nlpAgentIntegrationArticle } from "./nlp-agent-aug13";
 import { aiAgentAdvancementsArticle } from "./ai-agents-aug-13-2026";
@@ -43,10 +43,10 @@ export const publishedArticles: Omit<BlogPost, "id">[] = [
   domainSpecificNlpProductionArticle,
   cloudAgentOrchestrationAug17Article,
   advancesInDomainSpecificNLPArticle,
-  aiAgentCloudIntegrationArticle,
+  aiAgentCloudIntegrationAug16Article,
   advancesInClinicalNLPaug16Article,
   nlpEvaluationMetricsArticle,
-  cloudAgentOrchestrationLessonsArticle,
+  cloudAgentOrchestrationAug14Article,
   productionNlpPipelinesArticle,
   nlpAgentIntegrationArticle,
   aiAgentAdvancementsArticle,
