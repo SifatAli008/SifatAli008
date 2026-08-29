@@ -1,13 +1,13 @@
 import type { BlogPost } from "@/types";
-import { cloudAgentOrchestrationScalingLessonsArticle } from "./cloud-agent-orchestration-scaling-lessons-aug-29";
+import { cloudAgentOrchestrationScalingLessonsArticle as cloudAgentOrchestrationScalingLessonsAug29Article } from "./cloud-agent-orchestration-scaling-lessons-aug-29";
 import { aiAgentsCloudDevToolsArticle } from "./ai-agents-cloud-dev-aug-27-2026";
 import { nlpProductionPipelinesArticle } from "./nlp-production-pipelines-aug-26-2026";
-import { aiAgentCloudIntegrationArticle } from "./ai-agents-cloud-integration-aug-24-2026";
+import { aiAgentCloudIntegrationArticle as aiAgentCloudIntegrationAug24Article } from "./ai-agents-cloud-integration-aug-24-2026";
 import { domainSpecificNLPProductionArticle } from "./domain-nlp-production-aug-24-2026";
 import { cloudAgentScalingLessonsArticle } from "./cloud-agent-scaling-lessons-aug-22";
 import { advancesInClinicalNLPAndRagArticle } from "./clinical-nlp-rag-aug-22-2026";
 import { nlpAgentSynergyArticle } from "./nlp-agent-synergy-aug-21-2026";
-import { cloudAgentOrchestrationScalingLessonsArticle } from "./cloud-agent-scaling-lessons-aug-20-2026";
+import { cloudAgentOrchestrationScalingLessonsArticle as cloudAgentOrchestrationScalingLessonsAug20Article } from "./cloud-agent-scaling-lessons-aug-20-2026";
 import { aiAgentCloudDevToolsShippingLessonsArticle } from "./ai-agents-cloud-dev-aug-19-2026";
 import { august19NlpAgentsArticle } from "./aug19-nlp-agents-cloud";
 import { aiAgentCloudIntegrationArticle as aiAgentCloudAug18Article } from "./ai-agent-cloud-aug-18-2026";
@@ -30,13 +30,15 @@ export { articleFaqsBySlug } from "@/lib/data/article-faqs";
 
 /** Published long-form articles shipped with the codebase */
 export const publishedArticles: Omit<BlogPost, "id">[] = [
+  cloudAgentOrchestrationScalingLessonsAug29Article,
   aiAgentsCloudDevToolsArticle,
   nlpProductionPipelinesArticle,
+  aiAgentCloudIntegrationAug24Article,
   domainSpecificNLPProductionArticle,
   cloudAgentScalingLessonsArticle,
   advancesInClinicalNLPAndRagArticle,
   nlpAgentSynergyArticle,
-  cloudAgentOrchestrationScalingLessonsArticle,
+  cloudAgentOrchestrationScalingLessonsAug20Article,
   aiAgentCloudDevToolsShippingLessonsArticle,
   august19NlpAgentsArticle,
   aiAgentCloudAug18Article,

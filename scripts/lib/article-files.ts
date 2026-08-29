@@ -21,6 +21,17 @@ export function escapeTemplateLiteral(value: string): string {
   return value.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
 }
 
+/** Unique index import name derived from file slug — avoids duplicate export collisions. */
+export function indexImportName(fileBase: string): string {
+  const camel = fileBase
+    .split("-")
+    .map((word, i) =>
+      i === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join("");
+  return camel.endsWith("Article") ? camel : `${camel}Article`;
+}
+
 export async function listArticleSlugs(): Promise<string[]> {
   const files = await fs.readdir(ARTICLES_DIR);
   const slugs: string[] = [];
@@ -142,8 +153,9 @@ export async function updateArticlesIndex(article: GeneratedArticle): Promise<vo
   const indexPath = path.join(ARTICLES_DIR, "index.ts");
   let src = await fs.readFile(indexPath, "utf8");
 
-  const importLine = `import { ${article.exportName} } from "./${article.fileBase}";`;
-  if (!src.includes(importLine)) {
+  const indexName = indexImportName(article.fileBase);
+  const importLine = `import { ${article.exportName} as ${indexName} } from "./${article.fileBase}";`;
+  if (!src.includes(importLine) && !src.includes(`${indexName},`)) {
     const next = src.replace(
       /import type \{ BlogPost \} from "@\/types";\r?\n/,
       (m) => `${m}${importLine}\n`
@@ -154,10 +166,10 @@ export async function updateArticlesIndex(article: GeneratedArticle): Promise<vo
     src = next;
   }
 
-  if (!src.includes(`${article.exportName},`)) {
+  if (!src.includes(`${indexName},`)) {
     const next = src.replace(
       /export const publishedArticles: Omit<BlogPost, "id">\[\] = \[\r?\n/,
-      (m) => `${m}  ${article.exportName},\n`
+      (m) => `${m}  ${indexName},\n`
     );
     if (next === src) {
       throw new Error("updateArticlesIndex: could not insert export entry");
