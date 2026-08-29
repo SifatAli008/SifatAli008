@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "clinical-nlp-advancements-and-rag-in-healthcare-august-29-2026": [
+    {
+      question: "How does Clinical NLP differ from general NLP?",
+      answer: "Clinical NLP is a specialized field that focuses on understanding and processing the unique language found in medical texts. This includes specialized terminology, abbreviations, complex sentence structures, and the critical need for high accuracy and domain context, which general NLP may not adequately address.",
+    },
+    {
+      question: "What is the primary benefit of RAG in a healthcare setting?",
+      answer: "The primary benefit of RAG in healthcare is its ability to provide accurate, up-to-date, and contextually relevant information by grounding LLM responses in verifiable external medical knowledge. This reduces the risk of LLM hallucinations and ensures that clinical decisions are based on the best available evidence.",
+    },
+    {
+      question: "Can RAG systems replace the need for medical professionals?",
+      answer: "No, RAG systems are designed to augment, not replace, medical professionals. They serve as powerful tools to assist clinicians by processing large amounts of data, identifying patterns, and providing relevant information, thereby enhancing their decision-making capabilities and efficiency.",
+    },
+    {
+      question: "What are the biggest privacy concerns with using AI in healthcare?",
+      answer: "The biggest privacy concerns involve the handling of sensitive patient data. Ensuring robust data anonymization, secure storage and transmission, strict access controls, and compliance with regulations like HIPAA are crucial to protect patient confidentiality.",
+    },
+    {
+      question: "How can RAG systems help in identifying new drug targets?",
+      answer: "RAG systems can analyze vast amounts of biomedical literature, patents, and clinical trial data to identify potential correlations between genes, proteins, diseases, and existing compounds. By retrieving and synthesizing information from these diverse sources, they can highlight novel avenues for drug development that might be missed by human researchers.",
+    },
+    {
+      question: "What is the role of embeddings in Clinical NLP?",
+      answer: "Embeddings represent words and phrases as numerical vectors, capturing their semantic meaning and relationships. In Clinical NLP, specialized embeddings (like those from ClinicalBERT) are crucial for understanding the nuances of medical language, such as the different meanings of a term based on its context, enabling more accurate analysis and information extraction.",
+    },
+  ],
   "cloud-agent-orchestration-scaling-lessons-aug-29-2026": [
     {
       question: "What is the biggest challenge in scaling AI agents in the cloud today?",
