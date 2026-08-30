@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-scaling-lessons-august-30-2026": [
+    {
+      question: "What are the primary infrastructure challenges when scaling AI agents in the cloud?",
+      answer: "The main challenges involve securing sufficient scalable compute (CPU/GPU), managing large amounts of memory and storage for data and model states, ensuring adequate network bandwidth for communication, and preventing runaway costs through efficient resource utilization. Founders and engineers must carefully select instance types and leverage elastic cloud services.",
+    },
+    {
+      question: "How can organizations effectively manage the complexity of orchestrating many AI agents?",
+      answer: "Effective orchestration involves robust task distribution, load balancing, reliable state management across agents, and secure inter-agent communication protocols. Advanced patterns like agent mesh architectures and hierarchical agent systems are emerging to handle this complexity at scale, alongside event-driven designs.",
+    },
+    {
+      question: "What are the most critical data security and privacy considerations for scaled AI agent deployments?",
+      answer: "Organizations must ensure compliance with data privacy regulations (e.g., GDPR, CCPA), implement fine-grained access controls, use anonymization techniques, and secure data pipelines. For RAG agents, the security of vector databases and the embeddings they store is also crucial. Adopting zero-trust security models is highly recommended.",
+    },
+    {
+      question: "How is FinOps evolving to address the unique cost challenges of AI agents?",
+      answer: "FinOps for AI agents involves granular cost tracking per agent or task, anomaly detection for unexpected spending spikes, and proactive optimization strategies. This often requires specialized AI cost management tools and a dedicated focus on optimizing compute, storage, and data transfer costs associated with AI workloads.",
+    },
+    {
+      question: "What are the key 'shipping lessons' for teams deploying AI agents at scale?",
+      answer: "Key lessons include starting with specific use cases and iterating, prioritizing observability from day one, treating FinOps as a core discipline, designing for agent and infrastructure failure, integrating security from the initial design phase, and continuously investing in the team's specialized skills.",
+    },
+    {
+      question: "What role do developer tools play in scaling AI agents?",
+      answer: "Developer tools are essential for debugging complex agent behaviors, monitoring performance and resource usage, and implementing CI/CD pipelines tailored for AI agents. Emerging agent-specific observability platforms and AI-powered debugging assistants are becoming vital for managing large-scale deployments.",
+    },
+  ],
   "clinical-nlp-advancements-and-rag-in-healthcare-august-29-2026": [
     {
       question: "How does Clinical NLP differ from general NLP?",
