@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-30",
+    slug: "cloud-agent-orchestration-scaling-lessons-august-31-2026",
+    title: "Mastering the Cloud Frontier: Scaling AI Agents with Robust Orchestration",
+    excerpt: "As AI agents become increasingly integral to enterprise workflows, the challenge shifts from creation to reliable, scalable deployment in the cloud. This articl",
+    seoTitle: "Scaling AI Agents in the Cloud: Orchestration Strategies & Lessons Learned",
+    seoDescription: "Explore essential strategies for orchestrating and scaling AI agents in cloud environments. Discover key lessons learned for reliable deployment and efficient o",
+    content: "",
+    tags: ["AI Agents", "Cloud Computing", "Developer Tools", "Orchestration", "Scalability", "DevOps"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-08-31T14:00:00.000Z",
+    createdAt: "2026-08-31T14:00:00.000Z",
+    updatedAt: "2026-08-31T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-29",
     slug: "cloud-agent-scaling-lessons-august-30-2026",
     title: "Navigating the Cloud Agent Frontier: Scaling Challenges and Triumphs on August 30, 2026",

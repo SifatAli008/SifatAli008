@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-august-31-2026": [
+    {
+      question: "What is the primary benefit of using agent frameworks like LangChain for cloud deployment?",
+      answer: "Agent frameworks abstract away much of the underlying complexity of interacting with LLMs, managing prompts, and orchestrating tool usage. This accelerates development and simplifies the integration of agents into cloud infrastructure, allowing teams to focus on agent logic rather than low-level mechanics.",
+    },
+    {
+      question: "How does Kubernetes help in scaling AI agents?",
+      answer: "Kubernetes provides automated deployment, scaling, and management of containerized workloads. It enables efficient resource utilization, high availability, and the ability to manage the lifecycle of agent components dynamically based on demand, making it ideal for scaling agent fleets.",
+    },
+    {
+      question: "What are the key considerations for state management in cloud-deployed AI agents?",
+      answer: "State management requires ensuring that an agent's context and data are reliably persisted and accessible, especially in distributed systems. Effective solutions involve using robust databases, caching mechanisms, or dedicated state management services that can handle concurrent access and potential failures.",
+    },
+    {
+      question: "Why is asynchronous operation important for AI agent orchestration?",
+      answer: "Asynchronous operations prevent blocking, improve system responsiveness, and allow for better resource utilization. By using message queues and event streams, agent components can operate independently, reacting to tasks and events without waiting for other processes, which is crucial for handling variable workloads.",
+    },
+    {
+      question: "How can teams ensure the security of AI agents deployed in the cloud?",
+      answer: "Security must be integrated from the start. This includes secure coding practices, robust authentication and authorization mechanisms, data encryption, regular security audits of agent permissions, and implementing least privilege principles for agent access to resources.",
+    },
+    {
+      question: "What is the role of observability in managing AI agents at scale?",
+      answer: "Observability, through comprehensive metrics, logs, and traces, provides deep insights into agent behavior, performance, and potential issues. It is essential for real-time monitoring, anomaly detection, debugging, and understanding how agents are functioning within the broader cloud ecosystem.",
+    },
+  ],
   "cloud-agent-scaling-lessons-august-30-2026": [
     {
       question: "What are the primary infrastructure challenges when scaling AI agents in the cloud?",
