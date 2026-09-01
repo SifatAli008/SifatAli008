@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-scaling-lessons-sep-1-2026": [
+    {
+      question: "What is the biggest challenge when scaling AI agents in the cloud?",
+      answer: "The most significant challenges tend to be managing the escalating cloud costs associated with LLM inference and compute, ensuring the reliability and stability of autonomous decision-making, and integrating complex agent components within existing cloud infrastructure.",
+    },
+    {
+      question: "How can I reduce the cost of running AI agents in production?",
+      answer: "Strategies include optimizing LLM usage by employing smaller, fine-tuned models where appropriate, implementing aggressive caching for common queries, dynamically provisioning cloud resources based on demand, and setting up granular cost monitoring and alerting systems.",
+    },
+    {
+      question: "What role does human oversight play in AI agent deployment?",
+      answer: "Human oversight is crucial, especially for high-stakes applications. Models include 'human-in-the-loop' (approval before action), 'human-on-the-loop' (monitoring and intervention), and 'human-out-of-the-loop' (full autonomy), which requires extensive validation.",
+    },
+    {
+      question: "Which developer tools are essential for building AI agents?",
+      answer: "Key tools include agent development frameworks (e.g., LangChain, LlamaIndex), vector databases for memory and RAG, robust MLOps platforms for lifecycle management, and leveraging cloud provider services for managed AI infrastructure.",
+    },
+    {
+      question: "How important is testing for AI agents?",
+      answer: "Testing is extremely important. Comprehensive automated testing, including unit, integration, and end-to-end tests, is vital to ensure reliability, validate decision-making, and catch edge cases before they impact production.",
+    },
+    {
+      question: "What is the best approach to deploying new versions of an AI agent?",
+      answer: "Staged rollouts and canary deployments are recommended. This involves gradually releasing new versions to a small subset of users or traffic to monitor performance and detect issues early before a full rollout.",
+    },
+  ],
   "advanced-nlp-production-pipelines-sep-1-2026": [
     {
       question: "What is the primary benefit of using RAG in production NLP pipelines?",
