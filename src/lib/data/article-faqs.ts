@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advanced-nlp-production-pipelines-sep-1-2026": [
+    {
+      question: "What is the primary benefit of using RAG in production NLP pipelines?",
+      answer: "The primary benefit of RAG is to ground LLM responses in factual, external knowledge, significantly reducing hallucinations and improving the accuracy and trustworthiness of generated content. It allows models to access up-to-date or domain-specific information that might not be present in their training data.",
+    },
+    {
+      question: "How are transformer models being made more production-ready in 2026?",
+      answer: "Productionization efforts focus on model compression (quantization, pruning), efficient tokenization, optimized inference engines, and the implementation of robust MLOps practices for continuous integration and deployment of models.",
+    },
+    {
+      question: "What are some key challenges in deploying NLP models to production?",
+      answer: "Key challenges include ensuring scalability and low latency, maintaining modularity and ease of updates, implementing comprehensive monitoring and observability, and adhering to strict data governance and security requirements, especially when dealing with sensitive text data.",
+    },
+    {
+      question: "Beyond traditional metrics like accuracy, what other evaluation methods are important for production NLP?",
+      answer: "Important evaluation methods include task-specific metrics (e.g., ROUGE for summarization), human evaluation frameworks for assessing nuanced quality, adversarial testing to uncover vulnerabilities, and specific metrics for fairness and bias detection.",
+    },
+    {
+      question: "How can smaller companies or startups effectively leverage advanced NLP production pipelines?",
+      answer: "Startups can focus on clear, high-impact use cases, leverage managed cloud services for infrastructure, adopt MLOps principles early for agility, and prioritize data quality. They can also start with smaller, fine-tuned models or leverage RAG with existing LLM APIs before building custom solutions.",
+    },
+    {
+      question: "What is the role of embeddings in modern NLP production pipelines?",
+      answer: "Embeddings are fundamental for semantic understanding. In production, they are crucial for tasks like semantic search in RAG systems, document clustering, similarity comparisons, and as input features for various downstream NLP models. The quality and domain-specificity of embeddings significantly impact pipeline performance.",
+    },
+  ],
   "cloud-agent-orchestration-scaling-lessons-august-31-2026": [
     {
       question: "What is the primary benefit of using agent frameworks like LangChain for cloud deployment?",
