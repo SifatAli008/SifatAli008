@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "production-nlp-transformers-advanced-deployment-strategies-sep-4-2026": [
+    {
+      question: "What are the primary challenges in deploying transformer models to production?",
+      answer: "Key challenges include managing the large model size and computational requirements, ensuring low inference latency and high throughput, handling data and concept drift, integrating with existing systems, controlling computational costs, and establishing robust evaluation and monitoring pipelines.",
+    },
+    {
+      question: "How does RAG improve the reliability of generative AI applications?",
+      answer: "RAG (Retrieval Augmented Generation) enhances reliability by grounding generated responses in factual information retrieved from an external knowledge base. This significantly reduces model hallucination and ensures that responses are based on up-to-date and relevant data, rather than solely on the model's internal, potentially outdated, parameters.",
+    },
+    {
+      question: "What is the role of tokenization in production NLP?",
+      answer: "Tokenization is the first step in processing text for NLP models. In production, efficient tokenization using methods like SentencePiece or custom domain-specific tokenizers is crucial for optimizing sequence length, reducing vocabulary size, and improving overall inference speed and accuracy. It ensures that domain-specific terms are handled correctly.",
+    },
+    {
+      question: "Why is domain-specific fine-tuning important for NLP models in production?",
+      answer: "Domain-specific fine-tuning adapts general-purpose NLP models to the unique language, jargon, and nuances of a particular field (e.g., healthcare, finance, legal). This leads to more accurate embeddings, better understanding of context, and ultimately higher performance on downstream tasks relevant to that domain.",
+    },
+    {
+      question: "What are some key MLOps practices for NLP production pipelines?",
+      answer: "Essential MLOps practices include data and model versioning, automated CI/CD pipelines for model deployment, rigorous experiment tracking, and continuous monitoring of model performance, drift, and resource utilization in live production environments.",
+    },
+    {
+      question: "How can inference speed for large transformer models be improved in production?",
+      answer: "Inference speed can be significantly improved through techniques such as quantization (reducing precision), pruning (removing unnecessary weights), knowledge distillation (training smaller models), and using optimized inference runtimes like ONNX Runtime or TensorRT.",
+    },
+  ],
   "cloud-agent-scaling-lessons-sep-1-2026": [
     {
       question: "What is the biggest challenge when scaling AI agents in the cloud?",
