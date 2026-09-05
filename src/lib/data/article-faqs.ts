@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-sep-5-2026": [
+    {
+      question: "What are the biggest challenges in orchestrating multiple AI agents in the cloud?",
+      answer: "The primary challenges include managing inter-agent dependencies, resolving conflicts, handling state consistency across distributed agents, and ensuring robust communication channels. The complexity increases significantly as the number and sophistication of agents grow.",
+    },
+    {
+      question: "How can I ensure my AI agents don't incur unexpected cloud costs?",
+      answer: "Implement granular cost allocation tagging for all agent-related resources, set up budget alerts, deploy specialized agents for resource optimization, and continuously monitor agent activity and resource consumption against performance gains.",
+    },
+    {
+      question: "What are the most important metrics to track for agent health and performance?",
+      answer: "Key metrics include task completion rates, error rates, decision confidence scores, resource utilization (CPU, memory, network), latency of agent responses, and overall system uptime. Custom metrics tailored to specific agent functions are also crucial.",
+    },
+    {
+      question: "How does modular architecture benefit cloud agent orchestration?",
+      answer: "A modular architecture allows for independent development, deployment, and scaling of individual agent functionalities. This simplifies debugging, enhances reusability, and makes it easier to replace or update specific agents without impacting the entire system.",
+    },
+    {
+      question: "What role do agent frameworks play in scaling cloud agent operations?",
+      answer: "Agent frameworks abstract away complex underlying infrastructure and provide standardized interfaces for agent development, state management, and tool integration. This accelerates development and simplifies the process of building and deploying scalable agent systems.",
+    },
+    {
+      question: "How can I effectively debug an issue that spans multiple AI agents?",
+      answer: "Leveraging structured logging across all agents, implementing distributed tracing to follow requests across agent interactions, and using visualization dashboards to see the overall flow of operations are essential for debugging complex, multi-agent issues.",
+    },
+  ],
   "production-nlp-transformers-advanced-deployment-strategies-sep-4-2026": [
     {
       question: "What are the primary challenges in deploying transformer models to production?",
