@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agent-orchestration-scaling-lessons-sep-7-2026": [
+    {
+      question: "How can I ensure my AI agents have the right permissions in a cloud environment?",
+      answer: "Implement the principle of least privilege. Grant agents only the specific permissions required for their tasks using granular IAM policies. Regularly audit these permissions and automate their management through Infrastructure as Code.",
+    },
+    {
+      question: "What are the biggest bottlenecks when scaling AI agents in cloud orchestration?",
+      answer: "Common bottlenecks include the central orchestration layer becoming overloaded, high computational demands of LLMs, inefficient data pipelines, and challenges in managing the state and communication of a large number of agents.",
+    },
+    {
+      question: "How important is domain-specific NLP for cloud orchestration agents?",
+      answer: "Extremely important. General NLP models often struggle with the specialized terminology and context found in cloud operations. Fine-tuning models on domain-specific data (e.g., logs, configuration files, operational manuals) significantly improves accuracy and efficiency.",
+    },
+    {
+      question: "What role does observability play in scaling AI agents?",
+      answer: "Observability (logging, metrics, tracing) is crucial for understanding agent behavior, diagnosing issues, monitoring performance, and ensuring reliability. It provides the necessary visibility to manage complex, scaled systems effectively.",
+    },
+    {
+      question: "Are there specific technologies or frameworks recommended for agent orchestration?",
+      answer: "While specific recommendations evolve rapidly, look for frameworks that support modular agent design, hybrid orchestration models, and seamless integration with cloud-native services. Concepts like Kubernetes operators and specialized agent communication protocols are increasingly relevant.",
+    },
+    {
+      question: "How can I test the reliability of my AI agents before they go into production?",
+      answer: "Utilize simulated environments that mimic production conditions. Employ chaos engineering principles to intentionally introduce failures and observe how agents and the orchestration system respond. Rigorous unit and integration testing of agent logic is also essential.",
+    },
+  ],
   "nlp-agent-synergy-driving-enterprise-intelligence-sep-6-2026": [
     {
       question: "What is the primary benefit of combining NLP with AI agents for businesses?",

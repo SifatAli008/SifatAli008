@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-36",
+    slug: "ai-agent-orchestration-scaling-lessons-sep-7-2026",
+    title: "Navigating the Labyrinth: Scaling AI Agents in Cloud Orchestration",
+    excerpt: "This article dives deep into the intricate challenges and emerging best practices for scaling AI agents within complex cloud orchestration frameworks as of Sept",
+    seoTitle: "Scaling AI Agents in Cloud Orchestration: Lessons for Founders & Engineers",
+    seoDescription: "Discover key strategies and challenges for scaling AI agents in cloud orchestration, focusing on NLP integration, agent management, and performance optimization",
+    content: "",
+    tags: ["AI", "NLP", "Agents", "Cloud", "Developer Tools", "Orchestration", "Scalability", "Production NLP"],
+    status: "published",
+    readingTime: 11,
+    publishedAt: "2026-09-07T09:00:00.000Z",
+    createdAt: "2026-09-07T09:00:00.000Z",
+    updatedAt: "2026-09-07T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-35",
     slug: "nlp-agent-synergy-driving-enterprise-intelligence-sep-6-2026",
     title: "NLP Agents: The Next Frontier in Enterprise Intelligence",
