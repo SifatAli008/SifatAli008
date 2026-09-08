@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-37",
+    slug: "advances-in-production-nlp-pipelines-sept-8-2026",
+    title: "Optimizing Production NLP Pipelines: New Strategies for Latency, Throughput, and Cost",
+    excerpt: "This article explores the latest advancements in production NLP pipelines, focusing on innovative strategies to reduce latency, increase throughput, and optimiz",
+    seoTitle: "Production NLP Pipeline Optimization: Latency, Throughput & Cost Strategies",
+    seoDescription: "Discover cutting-edge strategies for optimizing production NLP pipelines, including model quantization, efficient inference, and dynamic batching, to improve la",
+    content: "",
+    tags: ["NLP", "AI", "Cloud", "Developer Tools", "Production ML", "Transformers", "Inference Optimization", "Cost Optimization"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-09-08T09:00:00.000Z",
+    createdAt: "2026-09-08T09:00:00.000Z",
+    updatedAt: "2026-09-08T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-36",
     slug: "ai-agent-orchestration-scaling-lessons-sep-7-2026",
     title: "Navigating the Labyrinth: Scaling AI Agents in Cloud Orchestration",

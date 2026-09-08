@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-production-nlp-pipelines-sept-8-2026": [
+    {
+      question: "What is model quantization and why is it important for production NLP?",
+      answer: "Model quantization is a technique to reduce the precision of model parameters (weights and activations), typically from 32-bit floating-point to lower-bit integers (e.g., 8-bit). It's crucial for production NLP because it significantly reduces model size, memory footprint, and computational requirements, leading to faster inference, lower latency, and reduced operational costs without substantial loss in model accuracy.",
+    },
+    {
+      question: "How do efficient inference engines like TensorRT or ONNX Runtime help optimize NLP pipelines?",
+      answer: "Efficient inference engines optimize NLP pipelines by performing graph-level transformations, layer fusion, kernel auto-tuning, and reduced precision inference. They translate the neural network graph into highly optimized code specific to the target hardware (GPUs, CPUs), maximizing hardware utilization and dramatically speeding up inference times compared to generic framework execution.",
+    },
+    {
+      question: "What is dynamic batching and how does it improve throughput?",
+      answer: "Dynamic batching is an inference strategy where multiple incoming requests are grouped into a single batch for parallel processing on the fly, rather than waiting for a fixed batch size. This improves throughput by keeping the processing unit (like a GPU) continuously busy, reducing idle time, and allowing for more efficient memory access and computation, especially with variable request arrival rates or input lengths.",
+    },
+    {
+      question: "Can I combine different optimization techniques, and what are the benefits?",
+      answer: "Yes, combining different optimization techniques like model quantization, efficient inference engines, and dynamic batching is highly recommended. The benefits are synergistic, often leading to compounding improvements in latency, throughput, and cost efficiency that are far greater than applying any single technique in isolation. This allows for deploying powerful NLP models at scale with optimal performance.",
+    },
+    {
+      question: "What are the main challenges when implementing these NLP optimization strategies?",
+      answer: "Key challenges include the engineering effort required for implementation and fine-tuning, potential (though often minimal) accuracy degradation from quantization, and the evolving nature of tooling and frameworks. Robust evaluation pipelines are essential to ensure performance gains don't compromise model quality, and ongoing monitoring is needed to maintain optimal operation in dynamic production environments.",
+    },
+    {
+      question: "How do these optimizations impact the deployment of domain-specific NLP models like ClinicalBERT?",
+      answer: "For domain-specific NLP models like ClinicalBERT, these optimizations are critical. They enable the deployment of these complex models in real-time, resource-constrained environments (e.g., edge devices or optimized cloud instances) while maintaining high accuracy. This is particularly important for sensitive applications like healthcare, where rapid, accurate analysis of large volumes of specialized text data is essential for decision support and operational efficiency.",
+    },
+  ],
   "ai-agent-orchestration-scaling-lessons-sep-7-2026": [
     {
       question: "How can I ensure my AI agents have the right permissions in a cloud environment?",
