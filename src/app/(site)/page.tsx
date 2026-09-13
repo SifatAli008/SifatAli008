@@ -66,7 +66,7 @@ export const revalidate = 3600;
 
 const HOME_TITLE = "Sifat Ali - AI/RAG Engineer & Full-Stack Builder";
 const HOME_DESCRIPTION =
-  "Sifat Ali — COO @ Fluvo Soft, AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.";
+  "Sifat Ali — AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.";
 
 export const metadata: Metadata = {
   ...buildPageMetadata({

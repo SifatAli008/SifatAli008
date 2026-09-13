@@ -9,6 +9,6 @@ export default function OgImage() {
   return createBrutalistOgImage({
     eyebrow: "Sifat Ali",
     title: "AI/RAG Engineer & Full-Stack Builder",
-    subtitle: "COO @ Fluvo Soft · 2× National Hackathon Winner",
+    subtitle: "2× National Hackathon Winner",
   });
 }

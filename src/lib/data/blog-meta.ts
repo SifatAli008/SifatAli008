@@ -600,11 +600,11 @@ export const blogFallbackMeta: BlogPost[] = [
     slug: "journey-ai-fullstack-developer",
     title: "My Journey as an AI & Full Stack Developer",
     excerpt:
-      "From Shohoz Skill bootcamps to Fluvo Soft COO - building systems and winning hackathons.",
+      "From Shohoz Skill bootcamps to shipping AI systems - building products and winning hackathons.",
     seoTitle:
       "My Journey as an AI and Full-Stack Developer | Sifat Ali",
     seoDescription:
-      "Career notes from bootcamps to COO: building AI systems, teaching developers, and winning national hackathons while shipping production software.",
+      "Career notes from bootcamps to production: building AI systems, teaching developers, and winning national hackathons while shipping software.",
     content: "",
     tags: ["Career", "AI", "Community"],
     status: "draft",

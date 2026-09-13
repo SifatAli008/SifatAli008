@@ -6,13 +6,13 @@ export const seedProfile: Profile = {
   name: "Sifat Ali",
   tagline: "AI/RAG Systems Engineer & Full-Stack Builder",
   headline:
-    "COO @ Fluvo Soft · Building scalable AI-automation systems and full-stack products from concept to scale.",
+    "Building scalable AI-automation systems and full-stack products from concept to scale.",
   bio: "Technical founder and engineer with 5+ years in software development. 2× National Hackathon Winner. Shipped Web, EdTech, Bioinformatics, and AI-powered tools across Bangladesh and beyond.",
-  aboutStory: `I'm Sifat Ali - COO at Fluvo Soft and an engineer who builds at the intersection of AI/RAG systems, full-stack architecture, and community-driven product delivery.
+  aboutStory: `I'm Sifat Ali - an engineer who builds at the intersection of AI/RAG systems, full-stack architecture, and community-driven product delivery.
 
 Over 5+ years I've shipped products from concept to scale: web platforms, EdTech systems, bioinformatics research tooling, and AI-powered automation. I'm a 2× National Hackathon Winner (InnovateX 2025, NextGen Hackathon @ IIUC Tech Fest) and bring that same execution energy to every sprint.
 
-At Fluvo Soft, I align product, engineering, and business operations to deliver high-standard SaaS, web, mobile, and AI systems. At UIU Developers Hub, I build tools like PyDItor and Sir Kothay while mentoring students on React.js, Python, and AI. Previously at Shohoz Skill, I managed 21+ developers, led 12 bootcamps for 300+ students, and built CMS-powered learning platforms that improved course completion by 65%.
+At UIU Developers Hub, I build tools like PyDItor and Sir Kothay while mentoring students on React.js, Python, and AI. Previously at Shohoz Skill, I managed 21+ developers, led 12 bootcamps for 300+ students, and built CMS-powered learning platforms that improved course completion by 65%.
 
 I hold a B.Sc. in Computer Science from United International University and care deeply about measurable impact, teaching what I ship, and systems that outlive hype cycles.`,
   engineeringPhilosophy:
@@ -62,7 +62,7 @@ I hold a B.Sc. in Computer Science from United International University and care
       { year: 2023, label: "UIU Dev Hub", value: 80 },
       { year: 2024, label: "AI healthcare", value: 90 },
       { year: 2025, label: "2× hackathon wins", value: 95 },
-      { year: 2026, label: "COO Fluvo Soft", value: 100 },
+      { year: 2026, label: "Shipping AI systems", value: 100 },
     ],
     activityMix: [
       { label: "BUILD", value: 35 },
@@ -72,7 +72,6 @@ I hold a B.Sc. in Computer Science from United International University and care
     ],
   },
   typewriterRoles: [
-    "COO @ Fluvo Soft",
     "AI/RAG Systems Engineer",
     "Full-Stack Builder",
     "Community Coordinator",

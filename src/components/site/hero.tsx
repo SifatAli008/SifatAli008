@@ -12,7 +12,6 @@ const HERO_PORTRAIT = "/assets/images/hero-portrait.png?v=6";
 const ROLES = [
   "AI/RAG ENGINEER",
   "FULL-STACK BUILDER",
-  "COO @ FLUVO SOFT",
   "HACKATHON WINNER",
 ];
 

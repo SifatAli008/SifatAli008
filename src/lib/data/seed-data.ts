@@ -217,21 +217,6 @@ export const seedSkills: Omit<Skill, "id">[] = [
 
 export const seedExperience: Omit<Experience, "id">[] = [
   {
-    company: "Fluvo Soft",
-    role: "Chief Operating Officer (COO)",
-    duration: "Jan 2026 - Present",
-    location: "Dhaka, Bangladesh",
-    description:
-      "Leading operations at Fluvo Soft - aligning product, engineering, and business to deliver scalable web, mobile, AI, and SaaS solutions.",
-    impact: [
-      "Orchestrate cross-functional delivery across product, engineering, and business",
-      "Drive high-standard SaaS offerings aligned to client requirements",
-      "Integrate technology, business, and teams for steady growth",
-    ],
-    stack: ["Next.js", "TypeScript", "AI/RAG", "SaaS Operations"],
-    order: 1,
-  },
-  {
     company: "UIU Developers Hub",
     role: "Developer & Community Coordinator",
     duration: "Oct 2024 - Present",
@@ -244,7 +229,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
       "Grow the community through events and shared resources",
     ],
     stack: ["React.js", "Python", "PyQt5", "Node.js", "Community Ops"],
-    order: 2,
+    order: 1,
   },
   {
     company: "Shohoz Skill",
@@ -259,7 +244,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
       "Scaled instructional operations across multiple cohorts",
     ],
     stack: ["React", "CMS", "Team Management", "EdTech"],
-    order: 3,
+    order: 2,
   },
   {
     company: "Shohoz Skill",
@@ -274,7 +259,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
       "Hands-on React and modern web stack instruction",
     ],
     stack: ["HTML/CSS/JS", "React", "Curriculum Design"],
-    order: 4,
+    order: 3,
   },
   {
     company: "Freelance",
@@ -289,7 +274,7 @@ export const seedExperience: Omit<Experience, "id">[] = [
       "Shipped production UIs across diverse product domains",
     ],
     stack: ["React", "JavaScript", "UI/UX", "Client Delivery"],
-    order: 5,
+    order: 4,
   },
 ];
 
@@ -303,20 +288,12 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
     order: 1,
   },
   {
-    title: "COO @ Fluvo Soft",
-    description: "Leading operations for scalable AI, web, mobile, and SaaS delivery.",
-    year: 2026,
-    category: "Job",
-    metrics: {},
-    order: 2,
-  },
-  {
     title: "UIU Developers Hub - Community Builder",
     description: "Developer & Community Coordinator building PyDItor, Sir Kothay, and mentorship programs.",
     year: 2024,
     category: "Community",
     metrics: { tools: 2 },
-    order: 3,
+    order: 2,
   },
   {
     title: "Shohoz Skill - 300+ Students Trained",
@@ -324,7 +301,7 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
     year: 2021,
     category: "Learning",
     metrics: { bootcamps: 12, students: 300 },
-    order: 4,
+    order: 3,
   },
   {
     title: "Google Analytics & Digital Marketing",
@@ -332,7 +309,7 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
     year: 2024,
     category: "Learning",
     metrics: { certs: 2 },
-    order: 5,
+    order: 4,
   },
   {
     title: "Prompt Engineering Certification",
@@ -340,7 +317,7 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
     year: 2024,
     category: "Research",
     metrics: {},
-    order: 6,
+    order: 5,
   },
   {
     title: "B.Sc. Computer Science - UIU",
@@ -348,7 +325,7 @@ export const seedAchievements: Omit<Achievement, "id">[] = [
     year: 2022,
     category: "Achievement",
     metrics: {},
-    order: 7,
+    order: 6,
   },
 ];
 
@@ -358,7 +335,7 @@ export const seedBlogPosts: Omit<BlogPost, "id">[] = [
     slug: "journey-ai-fullstack-developer",
     title: "My Journey as an AI & Full Stack Developer",
     excerpt:
-      "From Shohoz Skill bootcamps to Fluvo Soft COO - building systems, teaching others, and winning national hackathons.",
+      "From Shohoz Skill bootcamps to AI/RAG systems - building products, teaching others, and winning national hackathons.",
     content: `## The Beginning
 
 I started with frontend freelancing and teaching web development at Shohoz Skill.
@@ -368,7 +345,7 @@ I started with frontend freelancing and teaching web development at Shohoz Skill
 - Managing 21+ developers and 300+ bootcamp students
 - Building PyDItor and Sir Kothay at UIU Developers Hub
 - 2× National Hackathon Winner
-- COO @ Fluvo Soft - scaling AI-automation and SaaS delivery
+- Shipping production AI-automation and full-stack products
 
 ## What I Believe
 

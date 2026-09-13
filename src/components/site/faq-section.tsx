@@ -4,7 +4,7 @@ import { Minus, Plus } from "lucide-react";
 const faqs = [
   {
     q: "What does Sifat Ali offer?",
-    a: "AI/RAG system design, full-stack web apps (Next.js, Firebase), product execution from Fluvo Soft COO experience, and advisory for EdTech, MedTech, and SaaS teams that need to ship reliable AI features.",
+    a: "AI/RAG system design, full-stack web apps (Next.js, Firebase), product execution from concept to production, and advisory for EdTech, MedTech, and SaaS teams that need to ship reliable AI features.",
   },
   {
     q: "Who is this for?",

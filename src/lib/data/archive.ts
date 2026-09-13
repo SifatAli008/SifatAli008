@@ -10,13 +10,6 @@ export interface ArchiveTimelineItem {
 
 export const archiveTimeline: ArchiveTimelineItem[] = [
   {
-    year: 2026,
-    category: "Job",
-    title: "COO @ FLUVO SOFT",
-    description: "Leading operations for AI, web, mobile, and SaaS delivery.",
-    metrics: {},
-  },
-  {
     year: 2025,
     category: "Achievement",
     title: "2× NATIONAL HACKATHON WINNER",

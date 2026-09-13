@@ -8,7 +8,6 @@ import { ExperienceLogosStrip } from "@/components/site/experience-logos-strip";
 import type { Experience } from "@/types";
 
 const typeMap: Record<string, string> = {
-  "Fluvo Soft": "FULL-TIME",
   "UIU Developers Hub": "VOLUNTEER",
   "Shohoz Skill": "PART-TIME",
   Freelance: "FREELANCE",

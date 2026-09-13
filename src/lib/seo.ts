@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { assetUrl } from "@/lib/cloudinary/assets";
 
 const FALLBACK_SITE_URL = "https://sifatali.site";
 
@@ -113,10 +112,9 @@ export const defaultMetadata: Metadata = {
     template: "%s | Sifat Ali",
   },
   description:
-    "Sifat Ali — COO @ Fluvo Soft, AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.",
+    "Sifat Ali — AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.",
   keywords: [
     "Sifat Ali",
-    "Fluvo Soft",
     "AI RAG Engineer",
     "Full Stack Developer",
     "Next.js",
@@ -144,7 +142,7 @@ export const defaultMetadata: Metadata = {
     siteName: "Sifat Ali",
     title: "Sifat Ali - AI/RAG Engineer & Full-Stack Builder",
     description:
-      "Sifat Ali — COO @ Fluvo Soft, AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.",
+      "Sifat Ali — AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.",
     images: [
       {
         url: absoluteUrl(DEFAULT_OG_IMAGE),
@@ -158,7 +156,7 @@ export const defaultMetadata: Metadata = {
     card: "summary_large_image",
     title: "Sifat Ali - AI/RAG Engineer & Full-Stack Builder",
     description:
-      "Sifat Ali — COO @ Fluvo Soft, AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.",
+      "Sifat Ali — AI/RAG engineer & 2× hackathon winner. Hire for scalable AI-automation and full-stack products.",
     images: [absoluteUrl(DEFAULT_OG_IMAGE)],
     creator: "@sifatali008",
   },
@@ -210,7 +208,6 @@ export function personJsonLd(profile: {
       ? { address: { "@type": "PostalAddress", addressLocality: profile.location } }
       : {}),
     sameAs: Object.values(profile.socials).filter(Boolean),
-    worksFor: { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Fluvo Soft" },
     ...(university
       ? {
           alumniOf: {
@@ -257,16 +254,11 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
-    name: "Fluvo Soft",
+    name: "Sifat Ali",
     description:
-      "AI, web, mobile, and SaaS product delivery - scalable systems from concept to production.",
-    logo: (() => {
-      const logo = assetUrl("/assets/logos/Fluvo Soft.png");
-      return logo.startsWith("http") ? logo : absoluteUrl(logo);
-    })(),
-    url: "https://www.fluvosoft.com/",
+      "Personal portfolio of Sifat Ali — AI/RAG systems and full-stack product work.",
+    url: siteUrl,
     founder: { "@id": `${siteUrl}/#person` },
-    employee: { "@id": `${siteUrl}/#person`, name: "Sifat Ali" },
     sameAs: ["https://www.linkedin.com/in/sifat-ali/"],
     knowsAbout: ["Artificial Intelligence", "SaaS", "Web Development", "Mobile Apps"],
   };
@@ -409,7 +401,7 @@ export function siteWideJsonLd() {
         url: siteUrl,
         jobTitle: "AI/RAG Engineer & Full-Stack Builder",
         description:
-          "COO at Fluvo Soft, AI/RAG systems engineer, and 2× national hackathon winner building scalable AI-automation and full-stack products.",
+          "AI/RAG systems engineer and 2× national hackathon winner building scalable AI-automation and full-stack products.",
         email: "sifatali008@gmail.com",
         image: absoluteUrl(DEFAULT_OG_IMAGE),
         sameAs: [
@@ -418,11 +410,6 @@ export function siteWideJsonLd() {
           "https://leetcode.com/u/SifatAli008/",
           "https://medium.com/@sifatali008",
         ],
-        worksFor: {
-          "@type": "Organization",
-          "@id": `${siteUrl}/#organization`,
-          name: "Fluvo Soft",
-        },
         award: PERSON_AWARDS,
         knowsAbout: [
           "Artificial Intelligence",
@@ -438,10 +425,10 @@ export function siteWideJsonLd() {
       {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
-        name: "Fluvo Soft",
+        name: "Sifat Ali",
         description:
-          "AI, web, mobile, and SaaS product delivery - scalable systems from concept to production.",
-        url: "https://www.fluvosoft.com/",
+          "Personal portfolio of Sifat Ali — AI/RAG systems and full-stack product work.",
+        url: siteUrl,
         founder: { "@id": `${siteUrl}/#person` },
         employee: { "@id": `${siteUrl}/#person`, name: "Sifat Ali" },
         sameAs: ["https://www.linkedin.com/in/sifat-ali/"],
@@ -456,7 +443,7 @@ export function siteWideJsonLd() {
             name: "Who is Sifat Ali?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Sifat Ali is an AI/RAG engineer, full-stack builder, and COO at Fluvo Soft. He is a 2× national hackathon winner building AI-automation and product systems in Bangladesh.",
+              text: "Sifat Ali is an AI/RAG engineer and full-stack builder. He is a 2× national hackathon winner building AI-automation and product systems in Bangladesh.",
             },
           },
           {
@@ -464,7 +451,7 @@ export function siteWideJsonLd() {
             name: "What is Sifat Ali best at?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "AI meets full-stack product building - RAG pipelines, Next.js/Firebase apps, and operator mindset from his COO role at Fluvo Soft.",
+              text: "AI meets full-stack product building - RAG pipelines, Next.js/Firebase apps, and shipping production systems.",
             },
           },
           {
@@ -480,7 +467,7 @@ export function siteWideJsonLd() {
             name: "Where is Sifat Ali based?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Sifat Ali is based in Bangladesh and works on AI, EdTech, MedTech, and SaaS products remotely and with Fluvo Soft.",
+              text: "Sifat Ali is based in Bangladesh and works on AI, EdTech, MedTech, and SaaS products remotely.",
             },
           },
         ],
