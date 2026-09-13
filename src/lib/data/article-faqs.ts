@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-sep-13-2026": [
+    {
+      question: "How are AI agents changing cloud operations in 2026?",
+      answer: "AI agents are increasingly automating complex cloud operations, moving beyond monitoring to proactive tasks like resource scaling, outage prediction and mitigation, and network policy adjustments. This enhances efficiency and system resilience.",
+    },
+    {
+      question: "What are the key challenges in deploying AI agents in production?",
+      answer: "Key challenges include ensuring agent reliability and safety, managing the complexity of agent orchestration, maintaining data quality, and achieving explainability for agent decisions. Robust testing, iterative deployment, and strong data governance are crucial.",
+    },
+    {
+      question: "How does NLP contribute to the advancement of AI agents?",
+      answer: "NLP is fundamental to AI agents, enabling them to understand complex human instructions, process unstructured data, and generate context-aware responses. Advances in NLP models enhance the intelligence and usability of agents.",
+    },
+    {
+      question: "What new developer tools are emerging to support AI agents?",
+      answer: "New tools include AI-powered CI/CD pipelines, advanced observability and debugging platforms for agent behavior, and sophisticated prompt engineering interfaces. Cloud providers also offer specialized frameworks for agent orchestration and data management.",
+    },
+    {
+      question: "What is the most important shipping lesson for founders building with AI agents?",
+      answer: "The most critical lesson is to prioritize agent reliability and safety. This involves extensive testing, error handling, human oversight, and security measures to prevent unintended consequences and build user trust.",
+    },
+    {
+      question: "How can companies ensure the security of AI agents in the cloud?",
+      answer: "Security involves robust agent development practices, secure data handling, strict access controls, continuous monitoring for threats like adversarial attacks, and implementing mechanisms for human oversight and intervention.",
+    },
+  ],
   "nlp-transformers-production-advances-sep-13-2026": [
     {
       question: "What are the primary challenges in deploying transformer models for production NLP today?",
