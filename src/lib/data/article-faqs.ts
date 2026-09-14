@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-sep-14-2026": [
+    {
+      question: "What are the primary benefits of integrating AI agents into cloud developer tools?",
+      answer: "Integrating AI agents into cloud developer tools can significantly boost productivity by automating repetitive tasks like code generation, debugging, and testing. They can also assist in complex problem-solving, improve code quality through intelligent suggestions, and accelerate the overall software development lifecycle.",
+    },
+    {
+      question: "How can founders ensure the security of AI agents operating in their cloud environments?",
+      answer: "Founders must prioritize security by implementing robust authentication and authorization mechanisms, encrypting sensitive data, validating agent inputs to prevent attacks like prompt injection, and carefully managing the permissions granted to each agent. Regular security audits and adherence to best practices for cloud security are also crucial.",
+    },
+    {
+      question: "What is RAG, and why is it important for AI agents?",
+      answer: "RAG stands for Retrieval-Augmented Generation. It's a technique that allows AI agents to access and synthesize information from external knowledge bases before generating a response. This is vital for agents that need to provide up-to-date, accurate, or domain-specific information without requiring constant retraining of the underlying language model.",
+    },
+    {
+      question: "What are the key challenges in orchestrating multiple AI agents?",
+      answer: "Orchestrating multiple AI agents involves managing their interactions, ensuring coherent workflows, handling state management across agents, and implementing fallback mechanisms. Developing supervisory agents or using specialized orchestration frameworks is often necessary to manage complexity and emergent behaviors.",
+    },
+    {
+      question: "How should a company approach the iterative deployment of AI agents?",
+      answer: "Iterative deployment involves starting with simple, well-defined agent tasks and gradually increasing complexity. It requires robust CI/CD pipelines tailored for AI, including automated testing, staged rollouts, continuous monitoring of agent performance, and the ability to quickly roll back to previous versions if issues arise.",
+    },
+    {
+      question: "What role does NLP play in the functionality of AI agents?",
+      answer: "NLP is fundamental to most modern AI agents, especially those powered by large language models. It enables agents to understand natural language queries, process unstructured text, generate human-like responses, summarize information, and extract relevant data, making them capable of interacting effectively with users and knowledge sources.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-sep-13-2026": [
     {
       question: "How are AI agents changing cloud operations in 2026?",
