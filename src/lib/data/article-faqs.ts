@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-sept-15-2026": [
+    {
+      question: "What are the biggest hurdles when scaling AI agents in the cloud?",
+      answer: "The primary hurdles include managing the complexity of agent interactions (orchestration), controlling escalating cloud costs associated with LLM inference, ensuring system scalability under fluctuating loads, maintaining robust security, and achieving adequate observability into agent behavior and performance.",
+    },
+    {
+      question: "How can I manage the costs of running AI agents at scale?",
+      answer: "Strategies include optimizing LLM inference through techniques like quantization and batching, using smaller, task-specific models where possible, implementing intelligent routing to cheaper agents, leveraging serverless architectures for intermittent tasks, and employing rigorous cost allocation and monitoring.",
+    },
+    {
+      question: "What is agent orchestration, and why is it important for cloud deployments?",
+      answer: "Agent orchestration is the process of coordinating multiple AI agents, their tasks, data flows, and interactions with external systems. It's crucial for cloud deployments because it ensures that agents work together effectively, manage complex workflows, and maintain system stability and predictability as the system scales.",
+    },
+    {
+      question: "How important is observability for AI agent systems?",
+      answer: "Observability is extremely important. It involves having deep insights into an agent's decision-making, performance metrics (latency, throughput, errors), and resource utilization. Without it, debugging issues, identifying bottlenecks, and optimizing performance in a distributed agent system becomes nearly impossible.",
+    },
+    {
+      question: "Should I always use the largest available LLM for my agents?",
+      answer: "Not necessarily. While large LLMs are powerful, they are also computationally expensive and can increase latency. For many tasks, smaller, fine-tuned models or more specialized LLMs can provide sufficient performance at a lower cost and with better efficiency. It's often best to match the model to the task complexity.",
+    },
+    {
+      question: "What is a 'human-in-the-loop' approach for AI agents?",
+      answer: "A human-in-the-loop approach involves integrating human oversight into the AI agent's workflow. This could mean humans reviewing agent decisions, providing feedback to improve learning, or intervening in complex or critical situations. It's a valuable strategy for ensuring safety, accuracy, and continuous improvement.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-sep-14-2026": [
     {
       question: "What are the primary benefits of integrating AI agents into cloud developer tools?",
