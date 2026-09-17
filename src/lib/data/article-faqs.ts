@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-sep-17-2026": [
+    {
+      question: "What is the most critical lesson for founders regarding AI agents in cloud development?",
+      answer: "The most critical lesson is to start with clear, bounded use cases. Trying to build a general-purpose agent is often too complex and costly. Focusing on specific problems allows for faster validation and tangible value delivery.",
+    },
+    {
+      question: "How does RAG improve AI agent reliability in cloud development?",
+      answer: "RAG enhances reliability by grounding AI agents in specific, up-to-date, and verifiable external knowledge bases. This reduces hallucinations and ensures that agent responses are accurate, context-aware, and traceable to their sources, which is vital for debugging and auditing.",
+    },
+    {
+      question: "What are the main cost concerns when deploying AI agents in the cloud?",
+      answer: "The primary cost concerns revolve around the significant computational resources that AI agents can consume. Unmanaged agent activity can rapidly increase cloud bills due to processing power, data storage, and network transfer. Active monitoring and cost-optimization strategies are essential.",
+    },
+    {
+      question: "How are developer tools changing with the rise of AI agents?",
+      answer: "Developer tools are becoming more intelligent, offering AI-powered features like advanced code completion and generation, automated debugging assistance, documentation creation, and CI/CD pipeline optimization. These tools aim to augment developer capabilities rather than replace them.",
+    },
+    {
+      question: "What are the key security considerations for AI agents in cloud environments?",
+      answer: "Security considerations include implementing robust access controls, adhering to the principle of least privilege, ensuring data encryption and privacy, continuous security monitoring of agent activities, and staying compliant with evolving AI regulations. Agents should be treated as potentially privileged actors.",
+    },
+    {
+      question: "Why is observability important for AI agent systems?",
+      answer: "Observability is crucial because agent systems can be complex and distributed. Robust logging, tracing, and monitoring are essential for understanding agent behavior, diagnosing issues, identifying failures, and managing operational performance effectively.",
+    },
+  ],
   "production-nlp-evaluation-advances-sep-17-2026": [
     {
       question: "Why are traditional NLP metrics insufficient for production systems?",
