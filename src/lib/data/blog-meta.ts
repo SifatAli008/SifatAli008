@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-44",
+    slug: "production-nlp-evaluation-advances-sep-17-2026",
+    title: "Beyond Metrics: Advanced Evaluation Strategies for Production NLP Pipelines",
+    excerpt: "The landscape of production NLP is rapidly evolving, demanding more sophisticated evaluation strategies than ever before. This article explores the latest advan",
+    seoTitle: "Advanced NLP Evaluation: Production Pipelines & Agentic Feedback",
+    seoDescription: "Explore cutting-edge NLP evaluation techniques for production systems, including human-in-the-loop, adversarial testing, and agentic feedback loops. Essential i",
+    content: "",
+    tags: ["AI", "NLP", "Evaluation", "Production", "Developer Tools", "Agents", "Cloud"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-09-17T09:00:00.000Z",
+    createdAt: "2026-09-17T09:00:00.000Z",
+    updatedAt: "2026-09-17T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-43",
     slug: "ai-agents-cloud-dev-tools-shipping-lessons-sep-16-2026",
     title: "AI Agents and Cloud Dev Tools: Navigating the Next Wave of Developer Productivity",

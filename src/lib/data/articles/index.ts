@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/types";
+import { advancesInProductionNlpEvaluationArticle as productionNlpEvaluationAdvancesSep172026Article } from "./production-nlp-evaluation-advances-sep-17-2026";
 import { aiAgentsCloudDevToolsShippingLessonsArticle as aiAgentsCloudDevToolsShippingLessonsSep162026Article } from "./ai-agents-cloud-dev-tools-shipping-lessons-sep-16-2026";
 import { cloudAgentOrchestrationLessonsArticle as cloudAgentOrchestrationLessonsSep152026Article } from "./cloud-agent-orchestration-lessons-sep-15-2026";
 import { aiAgentCloudDevToolsShippingLessonsArticle as aiAgentsCloudDevToolsShippingLessonsSep142026Article } from "./ai-agents-cloud-dev-tools-shipping-lessons-sep-14-2026";
@@ -46,6 +47,7 @@ export { articleFaqsBySlug } from "@/lib/data/article-faqs";
 
 /** Published long-form articles shipped with the codebase */
 export const publishedArticles: Omit<BlogPost, "id">[] = [
+  productionNlpEvaluationAdvancesSep172026Article,
   aiAgentsCloudDevToolsShippingLessonsSep162026Article,
   cloudAgentOrchestrationLessonsSep152026Article,
   aiAgentsCloudDevToolsShippingLessonsSep142026Article,

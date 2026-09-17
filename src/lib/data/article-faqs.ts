@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "production-nlp-evaluation-advances-sep-17-2026": [
+    {
+      question: "Why are traditional NLP metrics insufficient for production systems?",
+      answer: "Traditional metrics like F1-score or BLEU often evaluate models on static, clean datasets, which doesn't reflect the dynamic, noisy, and often adversarial nature of real-world production environments. They may miss nuances in understanding, robustness issues against slight perturbations, or biases that only human or agentic evaluation can uncover.",
+    },
+    {
+      question: "What is Human-in-the-Loop (HITL) validation in NLP?",
+      answer: "HITL validation involves integrating human judgment into the continuous evaluation process. This can include humans labeling uncertain samples (active learning), categorizing model errors, performing ad-hoc audits, or providing direct user feedback. It ensures that subjective quality, ethical considerations, and complex edge cases are properly addressed.",
+    },
+    {
+      question: "How does adversarial testing improve NLP models?",
+      answer: "Adversarial testing involves intentionally crafting inputs that are designed to trick or confuse an NLP model. By exposing these vulnerabilities, developers can understand the model's limitations, improve its robustness against malicious attacks or unexpected inputs, and enhance its overall reliability and security in production.",
+    },
+    {
+      question: "What role do AI agents play in modern NLP evaluation?",
+      answer: "AI agents can simulate diverse user interactions, generate complex test cases, perform automated regression testing, and even provide structured feedback on model outputs. This enables continuous, autonomous evaluation, helping to identify issues faster, reduce manual effort, and test a broader range of scenarios than human testers alone.",
+    },
+    {
+      question: "How should these advanced evaluation strategies be integrated into a development workflow?",
+      answer: "These strategies should be an integral part of your CI/CD pipeline. This means automated adversarial tests and agentic simulations as pre-deployment gates, shadow deployments or A/B testing for new models, continuous monitoring in production, and robust feedback loops that channel human and agentic insights back into model improvement cycles.",
+    },
+    {
+      question: "Can these evaluation methods address bias in NLP models?",
+      answer: "Yes, both HITL and adversarial testing can be crucial for addressing bias. Human reviewers can explicitly flag biased outputs or unfair decisions. Adversarial testing can involve crafting inputs designed to reveal differential performance across demographic groups or sensitive categories, helping to identify and mitigate model biases before they impact users.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-sep-16-2026": [
     {
       question: "How can small startups leverage AI agents without significant upfront investment?",
