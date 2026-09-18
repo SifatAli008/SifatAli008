@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-sept-18-2026": [
+    {
+      question: "How are AI agents changing the role of developers in cloud environments?",
+      answer: "AI agents are shifting developer focus from repetitive tasks like boilerplate code generation and basic debugging towards more strategic work such as system design, complex problem-solving, and overseeing agent performance. They act as powerful assistants, augmenting human capabilities.",
+    },
+    {
+      question: "What are the biggest security risks associated with using AI agents in cloud development?",
+      answer: "The primary security risks include unauthorized access if an agent is compromised, potential for malicious code injection or infrastructure misconfiguration due to agent errors, and the challenge of auditing complex agent actions. Adhering to the principle of least privilege and robust monitoring are crucial mitigation strategies.",
+    },
+    {
+      question: "How can teams effectively test software developed with the assistance of AI agents?",
+      answer: "Testing strategies need to adapt. This includes testing the AI agents themselves to ensure they produce correct outputs, augmenting traditional testing with methods to validate AI-managed systems, and relying heavily on comprehensive end-to-end testing to catch emergent issues from human-agent interactions.",
+    },
+    {
+      question: "What are the key lessons for founders looking to adopt AI agents in their cloud development workflows?",
+      answer: "Founders should prioritize security, ensure human oversight is maintained, invest in developer training, and select appropriate agent orchestration tools. It's also vital to manage the increasing complexity and establish clear feedback loops for continuous improvement.",
+    },
+    {
+      question: "Will AI agents eventually replace human developers in cloud engineering?",
+      answer: "It is highly unlikely that AI agents will fully replace human developers. Instead, they are expected to augment human capabilities, leading to increased productivity and allowing developers to focus on more complex, creative, and strategic aspects of software engineering. Human judgment, creativity, and ethical oversight will remain indispensable.",
+    },
+    {
+      question: "What kind of developer tools are emerging to support AI agents in the cloud?",
+      answer: "New tools include agent orchestration platforms for managing multiple agents, AI-enhanced IDEs offering integrated assistance, specialized frameworks for specific cloud services (like Kubernetes), and deeper integrations from cloud providers offering managed AI agent services.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-sep-17-2026": [
     {
       question: "What is the most critical lesson for founders regarding AI agents in cloud development?",
