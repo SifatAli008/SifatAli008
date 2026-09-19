@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-rag-sep-19-2026": [
+    {
+      question: "What are the primary benefits of using RAG in clinical settings?",
+      answer: "RAG in clinical settings offers enhanced accuracy by grounding LLM responses in factual medical data, reducing the risk of hallucinations. It supports better clinical decision-making, enables efficient summarization of patient records, and aids in synthesizing complex medical literature.",
+    },
+    {
+      question: "How does Clinical NLP differ from general NLP?",
+      answer: "Clinical NLP is specialized for the medical domain. It uses domain-specific tokenizers, embeddings, and models trained on vast amounts of medical text (EHRs, research papers) to accurately understand medical jargon, abbreviations, and complex clinical concepts that general NLP models might misinterpret.",
+    },
+    {
+      question: "What are the biggest hurdles to deploying Clinical NLP and RAG systems in hospitals?",
+      answer: "Key hurdles include ensuring strict data privacy and security (HIPAA compliance), achieving model interpretability and explainability for clinician trust, developing robust evaluation metrics that reflect clinical utility, and integrating these systems into existing, often complex, IT infrastructures.",
+    },
+    {
+      question: "Can RAG systems handle a patient's entire medical history effectively?",
+      answer: "It's challenging due to LLM context window limitations. However, techniques like chunking patient records, using sophisticated retrieval strategies to identify the most relevant segments, and employing summarization models to condense information before feeding it to the LLM are being developed to address this.",
+    },
+    {
+      question: "What role do transformer models play in the advancements of Clinical NLP?",
+      answer: "Transformer models, with their self-attention mechanisms, are fundamental. They excel at understanding long-range dependencies in clinical text. Fine-tuning these pre-trained models on clinical datasets allows them to perform tasks like named entity recognition, relation extraction, and text summarization with unprecedented accuracy.",
+    },
+    {
+      question: "How can founders and engineers prepare for the future of AI in healthcare?",
+      answer: "Founders and engineers should focus on building solutions that prioritize patient safety, data privacy, and regulatory compliance. Understanding the synergy between NLP and RAG, exploring multimodal AI, and developing interpretable and explainable AI systems will be crucial for success.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-sept-18-2026": [
     {
       question: "How are AI agents changing the role of developers in cloud environments?",
