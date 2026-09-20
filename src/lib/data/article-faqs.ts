@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-sep-20-2026": [
+    {
+      question: "What is the primary challenge in scaling AI agents in the cloud?",
+      answer: "The primary challenge lies in effectively orchestrating a multitude of agents, managing their states, ensuring seamless communication, and allocating resources dynamically to meet fluctuating demands, all while maintaining system reliability and cost-efficiency.",
+    },
+    {
+      question: "How does Kubernetes help in deploying AI agents?",
+      answer: "Kubernetes provides a robust platform for container orchestration, automating the deployment, scaling, and management of AI agents packaged as containers. It offers features for self-healing, load balancing, and declarative configuration, which are crucial for managing complex agentic systems.",
+    },
+    {
+      question: "What are some key developer tools for building AI agents?",
+      answer: "Popular developer tools and frameworks include LangChain, LlamaIndex, and AutoGen. These tools offer abstractions for LLM interaction, memory management, tool integration, and multi-agent coordination, significantly simplifying the development process.",
+    },
+    {
+      question: "Why is observability so important for AI agent systems?",
+      answer: "Observability is crucial because AI agent systems are often distributed and dynamic. Comprehensive logging, metrics, and tracing are essential for debugging, understanding agent behavior, monitoring performance, identifying bottlenecks, and ensuring overall system health.",
+    },
+    {
+      question: "What are the main lessons learned when deploying AI agents into production?",
+      answer: "Key lessons include starting with simple use cases, prioritizing observability from the outset, designing systems for failure, embracing Infrastructure as Code, managing costs diligently, and ensuring robust security measures are in place.",
+    },
+    {
+      question: "How can serverless computing be used for AI agents?",
+      answer: "Serverless platforms are well-suited for deploying stateless or event-driven AI agent components that have intermittent workloads. They offer automatic scaling and a pay-per-use model, but managing state and long-running processes can be more complex compared to containerized solutions.",
+    },
+  ],
   "conversational-ai-advancements-sep-20-2026": [
     {
       question: "How is conversational AI in 2026 different from just a few years ago?",
