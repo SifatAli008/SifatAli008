@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-sep-22-2026": [
+    {
+      question: "What are AI agents in the context of cloud development?",
+      answer: "AI agents in cloud development are sophisticated software programs that leverage artificial intelligence, often including advanced NLP, to understand complex instructions, interact with cloud infrastructure, and automate various tasks within the software development lifecycle. They can assist with coding, testing, deployment, monitoring, and operational management.",
+    },
+    {
+      question: "How can AI agents improve code quality?",
+      answer: "AI agents can improve code quality by performing intelligent code reviews, identifying potential bugs, security vulnerabilities, and performance bottlenecks. They can also assist in generating comprehensive test cases, ensuring better code coverage and adherence to coding standards.",
+    },
+    {
+      question: "What are the key lessons for shipping software with AI agents?",
+      answer: "Key lessons include starting with well-defined use cases, maintaining human oversight, ensuring high-quality data and context for the agents, adopting an iterative approach for continuous improvement, and prioritizing security and governance to prevent misuse or breaches.",
+    },
+    {
+      question: "Are AI agents replacing human developers?",
+      answer: "Currently, AI agents are primarily viewed as powerful assistants that augment human capabilities, rather than replace them. They handle repetitive, time-consuming tasks, freeing up human developers to focus on complex problem-solving, creativity, and strategic decision-making.",
+    },
+    {
+      question: "What role does NLP play in AI agents for cloud development?",
+      answer: "NLP (Natural Language Processing) is crucial for AI agents to understand human instructions, interpret logs and error messages, analyze code semantics, and generate human-readable reports. This allows for more intuitive interaction and deeper contextual understanding of development and operational data.",
+    },
+    {
+      question: "How can founders ensure the security of AI agents in their cloud environments?",
+      answer: "Founders can ensure security by implementing robust credential management, restricting agent access to only necessary resources, conducting regular security audits, ensuring compliance with data privacy regulations, and establishing clear governance policies for AI agent usage.",
+    },
+  ],
   "cloud-agent-orchestration-scaling-lessons-sep-20-2026": [
     {
       question: "What is the primary challenge in scaling AI agents in the cloud?",
