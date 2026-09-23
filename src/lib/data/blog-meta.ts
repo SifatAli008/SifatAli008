@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-52",
+    slug: "ai-agents-cloud-dev-tools-shipping-lessons-september-23-2026",
+    title: "AI Agents and Cloud Dev Tools: Navigating the Cutting Edge of Software Delivery",
+    excerpt: "This week's developments in AI agents and cloud-native developer tools are reshaping how software is built and deployed, offering new efficiencies and demanding",
+    seoTitle: "AI Agents, Cloud Dev Tools: Shipping Lessons for 2026",
+    seoDescription: "Explore the latest advancements in AI agents and cloud developer tools on September 23, 2026. Learn practical shipping lessons for founders and engineers naviga",
+    content: "",
+    tags: ["AI", "Agents", "Cloud Computing", "Developer Tools", "Software Engineering", "DevOps", "NLP"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-09-23T14:00:00.000Z",
+    createdAt: "2026-09-23T14:00:00.000Z",
+    updatedAt: "2026-09-23T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-51",
     slug: "advances-in-domain-specific-nlp-and-rag-september-23-2026",
     title: "Domain-Specific NLP and RAG: Navigating the Nuances of Production-Ready AI",

@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-september-23-2026": [
+    {
+      question: "How are AI agents changing the day-to-day work of software engineers?",
+      answer: "AI agents are automating many repetitive coding tasks, bug fixes, and even infrastructure setup. This allows engineers to focus more on higher-level activities like system design, architectural decisions, prompt engineering, and supervising the agents' work.",
+    },
+    {
+      question: "What are the biggest challenges in integrating AI agents into cloud development workflows?",
+      answer: "Key challenges include ensuring security and proper access control for agents, maintaining robust observability to understand agent actions, dealing with potential agent hallucinations or errors, and the need for effective human oversight and validation. Integrating agents seamlessly with existing CI/CD pipelines and cloud infrastructure also requires careful planning.",
+    },
+    {
+      question: "Is prompt engineering a skill I need to develop for my team?",
+      answer: "Yes, prompt engineering is becoming a critical skill. The effectiveness and accuracy of AI agents are heavily dependent on the clarity, specificity, and context provided in their prompts. Developing strong prompt engineering capabilities can significantly enhance productivity and the quality of agent-generated output.",
+    },
+    {
+      question: "How do I ensure the security of my cloud infrastructure when using AI agents?",
+      answer: "Implement the principle of least privilege for agents, granting them only the necessary permissions to perform their tasks. Regularly audit agent activity and permissions, and use specialized security monitoring tools to detect anomalous behavior. Treat agent access like any other sensitive credential.",
+    },
+    {
+      question: "What is the role of NLP in the advancement of AI agents for development?",
+      answer: "NLP is fundamental. It allows AI agents to understand natural language instructions from developers, interpret codebases, analyze requirements documents, and generate human-readable explanations or documentation. Advances in NLP directly translate to more capable and intuitive AI agents.",
+    },
+    {
+      question: "How can small startups leverage AI agents and cloud tools effectively?",
+      answer: "Startups can leverage these tools to accelerate MVP development by automating initial coding and infrastructure setup. Focusing on clear, atomic tasks for agents and prioritizing iterative deployments can help manage risks and costs. Investing in prompt engineering can maximize the efficiency gains.",
+    },
+  ],
   "advances-in-domain-specific-nlp-and-rag-september-23-2026": [
     {
       question: "What is the primary advantage of domain-specific NLP models over general-purpose LLMs?",
