@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-domain-specific-nlp-and-rag-september-23-2026": [
+    {
+      question: "What is the primary advantage of domain-specific NLP models over general-purpose LLMs?",
+      answer: "Domain-specific NLP models offer a deeper, more nuanced understanding of specialized language, jargon, and context within a particular field (e.g., medicine, law, finance), leading to more accurate and relevant outputs compared to general-purpose LLMs.",
+    },
+    {
+      question: "How does Retrieval Augmented Generation (RAG) improve AI responses in specialized fields?",
+      answer: "RAG grounds LLM responses in factual, up-to-date, or proprietary domain-specific knowledge retrieved from a knowledge base. This significantly reduces the likelihood of hallucinations and ensures answers are accurate and contextually relevant to the specialized field.",
+    },
+    {
+      question: "What are the biggest challenges in deploying domain-specific NLP and RAG systems in production?",
+      answer: "Key challenges include acquiring and managing high-quality domain-specific data, developing appropriate evaluation metrics, ensuring scalability and low latency, and combating model drift over time as domain knowledge evolves.",
+    },
+    {
+      question: "How can founders and engineers ensure their production NLP pipelines are reliable and maintainable?",
+      answer: "By adopting a modular design, utilizing robust orchestration tools (MLOps platforms), and implementing comprehensive observability practices for monitoring, logging, and tracing model behavior in real-time.",
+    },
+    {
+      question: "What role do cloud-native architectures play in deploying advanced AI systems?",
+      answer: "Cloud-native architectures provide essential scalability, elasticity, and access to managed services (databases, compute, AI deployment) that simplify the operational burden and accelerate the development and deployment of complex AI systems.",
+    },
+    {
+      question: "How important is tokenization for domain-specific NLP?",
+      answer: "Tokenization is crucial because standard tokenizers can break down domain-specific terms into meaningless sub-word units. Domain-specific tokenizers are trained to segment text in a way that preserves the meaning of specialized vocabulary, which is fundamental for accurate model interpretation.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-sep-22-2026": [
     {
       question: "What are AI agents in the context of cloud development?",

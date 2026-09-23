@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-51",
+    slug: "advances-in-domain-specific-nlp-and-rag-september-23-2026",
+    title: "Domain-Specific NLP and RAG: Navigating the Nuances of Production-Ready AI",
+    excerpt: "This article delves into the latest advancements in domain-specific Natural Language Processing (NLP) and Retrieval Augmented Generation (RAG) systems, focusing",
+    seoTitle: "Domain-Specific NLP & RAG: Production AI Breakthroughs - September 23, 2026",
+    seoDescription: "Explore the cutting edge of domain-specific NLP and RAG. Learn about transformer advancements, tokenization strategies, embedding techniques, and production pip",
+    content: "",
+    tags: ["AI", "NLP", "RAG", "Transformers", "Embeddings", "Tokenization", "Production AI", "Developer Tools", "Cloud", "Machine Learning"],
+    status: "published",
+    readingTime: 9,
+    publishedAt: "2026-09-23T09:00:00.000Z",
+    createdAt: "2026-09-23T09:00:00.000Z",
+    updatedAt: "2026-09-23T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-50",
     slug: "ai-agents-cloud-dev-tools-shipping-lessons-sep-22-2026",
     title: "AI Agents in the Cloud: Shipping Smarter, Faster, and More Reliably",
