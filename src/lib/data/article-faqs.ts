@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "nlp-agents-synergy-unlocking-enterprise-intelligence-sept-25-2026": [
+    {
+      question: "How can I determine if my enterprise is ready for NLP agents?",
+      answer: "Assess your organization's data maturity, identify specific pain points that involve unstructured data or complex information retrieval, and evaluate your existing technical infrastructure's capacity for AI/ML workloads. A clear business case with measurable ROI is essential.",
+    },
+    {
+      question: "What are the biggest challenges in integrating RAG with existing enterprise data sources?",
+      answer: "Key challenges include data security and access control for sensitive information, ensuring data quality and consistency across disparate sources, managing the complexity of real-time data synchronization, and selecting appropriate embedding models and vector databases that can scale with your data volume.",
+    },
+    {
+      question: "How do domain-specific NLP models differ from general-purpose LLMs, and when should I use them?",
+      answer: "Domain-specific models are fine-tuned on data relevant to a particular industry or field (e.g., healthcare, finance, law), giving them a deeper understanding of specialized terminology and context. Use them when general models struggle with accuracy or nuance in your specific domain, or when high precision is critical.",
+    },
+    {
+      question: "What are the most critical metrics for evaluating the performance of an NLP agent in production?",
+      answer: "Beyond traditional NLP metrics, focus on factuality, relevance, coherence, and safety. For generative tasks, human-in-the-loop evaluation or LLM-as-a-judge approaches are often necessary. Also, monitor operational metrics like latency and throughput.",
+    },
+    {
+      question: "How can cloud platforms help in deploying and scaling NLP agent solutions?",
+      answer: "Cloud platforms provide scalable compute resources (including GPUs), managed databases (like vector databases), AI/ML services for streamlined MLOps, and robust networking and security infrastructure. They abstract away much of the underlying complexity, allowing teams to focus on building and refining agent capabilities.",
+    },
+    {
+      question: "What is the role of tokenization in production NLP pipelines?",
+      answer: "Tokenization is the first step in processing text, breaking it down into smaller units (tokens). The choice of tokenizer and the vocabulary it uses can significantly impact the performance and efficiency of downstream models, especially for specialized domains or languages. Efficient tokenization is crucial for managing context windows and computational costs in production.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-september-23-2026": [
     {
       question: "How are AI agents changing the day-to-day work of software engineers?",
