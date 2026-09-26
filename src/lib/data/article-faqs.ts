@@ -3,6 +3,28 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-rag-september-26-2026": [
+    {
+      question: "How does Clinical NLP differ from general NLP?",
+      answer: "Clinical NLP is specialized for the unique language, jargon, abbreviations, and context found in medical records and literature. It uses models pre-trained on clinical data (like ClinicalBERT) to achieve higher accuracy in tasks such as identifying diseases, medications, and relationships between them, which general NLP models might struggle with.",
+    },
+    {
+      question: "What is the primary benefit of RAG in healthcare?",
+      answer: "The primary benefit of RAG in healthcare is its ability to provide up-to-date, evidence-based answers by dynamically retrieving information from external knowledge sources (like medical journals and guidelines) rather than relying solely on the static knowledge within a large language model. This significantly reduces the risk of outdated or fabricated information.",
+    },
+    {
+      question: "Can Clinical NLP and RAG help reduce medical errors?",
+      answer: "Yes, by providing clinicians with rapid access to accurate, relevant, and up-to-date information at the point of care, Clinical NLP and RAG can act as powerful clinical decision support tools. This can help clinicians make more informed decisions, adhere to best practices, and potentially reduce diagnostic and treatment errors.",
+    },
+    {
+      question: "What are the main challenges in implementing Clinical NLP and RAG in hospitals?",
+      answer: "Key challenges include the poor quality and lack of interoperability of EHR data, the need for explainable AI to build clinician trust, addressing potential biases in the data and models, navigating complex regulatory requirements, and ensuring that these systems can perform with the low latency required for real-time clinical use.",
+    },
+    {
+      question: "How is RAG integrated with Clinical NLP for practical applications?",
+      answer: "Clinical NLP is often used to pre-process and understand the specific medical context of a query or patient data. This enhanced understanding then informs the retrieval process within the RAG system, ensuring that the most relevant medical documents or passages are fetched. Finally, an LLM synthesizes this retrieved information into a coherent, contextually appropriate answer, grounded in the retrieved evidence.",
+    },
+  ],
   "nlp-agents-synergy-unlocking-enterprise-intelligence-sept-25-2026": [
     {
       question: "How can I determine if my enterprise is ready for NLP agents?",
