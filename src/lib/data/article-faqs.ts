@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-sept-26-2026": [
+    {
+      question: "What is the biggest challenge when scaling AI agents in the cloud?",
+      answer: "Based on current industry trends, the most significant challenge is effectively orchestrating and managing the dynamic resource requirements and inter-agent communication for complex, multi-agent systems. Ensuring reliability, low latency, and cost-efficiency simultaneously is a major hurdle.",
+    },
+    {
+      question: "How can I optimize cloud costs for my AI agent deployments?",
+      answer: "Key strategies include right-sizing compute instances, leveraging spot instances for non-critical tasks, optimizing LLM inference (e.g., quantization, efficient engines), implementing caching, and continuously monitoring resource utilization to enable intelligent autoscaling. Regularly reviewing cloud bills and using cost-tracking tools is essential.",
+    },
+    {
+      question: "What developer tools are crucial for building and deploying AI agents?",
+      answer: "Frameworks like LangChain, LlamaIndex, and AutoGen are vital for agent development. For deployment, managed Kubernetes services (EKS, GKE, AKS), serverless platforms, and specialized MLOps tools for observability and workflow management are increasingly important. Robust CI/CD pipelines are also critical.",
+    },
+    {
+      question: "How important is observability for AI agent systems?",
+      answer: "Observability is paramount. It's crucial for debugging complex interactions, understanding agent behavior, identifying performance bottlenecks, and monitoring costs. Companies are investing in specialized tools for distributed tracing, LLM-specific logging, and agent performance dashboards.",
+    },
+    {
+      question: "What are the main security considerations for cloud-based AI agents?",
+      answer: "Security concerns include implementing the principle of least privilege, securely managing API keys and credentials using secrets managers, performing thorough input validation to prevent prompt injection, and conducting regular security audits and penetration testing.",
+    },
+    {
+      question: "Should I use serverless functions or container orchestration for my AI agents?",
+      answer: "The choice depends on the agent's complexity and requirements. Serverless functions are good for simple, event-driven tasks but can have cold start latency. Container orchestration (like Kubernetes) offers more control and is better suited for complex, long-running, or resource-intensive agents, though it requires more management overhead.",
+    },
+  ],
   "advances-in-clinical-nlp-and-rag-september-26-2026": [
     {
       question: "How does Clinical NLP differ from general NLP?",
