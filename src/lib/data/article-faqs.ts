@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-retrieval-august-20-2026": [
+    {
+      question: "What are the biggest advantages of using Clinical NLP with RAG in healthcare?",
+      answer: "The primary advantages include improved accuracy in medical data analysis, enhanced clinical decision support through access to real-time information, accelerated drug discovery by processing vast research datasets, and potentially more personalized patient care by synthesizing individual patient data with broad medical knowledge.",
+    },
+    {
+      question: "How does RAG improve the reliability of AI in clinical settings?",
+      answer: "RAG improves reliability by grounding LLM responses in factual, verifiable external knowledge bases (like medical journals and patient records). This reduces the likelihood of generating incorrect or hallucinated information, making the AI's outputs more trustworthy and auditable.",
+    },
+    {
+      question: "What are the main challenges for deploying Clinical NLP and RAG systems in hospitals?",
+      answer: "Key challenges include ensuring strict data privacy and security compliance (e.g., HIPAA), achieving model interpretability so clinicians can trust recommendations, mitigating biases present in training data, seamless integration into existing IT workflows and EHR systems, and navigating complex regulatory approval processes.",
+    },
+    {
+      question: "How are domain-specific embeddings like ClinicalBERT different from general language model embeddings?",
+      answer: "Domain-specific embeddings, such as those from ClinicalBERT, are trained on vast amounts of medical text. This specialized training allows them to capture the unique vocabulary, jargon, abbreviations, and semantic relationships specific to healthcare, leading to much higher accuracy on clinical NLP tasks compared to general embeddings.",
+    },
+    {
+      question: "What is the future outlook for AI in pharmaceutical research, given these NLP advancements?",
+      answer: "The outlook is highly promising. AI, powered by advanced NLP and RAG, is expected to significantly speed up drug discovery by identifying novel targets, optimizing drug design, predicting efficacy and toxicity more accurately, and streamlining clinical trial processes. This could lead to faster development of new treatments and therapies.",
+    },
+    {
+      question: "How can RAG help with analyzing Electronic Health Records (EHRs)?",
+      answer: "RAG can process unstructured text within EHRs (like doctor's notes, reports) to extract key information, identify patterns, and answer complex queries across large patient populations. By retrieving relevant information from the EHR and other medical sources, RAG can provide a more comprehensive understanding of patient histories and facilitate research or clinical decision-making.",
+    },
+  ],
   "cloud-agent-orchestration-scaling-lessons-sept-26-2026": [
     {
       question: "What is the biggest challenge when scaling AI agents in the cloud?",
