@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agent-devops-shipping-lessons-sept-28-2026": [
+    {
+      question: "What is the primary difference between traditional DevOps and AI Agent DevOps?",
+      answer: "The primary difference lies in handling non-deterministic behavior. Traditional DevOps focuses on deterministic software, while AI Agent DevOps must account for evolving agent behavior, requiring specialized testing, advanced observability for decision-making, and continuous model retraining, alongside code and data versioning.",
+    },
+    {
+      question: "Why is observability more complex for AI agents?",
+      answer: "Observability for AI agents is more complex because it's not just about infrastructure metrics. It requires understanding the 'why' behind an agent's decisions, tracking its internal states, data inputs, and confidence scores, and providing explainability for its actions, which goes beyond typical application logging.",
+    },
+    {
+      question: "How do CI/CD pipelines need to adapt for AI agents?",
+      answer: "CI/CD pipelines for AI agents must adapt by incorporating version control for models and datasets (not just code), automated model retraining and deployment triggers, and specialized AI-specific tests like bias detection, fairness checks, and adversarial robustness testing.",
+    },
+    {
+      question: "What role does NLP play in shipping AI agents?",
+      answer: "NLP is often the core intelligence and interface for many AI agents. Shipping NLP-powered agents involves efficient deployment of large NLP models, integrating Retrieval Augmented Generation (RAG) for contextual understanding, and often a Human-in-the-Loop (HITL) strategy for complex tasks.",
+    },
+    {
+      question: "What are some key practical lessons for successfully deploying AI agents?",
+      answer: "Key lessons include starting with small, well-defined problems and iterating quickly, embracing MLOps principles, investing in explainability and interpretability, fostering cross-functional collaboration, and embedding security by design from the outset.",
+    },
+    {
+      question: "How do you ensure security and compliance for AI agents in cloud environments?",
+      answer: "Ensuring security and compliance involves stringent Identity and Access Management (IAM) for agents, secure credential storage, network isolation, robust data governance policies, encryption of data in transit and at rest, and meticulous auditing of agent decision-making processes for regulatory adherence.",
+    },
+  ],
   "advances-in-clinical-nlp-and-retrieval-august-20-2026": [
     {
       question: "What are the biggest advantages of using Clinical NLP with RAG in healthcare?",

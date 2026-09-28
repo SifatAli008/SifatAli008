@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-57",
+    slug: "ai-agent-devops-shipping-lessons-sept-28-2026",
+    title: "AI Agent DevOps: Shipping Lessons from the Front Lines of Cloud Deployment",
+    excerpt: "This week, we delve into the critical, often overlooked, aspects of shipping AI agents into production. As enterprises move beyond prototypes, the lessons learn",
+    seoTitle: "AI Agent DevOps: Cloud Deployment & Shipping Lessons - sifatali.site",
+    seoDescription: "Explore the latest shipping lessons for AI agent DevOps, focusing on cloud deployment strategies, CI/CD integration, and robust monitoring for autonomous system",
+    content: "",
+    tags: ["AI", "Agents", "DevOps", "Cloud", "Developer Tools", "Shipping Lessons", "NLP"],
+    status: "published",
+    readingTime: 9,
+    publishedAt: "2026-09-28T14:00:00.000Z",
+    createdAt: "2026-09-28T14:00:00.000Z",
+    updatedAt: "2026-09-28T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-56",
     slug: "advances-in-clinical-nlp-and-retrieval-august-20-2026",
     title: "Clinical NLP and RAG: Navigating the Next Frontier in Healthcare AI",
