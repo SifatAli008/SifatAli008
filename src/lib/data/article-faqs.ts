@@ -3,6 +3,28 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-rag-september-29-2026": [
+    {
+      question: "What is ClinicalBERT and why is it important for healthcare NLP?",
+      answer: "ClinicalBERT is a variant of the BERT transformer model that has been pre-trained on a massive corpus of biomedical and clinical text. This specialized training allows it to better understand medical jargon, abbreviations, and the nuances of clinical language compared to general-purpose language models, leading to improved accuracy in healthcare-specific NLP tasks.",
+    },
+    {
+      question: "How does Retrieval Augmented Generation (RAG) improve AI in healthcare?",
+      answer: "RAG enhances healthcare AI by combining the language understanding capabilities of LLMs with real-time access to external medical knowledge bases (like research papers or clinical guidelines). This allows AI systems to provide more accurate, up-to-date, and contextually relevant information, while significantly reducing the risk of generating incorrect or 'hallucinated' content.",
+    },
+    {
+      question: "What are the biggest challenges in deploying clinical NLP/RAG systems into production?",
+      answer: "Key challenges include ensuring scalability to handle large volumes of data, minimizing latency for real-time applications, maintaining model performance over time, integrating seamlessly with existing EHR systems and clinical workflows, and meeting stringent data privacy and regulatory compliance requirements.",
+    },
+    {
+      question: "Why are traditional NLP metrics not enough for clinical applications?",
+      answer: "Traditional metrics like precision and recall focus on the technical accuracy of NLP models. However, in healthcare, it's crucial to also evaluate clinical utility (does it improve patient care or clinician efficiency), bias across different patient populations, robustness to real-world data imperfections, and the overall safety and reliability of the system.",
+    },
+    {
+      question: "What are some practical 'shipping lessons' for founders building clinical AI tools?",
+      answer: "Founders should focus on solving a clearly defined clinical problem, develop iteratively with direct feedback from clinicians, prioritize explainability (XAI) to build trust, and invest heavily in robust, domain-specific evaluation from the outset. Seamless integration into existing workflows is also critical for adoption.",
+    },
+  ],
   "ai-agent-devops-shipping-lessons-sept-28-2026": [
     {
       question: "What is the primary difference between traditional DevOps and AI Agent DevOps?",

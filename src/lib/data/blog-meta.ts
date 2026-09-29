@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-58",
+    slug: "advances-in-clinical-nlp-and-rag-september-29-2026",
+    title: "Bridging the Gap: Clinical NLP and Retrieval Augmented Generation Mature for Production",
+    excerpt: "This week, we examine the accelerating progress in clinical Natural Language Processing (NLP) and Retrieval Augmented Generation (RAG), focusing on production r",
+    seoTitle: "Clinical NLP & RAG Advancements: Production Readiness & Evaluation - Sept 29, 2026",
+    seoDescription: "Explore the latest in clinical NLP and Retrieval Augmented Generation (RAG) on September 29, 2026. Learn about production pipelines, domain-specific models like",
+    content: "",
+    tags: ["AI", "NLP", "RAG", "Healthcare AI", "Clinical NLP", "Transformers", "Embeddings", "Developer Tools", "Production NLP"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-09-29T09:00:00.000Z",
+    createdAt: "2026-09-29T09:00:00.000Z",
+    updatedAt: "2026-09-29T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-57",
     slug: "ai-agent-devops-shipping-lessons-sept-28-2026",
     title: "AI Agent DevOps: Shipping Lessons from the Front Lines of Cloud Deployment",
