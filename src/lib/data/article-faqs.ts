@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-sep-30-2026": [
+    {
+      question: "How can AI agents improve my cloud deployment speed?",
+      answer: "AI agents can automate many repetitive tasks in the CI/CD pipeline, such as code reviews, test execution, and infrastructure provisioning. By reducing manual intervention and potential human error, they can significantly accelerate the deployment process and reduce lead times.",
+    },
+    {
+      question: "What are the biggest security risks when using AI agents in the cloud?",
+      answer: "The primary security risks include elevated agent permissions that could be exploited, potential vulnerabilities in the agent's code or the LLM it uses, and the risk of agents inadvertently exposing sensitive data or misconfiguring security settings. Implementing the principle of least privilege and conducting regular security audits are crucial.",
+    },
+    {
+      question: "How do I manage the costs associated with AI agents?",
+      answer: "Effective cost management involves optimizing agent prompts for efficiency, batching requests where possible, choosing cost-effective AI models and cloud services, and closely monitoring agent resource consumption. Understanding the ROI of agent deployment is key.",
+    },
+    {
+      question: "What is Retrieval Augmented Generation (RAG) and why is it important for AI agents?",
+      answer: "RAG enhances AI agents by allowing them to access and process specific, up-to-date information from external knowledge bases. For cloud development, this means agents can query documentation, logs, and project data to provide more accurate and relevant assistance, going beyond their training data.",
+    },
+    {
+      question: "Will AI agents replace human developers?",
+      answer: "No, AI agents are expected to transform the role of developers rather than replace them. They will automate routine tasks, allowing developers to focus on more complex problem-solving, architectural design, and strategic innovation. Developers will increasingly act as AI orchestrators.",
+    },
+    {
+      question: "How can I ensure my AI agents are performing as intended?",
+      answer: "Continuous monitoring, setting clear performance metrics, implementing human-in-the-loop review processes for critical actions, and using feedback loops to retrain or fine-tune agents are essential. Gradual rollout and iterative refinement also help build confidence in agent performance.",
+    },
+  ],
   "advances-in-clinical-nlp-and-rag-september-29-2026": [
     {
       question: "What is ClinicalBERT and why is it important for healthcare NLP?",
