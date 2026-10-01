@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "production-nlp-evaluation-advances-oct-1-2026": [
+    {
+      question: "Why are traditional NLP metrics no longer sufficient for production systems?",
+      answer: "Traditional metrics like F1 and BLEU often fail to capture semantic correctness, contextual relevance, potential biases, or performance on critical edge cases in real-world, dynamic production environments. They provide a quantitative score but lack the qualitative depth needed for robust NLP applications.",
+    },
+    {
+      question: "What is Human-in-the-Loop (HITL) evaluation and why is it important?",
+      answer: "HITL evaluation involves human annotators directly assessing NLP model outputs. It's crucial because humans can understand nuance, context, and subjective quality in a way automated metrics cannot. It's the gold standard for identifying subtle errors, biases, and ensuring user satisfaction.",
+    },
+    {
+      question: "How does adversarial testing enhance NLP model evaluation?",
+      answer: "Adversarial testing involves deliberately crafting inputs to try and trick or confuse an NLP model. This helps uncover vulnerabilities, biases, and brittle behaviors that standard testing might miss, leading to more robust and resilient models in production.",
+    },
+    {
+      question: "Can Large Language Models (LLMs) be used to evaluate other NLP models?",
+      answer: "Yes, LLMs are increasingly being used as evaluators. They can assess outputs based on criteria like fluency, coherence, factual accuracy, and even detect specific errors, offering a scalable and nuanced alternative or complement to human evaluation, especially for reference-free tasks.",
+    },
+    {
+      question: "What is continuous evaluation in the context of production NLP?",
+      answer: "Continuous evaluation is an ongoing process of monitoring NLP model performance, data drift, and user feedback after deployment. It involves regular checks, alerts, and feedback loops to ensure the model remains accurate, relevant, and robust as real-world data and user interactions evolve.",
+    },
+    {
+      question: "What is the recommended approach for comprehensive NLP evaluation today?",
+      answer: "The recommended approach is a hybrid one, combining traditional automated metrics for baseline performance, human-in-the-loop evaluation for qualitative depth, adversarial testing for robustness, and leveraging LLMs as evaluators for scalable, nuanced assessments. This multi-faceted strategy ensures comprehensive coverage of model quality.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-sep-30-2026": [
     {
       question: "How can AI agents improve my cloud deployment speed?",

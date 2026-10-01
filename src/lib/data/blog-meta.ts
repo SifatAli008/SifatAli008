@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-60",
+    slug: "production-nlp-evaluation-advances-oct-1-2026",
+    title: "New Frontiers in Production NLP Evaluation: Beyond F1 and BLEU",
+    excerpt: "The landscape of production Natural Language Processing (NLP) is rapidly evolving, demanding more sophisticated evaluation methodologies than traditional metric",
+    seoTitle: "Production NLP Evaluation: Advanced Metrics & Techniques - Oct 2026",
+    seoDescription: "Explore cutting-edge NLP evaluation strategies for production systems, including human-in-the-loop, adversarial testing, and model-based metrics. Essential for ",
+    content: "",
+    tags: ["NLP", "AI", "Evaluation", "Production ML", "Developer Tools", "Cloud", "Shipping Lessons"],
+    status: "published",
+    readingTime: 9,
+    publishedAt: "2026-10-01T09:00:00.000Z",
+    createdAt: "2026-10-01T09:00:00.000Z",
+    updatedAt: "2026-10-01T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-59",
     slug: "ai-agents-cloud-dev-tools-shipping-lessons-sep-30-2026",
     title: "AI Agents in the Cloud: Shipping Smarter, Faster",
