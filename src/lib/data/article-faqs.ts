@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-october-1-2026": [
+    {
+      question: "How are AI agents changing cloud development workflows today?",
+      answer: "AI agents are moving from simple assistance to autonomous task execution, automating code generation, infrastructure provisioning, testing, debugging, and CI/CD pipeline management. This accelerates development cycles and reduces manual effort.",
+    },
+    {
+      question: "What are some of the new developer tools emerging this week?",
+      answer: "New tools focus on intelligent infrastructure provisioning via natural language, context-aware code generation and refactoring, automated testing and debugging, and enhanced AI-driven observability and monitoring for cloud applications.",
+    },
+    {
+      question: "What are the biggest shipping lessons learned when using AI agents?",
+      answer: "Key lessons include the importance of iterative deployment and validation, defining clear agent goals and boundaries, investing in agent training and fine-tuning, fostering human-agent collaboration, prioritizing security and compliance, and establishing clear performance metrics.",
+    },
+    {
+      question: "Is NLP important for AI agents in cloud development?",
+      answer: "Yes, NLP is fundamental. It enables agents to understand natural language prompts from developers, interpret documentation, explain code, and process domain-specific language, making human-agent interaction more intuitive and effective.",
+    },
+    {
+      question: "Should AI agents replace human developers in cloud environments?",
+      answer: "The current trend and best practice is towards augmentation, not replacement. AI agents are best used to handle repetitive, complex, or time-consuming tasks, freeing up human developers for strategic thinking, innovation, and oversight.",
+    },
+    {
+      question: "What security considerations are crucial when deploying AI agents in the cloud?",
+      answer: "It's crucial to implement the principle of least privilege, robust access controls, audit trails, and security scanning for any changes proposed or executed by agents. Compliance must be embedded into agent operations from the start.",
+    },
+  ],
   "production-nlp-evaluation-advances-oct-1-2026": [
     {
       question: "Why are traditional NLP metrics no longer sufficient for production systems?",
