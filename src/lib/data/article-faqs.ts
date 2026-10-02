@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-integration-lessons-october-2-2026": [
+    {
+      question: "What are the biggest integration hurdles for AI agents in the cloud?",
+      answer: "The primary hurdles include managing state and persistence in distributed systems, ensuring reliable inter-agent communication, optimizing resource usage and costs, implementing robust security and access controls, and achieving effective observability and debugging for complex agent behaviors.",
+    },
+    {
+      question: "What kind of developer tools are emerging to help with AI agent deployment?",
+      answer: "New tools include advanced orchestration frameworks (e.g., enhanced versions of LangChain, LlamaIndex), specialized observability platforms for LLM tracing and agent execution visualization, and managed cloud services offering serverless agent runtimes and AI-optimized infrastructure.",
+    },
+    {
+      question: "How can I effectively test an AI agent before deploying it to production?",
+      answer: "Effective testing involves unit tests for components, integration tests for API interactions, end-to-end scenario testing for workflows, adversarial testing to find vulnerabilities, and often, human-in-the-loop validation for critical applications.",
+    },
+    {
+      question: "What is the most important shipping lesson for AI agents in the cloud?",
+      answer: "The most critical lesson is to start small with a clearly defined use case and iterate. Attempting to build overly complex agents from the outset often leads to failure. Gradual expansion and continuous learning are key.",
+    },
+    {
+      question: "How do I address the issue of LLM hallucinations in my AI agents?",
+      answer: "To mitigate hallucinations, implement fact-checking mechanisms, provide agents with access to reliable knowledge bases (e.g., via RAG patterns), design fallback strategies for uncertain outputs, and ensure human oversight where necessary.",
+    },
+    {
+      question: "Why is observability so crucial for AI agents in the cloud?",
+      answer: "Observability is crucial because traditional monitoring tools are often insufficient for complex, dynamic agent systems. Specialized tools are needed to trace agent execution flows, monitor LLM usage, and understand agent decision-making processes, which is vital for debugging, performance tuning, and security.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-october-1-2026": [
     {
       question: "How are AI agents changing cloud development workflows today?",
