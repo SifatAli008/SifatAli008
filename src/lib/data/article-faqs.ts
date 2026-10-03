@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-retrieval-october-3-2026": [
+    {
+      question: "How are domain-specific NLP models like ClinicalBERT different from general language models?",
+      answer: "Domain-specific models like ClinicalBERT are pre-trained on vast amounts of medical and clinical text. This specialized training allows them to understand medical jargon, abbreviations, disease relationships, and treatment protocols far more effectively than general language models, leading to better performance on clinical NLP tasks.",
+    },
+    {
+      question: "What is Retrieval-Augmented Generation (RAG) and why is it important for healthcare AI?",
+      answer: "RAG combines the power of information retrieval with generative AI. It allows AI models to access and incorporate information from external knowledge bases (like medical literature or patient records) before generating a response. This is crucial for healthcare AI to ensure that outputs are accurate, up-to-date, and grounded in factual medical evidence, reducing the risk of incorrect or hallucinated information.",
+    },
+    {
+      question: "What are the main challenges in deploying clinical NLP and RAG in a production environment?",
+      answer: "Key challenges include ensuring data privacy and regulatory compliance (e.g., HIPAA), managing data bias, achieving model interpretability and trustworthiness, integrating AI tools seamlessly into existing clinical workflows, and maintaining high performance and accuracy over time through continuous monitoring and evaluation.",
+    },
+    {
+      question: "How do advanced tokenization and embeddings improve clinical NLP?",
+      answer: "Advanced tokenization techniques ensure that medical terms, abbreviations, and complex entities are correctly identified and processed. Medical-specific embeddings then represent these tokens in a way that captures their nuanced meanings and relationships within the medical domain, enabling AI models to understand clinical text more accurately.",
+    },
+    {
+      question: "What role do AI agents play in the future of clinical NLP and RAG?",
+      answer: "AI agents can act as intelligent assistants that leverage clinical NLP and RAG capabilities. They can automate complex tasks such as summarizing patient histories, identifying potential drug interactions by querying multiple sources, or assisting researchers in literature review, thereby enhancing efficiency and decision-making for healthcare professionals.",
+    },
+    {
+      question: "How can founders and engineers ensure the reliability of clinical AI systems?",
+      answer: "Founders and engineers should prioritize building robust production NLP pipelines, developing comprehensive evaluation frameworks that include clinical relevance and safety metrics, implementing human-in-the-loop systems for quality assurance, and focusing on explainable AI to build trust with clinicians. Continuous monitoring and adaptation are also key.",
+    },
+  ],
   "ai-agents-cloud-integration-lessons-october-2-2026": [
     {
       question: "What are the biggest integration hurdles for AI agents in the cloud?",
