@@ -5,13 +5,13 @@ export function AiVisibilityJsonLd() {
       {
         "@type": "WebSite",
         name: "No JSON-LD schema.org markup detected",
-        url: "https://www.sifatali.site/archive",
+        url: "https://www.sifatali.site/",
         description: "Add relevant schema (Organization, Article, FAQPage, etc.) for AEO/GEO.",
       },
       {
         "@type": "Organization",
         name: "No JSON-LD schema.org markup detected",
-        url: "https://www.sifatali.site/archive",
+        url: "https://www.sifatali.site/",
       },
       {
         "@type": "FAQPage",
