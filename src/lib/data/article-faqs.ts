@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-nlp-integration-lessons-october-5-2026": [
+    {
+      question: "What are the primary challenges in deploying large transformer models in the cloud?",
+      answer: "The primary challenges include the immense computational resources required for training and inference, managing significant memory footprints, ensuring low latency for real-time applications, and controlling the associated cloud infrastructure costs. Efficient model optimization techniques like quantization and pruning, alongside specialized hardware, are often necessary.",
+    },
+    {
+      question: "How does RAG improve the output of Large Language Models (LLMs)?",
+      answer: "RAG enhances LLM outputs by grounding them in factual, up-to-date, or proprietary information retrieved from external knowledge bases. This significantly reduces the likelihood of 'hallucinations' (generating factually incorrect information) and allows the LLM to provide more relevant and contextually accurate responses based on specific data sources.",
+    },
+    {
+      question: "What is the role of vector databases in modern NLP applications?",
+      answer: "Vector databases are crucial for storing and efficiently querying high-dimensional embeddings generated from text data. They are fundamental to RAG systems for retrieving relevant documents or text snippets based on semantic similarity to a user's query. They also power semantic search and recommendation engines.",
+    },
+    {
+      question: "What are MLOps and why are they important for NLP production pipelines?",
+      answer: "MLOps (Machine Learning Operations) is a set of practices that combines Machine Learning, DevOps, and Data Engineering to streamline the ML lifecycle. For NLP production pipelines, MLOps ensures reliable and efficient deployment, monitoring, versioning, and retraining of models, enabling continuous improvement and agility.",
+    },
+    {
+      question: "How can AI agents benefit from advanced NLP capabilities?",
+      answer: "AI agents benefit immensely from NLP by being able to understand complex natural language instructions, extract intent from user queries, process unstructured information, and communicate results in a human-like manner. This makes them more intuitive, versatile, and capable of handling a wider range of tasks.",
+    },
+    {
+      question: "What are some practical considerations for founders when building NLP products?",
+      answer: "Founders should focus on a clear use case, invest heavily in data quality, implement rigorous evaluation and iteration cycles, manage stakeholder expectations about NLP capabilities, carefully monitor costs, ensure data security and privacy compliance, and adopt robust MLOps practices from the outset.",
+    },
+  ],
   "advances-in-clinical-nlp-and-retrieval-october-3-2026": [
     {
       question: "How are domain-specific NLP models like ClinicalBERT different from general language models?",
