@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-and-cloud-dev-tools-shipping-lessons-october-6-2026": [
+    {
+      question: "What are the primary benefits of using AI agents in cloud development workflows?",
+      answer: "AI agents can automate repetitive tasks, assist in code generation and debugging, streamline infrastructure management, and enhance CI/CD pipelines. This frees up human developers to focus on more complex, strategic aspects of software development, potentially leading to faster delivery cycles and improved product quality.",
+    },
+    {
+      question: "What are the biggest challenges when deploying AI agents in the cloud?",
+      answer: "Key challenges include the complexity of orchestrating multiple agent components and their interactions with external tools, managing the significant computational resources and associated costs, ensuring robust security and data privacy, and developing effective methods for debugging and evaluating agent performance.",
+    },
+    {
+      question: "How can developers ensure the security of AI agents in a cloud environment?",
+      answer: "Security measures include implementing strict access controls (least privilege), regularly auditing agent behavior, sanitizing prompts to prevent injection attacks, validating agent outputs, and ensuring agents only access necessary data and tools. Treating AI agents with the same security rigor as critical infrastructure is essential.",
+    },
+    {
+      question: "What kind of developer tools are emerging to support AI agents in the cloud?",
+      answer: "New tools include agent orchestration frameworks (like LangChain), enhanced observability and debugging platforms that visualize agent decision-making, prompt engineering and management tools, model fine-tuning utilities, and specialized security and compliance solutions tailored for AI agents.",
+    },
+    {
+      question: "How is the performance of AI agents typically evaluated in production?",
+      answer: "Evaluation goes beyond traditional metrics like uptime. It includes task completion rates, accuracy of actions, adherence to business logic, and qualitative assessments of agent behavior. Continuous monitoring is crucial to detect performance degradation or drift over time.",
+    },
+    {
+      question: "What is the most significant lesson learned regarding AI agent scalability and cost?",
+      answer: "The primary lesson is that uncontrolled agent execution can lead to unexpectedly high cloud costs. Implementing strict rate limiting, optimizing model inference for efficiency, using smaller fine-tuned models when appropriate, and developing real-time monitoring dashboards for resource consumption are vital strategies.",
+    },
+  ],
   "cloud-nlp-integration-lessons-october-5-2026": [
     {
       question: "What are the primary challenges in deploying large transformer models in the cloud?",
