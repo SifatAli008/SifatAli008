@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-production-nlp-and-agentic-retrieval-october-7-2026": [
+    {
+      question: "What are the most significant challenges in deploying NLP models to production today?",
+      answer: "Key challenges include ensuring model robustness and reliability across diverse inputs, managing computational costs and latency, maintaining data quality for continuous learning, and implementing effective monitoring for performance drift and unexpected behavior. MLOps practices are crucial for addressing these.",
+    },
+    {
+      question: "How is agentic retrieval different from traditional information retrieval?",
+      answer: "Agentic retrieval goes beyond simple keyword matching. It involves understanding user intent, dynamically reformulating queries, potentially engaging in multi-turn dialogues to clarify needs, and synthesizing information from multiple sources to inform an agent's actions or responses. It's more proactive and context-aware.",
+    },
+    {
+      question: "What role do vector databases play in modern NLP and agentic AI?",
+      answer: "Vector databases are essential for storing and querying high-dimensional embeddings efficiently. They enable rapid semantic similarity searches, which are fundamental for retrieval-augmented generation (RAG) and for allowing agents to quickly find relevant information in large unstructured datasets.",
+    },
+    {
+      question: "What are the benefits of using managed cloud services for AI/NLP development?",
+      answer: "Managed services abstract away complex infrastructure management, offering pre-built tools for data labeling, model training, and deployment. They provide scalability, reduce operational overhead, and often come with built-in security and compliance features, accelerating development cycles.",
+    },
+    {
+      question: "How can founders and engineers ensure the ethical deployment of AI agents?",
+      answer: "Ethical deployment involves transparency in AI capabilities, robust data privacy measures, bias detection and mitigation in models, clear accountability frameworks, and implementing safety guardrails to prevent unintended consequences. Explainability features are also key.",
+    },
+    {
+      question: "What is the current trend in transformer model development for production environments?",
+      answer: "The trend is towards developing smaller, more efficient transformer variants that reduce computational costs and latency. There's also a focus on specialized transformers optimized for specific tasks or domains, and efficient fine-tuning techniques like LoRA are gaining prominence.",
+    },
+  ],
   "ai-agents-and-cloud-dev-tools-shipping-lessons-october-6-2026": [
     {
       question: "What are the primary benefits of using AI agents in cloud development workflows?",
