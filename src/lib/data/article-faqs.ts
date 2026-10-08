@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-october-8-2026": [
+    {
+      question: "What are the primary challenges in deploying AI agents to the cloud?",
+      answer: "Key challenges include managing complex inter-agent communication, ensuring robust orchestration, maintaining data quality and security, implementing effective observability for debugging, and designing for graceful failure. New tools and frameworks are emerging to address these issues.",
+    },
+    {
+      question: "How are developer tools evolving to support AI agents?",
+      answer: "Tools are becoming more specialized, offering agent-native SDKs, declarative configuration, enhanced observability platforms for tracing and metrics, and managed cloud services for simplified deployment and scaling. This aims to abstract away much of the underlying infrastructure complexity.",
+    },
+    {
+      question: "What role does NLP play in modern AI agent architectures?",
+      answer: "NLP remains crucial for agents that interact with human language. Specialized NLP models are increasingly used for specific tasks like intent recognition or sentiment analysis, complementing larger LLMs for more complex reasoning. This hybrid approach improves efficiency, cost, and performance.",
+    },
+    {
+      question: "What is the most important shipping lesson for AI agent development?",
+      answer: "A critical lesson is to start with a clear, narrow use case. Trying to build overly complex agents from the outset often leads to failure. Focusing on a well-defined problem allows for better control, testing, and iteration, leading to more reliable deployments.",
+    },
+    {
+      question: "How can founders ensure the security of their AI agent deployments in the cloud?",
+      answer: "Founders must prioritize security by securing agent communication channels, protecting training data, implementing fine-grained access controls, and adopting Zero Trust principles. Treating agents as distinct entities within the cloud environment is essential.",
+    },
+    {
+      question: "What does 'observability' mean in the context of AI agents, and why is it important?",
+      answer: "Observability for AI agents refers to the ability to understand their internal state and behavior through logs, metrics, and traces. It's crucial for debugging unexpected outputs, tuning performance, identifying bottlenecks, and building user trust in the agent's reliability and decision-making processes.",
+    },
+  ],
   "advances-in-production-nlp-and-agentic-retrieval-october-7-2026": [
     {
       question: "What are the most significant challenges in deploying NLP models to production today?",
