@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-october-9-2026": [
+    {
+      question: "How can small startups effectively leverage AI agents without massive cloud budgets?",
+      answer: "Startups can focus on using managed services that offer tiered pricing, leverage open-source agent frameworks and models, and prioritize agent tasks that offer the highest ROI. Efficient prompt engineering and optimizing resource usage are also key to managing costs.",
+    },
+    {
+      question: "What are the biggest security risks associated with deploying AI agents in the cloud?",
+      answer: "Key risks include unauthorized access to sensitive data, prompt injection attacks that can manipulate agent behavior, data leakage through agent interactions, and the potential for agents to perform unintended actions due to flawed logic or insufficient guardrails.",
+    },
+    {
+      question: "How do I choose the right orchestration framework for my AI agent project?",
+      answer: "Consider factors such as the complexity of your agent's tasks, the LLMs you plan to use, your team's existing skill set, and the specific cloud environment you are deploying to. Evaluate frameworks based on their community support, documentation, and flexibility.",
+    },
+    {
+      question: "What is the role of NLP in modern AI agents?",
+      answer: "NLP is fundamental for AI agents that interact with humans or process text. It enables agents to understand user input (intent recognition, entity extraction), generate human-like responses, summarize information, and perform semantic searches to retrieve relevant data, often as part of a RAG system.",
+    },
+    {
+      question: "How can I ensure my AI agent's outputs are reliable and not prone to 'hallucinations'?",
+      answer: "Employing Retrieval Augmented Generation (RAG) is a primary method. This involves grounding the agent's responses in factual information retrieved from a reliable knowledge base. Rigorous testing, clear prompt design, and human oversight for critical applications also play a vital role.",
+    },
+    {
+      question: "What are the essential developer tools for building AI agents in the cloud?",
+      answer: "Essential tools include LLM orchestration frameworks (e.g., LangChain, LlamaIndex), cloud provider-specific AI/ML services, vector databases for RAG, robust monitoring and observability platforms, and tools for prompt engineering and version control.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-october-8-2026": [
     {
       question: "What are the primary challenges in deploying AI agents to the cloud?",
