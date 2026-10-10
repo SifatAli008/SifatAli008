@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-october-10-2026": [
+    {
+      question: "What are the biggest challenges in orchestrating AI agents in the cloud?",
+      answer: "The primary challenges include dynamic resource allocation to match fluctuating agent needs, reliable state management for agents, secure and efficient inter-agent communication, and implementing comprehensive observability tailored to agentic behavior.",
+    },
+    {
+      question: "How is NLP crucial for AI agent development?",
+      answer: "NLP is essential for agents that interact with humans or process text data. It enables agents to understand context, generate human-like responses, and perform tasks based on natural language commands. Techniques like RAG further enhance their ability to access and use specific information.",
+    },
+    {
+      question: "What are some key developer tools that simplify AI agent creation?",
+      answer: "Emerging frameworks like LangChain, LlamaIndex, and AutoGen provide pre-built components for common agent functions, LLM integration, and orchestration primitives. Specialized debugging and observability tools are also critical for understanding agent behavior.",
+    },
+    {
+      question: "What is the most important lesson learned when shipping AI agent products?",
+      answer: "Prioritizing observability from day one is paramount. Understanding how agents make decisions, their outputs, and resource usage is crucial for debugging, optimization, and ensuring safety and reliability.",
+    },
+    {
+      question: "How can companies manage the escalating costs associated with AI agents?",
+      answer: "Cost management involves careful model selection, prompt optimization to reduce token usage, implementing caching mechanisms for repeated queries, and right-sizing cloud resources to avoid over-provisioning.",
+    },
+    {
+      question: "What ethical considerations are most important for AI agents?",
+      answer: "Key ethical considerations include data privacy, mitigating bias in agent decision-making, ensuring robustness against adversarial attacks, and maintaining transparency with users about how agents operate and use data.",
+    },
+  ],
   "advances-in-domain-nlp-and-rag-october-10-2026": [
     {
       question: "What is the primary benefit of using domain-specific NLP models over general-purpose LLMs?",
