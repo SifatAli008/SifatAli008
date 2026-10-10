@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-domain-nlp-and-rag-october-10-2026": [
+    {
+      question: "What is the primary benefit of using domain-specific NLP models over general-purpose LLMs?",
+      answer: "Domain-specific NLP models offer significantly higher accuracy, relevance, and understanding of specialized terminology, industry jargon, and complex relationships within a particular field (e.g., medicine, finance, law) compared to general-purpose LLMs, which lack this depth of contextual knowledge.",
+    },
+    {
+      question: "How does Retrieval-Augmented Generation (RAG) improve the reliability of AI systems in specialized domains?",
+      answer: "RAG improves reliability by grounding AI responses in factual, up-to-date information retrieved from relevant domain-specific knowledge bases. This reduces hallucinations and ensures that outputs are based on accurate, verifiable data, especially when combined with advanced retrieval techniques.",
+    },
+    {
+      question: "What are the key components of a production NLP pipeline?",
+      answer: "A production NLP pipeline typically includes robust data preprocessing and augmentation, scalable model deployment and orchestration (often using cloud-native tools and containerization), continuous monitoring of performance metrics, and feedback loops for ongoing model improvement.",
+    },
+    {
+      question: "Are there specific NLP techniques crucial for domain specialization?",
+      answer: "Yes, key techniques include specialized tokenization that recognizes domain-specific phrases, custom embedding models that capture semantic relationships within the domain, and fine-tuning large language models on curated datasets from the target industry.",
+    },
+    {
+      question: "What role do evaluation metrics play in the success of domain-specific NLP and RAG systems?",
+      answer: "Evaluation metrics are critical for measuring the actual performance and trustworthiness of these systems in their intended domains. Domain-specific metrics are essential to go beyond general accuracy and assess how well the AI handles specialized tasks, ensuring it meets business requirements and regulatory standards.",
+    },
+    {
+      question: "How can enterprises ensure their RAG systems remain up-to-date in rapidly changing fields like finance or law?",
+      answer: "Enterprises can ensure currency by implementing RAG pipelines designed for dynamic data ingestion and indexing. This means setting up automated processes to continuously update the knowledge base with the latest documents, news, and regulatory information, and re-evaluating retrieval relevance regularly.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-october-9-2026": [
     {
       question: "How can small startups effectively leverage AI agents without massive cloud budgets?",
