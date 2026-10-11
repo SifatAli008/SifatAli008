@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-production-nlp-and-agentic-retrieval-october-11-2026": [
+    {
+      question: "How can I optimize my existing NLP models for production without retraining?",
+      answer: "You can explore techniques like model distillation, quantization, and pruning. Model distillation involves training a smaller, faster 'student' model to mimic the behavior of your larger 'teacher' model. Quantization reduces the precision of model weights, decreasing size and increasing speed. Pruning removes less important connections. These methods can significantly reduce computational overhead and latency, making models more production-ready.",
+    },
+    {
+      question: "What are the key considerations when building a RAG system for a specific industry?",
+      answer: "For industry-specific RAG, focus on curating a high-quality, domain-specific knowledge base. This involves specialized data cleaning, pre-processing, and potentially creating domain-specific embeddings or fine-tuning your retrieval model on industry jargon and concepts. Evaluating the relevance and accuracy of retrieved documents within your industry's context is also crucial. Consider using domain-specific tokenizers if general ones are insufficient.",
+    },
+    {
+      question: "How do AI agents differ from traditional automation scripts, and what are the challenges in deploying them?",
+      answer: "AI agents go beyond fixed scripts by possessing capabilities like planning, reasoning, and tool use. They can adapt to changing conditions and learn from interactions. Challenges in deployment include ensuring robust error handling, managing state across complex workflows, security concerns related to tool access, and the difficulty of predicting all possible emergent behaviors. Comprehensive observability and testing are vital.",
+    },
+    {
+      question: "What are the most important metrics for evaluating NLP models in a production environment?",
+      answer: "Beyond accuracy, crucial production metrics include model drift (performance degradation over time), latency (response time), throughput (requests processed per unit time), cost per inference, fairness (absence of bias), and explainability. Continuous monitoring and automated alerts for deviations in these metrics are essential for maintaining system health.",
+    },
+    {
+      question: "How can cloud infrastructure be leveraged to improve the performance and scalability of NLP pipelines?",
+      answer: "Cloud platforms offer scalable compute resources (CPUs, GPUs), managed container orchestration (Kubernetes), serverless functions for event-driven processing, and specialized AI/ML services. Leveraging these allows you to dynamically scale resources based on demand, deploy models efficiently using containers, and access powerful tools for data management and MLOps, significantly improving both performance and scalability.",
+    },
+    {
+      question: "What are the shipping lessons learned for AI agents that interact with multiple cloud services?",
+      answer: "Key lessons involve rigorous integration testing for each service interaction, implementing robust circuit breakers and retry mechanisms to handle transient cloud service failures, comprehensive logging and tracing across all service calls for debugging, and defining clear fallback strategies when services are unavailable. Security must be paramount, with least-privilege access controls for agent credentials. Observability into the agent's decision-making process and the state of its interactions with cloud services is critical for troubleshooting.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-october-10-2026": [
     {
       question: "What are the biggest challenges in orchestrating AI agents in the cloud?",
