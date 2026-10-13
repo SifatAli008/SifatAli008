@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-72",
+    slug: "advances-in-domain-nlp-and-agentic-retrieval-october-13-2026",
+    title: "Domain-Specific NLP and Agentic Retrieval: A Powerful Synergy for Enterprise Intelligence",
+    excerpt: "This article explores the latest advancements in domain-specific Natural Language Processing (NLP) and the integration of agentic retrieval systems, highlightin",
+    seoTitle: "Domain NLP & Agentic Retrieval: Boosting Enterprise AI in 2026",
+    seoDescription: "Discover how domain-specific NLP, combined with agentic retrieval, is revolutionizing enterprise intelligence. Learn about transformers, embeddings, RAG, and pr",
+    content: "",
+    tags: ["AI", "NLP", "Domain-Specific NLP", "Agentic Retrieval", "Enterprise AI", "Transformers", "Embeddings", "RAG", "Production NLP", "Cloud", "Developer Tools"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-10-13T09:00:00.000Z",
+    createdAt: "2026-10-13T09:00:00.000Z",
+    updatedAt: "2026-10-13T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-71",
     slug: "advances-in-production-nlp-and-agentic-retrieval-october-11-2026",
     title: "Navigating the Frontier: Production NLP, Agentic Retrieval, and Cloud Synergy on October 11, 2026",

@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-domain-nlp-and-agentic-retrieval-october-13-2026": [
+    {
+      question: "What is the primary benefit of using domain-specific NLP over general NLP models for enterprise applications?",
+      answer: "Domain-specific NLP models are trained on specialized data relevant to a particular industry or company. This allows them to understand jargon, context, and nuances far better than general NLP models, leading to more accurate insights, better decision-making, and more relevant outputs for tasks like text analysis, summarization, and question answering.",
+    },
+    {
+      question: "How does agentic retrieval differ from traditional search engines?",
+      answer: "Traditional search engines primarily match keywords or vector similarities to return documents. Agentic retrieval systems employ AI agents that can understand user intent more deeply, formulate complex search strategies, retrieve information from multiple sources, and then synthesize, reason, and even take actions based on the retrieved data. They are more proactive and intelligent.",
+    },
+    {
+      question: "Can I use my company's internal documents with these systems without compromising data privacy?",
+      answer: "Yes, this is a key focus. Companies can use their internal documents by employing techniques like data anonymization, secure cloud deployment with strict access controls, and on-premise or private cloud solutions. Domain-specific NLP and RAG systems are designed to leverage proprietary data while adhering to strict privacy and security protocols.",
+    },
+    {
+      question: "What are the biggest challenges in deploying agentic retrieval systems in a production environment?",
+      answer: "The main challenges include ensuring data privacy and security, achieving scalability and high performance as data grows, managing model drift through continuous monitoring and retraining, and developing robust evaluation metrics that go beyond simple accuracy to assess the system's overall effectiveness and reasoning capabilities.",
+    },
+    {
+      question: "How does RAG fit into the picture of domain-specific NLP and agentic retrieval?",
+      answer: "RAG is a prime example of this synergy. It uses domain-specific retrieval (often powered by specialized embeddings) to fetch relevant context from a knowledge base. This context is then fed into a language model to generate a more accurate and grounded response. Essentially, RAG enhances LLM capabilities by grounding them in specific, relevant domain knowledge.",
+    },
+    {
+      question: "What are the essential components for building a domain-specific NLP pipeline for enterprise use?",
+      answer: "Key components include a domain-specific corpus for training, custom tokenizers and embedding models, fine-tuned LLMs, a robust data pipeline for ingestion and preprocessing, a scalable vector database for retrieval, and a comprehensive MLOps framework for deployment, monitoring, and retraining. Developer tools and cloud infrastructure are also crucial for integration and scalability.",
+    },
+  ],
   "advances-in-production-nlp-and-agentic-retrieval-october-11-2026": [
     {
       question: "How can I optimize my existing NLP models for production without retraining?",
