@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-october-13-2026": [
+    {
+      question: "How are AI agents changing the role of developers?",
+      answer: "AI agents are shifting the developer's focus from writing routine code to designing agent workflows, curating data, fine-tuning models, and overseeing agent performance. They act as powerful co-pilots, augmenting human capabilities rather than replacing them entirely.",
+    },
+    {
+      question: "What are the biggest challenges in deploying AI agents in production?",
+      answer: "Key challenges include ensuring data quality and security, managing complex agent orchestration and state, dealing with the high operational costs of LLMs, and implementing effective human-in-the-loop systems for oversight and error correction.",
+    },
+    {
+      question: "How important is NLP for AI agents?",
+      answer: "NLP is fundamental. It enables agents to understand user inputs, process unstructured text, extract information, and generate human-like responses. Advances in NLP directly translate to more capable and intelligent agents.",
+    },
+    {
+      question: "What is RAG and why is it important for AI agents?",
+      answer: "RAG (Retrieval-Augmented Generation) allows AI agents to access and use external, up-to-date information from knowledge bases. This makes their responses more accurate, relevant, and grounded in specific data, without needing to retrain the entire model.",
+    },
+    {
+      question: "How can founders manage the costs associated with AI agents?",
+      answer: "Founders can manage costs by carefully modeling operational expenses, optimizing prompts and model choices, implementing efficient caching, and choosing managed cloud services that abstract away infrastructure complexities. Understanding the total cost of ownership is crucial.",
+    },
+    {
+      question: "What is the role of cloud providers in the AI agent ecosystem?",
+      answer: "Cloud providers are crucial by offering managed services for LLMs, vector databases, and agent orchestration platforms. These services simplify deployment, reduce infrastructure management overhead, and make advanced AI capabilities more accessible to developers.",
+    },
+  ],
   "advances-in-domain-nlp-and-agentic-retrieval-october-13-2026": [
     {
       question: "What is the primary benefit of using domain-specific NLP over general NLP models for enterprise applications?",
