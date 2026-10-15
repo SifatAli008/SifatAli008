@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-74",
+    slug: "ai-agents-cloud-integration-october-15-2026",
+    title: "Navigating the AI Agent-Cloud Frontier: Key Integration Lessons for 2026",
+    excerpt: "As AI agents become more sophisticated, their integration with cloud infrastructure presents unique challenges and opportunities. This article distills critical",
+    seoTitle: "AI Agent Cloud Integration: Essential Lessons for Founders & Engineers (Oct 15, 2026)",
+    seoDescription: "Discover crucial insights into integrating AI agents with cloud platforms. Learn from real-world challenges and best practices in orchestration, security, and d",
+    content: "",
+    tags: ["AI Agents", "Cloud Computing", "Developer Tools", "DevOps", "System Integration", "Orchestration", "Scalability", "NLP"],
+    status: "published",
+    readingTime: 8,
+    publishedAt: "2026-10-15T14:00:00.000Z",
+    createdAt: "2026-10-15T14:00:00.000Z",
+    updatedAt: "2026-10-15T14:00:00.000Z",
+  },
+  {
     id: "blog-meta-73",
     slug: "ai-agents-cloud-dev-tools-shipping-lessons-october-13-2026",
     title: "AI Agents in the Cloud: Navigating the New Frontier of Developer Tools and Shipping Lessons",
