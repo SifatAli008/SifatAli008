@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-rag-october-16-2026": [
+    {
+      question: "How are tokenization strategies improving for clinical NLP?",
+      answer: "Modern clinical NLP is employing advanced subword tokenization techniques. These methods better handle complex medical terminology, drug names, and gene sequences that traditional tokenizers might break down incorrectly, leading to more accurate semantic understanding.",
+    },
+    {
+      question: "What is the primary benefit of RAG in healthcare applications?",
+      answer: "The primary benefit of RAG in healthcare is grounding large language models (LLMs) in factual, up-to-date clinical data. This significantly reduces the risk of 'hallucinations' or generating inaccurate information, which is critical for patient safety and clinical decision-making.",
+    },
+    {
+      question: "How do clinical embeddings differ from general-purpose embeddings?",
+      answer: "Clinical embeddings are trained on specialized medical corpora (EHRs, research papers). They capture not just semantic similarity but also clinical relevance and temporal relationships, allowing for more nuanced understanding of medical concepts and patient histories.",
+    },
+    {
+      question: "What are the key challenges in deploying NLP models in clinical settings?",
+      answer: "Key challenges include ensuring data privacy and compliance (e.g., HIPAA), achieving low latency and high throughput for real-time workflows, managing model updates and versions, and integrating with existing complex hospital IT systems. Continuous monitoring and robust security are also paramount.",
+    },
+    {
+      question: "How can RAG systems help clinicians with complex patient cases?",
+      answer: "RAG systems can quickly process a patient's extensive medical history, identify key entities and relationships, retrieve relevant information from medical literature and guidelines, and synthesize this into a concise, evidence-based summary for the clinician. This aids in differential diagnosis and treatment planning.",
+    },
+    {
+      question: "What is the role of MLOps in advancing clinical AI?",
+      answer: "MLOps (Machine Learning Operations) provides the tools and practices to streamline the development, deployment, and maintenance of AI models, including clinical NLP and RAG systems. It addresses challenges in automation, monitoring, scalability, and reproducibility, enabling faster and more reliable AI integration into healthcare.",
+    },
+  ],
   "ai-agents-cloud-integration-october-15-2026": [
     {
       question: "What is the primary challenge when integrating AI agents with cloud services?",
