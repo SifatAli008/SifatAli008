@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-77",
+    slug: "advances-in-production-nlp-pipelines-october-18-2026",
+    title: "Navigating the Evolving Landscape of Production NLP Pipelines",
+    excerpt: "This article dives into the latest advancements in production NLP pipelines, focusing on the critical areas of transformer efficiency, robust evaluation metrics",
+    seoTitle: "Production NLP Pipelines: Latest Advances in Transformers, Evaluation, and Cloud Deployment | sifatali.site",
+    seoDescription: "Explore the cutting-edge of production NLP pipelines on October 18, 2026. Discover advancements in transformer models, evaluation techniques, and cloud deployme",
+    content: "",
+    tags: ["NLP", "AI", "Production NLP", "Transformers", "Cloud", "Developer Tools", "Machine Learning"],
+    status: "published",
+    readingTime: 10,
+    publishedAt: "2026-10-18T09:00:00.000Z",
+    createdAt: "2026-10-18T09:00:00.000Z",
+    updatedAt: "2026-10-18T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-76",
     slug: "nlp-agent-synergy-driving-enterprise-intelligence-october-17-2026",
     title: "The NLP-Agent Nexus: Driving Enterprise Intelligence with Sophisticated Natural Language Understanding and Autonomous Action",

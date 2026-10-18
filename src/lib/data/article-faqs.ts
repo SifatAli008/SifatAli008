@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-production-nlp-pipelines-october-18-2026": [
+    {
+      question: "What are the most significant challenges in deploying transformer models to production?",
+      answer: "The primary challenges include their large size, high computational requirements leading to slow inference, and the need for significant memory. Addressing these often involves model compression techniques like quantization and pruning, or using more efficient transformer architectures.",
+    },
+    {
+      question: "How is NLP model evaluation evolving beyond simple accuracy?",
+      answer: "Evaluation is moving towards metrics that assess contextual understanding, semantic similarity, and robustness against errors or adversarial inputs. Human-in-the-loop evaluation is also becoming crucial for generative tasks to assess fluency and factual correctness.",
+    },
+    {
+      question: "What role does cloud infrastructure play in modern NLP pipelines?",
+      answer: "Cloud platforms are essential for providing the scalable compute resources, managed services (like MLOps tools), and flexibility needed to deploy, monitor, and update NLP models. Containerization and orchestration (e.g., Kubernetes) are standard for managing these deployments.",
+    },
+    {
+      question: "What is Retrieval Augmented Generation (RAG) and why is it important for production NLP?",
+      answer: "RAG combines large language models with external knowledge bases. This allows models to provide more accurate, up-to-date, and contextually relevant information by retrieving relevant data before generating a response. It's important for reducing hallucinations and grounding responses in facts.",
+    },
+    {
+      question: "What are key MLOps practices for NLP teams?",
+      answer: "Key MLOps practices include automated model training and versioning, CI/CD pipelines adapted for ML, robust monitoring of model performance and data drift, and strategies for continuous retraining and deployment to ensure models remain effective over time.",
+    },
+    {
+      question: "How can NLP teams ensure their models are robust to noisy or unexpected input?",
+      answer: "Robustness is achieved through techniques like adversarial testing during evaluation, implementing confidence scores for predictions, and developing mechanisms to detect and handle out-of-distribution inputs gracefully, rather than producing erroneous outputs.",
+    },
+  ],
   "nlp-agent-synergy-driving-enterprise-intelligence-october-17-2026": [
     {
       question: "What is the core concept behind the NLP-Agent Nexus?",
