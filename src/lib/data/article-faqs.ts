@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-domain-nlp-and-rag-october-19-2026": [
+    {
+      question: "What is the primary benefit of using domain-specific NLP over general LLMs?",
+      answer: "Domain-specific NLP models are fine-tuned on data from a particular field, allowing them to understand specialized jargon, context, and nuances far better than general LLMs. This leads to more accurate, relevant, and reliable outputs for tasks within that domain, such as medical diagnosis support, legal document analysis, or financial report generation.",
+    },
+    {
+      question: "How does Retrieval Augmented Generation (RAG) help prevent AI hallucinations?",
+      answer: "RAG systems work by first retrieving relevant information from a trusted knowledge base (e.g., internal documents, databases) before generating an answer. This grounding process ensures that the AI's responses are based on factual data, significantly reducing the likelihood of it generating fabricated or incorrect information, a common issue with standalone LLMs.",
+    },
+    {
+      question: "What are the biggest challenges in deploying RAG systems to production?",
+      answer: "Key challenges include ensuring the quality and freshness of the knowledge base, optimizing the retrieval process to consistently find the most relevant information, effective chunking strategies for data ingestion, selecting the right embedding models, and sophisticated prompt engineering to guide the LLM. Managing the latency and cost of retrieval and generation are also critical production concerns.",
+    },
+    {
+      question: "What are some essential developer tools for building NLP and RAG applications?",
+      answer: "Frameworks like LangChain and LlamaIndex are widely used to orchestrate complex NLP and RAG workflows. These tools provide abstractions for data loading, text splitting, vector store integration, and LLM interaction. Cloud platforms (AWS, Azure, GCP) offer managed services for vector databases, model hosting, and scalable compute infrastructure that are vital for production deployments.",
+    },
+    {
+      question: "How can we effectively evaluate the performance of a RAG system?",
+      answer: "Beyond standard NLP metrics, evaluating RAG requires assessing retrieval quality (precision, recall), answer faithfulness (adherence to retrieved context), and overall answer relevance and factuality. A combination of automated metrics and human review is often necessary to gain a comprehensive understanding of the system's performance and identify areas for improvement.",
+    },
+    {
+      question: "What is the role of tokenization in domain-specific NLP?",
+      answer: "Tokenization is the process of breaking down text into smaller units (tokens) for processing. In domain-specific NLP, custom tokenizers are often needed to correctly handle specialized terms, abbreviations, or symbols unique to a field (e.g., chemical formulas in science, legal citations). Proper tokenization ensures that these terms are recognized and processed accurately, leading to better embeddings and model performance.",
+    },
+  ],
   "advances-in-production-nlp-pipelines-october-18-2026": [
     {
       question: "What are the most significant challenges in deploying transformer models to production?",
