@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-cloud-dev-tools-shipping-lessons-october-20-2026": [
+    {
+      question: "What are the primary benefits of using AI agents in cloud development workflows?",
+      answer: "AI agents can automate complex tasks, enhance developer productivity by handling repetitive or time-consuming operations, improve system reliability through automated monitoring and response, and enable the creation of more sophisticated, intelligent applications by coordinating multiple specialized functions.",
+    },
+    {
+      question: "What are the biggest challenges in deploying AI agents at scale in the cloud?",
+      answer: "Key challenges include robust agent orchestration, ensuring reliable inter-agent communication, managing complex dependencies, maintaining system security and safety through effective guardrails, and achieving sufficient observability to debug and monitor agent behavior effectively.",
+    },
+    {
+      question: "Which developer tools are most critical for building AI agents today?",
+      answer: "Critical tools include agent frameworks (like LangChain or AutoGen) for structuring agent logic, enhanced debugging and observability platforms for understanding agent behavior, and prompt management systems for optimizing LLM interactions. Cloud provider-specific tools for agent deployment and management are also increasingly important.",
+    },
+    {
+      question: "How can organizations ensure the safety and ethical use of AI agents?",
+      answer: "Safety and ethical use are ensured through implementing strict guardrails, input/output validation, access controls, bias mitigation techniques, and continuous monitoring. Human oversight in critical decision-making processes is also a key strategy. Regular ethical reviews and adherence to emerging AI regulations are vital.",
+    },
+    {
+      question: "What is the role of NLP in current AI agent development?",
+      answer: "NLP is fundamental to most AI agents, powering their ability to understand human language (through LLMs), process text data, generate responses, and interpret complex instructions. Advances in NLP directly translate to more capable and nuanced agent behavior.",
+    },
+    {
+      question: "What is a key shipping lesson for founders and engineers working with AI agents?",
+      answer: "A crucial lesson is to start with clearly defined problems and specific use cases. Avoid trying to build overly general agents without a clear objective. Focusing on narrow, high-value tasks allows for faster iteration, easier validation, and a clearer demonstration of ROI.",
+    },
+  ],
   "domain-nlp-production-pipelines-navigating-complexity-october-20-2026": [
     {
       question: "What is the primary advantage of domain-specific NLP over general NLP models?",
