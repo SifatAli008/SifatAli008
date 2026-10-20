@@ -7,6 +7,21 @@ import type { BlogPost } from "@/types";
  */
 export const blogFallbackMeta: BlogPost[] = [
   {
+    id: "blog-meta-79",
+    slug: "domain-nlp-production-pipelines-navigating-complexity-october-20-2026",
+    title: "Navigating the Labyrinth: Domain-Specific NLP Production Pipelines in October 2026",
+    excerpt: "This article dives into the current state and future trajectory of domain-specific Natural Language Processing (NLP) production pipelines, focusing on the chall",
+    seoTitle: "Domain-Specific NLP Production Pipelines: Challenges & Solutions (Oct 2026)",
+    seoDescription: "Explore the cutting edge of domain-specific NLP production pipelines in October 2026. Learn about transformer advancements, RAG, agentic systems, and key challe",
+    content: "",
+    tags: ["NLP", "AI", "Production Pipelines", "Domain-Specific NLP", "Transformers", "RAG", "Agentic AI", "Cloud", "Developer Tools"],
+    status: "published",
+    readingTime: 8,
+    publishedAt: "2026-10-20T09:00:00.000Z",
+    createdAt: "2026-10-20T09:00:00.000Z",
+    updatedAt: "2026-10-20T09:00:00.000Z",
+  },
+  {
     id: "blog-meta-78",
     slug: "advances-in-domain-nlp-and-rag-october-19-2026",
     title: "Navigating the Frontier: Domain-Specific NLP and RAG in Production",

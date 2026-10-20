@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "domain-nlp-production-pipelines-navigating-complexity-october-20-2026": [
+    {
+      question: "What is the primary advantage of domain-specific NLP over general NLP models?",
+      answer: "Domain-specific NLP models are fine-tuned or trained on data relevant to a particular industry or field. This allows them to understand and process specialized jargon, context, and nuances that general NLP models often miss, leading to significantly higher accuracy and relevance for industry-specific tasks like medical record analysis or financial report interpretation.",
+    },
+    {
+      question: "How does RAG improve the reliability of NLP models in production?",
+      answer: "RAG enhances reliability by grounding an LLM's responses in factual information retrieved from a specific knowledge base. This drastically reduces the likelihood of hallucinations (generating false information) and ensures that the model's output is based on current, relevant, and verifiable data, which is critical for domains like healthcare and finance.",
+    },
+    {
+      question: "What are some key challenges in deploying NLP models in specialized domains?",
+      answer: "Major challenges include acquiring and annotating high-quality, domain-specific data, developing robust evaluation metrics that go beyond simple accuracy, managing the computational costs of large models, and ensuring seamless integration with existing enterprise systems. Data scarcity and the need for expert annotators are particularly significant hurdles.",
+    },
+    {
+      question: "How can companies manage the cost of running large NLP models in production?",
+      answer: "Cost management involves techniques like parameter-efficient fine-tuning (PEFT) to reduce training overhead, model quantization and pruning to decrease inference resource requirements, and leveraging cloud-native solutions like serverless computing for auto-scaling based on demand. Optimized vector databases are also crucial for RAG efficiency.",
+    },
+    {
+      question: "What role do AI agents play in domain-specific NLP pipelines?",
+      answer: "AI agents act as orchestrators for complex NLP workflows. They can automate multi-step processes, such as data preprocessing, model selection, information retrieval, generation, and post-processing. This allows for more dynamic, adaptive, and autonomous operation of NLP systems, freeing up human resources for higher-level tasks.",
+    },
+    {
+      question: "What is weak supervision and why is it important for domain-specific NLP?",
+      answer: "Weak supervision involves using heuristics, existing knowledge bases, or programmatic functions to generate labels for training data, rather than relying solely on manual annotation. It's important for domain-specific NLP because it allows for the creation of large, labeled datasets more efficiently and cost-effectively, especially in fields where expert annotators are scarce.",
+    },
+  ],
   "advances-in-domain-nlp-and-rag-october-19-2026": [
     {
       question: "What is the primary benefit of using domain-specific NLP over general LLMs?",
