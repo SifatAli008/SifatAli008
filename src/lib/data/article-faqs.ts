@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "navigating-agentic-cloud-dev-tools-and-shipping-lessons-october-21-2026": [
+    {
+      question: "How are AI agents changing the day-to-day work of cloud developers?",
+      answer: "AI agents are automating repetitive tasks like code generation, testing, and infrastructure management, freeing developers to focus on more complex problem-solving and architectural design. They also act as intelligent assistants, providing real-time suggestions and error detection.",
+    },
+    {
+      question: "What are the biggest risks associated with using AI agents in cloud development?",
+      answer: "Key risks include security vulnerabilities due to elevated agent privileges, potential for unintended consequences from autonomous actions, challenges in debugging complex agent interactions, and ensuring data privacy and compliance.",
+    },
+    {
+      question: "How can teams ensure the security of their AI agents in the cloud?",
+      answer: "Teams should implement strict access controls, conduct regular security audits of agent code and configurations, use robust authentication, and establish clear governance policies for agent usage and data handling.",
+    },
+    {
+      question: "What is the role of NLP in the advancement of AI agents for development?",
+      answer: "NLP is crucial for enabling agents to understand human instructions, interpret complex requirements, and communicate effectively. Advances in NLP allow agents to process and synthesize unstructured data, leading to more sophisticated automation and insight generation.",
+    },
+    {
+      question: "What are the essential lessons for companies looking to adopt AI agents in their development pipelines?",
+      answer: "Key lessons include prioritizing robust observability, implementing phased rollouts with human oversight, focusing on agent governance and security, fostering a culture of continuous learning, and maintaining clear documentation and communication.",
+    },
+    {
+      question: "How can I measure the success of AI agent integration in my development workflow?",
+      answer: "Success can be measured by improvements in developer productivity (e.g., reduced time-to-market), decreased bug rates, enhanced system reliability, cost savings in cloud resource utilization, and increased developer satisfaction.",
+    },
+  ],
   "ai-agents-cloud-dev-tools-shipping-lessons-october-20-2026": [
     {
       question: "What are the primary benefits of using AI agents in cloud development workflows?",
