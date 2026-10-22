@@ -5,6 +5,8 @@ type ArticleModule = Omit<BlogPost, "id">;
 
 /** Per-slug dynamic imports — load one article body, not the whole library. */
 const ARTICLE_LOADERS: Record<string, () => Promise<ArticleModule>> = {
+  "advances-in-clinical-nlp-and-rag-october-22-2026": async () =>
+    (await import("./articles/clinical-nlp-advancements-oct-22-2026")).clinicalNlpAdvancementsArticle,
   "navigating-agentic-cloud-dev-tools-and-shipping-lessons-october-21-2026": async () =>
     (await import("./articles/navigating-agentic-cloud-dev-tools-oct-21-2026")).navigatingAgenticCloudDevToolsArticle,
   "ai-agents-cloud-dev-tools-shipping-lessons-october-20-2026": async () =>

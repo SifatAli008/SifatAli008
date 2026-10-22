@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "advances-in-clinical-nlp-and-rag-october-22-2026": [
+    {
+      question: "How are transformer models improving clinical NLP?",
+      answer: "Transformer models, especially those fine-tuned on medical data, offer a deeper understanding of clinical language nuances, complex terminology, and long patient histories. Their ability to process context across larger sequences is crucial for comprehensive analysis of EHRs and research papers.",
+    },
+    {
+      question: "What is Retrieval Augmented Generation (RAG) and why is it important for healthcare AI?",
+      answer: "RAG combines LLMs with external knowledge retrieval. In healthcare, it grounds AI responses in factual, up-to-date medical data (like research or EHRs), reducing the risk of generating incorrect information (hallucinations) and providing clinicians with evidence-based insights for decision support.",
+    },
+    {
+      question: "What are the main challenges in deploying NLP models in clinical settings?",
+      answer: "Key challenges include ensuring data privacy and security (HIPAA compliance), handling data heterogeneity, achieving low latency for real-time applications, maintaining model accuracy over time (model drift), integrating seamlessly into existing clinical workflows, and managing operational costs.",
+    },
+    {
+      question: "How do domain-specific embeddings differ from general-purpose embeddings, and why are they better for clinical NLP?",
+      answer: "Domain-specific embeddings, like those from ClinicalBERT, are trained on medical text and capture the semantic relationships between clinical terms. This leads to more accurate interpretation of medical jargon, diseases, and treatments compared to general embeddings that lack this specialized context.",
+    },
+    {
+      question: "What are the practical steps for building a reliable clinical NLP production pipeline?",
+      answer: "It involves secure data ingestion and preprocessing, efficient embedding generation, robust model inference, rigorous post-processing and validation, seamless integration with clinical systems, and continuous monitoring with a feedback loop for ongoing improvement. Embracing MLOps practices is also vital.",
+    },
+    {
+      question: "What is the role of tokenization in clinical NLP?",
+      answer: "Tokenization breaks down text into smaller units (tokens). Specialized clinical tokenizers are essential for accurately handling medical abbreviations, drug names, and complex terms that general tokenizers might misinterpret, ensuring that the subsequent NLP analysis is based on correct input.",
+    },
+  ],
   "navigating-agentic-cloud-dev-tools-and-shipping-lessons-october-21-2026": [
     {
       question: "How are AI agents changing the day-to-day work of cloud developers?",
