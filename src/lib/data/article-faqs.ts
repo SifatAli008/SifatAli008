@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "cloud-agent-orchestration-scaling-lessons-oct-23-2026": [
+    {
+      question: "What is the most critical factor for scaling AI agents in the cloud?",
+      answer: "Robust orchestration is widely considered the most critical factor. It provides the necessary framework to manage the lifecycle, resource allocation, communication, and error handling of numerous agents dynamically.",
+    },
+    {
+      question: "How can developers ensure their AI agents are resilient in production?",
+      answer: "Resilience is achieved by designing for failure. This includes implementing comprehensive error handling, retry mechanisms, fallback strategies, and clear pathways for human intervention when agents encounter issues they cannot resolve.",
+    },
+    {
+      question: "What role do developer tools play in AI agent deployment?",
+      answer: "Developer tools, such as agent frameworks (e.g., LangChain, AutoGen), prompt management systems, and testing environments, abstract away infrastructure complexity, enabling developers to focus on agent logic and accelerate the development and deployment process.",
+    },
+    {
+      question: "How can companies manage the costs associated with running AI agents at scale?",
+      answer: "Proactive cost management involves strategies like using specialized, smaller models for specific tasks, optimizing prompts to reduce token usage, leveraging cost-effective compute options (like spot instances), and implementing continuous monitoring and budget alerts.",
+    },
+    {
+      question: "What are the key NLP advancements enabling sophisticated AI agents?",
+      answer: "Advancements in Large Language Models (LLMs), Natural Language Understanding (NLU), Natural Language Generation (NLG), and Retrieval Augmented Generation (RAG) are fundamental. These technologies allow agents to understand intent, process information, access external knowledge, and communicate effectively.",
+    },
+    {
+      question: "Why is observability so important for AI agents in production?",
+      answer: "Observability provides crucial insights into agent behavior, performance, and potential issues. Comprehensive logging, tracing, and metrics are essential for debugging, performance tuning, and understanding the decision-making processes of agents in real-world scenarios.",
+    },
+  ],
   "advances-in-clinical-nlp-and-rag-october-22-2026": [
     {
       question: "How are transformer models improving clinical NLP?",
