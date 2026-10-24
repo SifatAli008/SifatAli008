@@ -3,6 +3,32 @@ export const articleFaqsBySlug: Record<
   string,
   { question: string; answer: string }[]
 > = {
+  "ai-agents-and-cloud-dev-tools-shipping-lessons-october-24-2026": [
+    {
+      question: "How are AI agents changing the daily work of software engineers?",
+      answer: "AI agents are increasingly assisting engineers with tasks like code generation, debugging, writing tests, and managing cloud infrastructure. This allows engineers to focus more on complex problem-solving and system design rather than repetitive coding or manual configuration.",
+    },
+    {
+      question: "What are the biggest challenges in adopting AI agents for cloud development?",
+      answer: "Key challenges include ensuring the accuracy and security of agent-generated outputs, developing effective prompt engineering skills, managing the complexity of multi-agent systems (orchestration), and upskilling development teams to collaborate with AI.",
+    },
+    {
+      question: "How can founders ensure the security of AI agents in their cloud environments?",
+      answer: "Founders must implement strong security practices, including strict access controls for agents, data sanitization, continuous monitoring for anomalies, and ensuring compliance with relevant AI regulations. Treating AI agents as potential entry points is crucial.",
+    },
+    {
+      question: "What role does NLP play in the current advancements of AI agents?",
+      answer: "NLP is fundamental. It enables AI agents to understand natural language commands, process unstructured data, extract relevant information, and generate coherent responses. Advances in NLP directly enhance the capabilities and intelligence of AI agents.",
+    },
+    {
+      question: "Are AI agents replacing developers, or augmenting them?",
+      answer: "Currently, AI agents are primarily seen as augmentation tools. They significantly boost productivity by automating routine tasks, but human oversight, creativity, and strategic decision-making remain essential for complex software development.",
+    },
+    {
+      question: "What are the most important \"shipping lessons\" for teams using AI agents?",
+      answer: "Essential lessons include the absolute necessity of human verification for agent outputs, the critical importance of precise prompt engineering, the need for robust agent orchestration and scaling strategies, and a proactive approach to security and compliance.",
+    },
+  ],
   "cloud-agent-orchestration-scaling-lessons-oct-23-2026": [
     {
       question: "What is the most critical factor for scaling AI agents in the cloud?",
